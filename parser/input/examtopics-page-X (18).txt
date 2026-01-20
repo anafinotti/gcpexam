@@ -1,0 +1,821 @@
+==============================
+Page X — Question #181
+
+Pergunta:
+You have created a new project in Google Cloud through the gcloud command line interface (CLI) and linked a billing account. You need to create a new Compute
+Engine instance using the CLI. You need to perform the prerequisite steps. What should you do?
+
+Alternativas:
+- A. Create a Cloud Monitoring Workspace.
+- B. Create a VPC network in the project.
+- C. Enable the compute googleapis.com API.
+- D. Grant yourself the IAM role of Computer Admin.
+
+Resposta correta:
+C. Enable the compute googleapis.com API.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: sylva91 Highly Voted  3 years, 4 months ago
+Selected Answer: C
+nothing can be done before activating the API
+   upvoted 5 times
+
+2. Anonymous: yehia2221 Most Recent  1 year, 5 months ago
+agree with C, there are few API enabled by default and the Compute engine API is not a part of them. do not be confused, personally, I thought this API should be part of the basic APIs enabled but it it not.
+   upvoted 2 times
+
+3. Anonymous: PiperMe 1 year, 10 months ago
+Selected Answer: C
+The compute.googleapis.com API must be enabled in your project before you can utilize Compute Engine features and issue commands to create instances.
+   upvoted 3 times
+
+4. Anonymous: michalmrozik 2 years, 12 months ago
+Why not B? Can you create Compute Engine instance without assigning it it VPC?
+   upvoted 1 times
+ lummy 2 years, 9 months ago
+I believe you can make use of the default vpc
+   upvoted 3 times
+ Mike_SG 2 years, 8 months ago
+When you create a new project on the GCP, a default VPC network is automatically created for you.
+   upvoted 2 times
+ Kyle1776 2 years, 7 months ago
+Yeah, but who uses the default VPC and CIDR ranges? Technically you could, but its not best practice and RARELY would fit in with a companies existing infrastructure.
+   upvoted 1 times
+
+5. Anonymous: roaming_panda 3 years, 1 month ago
+api > iam role .i vote for C !!
+   upvoted 3 times
+
+6. Anonymous: zellck 3 years, 4 months ago
+Selected Answer: C
+C is the obvious answer.
+   upvoted 2 times
+
+7. Anonymous: lll_bbb 3 years, 4 months ago
+Selected Answer: C
+api first
+   upvoted 3 times
+
+8. Anonymous: snkhatri 3 years, 4 months ago
+Selected Answer: C
+C the compute googleapis.com API
+   upvoted 2 times
+
+9. Anonymous: Nishanth222 3 years, 4 months ago
+Must be C
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #182
+
+Pergunta:
+Your company has developed a new application that consists of multiple microservices. You want to deploy the application to Google Kubernetes Engine (GKE), and you want to ensure that the cluster can scale as more applications are deployed in the future. You want to avoid manual intervention when each new application is deployed. What should you do?
+
+Alternativas:
+- A. Deploy the application on GKE, and add a HorizontalPodAutoscaler to the deployment.
+- B. Deploy the application on GKE, and add a VerticalPodAutoscaler to the deployment.
+- C. Create a GKE cluster with autoscaling enabled on the node pool. Set a minimum and maximum for the size of the node pool.
+- D. Create a separate node pool for each application, and deploy each application to its dedicated node pool.
+
+Resposta correta:
+C. Create a GKE cluster with autoscaling enabled on the node pool. Set a minimum and maximum for the size of the node pool.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: efar_cloud Highly Voted  2 years, 7 months ago
+Answer is C
+The key point is "ensure that the CLUSTER can scale"
+A- HorizontalPodAutoscaler - ensures to scale the number of pods
+while
+C- Create a GKE cluster with autoscaling enabled on the node pool. Set a minimum and maximum for the size of the node pool.
+ensures to scale the number of nodes in the cluster.
+So the answer is C.
+   upvoted 10 times
+
+2. Anonymous: WendyLC Highly Voted  2 years, 6 months ago
+Selected Answer: C
+C is the right choice... See this for reference https://cloud.google.com/architecture/best-practices-for-running-cost-effective-kubernetes-applications-on-gke#fine-tune_gke_autoscaling
+A- HorizontalPodAutoscaler - it is best suited for stateless workers that can spin up quickly to react to usage spikes, and shut down gracefully to avoid workload instability.
+   upvoted 5 times
+
+3. Anonymous: halifax Most Recent  1 year, 1 month ago
+Selected Answer: C
+Maybe ChatGPT never had the opportunity to get the Google Cloud $300 free tier ;-)
+HorizontalPodAutoscaler and VerticalPodAutoscaler are good for existing pods.
+Can you create a new node with HorizontalPodAutoscaler or VerticalPodAutoscaler?
+   upvoted 1 times
+
+4. Anonymous: denno22 1 year, 3 months ago
+Selected Answer: C
+c
+   upvoted 1 times
+
+5. Anonymous: RKS_2021 1 year, 3 months ago
+Selected Answer: A
+A is right ans
+   upvoted 1 times
+
+6. Anonymous: yehia2221 1 year, 5 months ago
+Answer is C:
+the HPA is used in for scaling a deployment (an application), but here, the question is asking to scale the cluster when new applications are being added which have different and independent deployments, we have scaling at cluster level, then at deployment level either horizontally or vertically.
+   upvoted 1 times
+
+7. Anonymous: Cynthia2023 2 years ago
+Selected Answer: A
+In the context of deploying a new application and ensuring future scalability with minimal manual intervention, focusing on pod scalability is indeed fundamental. This is accurately addressed by option A (Deploy the application on GKE, and add a HorizontalPodAutoscaler to the deployment).
+However, it's also important to have node autoscaling enabled (as mentioned in option C) to ensure that the cluster can accommodate the scaling pods. Both pod and node scaling are important for a fully scalable solution, but the immediate focus when deploying a new application is typically on pod configuration and scaling.
+   upvoted 3 times
+ PiperMe 1 year, 10 months ago
+This is incorrect. Horizontal Pod Autoscalers scale based on pod-level metrics such as CPU. While useful, HPAs don't directly address the need to add more nodes if the underlying infrastructure is at capacity. The answer is C which provides the most effective and streamlined way to achieve automatic cluster-level scaling in a GKE environment hosting multiple microservices.
+   upvoted 1 times
+
+8. Anonymous: MrJkr 2 years, 7 months ago
+Selected Answer: A
+Its A,
+When you first deploy your workload to a Kubernetes cluster, you may not be sure about its resource requirements and how those requirements might change depending on usage patterns, external dependencies, or other factors. Horizontal Pod autoscaling helps to ensure that your workload functions consistently in different situations, and allows you to control costs by only paying for extra capacity when you need it.
+   upvoted 2 times
+
+9. Anonymous: sabrinakloud 2 years, 9 months ago
+Selected Answer: A
+i think it is A "you want to ensure that the cluster can scale as more applications are deployed in the future."
+   upvoted 2 times
+
+10. Anonymous: sabrinakloud 2 years, 9 months ago
+Selected Answer: C
+option C
+   upvoted 2 times
+ sabrinakloud 2 years, 9 months ago
+option A*
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #183
+
+Pergunta:
+You need to manage a third-party application that will run on a Compute Engine instance. Other Compute Engine instances are already running with default configuration. Application installation files are hosted on Cloud Storage. You need to access these files from the new instance without allowing other virtual machines (VMs) to access these files. What should you do?
+
+Alternativas:
+- A. Create the instance with the default Compute Engine service account. Grant the service account permissions on Cloud Storage.
+- B. Create the instance with the default Compute Engine service account. Add metadata to the objects on Cloud Storage that matches the metadata on the new instance.
+- C. Create a new service account and assign this service account to the new instance. Grant the service account permissions on Cloud Storage.
+- D. Create a new service account and assign this service account to the new instance. Add metadata to the objects on Cloud Storage that matches the metadata on the new instance.
+
+Resposta correta:
+C. Create a new service account and assign this service account to the new instance. Grant the service account permissions on Cloud Storage.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: VietmanOfficiel Highly Voted  2 years, 4 months ago
+Selected Answer: C
+"without allowing other instances" , the other instances are created with default compute engine service account. So you must create a new independant service account
+   upvoted 9 times
+
+2. Anonymous: scanner2 Most Recent  1 year, 4 months ago
+Selected Answer: C
+C is correct.
+   upvoted 3 times
+
+3. Anonymous: gcpreviewer 2 years, 3 months ago
+Selected Answer: C
+C is the clear choice. Want to create a new service account instead of using the default and grant it permissions in cloud storage. Straightforward C.
+   upvoted 3 times
+
+4. Anonymous: manjtrade2 2 years, 4 months ago
+Selected Answer: C
+C is right
+   upvoted 1 times
+
+5. Anonymous: snkhatri 2 years, 4 months ago
+Selected Answer: C
+C seems right to me
+   upvoted 1 times
+
+6. Anonymous: AzureDP900 2 years, 7 months ago
+C
+https://cloud.google.com/iam/docs/best-practices-for-using-and-managing-service-accounts
+If an application uses third-party or custom identities and needs to access a resource, such as a BigQuery dataset or a Cloud Storage bucket, it must perform a transition between principals. Because Google Cloud APIs don't recognize third-party or custom identities, the application can't propagate the end-user's identity to BigQuery or Cloud Storage. Instead, the application has to perform the access by using a different Google identity.
+   upvoted 2 times
+
+7. Anonymous: KRIV_1 2 years, 8 months ago
+Although C is the correct answer notice that, as Google recommend, you first need to grant the service account the required permission before attach it to a resource.
+   upvoted 1 times
+
+8. Anonymous: JelloMan 2 years, 8 months ago
+Selected Answer: C
+C all the way. Restricts access to other VMs since they won’t have the new service account you have associated with your new VM
+   upvoted 4 times
+
+9. Anonymous: amindbesideitself 2 years, 8 months ago
+Selected Answer: C
+C, other VMs will run as default service account.
+   upvoted 2 times
+
+10. Anonymous: Akash7 2 years, 8 months ago
+C is correct as the other vms have default service accounts.
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #184
+
+Pergunta:
+You need to configure optimal data storage for files stored in Cloud Storage for minimal cost. The files are used in a mission-critical analytics pipeline that is used continually. The users are in Boston, MA (United States). What should you do?
+
+Alternativas:
+- A. Configure regional storage for the region closest to the users. Configure a Nearline storage class.
+- B. Configure regional storage for the region closest to the users. Configure a Standard storage class.
+- C. Configure dual-regional storage for the dual region closest to the users. Configure a Nearline storage class.
+- D. Configure dual-regional storage for the dual region closest to the users. Configure a Standard storage class.
+
+Resposta correta:
+B. Configure regional storage for the region closest to the users. Configure a Standard storage class.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: akshaychavan7 Highly Voted  3 years, 8 months ago
+Selected Answer: D
+Mission critical is the keyword here which specifies that we need to have a multi-regional backup of the data to survive any regional failures.
+So option D is the correct choice here.
+   upvoted 35 times
+ mav3r1ck 3 years, 5 months ago
+Keywords: minimal cost and mission-critical
+Looks like people are just looking to be on the cost side. You need to meet both.
+In this case, it needs to be "dual-region". This is much cheaper than storage in "multi-region" which is obviously not in the choices.
+   upvoted 4 times
+ Aninina 3 years, 2 months ago
+Dual region is expensive than multi-region. (Also mentioned in the documentation: https://cloud.google.com/storage/docs/locations)
+When we set objects to be multi-regional, we get to decide/shuffle the data around at will to meet our storage needs. When you take that control away from us, it reduces the flexibility of our systems, making it more expensive to operate.
+   upvoted 6 times
+ ryumada 3 years, 5 months ago
+At the first point in this documentation says that dual-regional storage is used for business continuity and disaster recovery. Disaster can affect to a regional architecture. I think it's make sense to use dual-regional storage for this case. Also, dual-regional storage is cheaper than multi-regional.
+https://cloud.google.com/storage/docs/dual-regions#use-dual-region-storage
+   upvoted 2 times
+
+2. Anonymous: JelloMan Highly Voted  3 years, 8 months ago
+Selected Answer: B
+Continuous access to data means Standard since all of the other options are for infrequently accessed storage (Nearline, Coldline, Archive). Since no other regions are mentioned, single region is best in this case
+   upvoted 24 times
+ KRIV_1 3 years, 8 months ago
+And beacuse single region is "costly-effective".
+   upvoted 9 times
+
+3. Anonymous: peterwheat Most Recent  7 months, 3 weeks ago
+Selected Answer: B
+According to the conditions the tie breaker is the region distance from the users, that is also important if we are talking about "optimal" solution.
+- SLA: regional 99.9%, dual-region 99.99% -> D
+- cost: regional cheaper -> B
+- close to users: regional us-east4 (closest), dual us-central1 and us-east1 -> B
+   upvoted 1 times
+
+4. Anonymous: Hatem9 11 months, 2 weeks ago
+Selected Answer: B
+i go with B keywords:
+Standard storage covers performance
+Regional covers cost and location to users
+   upvoted 1 times
+
+5. Anonymous: kamee15 1 year ago
+Selected Answer: B
+Further explanation:
+Why not the other options?
+• A. Regional + Nearline storage class: Nearline storage is designed for infrequently accessed data and would incur retrieval costs and higher latency, which is not suitable for continually used pipelines.
+• C. Dual-regional + Nearline storage class: Dual-regional storage is unnecessary if the use case does not require geo-redundancy, and Nearline storage is unsuitable for frequent access.
+• D. Dual-regional + Standard storage class: While the Standard storage class is appropriate, dual-regional storage adds unnecessary cost for geo-redundancy, which is not required for a region-specific use case.
+Conclusion:
+Option B ensures low latency, high performance, and cost-efficiency by storing frequently accessed data in a regional bucket close to the users.
+   upvoted 2 times
+
+6. Anonymous: kamee15 1 year ago
+Selected Answer: B
+B. Configure regional storage for the region closest to the users. Configure a Standard storage class.
+Reason:
+• The Standard storage class is optimized for frequently accessed data, making it ideal for mission-critical analytics pipelines that are used continually.
+• Regional storage in a region close to the users (e.g., in or near Boston, MA) minimizes latency, providing faster access to the data.
+   upvoted 2 times
+
+7. Anonymous: halifax 1 year, 1 month ago
+Selected Answer: B
+This is another badly worded question, but I think, I will vote for B. Here is why:
+The users are in Boston, MA (United States) = a single region
+Mission critical = Cloud storage (famous for reliability )
+At minimal cost that is used continually = standard storage class
+   upvoted 1 times
+
+8. Anonymous: Ciupaz 1 year, 2 months ago
+Selected Answer: D
+Here's why D is the optimal choice:
+Dual-regional storage:
+Provides high availability across two regions
+Ideal for mission-critical workloads
+Minimizes latency for Boston users by selecting nearby regions
+Provides geographic redundancy
+Standard storage class:
+Optimal for frequently accessed data ("used continually")
+No additional latency for access
+No additional retrieval costs
+Ideal for continuously running analytics pipelines
+   upvoted 2 times
+
+9. Anonymous: denno22 1 year, 3 months ago
+Selected Answer: D
+Mission-critcal
+   upvoted 1 times
+
+10. Anonymous: Enamfrancis 1 year, 3 months ago
+Selected Answer: D
+I will go for D
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #185
+
+Pergunta:
+You are developing a new web application that will be deployed on Google Cloud Platform. As part of your release cycle, you want to test updates to your application on a small portion of real user traffic. The majority of the users should still be directed towards a stable version of your application. What should you do?
+
+Alternativas:
+- A. Deploy the application on App Engine. For each update, create a new version of the same service. Configure traffic splitting to send a small percentage of traffic to the new version.
+- B. Deploy the application on App Engine. For each update, create a new service. Configure traffic splitting to send a small percentage of traffic to the new service.
+- C. Deploy the application on Kubernetes Engine. For a new release, update the deployment to use the new version.
+- D. Deploy the application on Kubernetes Engine. For a new release, create a new deployment for the new version. Update the service to use the new deployment.
+
+Resposta correta:
+A. Deploy the application on App Engine. For each update, create a new version of the same service. Configure traffic splitting to send a small percentage of traffic to the new version.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Charumathi Highly Voted  3 years, 3 months ago
+Selected Answer: A
+A is correct answer,
+Keyword, Version, traffic splitting, App Engine supports traffic splitting for versions before releasing.
+   upvoted 7 times
+
+2. Anonymous: AzureDP900 Highly Voted  3 years, 7 months ago
+It is no brainer questions, It is A.
+   upvoted 5 times
+
+3. Anonymous: Ciupaz Most Recent  1 year, 2 months ago
+Selected Answer: A
+Here's why A is the best choice:
+Version management:
+App Engine natively manages multiple versions of the same application
+Allows you to keep different versions active at the same time
+Easy rollback in case of problems
+Traffic splitting:
+Native App Engine functionality
+Grained control of traffic percentage
+Easy to configure and modify
+Zero downtime:
+Does not interrupt service during testing
+Fluid transitions between versions
+Maintains the stable version
+   upvoted 1 times
+
+4. Anonymous: don_v 2 years, 1 month ago
+A is correct.
+Still, D seems also a correct approach. One can create a canary deployment with GKE and just update a service version.
+   upvoted 2 times
+ kuracpalac 1 year, 11 months ago
+But it's more expensive and Google wants you to think cheap as possible in general.
+   upvoted 2 times
+
+5. Anonymous: scanner2 2 years, 4 months ago
+Selected Answer: A
+Answer is A.
+   upvoted 2 times
+
+6. Anonymous: gary_gary 2 years, 8 months ago
+Similar questions seem to appear multiple times.
+   upvoted 4 times
+
+7. Anonymous: urcloudpartner 3 years ago
+some of these questions, the default by examtopics is completely different why so, why cannot they fix it once a real answer is known.
+   upvoted 4 times
+
+8. Anonymous: snkhatri 3 years, 4 months ago
+Selected Answer: A
+A obvious choice
+   upvoted 2 times
+
+9. Anonymous: KapilDhamija 3 years, 5 months ago
+Selected Answer: A
+Vote goes to A
+   upvoted 2 times
+
+10. Anonymous: Tirthankar17 3 years, 7 months ago
+A obviously. No need to create a new service.
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #186
+
+Pergunta:
+You need to add a group of new users to Cloud Identity. Some of the users already have existing Google accounts. You want to follow one of Google's recommended practices and avoid conflicting accounts. What should you do?
+
+Alternativas:
+- A. Invite the user to transfer their existing account.
+- B. Invite the user to use an email alias to resolve the conflict.
+- C. Tell the user that they must delete their existing account.
+- D. Tell the user to remove all personal email from the existing account.
+
+Resposta correta:
+A. Invite the user to transfer their existing account.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ggupton1 Highly Voted  3 years, 8 months ago
+Selected Answer: A
+https://cloud.google.com/architecture/identity/assessing-existing-user-accounts
+If you want to maintain the access rights and some of the data associated with the Gmail account, you can ask the owner to remove Gmail from the user account so that you can then migrate them to Cloud Identity or Google Workspace.
+   upvoted 10 times
+
+2. Anonymous: denno22 Most Recent  1 year, 3 months ago
+Selected Answer: D
+If you want to maintain the access rights and some of the data associated with the Gmail account, you can ask the owner to remove Gmail from the user account so that you can then migrate them to Cloud Identity or Google Workspace.
+   upvoted 1 times
+ denno22 1 year, 3 months ago
+Now, I think A is a better answer.
+   upvoted 1 times
+
+3. Anonymous: Namik 1 year, 5 months ago
+Selected Answer: B
+Explanation:
+Email alias: This approach allows users to maintain their existing Google account while using a different email address for their work-related activities.
+No account transfer: Avoids the complexities and potential issues associated with transferring accounts.
+Clear separation: Maintains a clear distinction between personal and work-related activities.
+Why not other options:
+A. Account transfer: This is generally not recommended as it can lead to data loss or complications.
+C. and D. Deleting or modifying existing accounts: These options are not practical or desirable as they disrupt the user's existing workflow.
+By suggesting an email alias, you provide a user-friendly and secure solution to the account conflict.
+   upvoted 2 times
+
+4. Anonymous: scanner2 2 years, 4 months ago
+Selected Answer: A
+Answer is A.
+   upvoted 1 times
+
+5. Anonymous: snkhatri 3 years, 4 months ago
+Selected Answer: A
+A obvious choice
+   upvoted 1 times
+
+6. Anonymous: bobthebuilder55110 3 years, 5 months ago
+Selected Answer: A
+Correct Answer: A
+   upvoted 1 times
+ bobthebuilder55110 3 years, 5 months ago
+Here is why ?
+Question states "Some of the users already have existing Google accounts." Meaning they have personal account or any google account and what Option B is saying is to use aliases, as per google documentation this is only helpful when we want someone to receive emails in one inbox with 2 email names, meaning x@google.com and y@google.com goes to the same inbox BUT what you can't do is to have personal@gogle.com and company@google.com since the company wouldn't add you to their domain as that is not google recommended practice.
+https://support.google.com/a/answer/33327?hl=en#when_to_use
+   upvoted 2 times
+
+7. Anonymous: ryumada 3 years, 5 months ago
+Selected Answer: A
+Vote for A as the right answer. The docs in this link:
+https://cloud.google.com/architecture/identity/migrating-consumer-accounts
+as provided by PAUGURU in his comment explains clearly about resolving account conflict. In the doc says nothing about to change email alias to resolve the conflict. So, following the documentation in that link means you are following the Googles Recommended Practices.
+   upvoted 4 times
+
+8. Anonymous: zolthar_z 3 years, 5 months ago
+Selected Answer: A
+A is the answer, for security reasons google best practices recommend transfer the account
+   upvoted 2 times
+
+9. Anonymous: sai_learner 3 years, 6 months ago
+Selected Answer: B
+Answer is B
+https://support.google.com/cloudidentity/answer/7062710
+   upvoted 1 times
+ ryumada 3 years, 5 months ago
+I am not sure if the link you provide explains the reason of the reason of your choosen answer. As in the documentation stated the email alias after what happen if you rename the email. Also, the documentation doesn't explain about account conflict.
+Better with the docs link provided by PAUGURU: https://cloud.google.com/architecture/identity/migrating-consumer-accounts
+It's explains clearly about the conflicting email and best practices too.
+   upvoted 1 times
+ ryumada 3 years, 5 months ago
+*explains the reason of your choosen answer.
+sorry, messed up sentence
+   upvoted 1 times
+ bobthebuilder55110 3 years, 5 months ago
+It should be A, I was confused with this as well but B is not relevant in this use case. Look at my Above comments.
+   upvoted 1 times
+
+10. Anonymous: ramss 3 years, 6 months ago
+As per my understanding, B is the correct answer.
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #187
+
+Pergunta:
+You need to manage a Cloud Spanner instance for best query performance. Your instance in production runs in a single Google Cloud region. You need to improve performance in the shortest amount of time. You want to follow Google best practices for service configuration. What should you do?
+
+Alternativas:
+- A. Create an alert in Cloud Monitoring to alert when the percentage of high priority CPU utilization reaches 45%. If you exceed this threshold, add nodes to your instance.
+- B. Create an alert in Cloud Monitoring to alert when the percentage of high priority CPU utilization reaches 45%. Use database query statistics to identify queries that result in high CPU usage, and then rewrite those queries to optimize their resource usage.
+- C. Create an alert in Cloud Monitoring to alert when the percentage of high priority CPU utilization reaches 65%. If you exceed this threshold, add nodes to your instance.
+- D. Create an alert in Cloud Monitoring to alert when the percentage of high priority CPU utilization reaches 65%. Use database query statistics to identify queries that result in high CPU usage, and then rewrite those queries to optimize their resource usage.
+
+Resposta correta:
+C. Create an alert in Cloud Monitoring to alert when the percentage of high priority CPU utilization reaches 65%. If you exceed this threshold, add nodes to your instance.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: PAUGURU Highly Voted  3 years, 8 months ago
+Selected Answer: C
+C looks correct, increase instances on single region if CPU above 65%
+https://cloud.google.com/spanner/docs/cpu-utilization#recommended-max
+   upvoted 15 times
+
+2. Anonymous: 85c887f Most Recent  9 months, 3 weeks ago
+Selected Answer: D
+For "best query performance" looks like D will work the best for a long-terms.
+   upvoted 1 times
+
+3. Anonymous: denno22 1 year, 3 months ago
+Selected Answer: C
+C
+   upvoted 1 times
+
+4. Anonymous: don_v 2 years, 1 month ago
+I believe it's D.
+" Create an alert in Cloud Monitoring to alert when the percentage of high priority CPU utilization reaches 65%. Use database query statistics to identify queries that result in high CPU usage, and then rewrite those queries to optimize their resource usage."
+Is that ever possible to add any node to Cloud Spanner? Come on.
+   upvoted 2 times
+ don_v 2 years, 1 month ago
+Taking it back. The answer is C.
+"Compute capacity defines amount of server and storage resources that are available to the databases in an instance. When you create an instance, you specify its compute capacity as a number of processing units or as a number of nodes, with 1000 processing units being equal to 1 node."
+https://cloud.google.com/spanner/docs/instances
+   upvoted 5 times
+
+5. Anonymous: Ahmed_Y 2 years, 5 months ago
+Selected Answer: C
+I was keep thinking of A until I get to the link that thanks for @rsuresh27 provided bellow. the 45% is for the multi region.
+   upvoted 4 times
+
+6. Anonymous: sabrinakloud 2 years, 9 months ago
+Selected Answer: C
+Metric Maximum for single-region instances Maximum per region for multi-region instances
+High priority total 65% 45%
+24-hour smoothed aggregate 90% 90%
+   upvoted 3 times
+
+7. Anonymous: dobberzoon 2 years, 9 months ago
+Selected Answer: C
+C makes sense.
+   upvoted 1 times
+
+8. Anonymous: Aninina 3 years, 2 months ago
+Selected Answer: C
+https://cloud.google.com/spanner/docs/cpu-utilization
+   upvoted 1 times
+
+9. Anonymous: snkhatri 3 years, 4 months ago
+Selected Answer: C
+C looks correct
+   upvoted 1 times
+
+10. Anonymous: AzureDP900 3 years, 7 months ago
+shortest timeframe is key here , I am going with C as my answer.
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #188
+
+Pergunta:
+Your company has an internal application for managing transactional orders. The application is used exclusively by employees in a single physical location. The application requires strong consistency, fast queries, and ACID guarantees for multi-table transactional updates. The first version of the application is implemented in PostgreSQL, and you want to deploy it to the cloud with minimal code changes. Which database is most appropriate for this application?
+
+Alternativas:
+- A. BigQuery
+- B. Cloud SQL
+- C. Cloud Spanner
+- D. Cloud Datastore
+
+Resposta correta:
+B. Cloud SQL
+
+Top 10 Discussões (sem replies):
+1. Anonymous: peugeotdude Highly Voted  3 years, 8 months ago
+Read the question :
+The application is used exclusively by employees in a single physical location.
+   upvoted 19 times
+ theBestStudent 3 years, 3 months ago
+Correct. That is the key thing. I have no idea why some people ended up thinking cloud spanner is better. Definitely is alternative A.
+   upvoted 4 times
+ theBestStudent 3 years, 3 months ago
+Sorry I meant B, I had a typo.
+   upvoted 7 times
+
+2. Anonymous: PAUGURU Highly Voted  3 years, 8 months ago
+Selected Answer: B
+B -> minimal code changes
+   upvoted 16 times
+ cheeseburger12388 3 years, 8 months ago
+Cloud SQL for PostgreSQL is a fully-managed database service that helps you set up, maintain, manage, and administer your PostgreSQL relational databases on Google Cloud Platform.
+https://cloud.google.com/sql/docs/postgres
+   upvoted 6 times
+
+3. Anonymous: 4eaa323 Most Recent  12 months ago
+Selected Answer: B
+Clue is PostgresSQL
+   upvoted 2 times
+
+4. Anonymous: kamee15 1 year ago
+Selected Answer: B
+B. Cloud SQL
+Reason:
+• Cloud SQL supports PostgreSQL, allowing you to deploy your application with minimal code changes since the first version is already implemented in PostgreSQL.
+• It provides ACID guarantees, strong consistency, and fast queries, which are crucial for transactional workloads like order management.
+• Cloud SQL is a fully managed relational database service, making it ideal for use cases with structured data and multi-table transactional updates.
+   upvoted 1 times
+
+5. Anonymous: JoseCloudEng1994 1 year ago
+Selected Answer: B
+Its a matter of cost efficiency. While Spanner is also an option it is an absolute waste for this situation. You would be a prodigal to use it just for this.
+The company I work for uses it only for the most important things and it costs them 1/4 million a month.
+So, yeah, very very expensive option
+   upvoted 1 times
+
+6. Anonymous: denno22 1 year, 3 months ago
+Selected Answer: B
+B
+   upvoted 1 times
+
+7. Anonymous: Timfdklfajlksdjlakf 1 year, 4 months ago
+Selected Answer: B
+Read the question :
+The application is used exclusively by employees in a single physical location.
+   upvoted 1 times
+
+8. Anonymous: ezzar 2 years, 2 months ago
+Selected Answer: B
+Cloud spanner does everyhting cloud SQL already does. + It offers globality which we don't need and horizontal scaling that is mentionned nowhere
+   upvoted 7 times
+
+9. Anonymous: Dino0411 2 years, 5 months ago
+Selected Answer: C
+C. Select Cloud Spanner.
+Cloud Spanner offers strong consistency, fast queries, and importantly, ACID guarantees for updates in multi-table transactions.
+Cloud Spanner is well suited for large transactional databases that require horizontal scaling and offers relational database semantics.
+Even if the first version was PostgreSQL, Cloud Spanner is the best choice for this kind of application with strict requirements for ACID transactions.
+Cloud SQL is also a relational database service, and while some database engines offer ACID transactions, it is not designed like Cloud Spanner for the strict requirements of multi-table transactional updates.
+Reference link: Google Cloud - Cloud Spanner: https://cloud.google.com/spanner
+Reference link: Google Cloud - ACID Transactions in Cloud Spanner: https://cloud.google.com/spanner/docs/transactions
+   upvoted 1 times
+
+10. Anonymous: Mo73w 2 years, 8 months ago
+Selected Answer: B
+the best choice for this application is Cloud SQL for PostgreSQL. It offers the required strong consistency, fast queries, and ACID guarantees for multi-table transactional updates. It is also a good choice for applications that are implemented in PostgreSQL and that you want to deploy to the cloud with minimal code changes.
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #189
+
+Pergunta:
+You are assigned to maintain a Google Kubernetes Engine (GKE) cluster named 'dev' that was deployed on Google Cloud. You want to manage the GKE configuration using the command line interface (CLI). You have just downloaded and installed the Cloud SDK. You want to ensure that future CLI commands by default address this specific cluster What should you do?
+
+Alternativas:
+- A. Use the command gcloud config set container/cluster dev.
+- B. Use the command gcloud container clusters update dev.
+- C. Create a file called gke.default in the ~/.gcloud folder that contains the cluster name.
+- D. Create a file called defaults.json in the ~/.gcloud folder that contains the cluster name.
+
+Resposta correta:
+A. Use the command gcloud config set container/cluster dev.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: 73173v2 Highly Voted  2 years, 10 months ago
+Selected Answer: A
+To set a default cluster for gcloud commands, run the following command:
+https://cloud.google.com/kubernetes-engine/docs/how-to/managing-clusters
+   upvoted 12 times
+
+2. Anonymous: ccpmad Most Recent  1 year, 1 month ago
+Selected Answer: A
+https://cloud.google.com/kubernetes-engine/docs/how-to/managing-clusters#default_cluster_gcloud
+To set a default cluster for gcloud commands, run the following command:
+gcloud config set container/cluster CLUSTER_NAME
+   upvoted 3 times
+
+3. Anonymous: Jonassamr 1 year, 2 months ago
+Selected Answer: A
+https://cloud.google.com/kubernetes-engine/docs/how-to/managing-clusters?hl=fr
+   upvoted 1 times
+
+4. Anonymous: scanner2 1 year, 10 months ago
+Selected Answer: A
+Answer = A
+   upvoted 1 times
+
+5. Anonymous: snkhatri 2 years, 10 months ago
+Selected Answer: A
+A looks right to me
+   upvoted 1 times
+
+6. Anonymous: AzureDP900 3 years, 1 month ago
+A is right
+To set a default cluster for gcloud commands, run the following command:
+gcloud config set container/cluster CLUSTER_NAME
+   upvoted 4 times
+
+7. Anonymous: ggupton1 3 years, 2 months ago
+Selected Answer: A
+Set a default cluster forgcloud
+To set a default cluster for commands gcloud, run the following command:
+Per https://cloud.google.com/kubernetes-engine/docs/how-to/managing-clusters?hl=fr
+gcloud config set container/cluster CLUSTER_NAME
+   upvoted 3 times
+
+8. Anonymous: Akash7 3 years, 2 months ago
+Answer is A,
+To set a default cluster for gcloud commands, run the following command:
+gcloud config set container/cluster CLUSTER_NAME
+https://cloud.google.com/kubernetes-engine/docs/how-to/managing-clusters?hl=en
+   upvoted 1 times
+
+9. Anonymous: MadMikedD 3 years, 2 months ago
+Selected Answer: A
+To set a default cluster for gcloud commands, run the following command:
+gcloud config set container/cluster CLUSTER_NAME
+   upvoted 3 times
+ cheeseburger12388 3 years, 2 months ago
+https://cloud.google.com/kubernetes-engine/docs/how-to/managing-clusters#default_cluster_kubectl
+   upvoted 1 times
+
+10. Anonymous: aswinachu 3 years, 2 months ago
+Selected Answer: B
+Correct Ans B
+https://cloud.google.com/sdk/gcloud/reference/container/clusters/update
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #190
+
+Pergunta:
+The sales team has a project named Sales Data Digest that has the ID acme-data-digest. You need to set up similar Google Cloud resources for the marketing team but their resources must be organized independently of the sales team. What should you do?
+
+Alternativas:
+- A. Grant the Project Editor role to the Marketing team for acme-data-digest.
+- B. Create a Project Lien on acme-data-digest and then grant the Project Editor role to the Marketing team.
+- C. Create another project with the ID acme-marketing-data-digest for the Marketing team and deploy the resources there.
+- D. Create a new project named Marketing Data Digest and use the ID acme-data-digest. Grant the Project Editor role to the Marketing team.
+
+Resposta correta:
+C. Create another project with the ID acme-marketing-data-digest for the Marketing team and deploy the resources there.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: gcpj Highly Voted  3 years ago
+Selected Answer: C
+Answer should be C because the resources for the marketing team should be independent from the Sales team. Resources are tied and separated by projects.
+   upvoted 12 times
+
+2. Anonymous: halifax Most Recent  1 year, 1 month ago
+Selected Answer: C
+Option D is not allowed in Google Cloud, this option suggests using the same project ID (acme-data-digest) that is already assigned to the sales team's project. Since project IDs must be globally unique, this is not possible. Attempting to create a new project with an existing ID would result in an error.
+   upvoted 1 times
+
+3. Anonymous: accd3fd 1 year, 3 months ago
+Selected Answer: C
+Creating a separate project for the Marketing team allows you to organize their resources independently of the Sales team, which is a best practice for resource management and access control.
+Granting the Project Editor role to the Marketing team for the Sales team's project (acme-data-digest) would give them unnecessary access to Sales team resources (option A).
+Creating a Project Lien (option B) is not relevant in this scenario, as it's used to prevent resource deletion, not to manage access or organization.
+Using the same ID (acme-data-digest) for a new project (option D) could lead to confusion and conflicts, and is not a recommended practice.
+By creating a separate project for the Marketing team, you can ensure clear organization, access control, and resource management for both teams.
+   upvoted 2 times
+
+4. Anonymous: kautela13 1 year, 4 months ago
+C is the answer
+   upvoted 1 times
+
+5. Anonymous: datozzxx 1 year, 6 months ago
+Selected Answer: C
+c = 100%
+   upvoted 2 times
+
+6. Anonymous: cooldude26 1 year, 8 months ago
+Selected Answer: C
+C. Create another project with the ID acme-marketing-data-digest for the Marketing team and deploy the resources there.
+Explanation:
+Option C is the correct choice for organizing resources independently for the marketing team. By creating a separate project (acme-marketing-data-digest), you ensure that the marketing team's resources are isolated from the sales team's resources. This approach provides a clean and distinct organizational structure for each team.
+Options A, B, and D involve using the same project (acme-data-digest) for both teams, which could lead to potential conflicts and lack of resource isolation. Option B suggests using a project lien, but liens are typically used to prevent the deletion of projects and don't provide the organizational separation needed for independent teams.
+   upvoted 4 times
+
+7. Anonymous: ezzar 1 year, 9 months ago
+Selected Answer: C
+only C makes sense
+   upvoted 2 times
+
+8. Anonymous: fdelacortina 1 year, 9 months ago
+Why not D?
+   upvoted 1 times
+
+9. Anonymous: scanner2 1 year, 10 months ago
+Selected Answer: C
+Answer = C
+   upvoted 1 times
+
+10. Anonymous: Dmosh 2 years ago
+Selected Answer: C
+No more a technical exam ;(
+   upvoted 1 times
+==============================

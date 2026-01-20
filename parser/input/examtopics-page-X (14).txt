@@ -1,0 +1,791 @@
+==============================
+Page X — Question #141
+
+Pergunta:
+You created several resources in multiple Google Cloud projects. All projects are linked to different billing accounts. To better estimate future charges, you want to have a single visual representation of all costs incurred. You want to include new cost data as soon as possible. What should you do?
+
+Alternativas:
+- A. Configure Billing Data Export to BigQuery and visualize the data in Data Studio.
+- B. Visit the Cost Table page to get a CSV export and visualize it using Data Studio.
+- C. Fill all resources in the Pricing Calculator to get an estimate of the monthly cost.
+- D. Use the Reports view in the Cloud Billing Console to view the desired cost information.
+
+Resposta correta:
+A. Configure Billing Data Export to BigQuery and visualize the data in Data Studio.
+
+Top 10 Discussões (sem replies):
+Nenhuma discussão
+==============================
+
+==============================
+Page X — Question #142
+
+Pergunta:
+Your company has workloads running on Compute Engine and on-premises. The Google Cloud Virtual Private Cloud (VPC) is connected to your WAN over a
+Virtual Private Network (VPN). You need to deploy a new Compute Engine instance and ensure that no public Internet traffic can be routed to it. What should you do?
+
+Alternativas:
+- A. Create the instance without a public IP address.
+- B. Create the instance with Private Google Access enabled.
+- C. Create a deny-all egress firewall rule on the VPC network.
+- D. Create a route on the VPC to route all traffic to the instance over the VPN tunnel.
+
+Resposta correta:
+A. Create the instance without a public IP address.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: MohammedGhouse Highly Voted  4 years, 5 months ago
+A: answer looks right
+   upvoted 13 times
+
+2. Anonymous: lxs Highly Voted  3 years, 2 months ago
+The question is about ingress traffic from Internet
+A - If the VM does not have public IP it is not routable from Internet. Correct answear
+B - it is about how to access Google Services API. It does not tell about ingress Internet traffic
+C - It is about egress traffic
+D - It could be but we do not know anything about Internet ingress traffic to on prem. What's more default route tells about egress traffic to Internet. Nothing how Internet can access Compute instance.
+Correct answer is A.
+   upvoted 5 times
+
+3. Anonymous: dead1407 Most Recent  4 months, 2 weeks ago
+Selected Answer: A
+By not assigning a public IP address to the Compute Engine instance, you ensure that it cannot receive traffic directly from the public internet. The instance will only be accessible via the private network (including your VPN connection), which meets the requirement of preventing public internet traffic from being routed to it.
+   upvoted 1 times
+
+4. Anonymous: Captain1212 1 year, 4 months ago
+Selected Answer: A
+A is the correct option, as other not limit the ingrres traffic
+   upvoted 1 times
+
+5. Anonymous: dataengineeruser34 1 year, 11 months ago
+A for sure
+   upvoted 1 times
+
+6. Anonymous: SK1990 2 years ago
+Selected Answer: A
+A - for sure
+   upvoted 1 times
+
+7. Anonymous: SK1990 2 years ago
+Selected Answer: A
+A is the best anmswer.
+   upvoted 1 times
+
+8. Anonymous: Nazz1977 2 years, 1 month ago
+Selected Answer: A
+A for sure
+   upvoted 1 times
+
+9. Anonymous: Sam98845 2 years, 2 months ago
+should be A. VMs cannot communicate over the internet without a public IP address. Private Google Access permits access to Google APIs and services in Google's production infrastructure.
+https://cloud.google.com/vpc/docs/private-google-access
+   upvoted 2 times
+
+10. Anonymous: kailash 2 years, 3 months ago
+Selected Answer: A
+Elimination
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #143
+
+Pergunta:
+Your team maintains the infrastructure for your organization. The current infrastructure requires changes. You need to share your proposed changes with the rest of the team. You want to follow Google's recommended best practices. What should you do?
+
+Alternativas:
+- A. Use Deployment Manager templates to describe the proposed changes and store them in a Cloud Storage bucket.
+- B. Use Deployment Manager templates to describe the proposed changes and store them in Cloud Source Repositories.
+- C. Apply the changes in a development environment, run gcloud compute instances list, and then save the output in a shared Storage bucket.
+- D. Apply the changes in a development environment, run gcloud compute instances list, and then save the output in Cloud Source Repositories.
+
+Resposta correta:
+B. Use Deployment Manager templates to describe the proposed changes and store them in Cloud Source Repositories.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ESP_SAP Highly Voted  5 years, 5 months ago
+Correct Answer is (A):
+Connecting to Cloud Storage buckets
+Cloud Storage is a flexible, scalable, and durable storage option for your virtual machine instances. You can read and write files to Cloud Storage buckets from almost anywhere, so you can use buckets as common storage between your instances, App Engine, your on-premises systems, and other cloud services.
+https://cloud.google.com/compute/docs/disks/gcs-buckets
+Why not (B)?
+Caution
+Cloud Source Repositories are intended to store only the source code for your app and not user or personal data. Don't store any Core App Engine Customer Data (as defined in your License Agreement) in Cloud Source Repositories.
+https://cloud.google.com/source-repositories/docs/features
+   upvoted 33 times
+ stepkurniawan 5 years, 4 months ago
+you store the sensitive data NOT in the instance template, that is the current best practice. But you need version control like GIT or Google's GIT (Cloud Source Repo) to backup your code somehow and able to roll back if needed.
+   upvoted 13 times
+ JohnnieWalker 4 years, 6 months ago
+B is the answer. Deployment Manager Template can be written in either Jinja or Python, this is Infrastructure as Code (IaC) we are talking about here, same as AWS Cloudformation, or Terraform. Therefore, they should be stored on a git repository such as Google Cloud Source Repositories.
+   upvoted 10 times
+ magistrum 5 years ago
+Look at my post above, cloud repo is for code, not templates
+   upvoted 2 times
+ gcpengineer 4 years, 5 months ago
+B is the ans
+   upvoted 4 times
+ pYWORLD 4 years, 5 months ago
+I agree with what are you saying, but the problem that you know how the deployment manager template looks? Is jinja/yaml file that means that are source code, so better to put them inside of an repository.
+So, for my perpective I will go with the B.
+   upvoted 2 times
+ ashrafh 4 years, 5 months ago
+maybe below link will help
+https://cloud.google.com/deployment-manager/docs/configuration/templates/hosting-templates-externally
+from that we can take a idea on deciding cloud storage or repo :),
+   upvoted 3 times
+Load full discussion...
+
+2. Anonymous: SSPC Highly Voted  5 years, 5 months ago
+B is correct. https://cloud.google.com/source-repositories/docs/features
+   upvoted 31 times
+ AmitKM 5 years, 4 months ago
+Using Cloud Storage Repos, you can add comments and describe your changes to the team.Hence this might be a better option.
+   upvoted 3 times
+ magistrum 5 years ago
+I don't see how you can do this when I tried creating:
+Add code to your repository
+info
+Your repository is currently empty. Add some code using a selected method and then refresh your browser. Contents added to this repository can take some time to show up in search results. Learn more.
+Select an option to push code to your repository:
+Push code from a local Git repository
+Clone your repository to a local Git repository
+   upvoted 2 times
+
+3. Anonymous: dead1407 Most Recent  4 months, 2 weeks ago
+Selected Answer: B
+Google-recommended best practices for infrastructure management include using infrastructure as code (such as Deployment Manager templates) and storing code in a version-controlled repository (like Cloud Source Repositories). This enables collaboration, review, and tracking of changes by the team.
+   upvoted 1 times
+
+4. Anonymous: Qjb8m9h 11 months, 1 week ago
+Selected Answer: B
+B is correct
+   upvoted 1 times
+
+5. Anonymous: yomi95 1 year, 2 months ago
+Selected Answer: A
+Effective June 17, 2024, Cloud Source Repositories isn't available to new customers. So only option is A for latest, (this question/answers might not be valid anymore)
+https://cloud.google.com/source-repositories/docs
+   upvoted 1 times
+
+6. Anonymous: BuenaCloudDE 1 year, 6 months ago
+Selected Answer: A
+Effective June 17, 2024, Cloud Source Repositories isn't available to new customers. If your organization hasn't previously used Cloud Source Repositories, you can't enable the API or use Cloud Source Repositories. New projects not connected to an organization can't enable the Cloud Source Repositories API. Organizations that have used Cloud Source Repositories prior to June 17, 2024 are not affected by this change.
+I think that the question does not exist already, or A is right answer
+   upvoted 3 times
+
+7. Anonymous: Cynthia2023 2 years ago
+Selected Answer: B
+Use of Deployment Manager Templates:
+Google Cloud Deployment Manager is a tool that allows you to automate the creation and management of Google Cloud resources. It uses templates written in YAML, Python, or Jinja2 to describe your resources and their configurations.
+By using Deployment Manager templates, you can provide a clear, codified, and repeatable description of the proposed changes to your infrastructure.
+Version Control and Collaboration:
+Cloud Source Repositories provide managed and scalable Git repositories hosted on Google Cloud. Storing your Deployment Manager templates in a source repository enables version control, which is a best practice in software and infrastructure development.
+This approach facilitates collaboration among team members, allowing for review, commenting, and history tracking of changes to the templates.
+   upvoted 1 times
+ Cynthia2023 2 years ago
+A. Store in Cloud Storage Bucket: While storing templates in a Cloud Storage bucket makes them accessible, it does not provide the benefits of version control and collaborative features offered by source control systems.
+   upvoted 1 times
+
+8. Anonymous: sara11190 2 years, 3 months ago
+B is the correct answer
+   upvoted 2 times
+
+9. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: B
+B is the correct answer
+   upvoted 2 times
+
+10. Anonymous: pritampanda1988 2 years, 5 months ago
+Selected Answer: A
+Option B (storing in Cloud Source Repositories) might be suitable for storing application code, but it's not the best practice for storing infrastructure configuration templates.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #144
+
+Pergunta:
+You have a Compute Engine instance hosting an application used between 9 AM and 6 PM on weekdays. You want to back up this instance daily for disaster recovery purposes. You want to keep the backups for 30 days. You want the Google-recommended solution with the least management overhead and the least number of services. What should you do?
+
+Alternativas:
+- A. 1. Update your instances' metadata to add the following value: snapshotג€"schedule: 0 1 * * * 2. Update your instances' metadata to add the following value: snapshotג€"retention: 30
+- B. 1. In the Cloud Console, go to the Compute Engine Disks page and select your instance's disk. 2. In the Snapshot Schedule section, select Create Schedule and configure the following parameters: - Schedule frequency: Daily - Start time: 1:00 AM ג€" 2:00 AM - Autodelete snapshots after: 30 days
+- C. 1. Create a Cloud Function that creates a snapshot of your instance's disk. 2. Create a Cloud Function that deletes snapshots that are older than 30 days. 3. Use Cloud Scheduler to trigger both Cloud Functions daily at 1:00 AM.
+- D. 1. Create a bash script in the instance that copies the content of the disk to Cloud Storage. 2. Create a bash script in the instance that deletes data older than 30 days in the backup Cloud Storage bucket. 3. Configure the instance's crontab to execute these scripts daily at 1:00 AM.
+
+Resposta correta:
+B. 1. In the Cloud Console, go to the Compute Engine Disks page and select your instance's disk. 2. In the Snapshot Schedule section, select Create Schedule and configure the following parameters: - Schedule frequency: Daily - Start time: 1:00 AM ג€" 2:00 AM - Autodelete snapshots after: 30 days
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ESP_SAP Highly Voted  4 years, 11 months ago
+Correct Answer is (B):
+Creating scheduled snapshots for persistent disk
+This document describes how to create a snapshot schedule to regularly and automatically back up your zonal and regional persistent disks. Use snapshot schedules as a best practice to back up your Compute Engine workloads. After creating a snapshot schedule, you can apply it to one or more persistent disks.
+https://cloud.google.com/compute/docs/disks/scheduled-snapshots
+   upvoted 44 times
+
+2. Anonymous: Ridhanya Highly Voted  3 years, 7 months ago
+it is b. we cannot define snapshot config in instance metadata.
+VM instance metadata is used only for:
+startup and shutdown scripts
+host maintanence
+guest attributes
+   upvoted 5 times
+
+3. Anonymous: ccpmad Most Recent  1 year, 1 month ago
+Now in 2024, use backup&DR for this. But in 2020 it was B
+   upvoted 2 times
+
+4. Anonymous: Jonassamr 1 year, 2 months ago
+Selected Answer: B
+https://cloud.google.com/compute/docs/instances/schedule-instance-start-stop
+   upvoted 1 times
+ ccpmad 1 year, 1 month ago
+No, it is not about schedule start-stop, is about snapshot schedule of the disks...
+but yes, it is B.
+   upvoted 1 times
+
+5. Anonymous: idk_4 1 year, 6 months ago
+Selected Answer: B
+I think when we think about best practice, we should always think about being practical. The most practical method is usually the best practice with a few exceptions. In this scenario, Answers C and D require a lot of effort. Answer A seems not quite relevant. Answer B is the only correct option.
+   upvoted 1 times
+
+6. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: B
+B is the correct answer
+   upvoted 2 times
+
+7. Anonymous: Rajat2309sharma 2 years, 5 months ago
+Selected Answer: B
+B is ans
+   upvoted 1 times
+
+8. Anonymous: slcvlctetri 2 years, 6 months ago
+Selected Answer: B
+got this question 2 days ago. B is right.
+   upvoted 3 times
+
+9. Anonymous: AzureDP900 3 years ago
+B is more appropriate
+   upvoted 1 times
+
+10. Anonymous: nhadi82 3 years, 1 month ago
+Selected Answer: B
+Correct Answer B
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #145
+
+Pergunta:
+Your existing application running in Google Kubernetes Engine (GKE) consists of multiple pods running on four GKE n1`"standard`"2 nodes. You need to deploy additional pods requiring n2`"highmem`"16 nodes without any downtime. What should you do?
+
+Alternativas:
+- A. Use gcloud container clusters upgrade. Deploy the new services.
+- B. Create a new Node Pool and specify machine type n2ג€"highmemג€"16. Deploy the new pods.
+- C. Create a new cluster with n2ג€"highmemג€"16 nodes. Redeploy the pods and delete the old cluster.
+- D. Create a new cluster with both n1ג€"standardג€"2 and n2ג€"highmemג€"16 nodes. Redeploy the pods and delete the old cluster.
+
+Resposta correta:
+B. Create a new Node Pool and specify machine type n2ג€"highmemג€"16. Deploy the new pods.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: GCP_Student1 Highly Voted  3 years, 10 months ago
+B is correct answer, read below form google docs;
+This tutorial demonstrates how to migrate workloads running on a Google Kubernetes Engine (GKE) cluster to a new set of nodes within the same cluster without incurring downtime for your application. Such a migration can be useful if you want to migrate your workloads to nodes with a different machine type.
+Background
+A node pool is a subset of machines that all have the same configuration, including machine type (CPU and memory) authorization scopes. Node pools represent a subset of nodes within a cluster; a container cluster can contain one or more node pools.
+When you need to change the machine profile of your Compute Engine cluster, you can create a new node pool and then migrate your workloads over to the new node pool.
+To migrate your workloads without incurring downtime, you need to:
+Mark the existing node pool as unschedulable.
+Drain the workloads running on the existing node pool.
+Delete the existing node pool.
+https://cloud.google.com/kubernetes-engine/docs/tutorials/migrating-node-pool#creating_a_node_pool_with_large_machine_type
+   upvoted 33 times
+
+2. Anonymous: Captain1212 Most Recent  1 year, 4 months ago
+Selected Answer: B
+B is the right answer , if you need the new, and if you want to old one also then its D
+   upvoted 1 times
+
+3. Anonymous: ashtonez 1 year, 10 months ago
+Selected Answer: B
+B is correct, creating another cluster just doesnt make any sense, node pools are intended for this situations
+   upvoted 1 times
+
+4. Anonymous: Chiunara 1 year, 10 months ago
+Selected Answer: B
+Answer is obviously B (read @GCP_Student1 and @Bobbybash replies)
+   upvoted 1 times
+
+5. Anonymous: Bobbybash 1 year, 11 months ago
+Selected Answer: B
+B. Create a new Node Pool and specify machine type n2"highmem"16. Deploy the new pods.
+Creating a new Node Pool with the required machine type is the correct approach to deploy additional pods without any downtime. This approach allows you to scale the cluster horizontally by adding more nodes to the existing cluster. By creating a new Node Pool, you can add n2"highmem"16 nodes to the existing cluster, and deploy new pods on these nodes without affecting the existing services running on the n1"standard"2 nodes. This way, you can ensure high availability and zero downtime during the deployment. Option A (gcloud container clusters upgrade) upgrades the entire cluster, and Option C and D (creating a new cluster) involve deleting the existing cluster, which may cause downtime.
+   upvoted 3 times
+
+6. Anonymous: BlueJay20 1 year, 11 months ago
+Selected Answer: D
+The keyword is "additional". Answer B is good if you want to replace with the new VMs. In this case you want the existing ones as well as the new ones. Therefore D.
+   upvoted 2 times
+ swa99 1 year, 11 months ago
+The keyword is "additional", in option D you are deleting the old cluster. SO the answer is B
+   upvoted 4 times
+
+7. Anonymous: AzureDP900 2 years, 6 months ago
+B makes perfect sense.
+   upvoted 1 times
+
+8. Anonymous: Tirthankar17 2 years, 7 months ago
+Selected Answer: B
+B is correct
+   upvoted 1 times
+
+9. Anonymous: arsh1916 3 years, 8 months ago
+B is correct
+   upvoted 4 times
+
+10. Anonymous: Jacky_YO 3 years, 9 months ago
+ANS : B
+1. The title did not say to delete four GKE n1.
+   upvoted 4 times
+==============================
+
+==============================
+Page X — Question #146
+
+Pergunta:
+You have an application that uses Cloud Spanner as a database backend to keep current state information about users. Cloud Bigtable logs all events triggered by users. You export Cloud Spanner data to Cloud Storage during daily backups. One of your analysts asks you to join data from Cloud Spanner and Cloud
+Bigtable for specific users. You want to complete this ad hoc request as efficiently as possible. What should you do?
+
+Alternativas:
+- A. Create a dataflow job that copies data from Cloud Bigtable and Cloud Storage for specific users.
+- B. Create a dataflow job that copies data from Cloud Bigtable and Cloud Spanner for specific users.
+- C. Create a Cloud Dataproc cluster that runs a Spark job to extract data from Cloud Bigtable and Cloud Storage for specific users.
+- D. Create two separate BigQuery external tables on Cloud Storage and Cloud Bigtable. Use the BigQuery console to join these tables through user fields, and apply appropriate filters.
+
+Resposta correta:
+D. Create two separate BigQuery external tables on Cloud Storage and Cloud Bigtable. Use the BigQuery console to join these tables through user fields, and apply appropriate filters.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: AmitKM Highly Voted  5 years, 5 months ago
+I think it should be D. https://cloud.google.com/bigquery/external-data-sources
+   upvoted 38 times
+ SSPC 5 years, 5 months ago
+The question says: " Join data from Cloud Spanner and Cloud Bigtable for specific users" You can see the Google documentation in the link https://cloud.google.com/spanner/docs/export
+   upvoted 3 times
+ Eshkrkrkr 5 years, 2 months ago
+Oh my god, SSPC read you your links!
+The process uses Dataflow and exports data to a folder in a Cloud Storage bucket. The resulting folder contains a set of Avro files and JSON manifest files. And what next? I will tell - next you read below: Compute Engine: Before running your export job, you must set up initial quotas for Recommended starting values are:
+CPUs: 200
+In-use IP addresses: 200
+Standard persistent disk: 50 TB
+Still think its A?
+   upvoted 4 times
+
+2. Anonymous: ESP_SAP Highly Voted  5 years, 5 months ago
+Correct Answer is (D):
+Introduction to external data sources
+This page provides an overview of querying data stored outside of BigQuery.
+https://cloud.google.com/bigquery/external-data-sources
+   upvoted 29 times
+ ESP_SAP 5 years, 5 months ago
+BigQuery offers support for querying data directly from:
+Bigtable
+Cloud Storage
+Google Drive
+Cloud SQL (beta)
+   upvoted 6 times
+ djgodzilla 4 years, 7 months ago
+but here we're not talking about joining Cloud Storage and Cloud Bigtable external tables.
+the join happens between a distributed relational database (Spanner) and key-value NoSQL Database (BigTable) . how's converting Spanner to cloud storage an implicit and trivial step.
+   upvoted 1 times
+ djgodzilla 4 years, 7 months ago
+"The Cloud Spanner to Cloud Storage Text template is a batch pipeline that reads in data from a Cloud Spanner table, optionally transforms the data via a JavaScript User Defined Function (UDF) that you provide, and writes it to Cloud Storage as CSV text files."
+https://cloud.google.com/dataflow/docs/guides/templates/provided-batch#cloudspannertogcstext
+"The Dataflow connector for Cloud Spanner lets you read data from and write data to Cloud Spanner in a Dataflow pipeline"
+https://cloud.google.com/spanner/docs/dataflow-connector
+   upvoted 3 times
+ ryzior 3 years, 10 months ago
+update:
+BigQuery supports the following external data sources:
+Bigtable
+Cloud Spanner
+Cloud SQL
+Cloud Storage
+Drive
+   upvoted 6 times
+
+3. Anonymous: Ice_age Most Recent  1 year, 1 month ago
+Interesting how most people are choosing D, yet that answer makes no reference to Cloud Spanner. I'm going to have to go with B since it specifically mentions Cloud Spanner and Cloud Bigtable.
+   upvoted 1 times
+
+4. Anonymous: kuracpalac 1 year, 11 months ago
+Selected Answer: B
+The Q says that an analyst wants to analyze data about a user from 2 different sources, which Dataflow will give you, plus as Google states, it allows you more time analyzing stuff and less time fiddling with setting things up, which option D is talking about, which is wrong per the asked Q.
+   upvoted 1 times
+
+5. Anonymous: thewalker 2 years, 1 month ago
+Selected Answer: D
+D is apt and possible.
+   upvoted 2 times
+
+6. Anonymous: KC_go_reply 2 years, 7 months ago
+Selected Answer: D
+BigQuery is powerful. If you have data in one of the popular sources like Cloud Storage or Bigtable, it is much more efficient - both for cost and computation - to create an external table on those data sources, than to copy their data around.
+Besides that, also keep in mind that table clones and snapshots are much more efficient than full table copy etc.
+   upvoted 3 times
+
+7. Anonymous: Praxii 2 years, 8 months ago
+Selected Answer: B
+I go for option B. As in option D, the data is backed up data and not the most recent data.
+   upvoted 1 times
+
+8. Anonymous: Bobbybash 2 years, 11 months ago
+Selected Answer: B
+B. Create a dataflow job that copies data from Cloud Bigtable and Cloud Spanner for specific users.
+To join data from Cloud Spanner and Cloud Bigtable for specific users, creating a dataflow job that copies data from both sources is the most efficient option. This approach allows you to process the data in parallel, and you can take advantage of Cloud Dataflow's autoscaling feature to handle large volumes of data. You can use Cloud Dataflow to read data from Cloud Bigtable and Cloud Spanner, join the data based on the user fields, and write the output to a new location or send it to the analyst. Option A (copying data from Cloud Storage) does not provide data from Cloud Spanner, and option C (running a Spark job on a Dataproc cluster) involves higher overhead costs. Option D (using BigQuery external tables) is not efficient for ad hoc requests, as data is exported from Spanner to Cloud Storage during backups, so there may be a delay in data availability.
+   upvoted 2 times
+
+9. Anonymous: anolive 3 years, 2 months ago
+Selected Answer: D
+I thinks is D, but not 100% sure, because D does not have any infomation about the specific user like others options.
+   upvoted 1 times
+
+10. Anonymous: Charumathi 3 years, 3 months ago
+Selected Answer: D
+D is the correct answer,
+An external data source is a data source that you can query directly from BigQuery, even though the data is not stored in BigQuery storage.
+BigQuery supports the following external data sources:
+Amazon S3
+Azure Storage
+Cloud Bigtable
+Cloud Spanner
+Cloud SQL
+Cloud Storage
+Drive
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #147
+
+Pergunta:
+You are hosting an application from Compute Engine virtual machines (VMs) in us`"central1`"a. You want to adjust your design to support the failure of a single
+Compute Engine zone, eliminate downtime, and minimize cost. What should you do?
+
+Alternativas:
+- A. ג€" Create Compute Engine resources in usג€"central1ג€"b. ג€" Balance the load across both usג€"central1ג€"a and usג€"central1ג€"b.
+- B. ג€" Create a Managed Instance Group and specify usג€"central1ג€"a as the zone. ג€" Configure the Health Check with a short Health Interval.
+- C. ג€" Create an HTTP(S) Load Balancer. ג€" Create one or more global forwarding rules to direct traffic to your VMs.
+- D. ג€" Perform regular backups of your application. ג€" Create a Cloud Monitoring Alert and be notified if your application becomes unavailable. ג€" Restore from backups when notified.
+
+Resposta correta:
+A. ג€" Create Compute Engine resources in usג€"central1ג€"b. ג€" Balance the load across both usג€"central1ג€"a and usג€"central1ג€"b.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: GCP_Student1 Highly Voted  4 years, 4 months ago
+A. Create Compute Engine resources in us "central1 "b. " Balance the load across both us "central1"a and us "central1"b.
+   upvoted 18 times
+
+2. Anonymous: obeythefist Highly Voted  3 years, 4 months ago
+This seems straightforward. "A" is the only answer that involves putting instances in more than one zone!
+A. Yes, creating instances in another zone and balancing the loads will fix this problem
+B. Wrong. This keeps all the instances in one zone, but the question says we want to protect against zone failures.
+C. Wrong. This keeps all the instances in one zone, but the question says we want to protect against zone failures.
+D. Wrong. This keeps all the instances in one zone, but the question says we want to protect against zone failures.
+   upvoted 14 times
+
+3. Anonymous: JoseCloudEng1994 Most Recent  1 year ago
+Selected Answer: A
+The ideal solution would be to have a 'regional' instance group with a Load Balancer
+   upvoted 1 times
+
+4. Anonymous: accd3fd 1 year, 3 months ago
+the Answer is B. the 2 Main ask are 1. Single Zone and Minimizes Cost
+option B is a cost-effective solution that can provide high availability within a single zone. By creating a Managed Instance Group in us-central1-a and configuring a Health Check with a short Health Interval, you can ensure that if one instance becomes unavailable, the Managed Instance Group will automatically create a new instance to replace it. This can help minimize downtime and ensure that your application remains available within the us-central1-a zone.
+   upvoted 1 times
+ ccpmad 1 year, 1 month ago
+No, it is not B.
+   upvoted 1 times
+
+5. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: A
+A seems more right as it help with the Zone failure, all other create the same in same zone
+   upvoted 3 times
+
+6. Anonymous: DrLegendgun 2 years, 3 months ago
+Selected Answer: A
+The Answer is B
+   upvoted 1 times
+
+7. Anonymous: Angel_99 2 years, 11 months ago
+Selected Answer: A
+A is best option
+   upvoted 1 times
+
+8. Anonymous: abirroy 2 years, 11 months ago
+Selected Answer: A
+A is the best option
+   upvoted 2 times
+
+9. Anonymous: AzureDP900 3 years ago
+A is fine.
+   upvoted 1 times
+
+10. Anonymous: Ridhanya 3 years, 7 months ago
+A is correct because we have to eliminate single zone failure problem
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #148
+
+Pergunta:
+A colleague handed over a Google Cloud Platform project for you to maintain. As part of a security checkup, you want to review who has been granted the Project
+Owner role. What should you do?
+
+Alternativas:
+- A. In the console, validate which SSH keys have been stored as project-wide keys.
+- B. Navigate to Identity-Aware Proxy and check the permissions for these resources.
+- C. Enable Audit Logs on the IAM & admin page for all resources, and validate the results.
+- D. Use the command gcloud projects getג€"iamג€"policy to view the current role assignments.
+
+Resposta correta:
+D. Use the command gcloud projects getג€"iamג€"policy to view the current role assignments.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ESP_SAP Highly Voted  4 years, 11 months ago
+Correct Answer is (D):
+A simple approach would be to use the command flags available when listing all the IAM policy for a given project. For instance, the following command:
+`gcloud projects get-iam-policy $PROJECT_ID --flatten="bindings[].members" --format="table(bindings.members)" --filter="bindings.role:roles/owner"`
+outputs all the users and service accounts associated with the role ‘roles/owner’ in the project in question.
+https://groups.google.com/g/google-cloud-dev/c/Z6sZs7TvygQ?pli=1
+   upvoted 46 times
+
+2. Anonymous: MohammedGhouse Highly Voted  4 years, 11 months ago
+D: is the answer
+   upvoted 13 times
+ SSPC 4 years, 11 months ago
+D is the correct.
+   upvoted 3 times
+ yurstev 4 years, 7 months ago
+D IS THE ANSWER
+   upvoted 4 times
+
+3. Anonymous: blackBeard33 Most Recent  1 year, 5 months ago
+Selected Answer: D
+The Answer is D. Per documentation: https://cloud.google.com/sdk/gcloud/reference/projects/get-iam-policy.
+Also, just tried in my own account and it brought a list if all users and their roles.
+   upvoted 1 times
+
+4. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: D
+D seems, more correct
+   upvoted 1 times
+
+5. Anonymous: tomis2 3 years ago
+Selected Answer: D
+gcloud iam get-iam-policy
+   upvoted 1 times
+
+6. Anonymous: AzureDP900 3 years ago
+D is right
+   upvoted 1 times
+
+7. Anonymous: Rutu_98 3 years, 1 month ago
+Selected Answer: D
+Answer is D
+   upvoted 2 times
+
+8. Anonymous: somenick 3 years, 3 months ago
+Selected Answer: D
+gcloud projects get-iam-policy $PROJECT_ID
+   upvoted 1 times
+
+9. Anonymous: obeythefist 3 years, 4 months ago
+I chose D by a process of elimination. Here's my take:
+A. There's more than one way to access an instance than just the SSH keys, and SSH keys have nothing to do with Project Owner role.
+B. Barking up the wrong tree here, Identity-Aware Proxy is more for remotely accessing resources, rather than Project Owner IAM roles.
+C. This will only work if everyone who is a Project Owner accesses the system so you can see them in the logs. What if a Project Owner doesn't access the Project for a while? How long will you wait? Nope.
+D. By elimination, this is the best result.
+   upvoted 13 times
+ BigQuery 3 years, 4 months ago
+NICE EXPLANATION; WAY TO G0 D
+   upvoted 1 times
+
+10. Anonymous: HansKloss611 3 years, 5 months ago
+Selected Answer: D
+D is correct
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #149
+
+Pergunta:
+You are running multiple VPC-native Google Kubernetes Engine clusters in the same subnet. The IPs available for the nodes are exhausted, and you want to ensure that the clusters can grow in nodes when needed. What should you do?
+
+Alternativas:
+- A. Create a new subnet in the same region as the subnet being used.
+- B. Add an alias IP range to the subnet used by the GKE clusters.
+- C. Create a new VPC, and set up VPC peering with the existing VPC.
+- D. Expand the CIDR range of the relevant subnet for the cluster.
+
+Resposta correta:
+D. Expand the CIDR range of the relevant subnet for the cluster.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ESP_SAP Highly Voted  4 years, 5 months ago
+Correct Answer is (D):
+gcloud compute networks subnets expand-ip-range
+NAME
+gcloud compute networks subnets expand-ip-range - expand the IP range of a Compute Engine subnetwork
+https://cloud.google.com/sdk/gcloud/reference/compute/networks/subnets/expand-ip-range
+   upvoted 30 times
+ magistrum 4 years ago
+Ok D it is, here's the GKE specific documentation
+https://cloud.google.com/kubernetes-engine/docs/concepts/alias-ips
+Every subnet must have a primary IP address range. You can expand the primary IP address range at any time, even when Google Cloud resources use the subnet; however, you cannot shrink or change a subnet's primary IP address scheme after the subnet has been created. The first two and last two IP addresses of a primary IP address range are reserved by Google Cloud.
+   upvoted 8 times
+
+2. Anonymous: MohammedGhouse Highly Voted  4 years, 5 months ago
+D: is the answer
+   upvoted 12 times
+ SSPC 4 years, 5 months ago
+I agree with you. https://cloud.google.com/vpc/docs/configure-alias-ip-ranges#gcloud_1
+   upvoted 2 times
+
+3. Anonymous: Captain1212 Most Recent  1 year, 4 months ago
+Selected Answer: D
+D is the correct Answer, as you just expand the range
+   upvoted 2 times
+
+4. Anonymous: Bobbybash 1 year, 11 months ago
+Selected Answer: D
+D. Expand the CIDR range of the relevant subnet for the cluster.
+Expanding the CIDR range of the relevant subnet for the cluster would increase the number of available IP addresses and allow the clusters to grow when needed. This can be done by modifying the existing subnet's IP address range in the VPC network settings. Adding a new subnet or VPC peering would not directly address the issue of running out of available IP addresses in the current subnet. Adding an alias IP range to the subnet could provide additional IP addresses, but may not be sufficient for long-term growth.
+   upvoted 2 times
+
+5. Anonymous: AwesomeGCP 2 years, 3 months ago
+Selected Answer: D
+D. Expand the CIDR range of the relevant subnet for the cluster.
+   upvoted 1 times
+
+6. Anonymous: learn_GCP 2 years, 3 months ago
+Selected Answer: D
+D. Expanding CIDR range is enough.
+   upvoted 1 times
+
+7. Anonymous: sonuricky 2 years, 5 months ago
+C is the right answer
+   upvoted 1 times
+ ryumada 2 years, 5 months ago
+Please provide the reason why you choose C as the right answer. ESP_SAP explains clearly about the reason why he choose D as the right answer even he add Google Documentation link too to prove his answer.
+   upvoted 2 times
+
+8. Anonymous: Bumbah 2 years, 6 months ago
+Selected Answer: D
+Correct answer is D:
+https://cloud.google.com/vpc/docs/create-modify-vpc-networks#expand-subnet
+Just expand your subnet.
+   upvoted 1 times
+
+9. Anonymous: AzureDP900 2 years, 6 months ago
+D is right
+   upvoted 1 times
+
+10. Anonymous: GCP_Student1 3 years, 10 months ago
+This might help
+Node limiting ranges
+The maximum number of Pods and Services for a given GKE cluster is limited by the size of the cluster's secondary ranges. The maximum number of nodes in the cluster is limited by the size of the cluster's subnet's primary IP address range and the cluster's Pod address range.
+The Cloud Console shows error messages like the following to indicate that either the subnet's primary IP address range or the cluster's Pod IP address range (the subnet's secondary IP address range for Pods) has been exhausted:
+Instance [node name] creation failed: IP space of [cluster subnet] is
+exhausted
+Note: Secondary subnets are not visible in Cloud Console. If you can't find the [cluster subnet] reported by the above error message it means that the error is caused by IP exhaustion in a secondary subnet. In this case check the secondary ranges of the primary subnet.
+https://cloud.google.com/kubernetes-engine/docs/concepts/alias-ips#node_limiters
+   upvoted 6 times
+ GCP_Student1 3 years, 10 months ago
+By the way the answer is;
+D. Expand the CIDR range of the relevant subnet for the cluster.
+   upvoted 3 times
+==============================
+
+==============================
+Page X — Question #150
+
+Pergunta:
+You have a batch workload that runs every night and uses a large number of virtual machines (VMs). It is fault-tolerant and can tolerate some of the VMs being terminated. The current cost of VMs is too high. What should you do?
+
+Alternativas:
+- A. Run a test using simulated maintenance events. If the test is successful, use preemptible N1 Standard VMs when running future jobs.
+- B. Run a test using simulated maintenance events. If the test is successful, use N1 Standard VMs when running future jobs.
+- C. Run a test using a managed instance group. If the test is successful, use N1 Standard VMs in the managed instance group when running future jobs.
+- D. Run a test using N1 standard VMs instead of N2. If the test is successful, use N1 Standard VMs when running future jobs.
+
+Resposta correta:
+A. Run a test using simulated maintenance events. If the test is successful, use preemptible N1 Standard VMs when running future jobs.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ESP_SAP Highly Voted  3 years, 11 months ago
+Correct Answer is (A):
+Creating and starting a preemptible VM instance
+This page explains how to create and use a preemptible virtual machine (VM) instance. A preemptible instance is an instance you can create and run at a much lower price than normal instances. However, Compute Engine might terminate (preempt) these instances if it requires access to those resources for other tasks. Preemptible instances will always terminate after 24 hours. To learn more about preemptible instances, read the preemptible instances documentation.
+Preemptible instances are recommended only for fault-tolerant applications that can withstand instance preemptions. Make sure your application can handle preemptions before you decide to create a preemptible instance. To understand the risks and value of preemptible instances, read the preemptible instances documentation.
+https://cloud.google.com/compute/docs/instances/create-start-preemptible-instance
+   upvoted 44 times
+
+2. Anonymous: MohammedGhouse Highly Voted  3 years, 11 months ago
+A: is the answer
+   upvoted 16 times
+ SSPC 3 years, 11 months ago
+"A" is correct
+   upvoted 3 times
+ juliandm 3 years, 11 months ago
+What about a mixture of preemptible N1 and normal N1 instances? i can't believe just having preemptible is a good practice
+   upvoted 1 times
+ Ale1973 3 years, 10 months ago
+Good point, in real-world your solution, is the best. For this scenario, the answer is A.
+   upvoted 8 times
+
+3. Anonymous: akhun Most Recent  1 year, 5 months ago
+Selected Answer: A
+It is specific on Batch workload , runs in less than 24 hrs, is fault tolerant. The best candidate for this is job is a preemptible VM
+   upvoted 5 times
+
+4. Anonymous: Pr44 1 year, 8 months ago
+Selected Answer: A
+Preemptible to save cost and even it is fault tolerant
+   upvoted 3 times
+
+5. Anonymous: Charumathi 1 year, 9 months ago
+Selected Answer: A
+A is correct, preemptible VMs reduce cost, and this is recommended to run batch jobs which run less than 24 hours
+   upvoted 1 times
+
+6. Anonymous: gcpreviewer 1 year, 9 months ago
+Selected Answer: A
+I Vote A as it is clearly correct. Whenever something runs in under 24 hours and is fault tolerant we should be looking at preemptible VMs to save costs.
+   upvoted 1 times
+
+7. Anonymous: ccieman2016 1 year, 10 months ago
+Selected Answer: A
+A is correct
+   upvoted 1 times
+
+8. Anonymous: gcpj 2 years ago
+Selected Answer: A
+Answer should be A: preemptible VM instances. Because the workload is fault-tolerant and can tolerate some of the VMs being terminated.
+   upvoted 1 times
+
+9. Anonymous: AzureDP900 2 years ago
+A is right ..
+   upvoted 1 times
+
+10. Anonymous: NBR1 2 years, 1 month ago
+Selected Answer: A
+I believe it is A
+   upvoted 1 times
+==============================

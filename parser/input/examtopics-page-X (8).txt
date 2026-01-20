@@ -1,0 +1,768 @@
+==============================
+Page X — Question #81
+
+Pergunta:
+You are operating a Google Kubernetes Engine (GKE) cluster for your company where different teams can run non-production workloads. Your Machine Learning
+(ML) team needs access to Nvidia Tesla P100 GPUs to train their models. You want to minimize effort and cost. What should you do?
+
+Alternativas:
+- A. Ask your ML team to add the ג€accelerator: gpuג€ annotation to their pod specification.
+- B. Recreate all the nodes of the GKE cluster to enable GPUs on all of them.
+- C. Create your own Kubernetes cluster on top of Compute Engine with nodes that have GPUs. Dedicate this cluster to your ML team.
+- D. Add a new, GPU-enabled, node pool to the GKE cluster. Ask your ML team to add the cloud.google.com/gke -accelerator: nvidia-tesla-p100 nodeSelector to their pod specification.
+
+Resposta correta:
+D. Add a new, GPU-enabled, node pool to the GKE cluster. Ask your ML team to add the cloud.google.com/gke -accelerator: nvidia-tesla-p100 nodeSelector to their pod specification.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: John_Iam Highly Voted  4 years, 7 months ago
+D is the correct answer.
+https://cloud.google.com/kubernetes-engine/docs/how-to/gpus
+   upvoted 47 times
+ tablet444 4 years, 5 months ago
+the documentation states "Limitations
+Before using GPUs on GKE, keep in mind the following limitations:
+You cannot add GPUs to existing node pools.
+GPU nodes cannot be live migrated during maintenance events."
+   upvoted 10 times
+ nightflyer 4 years, 1 month ago
+In this case it is about adding a GPU enabled node pool not a GPU to an existing node-pool
+   upvoted 16 times
+ fragment137 2 years, 1 month ago
+You're correct that D says that, except that the question also says to use the most cost-effective method. Two node-pools would be more expensive than rebuilding the current one with GPU enabled.
+   upvoted 1 times
+ Gulithor 2 years ago
+It also says to minimize effort, wouldn't recreating all the pools take way longer than just adding 1?
+   upvoted 1 times
+
+2. Anonymous: glam Highly Voted  4 years, 3 months ago
+D. Add a new, GPU-enabled, node pool to the GKE cluster. Ask your ML team to add the cloud.google.com/gke -accelerator: nvidia-tesla-p100 nodeSelector to their pod specification.
+   upvoted 15 times
+
+3. Anonymous: BAofBK Most Recent  1 year, 2 months ago
+The correct answer is D
+   upvoted 1 times
+
+4. Anonymous: trainingexam 1 year, 6 months ago
+Selected Answer: D
+D is the correct answer.
+   upvoted 1 times
+
+5. Anonymous: sabrinakloud 1 year, 9 months ago
+Selected Answer: D
+Option D is good
+   upvoted 1 times
+
+6. Anonymous: sakdip66 1 year, 9 months ago
+Selected Answer: D
+Creating new node pool w/ GPU-enabled instances is cost - saving solution. This way ML team workload will GPU instance for their ML and other team workload will run smoothly
+   upvoted 2 times
+
+7. Anonymous: Prat25200607 1 year, 9 months ago
+Selected Answer: D
+D makes more cost effective
+   upvoted 1 times
+
+8. Anonymous: Buruguduystunstugudunstuy 1 year, 11 months ago
+Selected Answer: D
+Answer D. Add a new, GPU-enabled, node pool to the GKE cluster. Ask your ML team to add the cloud.google.com/gke-accelerator: nvidia-tesla-p100 nodeSelector to their pod specification.
+Adding a new node pool with GPUs is the best option because it allows for a separate set of nodes that can be specifically allocated to workloads that require GPU acceleration, such as the Machine Learning (ML) team's workloads. This approach will not affect other workloads running on the original nodes, keeping the costs low and the overall cluster performance stable.
+   upvoted 6 times
+
+9. Anonymous: cslince 2 years, 1 month ago
+Selected Answer: D
+D is the correct answer.
+   upvoted 1 times
+
+10. Anonymous: leogor 2 years, 2 months ago
+D is correct
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #82
+
+Pergunta:
+Your VMs are running in a subnet that has a subnet mask of 255.255.255.240. The current subnet has no more free IP addresses and you require an additional
+10 IP addresses for new VMs. The existing and new VMs should all be able to reach each other without additional routes. What should you do?
+
+Alternativas:
+- A. Use gcloud to expand the IP range of the current subnet.
+- B. Delete the subnet, and recreate it using a wider range of IP addresses.
+- C. Create a new project. Use Shared VPC to share the current network with the new project.
+- D. Create a new subnet with the same starting IP but a wider range to overwrite the current subnet.
+
+Resposta correta:
+A. Use gcloud to expand the IP range of the current subnet.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: JustLearning Highly Voted  5 years, 1 month ago
+A: Expand the existing subnet.
+https://cloud.google.com/sdk/gcloud/reference/compute/networks/subnets/expand-ip-range
+   upvoted 56 times
+
+2. Anonymous: glam Highly Voted  4 years, 9 months ago
+A. Use gcloud to expand the IP range of the current subnet.
+   upvoted 11 times
+
+3. Anonymous: JB28 Most Recent  1 year, 6 months ago
+The correct answer is A. Use gcloud to expand the IP range of the current subnet.
+Expanding the primary IPv4 address range of a subnet does not cause a break or gap in network connectivity2. DHCP leases are not broken. IP addresses of running VMs at the time of the expansion do not change. You cannot “un-expand” or contract the range after it’s expanded. Expansion is permanent.
+   upvoted 2 times
+
+4. Anonymous: BAofBK 1 year, 8 months ago
+The correct answer is A
+   upvoted 1 times
+
+5. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: A
+A is correct , as you need to expand it
+   upvoted 2 times
+
+6. Anonymous: trainingexam 2 years ago
+Selected Answer: A
+gcloud compute networks subnets expand-ip-range NAME --prefix-length=PREFIX_LENGTH [--region=REGION] [GCLOUD_WIDE_FLAG …]
+   upvoted 2 times
+
+7. Anonymous: dasgcp 2 years, 3 months ago
+Selected Answer: C
+You can't expand the subnet because the question states "The current subnet has no more free IP addresses", correct answer is C.
+   upvoted 3 times
+ KerolesKhalil 2 years, 1 month ago
+that's exactly why you expand the subnet =D
+   upvoted 8 times
+
+8. Anonymous: Jimut 2 years, 4 months ago
+Selected Answer: A
+Use gcloud to expand the IP range of the current subnet.
+   upvoted 1 times
+
+9. Anonymous: Mobin92 2 years, 4 months ago
+Selected Answer: A
+A. Use gcloud to expand the IP range of the current subnet.
+   upvoted 1 times
+
+10. Anonymous: Buruguduystunstugudunstuy 2 years, 5 months ago
+Selected Answer: A
+Answer A (Use gcloud to expand the IP range of the current subnet): This option is correct because it allows you to expand the primary IP range of the existing subnet to accommodate the additional 10 IP addresses required for the new VMs. This can be done without deleting or recreating the subnet, which saves time and avoids disrupting any existing resources that are using the subnet.
+   upvoted 3 times
+==============================
+
+==============================
+Page X — Question #83
+
+Pergunta:
+Your organization uses G Suite for communication and collaboration. All users in your organization have a G Suite account. You want to grant some G Suite users access to your Cloud Platform project. What should you do?
+
+Alternativas:
+- A. Enable Cloud Identity in the GCP Console for your domain.
+- B. Grant them the required IAM roles using their G Suite email address.
+- C. Create a CSV sheet with all users' email addresses. Use the gcloud command line tool to convert them into Google Cloud Platform accounts.
+- D. In the G Suite console, add the users to a special group called cloud-console-users@yourdomain.com. Rely on the default behavior of the Cloud Platform to grant users access if they are members of this group.
+
+Resposta correta:
+B. Grant them the required IAM roles using their G Suite email address.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: austinl Highly Voted  4 years, 7 months ago
+B is correct
+   upvoted 30 times
+
+2. Anonymous: Ciumela Highly Voted  4 years, 7 months ago
+B is correct: To actively adopt the Organization resource, the G Suite or Cloud Identity super admins need to assign the Organization Administrator Cloud IAM role to a user or group
+   upvoted 22 times
+
+3. Anonymous: BAofBK Most Recent  1 year, 2 months ago
+The correct answer is B
+   upvoted 1 times
+
+4. Anonymous: Captain1212 1 year, 4 months ago
+Selected Answer: B
+B seems more correct as per thhe google pratcices
+   upvoted 3 times
+
+5. Anonymous: trainingexam 1 year, 6 months ago
+Selected Answer: B
+B is correct
+   upvoted 1 times
+
+6. Anonymous: zwwdplay 1 year, 9 months ago
+Dear friends,
+Great responses in question.
+Can someone with contributor access, send me the remaining questions to this email: zwwdplay@hotmail.com
+   upvoted 1 times
+
+7. Anonymous: Buruguduystunstugudunstuy 1 year, 11 months ago
+Selected Answer: B
+Answer B. Grant them the required IAM roles using their G Suite email address.
+To grant G Suite users access to a Cloud Platform project, you should use their G Suite email addresses to grant them the required IAM roles.
+Answer A is incorrect because enabling Cloud Identity is not necessary for granting G Suite users access to a Cloud Platform project. Cloud Identity provides a centralized identity management system for G Suite and Cloud Platform, but it is not required for this use case.
+Answer C is incorrect because there is no need to convert G Suite email addresses into Google Cloud Platform accounts. G Suite users already have Google accounts and can be granted access to Cloud Platform using their G Suite email addresses.
+Answer D is incorrect because there is no default behavior in the Cloud Platform to grant access to users who are members of a particular group. Access to Cloud Platform resources is granted based on IAM roles and policies, not group membership.
+   upvoted 9 times
+
+8. Anonymous: leogor 2 years, 2 months ago
+Selected Answer: B
+Grant them the required IAM roles using their G Suite email address
+   upvoted 1 times
+
+9. Anonymous: AzureDP900 2 years, 7 months ago
+B is right
+   upvoted 1 times
+
+10. Anonymous: haroldbenites 2 years, 7 months ago
+Go for B
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #84
+
+Pergunta:
+You have a Google Cloud Platform account with access to both production and development projects. You need to create an automated process to list all compute instances in development and production projects on a daily basis. What should you do?
+
+Alternativas:
+- A. Create two configurations using gcloud config. Write a script that sets configurations as active, individually. For each configuration, use gcloud compute instances list to get a list of compute resources.
+- B. Create two configurations using gsutil config. Write a script that sets configurations as active, individually. For each configuration, use gsutil compute instances list to get a list of compute resources.
+- C. Go to Cloud Shell and export this information to Cloud Storage on a daily basis.
+- D. Go to GCP Console and export this information to Cloud SQL on a daily basis.
+
+Resposta correta:
+A. Create two configurations using gcloud config. Write a script that sets configurations as active, individually. For each configuration, use gcloud compute instances list to get a list of compute resources.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: cloudenthu01 Highly Voted  4 years, 6 months ago
+A is correct
+   upvoted 38 times
+
+2. Anonymous: glam Highly Voted  4 years, 3 months ago
+A. Create two configurations using gcloud config. Write a script that sets configurations as active, individually. For each configuration, use gcloud compute instances list to get a list of compute resources.
+   upvoted 15 times
+
+3. Anonymous: BAofBK Most Recent  1 year, 2 months ago
+A is the best
+   upvoted 1 times
+
+4. Anonymous: Captain1212 1 year, 4 months ago
+Selected Answer: A
+A is correct , first list , then acitvate it
+   upvoted 3 times
+
+5. Anonymous: Neha_Pallavi 1 year, 4 months ago
+A. Create two configurations using gcloud config. Write a script that sets configurations as active, individually. For each configuration, use gcloud compute instances list to get a list of compute resources.
+   upvoted 1 times
+
+6. Anonymous: trainingexam 1 year, 6 months ago
+Selected Answer: A
+Activate each config and list the instances
+   upvoted 1 times
+
+7. Anonymous: Partha117 1 year, 10 months ago
+Selected Answer: A
+A is correct
+   upvoted 1 times
+
+8. Anonymous: Buruguduystunstugudunstuy 1 year, 11 months ago
+Selected Answer: A
+Answer A is the correct answer.
+The most straightforward way to list all compute instances in development and production projects is to use gcloud compute instances list command. However, since the account has access to both production and development projects, it's necessary to create two configurations with different project IDs.
+Answer B is incorrect because gsutil is used for object storage operations and not compute instances. (DISTRACTOR)
+Answers C and D are incorrect because they do not provide a straightforward solution for listing compute instances in multiple projects.
+   upvoted 10 times
+
+9. Anonymous: Shwom 1 year, 11 months ago
+Selected Answer: A
+A is correct
+   upvoted 1 times
+
+10. Anonymous: cslince 2 years, 1 month ago
+Selected Answer: A
+A is correct
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #85
+
+Pergunta:
+You have a large 5-TB AVRO file stored in a Cloud Storage bucket. Your analysts are proficient only in SQL and need access to the data stored in this file. You want to find a cost-effective way to complete their request as soon as possible. What should you do?
+
+Alternativas:
+- A. Load data in Cloud Datastore and run a SQL query against it.
+- B. Create a BigQuery table and load data in BigQuery. Run a SQL query on this table and drop this table after you complete your request.
+- C. Create external tables in BigQuery that point to Cloud Storage buckets and run a SQL query on these external tables to complete your request.
+- D. Create a Hadoop cluster and copy the AVRO file to NDFS by compressing it. Load the file in a hive table and provide access to your analysts so that they can run SQL queries.
+
+Resposta correta:
+C. Create external tables in BigQuery that point to Cloud Storage buckets and run a SQL query on these external tables to complete your request.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: mohdafiuddin Highly Voted  4 years, 6 months ago
+Breaking down the question into key points -
+1. 5-TB AVRO file stored in a Cloud Storage bucket.
+2. Analysts are proficient only in SQL
+3. cost-effective way to complete their request as soon as possible
+A. ....Load data in Cloud Datastore... (Not Correct because Cloud Datastore is not a good option to run SQL Queries)
+B. ...Load data in BigQuery.... (Not Cost Effective because loading the data which is already present in the bucket into BigQuery again is expensive)
+C. Create external tables in BigQuery that point to Cloud Storage buckets and run a SQL query on these external tables to complete your request.
+(This is the right answer as it meets all the requirements from the question)
+D. Create a Hadoop cluster and copy the AVRO file to NDFS by compressing it. Load the file in a hive table and provide access to your analysts so that they can run SQL queries.
+(Too roundabout and indirect. Not the right option)
+   upvoted 154 times
+ pondai 4 years, 3 months ago
+listem this guy
+   upvoted 17 times
+
+2. Anonymous: Ciumela Highly Voted  5 years ago
+C is correct: https://cloud.google.com/bigquery/external-data-sources
+   upvoted 23 times
+
+3. Anonymous: dck4893 Most Recent  1 year, 3 months ago
+D - The ONLY answer that provides data for the analysts is D. The question states that the analysts need access to the data and that they only know SQL (not that *you* only know SQL). The other 3 answers don't provide the data to analysts. You might have to fill in the blanks that you will pass it to them in a spreadsheet format, but that very likely won't satisfy their needs to query the data using SQL and at 5TB size, that isn't ideal. Therefore D is the only answer that satisfies the requirement.
+   upvoted 1 times
+
+4. Anonymous: JB28 1 year, 6 months ago
+The most cost-effective and efficient option would be Option C: Create external tables in BigQuery that point to Cloud Storage buckets and run a SQL query on these external tables to complete your request.
+This approach allows you to query data directly from the AVRO file stored in the Cloud Storage bucket without having to load the data into BigQuery first. This saves both time and money as you are not charged for the storage of data within BigQuery. Plus, BigQuery is designed to be able to handle large datasets, making it a suitable choice for a 5-TB AVRO file. Your analysts, who are proficient in SQL, can easily work with BigQuery as it uses a SQL interface.
+   upvoted 1 times
+
+5. Anonymous: BAofBK 1 year, 8 months ago
+The correct answer is C
+   upvoted 1 times
+
+6. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: C
+C is the right answer , as
+   upvoted 1 times
+
+7. Anonymous: Neha_Pallavi 1 year, 10 months ago
+C. Create external tables in BigQuery that point to Cloud Storage buckets and run a SQL query on these external tables to complete your request.
+   upvoted 2 times
+
+8. Anonymous: Neha_Pallavi 1 year, 10 months ago
+C. Create external tables in BigQuery that point to Cloud Storage buckets and run a SQL query on these external tables to complete your request.
+   upvoted 1 times
+
+9. Anonymous: Buruguduystunstugudunstuy 2 years, 5 months ago
+Selected Answer: C
+Answer C is the most cost-effective and efficient way to provide analysts access to the data stored in the 5-TB AVRO file in Cloud Storage.
+Here's why:
+You can create external tables in BigQuery that point to the 5-TB AVRO file stored in Cloud Storage. External tables allow you to query data stored in Cloud Storage without the need to load the data into BigQuery. This is a cost-effective way to provide your analysts' access to the data they need, and it is also an efficient solution since you can run SQL queries on the data directly in BigQuery.
+   upvoted 7 times
+
+10. Anonymous: Emmanski08 2 years, 6 months ago
+External tables in BigQuery
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #86
+
+Pergunta:
+You need to verify that a Google Cloud Platform service account was created at a particular time. What should you do?
+
+Alternativas:
+- A. Filter the Activity log to view the Configuration category. Filter the Resource type to Service Account.
+- B. Filter the Activity log to view the Configuration category. Filter the Resource type to Google Project.
+- C. Filter the Activity log to view the Data Access category. Filter the Resource type to Service Account.
+- D. Filter the Activity log to view the Data Access category. Filter the Resource type to Google Project.
+
+Resposta correta:
+A. Filter the Activity log to view the Configuration category. Filter the Resource type to Service Account.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: John_Iam Highly Voted  5 years, 1 month ago
+Correct Answer is A.
+Filter the Activity log to view the Configuration category. Filter the Resource type to Service Account.
+   upvoted 79 times
+ mlantonis 5 years, 1 month ago
+I agree A
+   upvoted 10 times
+ nmnm22 1 year, 8 months ago
+ayyy its mlantonis pre-fame
+   upvoted 1 times
+
+2. Anonymous: shafiqeee1 Highly Voted  5 years ago
+A - I reproduced in my project.
+   upvoted 29 times
+
+3. Anonymous: peddyua Most Recent  12 months ago
+Selected Answer: A
+gcloud iam service-accounts list --project=<PROJECT_ID> --format="value(email)"
+gcloud iam service-accounts describe <SERVICE_ACCOUNT_EMAIL> --project=<PROJECT_ID> --format="value(createTime)"
+   upvoted 1 times
+
+4. Anonymous: pzacariasf7 1 year, 4 months ago
+Selected Answer: A
+A baby
+   upvoted 1 times
+
+5. Anonymous: kelliot 1 year, 7 months ago
+Why is the correct answer almost always different from the community answers?
+   upvoted 3 times
+ PiperMe 1 year, 5 months ago
+Funskies!
+   upvoted 2 times
+ dck4893 1 year, 3 months ago
+It could be a way for Google to identify people who have used this resource and invalidate their exam results. Best just not to click on the "solution" at all.
+   upvoted 1 times
+
+6. Anonymous: BAofBK 1 year, 8 months ago
+The correct answer is A
+   upvoted 1 times
+
+7. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: A
+A is the correct answer, you can see it in configuration category
+   upvoted 3 times
+
+8. Anonymous: Neha_Pallavi 1 year, 10 months ago
+A. Filter the Activity log to view the Configuration category. Filter the Resource type to Service Account.
+   upvoted 1 times
+
+9. Anonymous: Buruguduystunstugudunstuy 2 years, 5 months ago
+Selected Answer: A
+Answer A. Filter the Activity log to view the Configuration category. Filter the Resource type to Service Account.
+The Activity log is the primary tool for viewing and analyzing activity within a Google Cloud project, including all Service Account-related activity. By filtering the Activity log to view the Configuration category and filtering the Resource type to Service Account, you can see when a Service Account was created, updated, or deleted, along with other related metadata such as the user who performed the action and the IP address from which the action was performed.
+   upvoted 5 times
+
+10. Anonymous: nishant7290 2 years, 6 months ago
+Selected Answer: A
+Correct Answer is A.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #87
+
+Pergunta:
+You deployed an LDAP server on Compute Engine that is reachable via TLS through port 636 using UDP. You want to make sure it is reachable by clients over that port. What should you do?
+
+Alternativas:
+- A. Add the network tag allow-udp-636 to the VM instance running the LDAP server.
+- B. Create a route called allow-udp-636 and set the next hop to be the VM instance running the LDAP server.
+- C. Add a network tag of your choice to the instance. Create a firewall rule to allow ingress on UDP port 636 for that network tag.
+- D. Add a network tag of your choice to the instance running the LDAP server. Create a firewall rule to allow egress on UDP port 636 for that network tag.
+
+Resposta correta:
+C. Add a network tag of your choice to the instance. Create a firewall rule to allow ingress on UDP port 636 for that network tag.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: kishoredeena Highly Voted  5 years, 1 month ago
+Option C is the right one
+   upvoted 33 times
+
+2. Anonymous: cloudenthu01 Highly Voted  5 years ago
+C is correct
+You tag the instances ,then create ingress firewall rules to allow udp on desired port for target-tags name applied to instances
+   upvoted 26 times
+
+3. Anonymous: kelliot Most Recent  1 year, 7 months ago
+Option C, agree
+   upvoted 2 times
+
+4. Anonymous: BAofBK 1 year, 8 months ago
+The correct answer is C
+   upvoted 1 times
+
+5. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: C
+C is correct bcoz of ingress
+   upvoted 1 times
+
+6. Anonymous: Partha117 2 years, 3 months ago
+Selected Answer: C
+Firewall rule for ingress is correct
+   upvoted 1 times
+
+7. Anonymous: Buruguduystunstugudunstuy 2 years, 5 months ago
+Selected Answer: C
+Answer C is correct: Add a network tag of your choice to the instance. Create a firewall rule to allow ingress on UDP port 636 for that network tag.
+To make sure that the LDAP server is reachable by clients over port 636 using UDP, you need to allow ingress traffic on that port. You can achieve this by adding a network tag to the instance running the LDAP server and then creating a firewall rule that allows ingress traffic on UDP port 636 for that network tag.
+   upvoted 4 times
+
+8. Anonymous: ratnesh_uk01 2 years, 6 months ago
+can anyone please suggest why D is not correct? thanks
+   upvoted 1 times
+ Buruguduystunstugudunstuy 2 years, 5 months ago
+Answer D is incorrect because adding a network tag of your choice to the instance running the LDAP server and creating a firewall rule to allow egress traffic on UDP port 636 for that network tag would not allow incoming traffic on that port. You need to create a firewall rule that allows ingress traffic on that port.
+   upvoted 5 times
+ rs7745 1 year, 3 months ago
+egress!
+   upvoted 3 times
+
+9. Anonymous: leogor 2 years, 8 months ago
+Selected Answer: C
+allow ingress
+   upvoted 1 times
+
+10. Anonymous: AzureDP900 3 years ago
+C is right.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #88
+
+Pergunta:
+You need to set a budget alert for use of Compute Engineer services on one of the three Google Cloud Platform projects that you manage. All three projects are linked to a single billing account. What should you do?
+
+Alternativas:
+- A. Verify that you are the project billing administrator. Select the associated billing account and create a budget and alert for the appropriate project.
+- B. Verify that you are the project billing administrator. Select the associated billing account and create a budget and a custom alert.
+- C. Verify that you are the project administrator. Select the associated billing account and create a budget for the appropriate project.
+- D. Verify that you are project administrator. Select the associated billing account and create a budget and a custom alert.
+
+Resposta correta:
+A. Verify that you are the project billing administrator. Select the associated billing account and create a budget and alert for the appropriate project.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: kishoredeena Highly Voted  4 years, 7 months ago
+I think the answer is A, You can rely on default alert. No need for custom alert
+   upvoted 48 times
+ alan9999 4 years, 3 months ago
+Right its not asking to set custom alert
+   upvoted 1 times
+ Eshkrkrkr 4 years, 2 months ago
+One point - there is no such role as Project Billing Administrator - it should be Project Billing Manager but he can't create budgets, the only one who can - Billing Account Administrator. Nor Project Administrator exists. Very tricky question, maybe the option a wrong, hope smb will catch it on exam and pass some light on real variants.
+https://cloud.google.com/iam/docs/understanding-roles#billing-roles
+   upvoted 7 times
+ Wachy 4 years ago
+Eshkrkrkr read the question calmly. The role there is Billing Administrator. Not Project Billing Administrator.
+It's more like: “Verify you are the project; billing administrator”
+   upvoted 12 times
+ ryumada 2 years, 5 months ago
+more like: "“Verify you are the project's billing administrator”"
+   upvoted 8 times
+ BobbyFlash 3 years, 3 months ago
+I agree. If I'm not wrong, project admin doesn't have billing permissions so C and D discarded. Between A and B, option B looks like it works but we would be creating a budget and alert receiving info about billing as a whole; so A delimits billing for the project you want to get info from.
+   upvoted 7 times
+
+2. Anonymous: Ciumela Highly Voted  4 years, 7 months ago
+A is correct, as you can set a default alert also on a single project: https://cloud.google.com/billing/docs/how-to/budgets
+   upvoted 17 times
+ nickyshil 2 years, 5 months ago
+why nobody is talking about "set a budget alert for use of Compute Engineer services" only.. why not custom alert ?how default alert ?
+   upvoted 2 times
+ Romio2023 1 year, 1 month ago
+Is that not a typo? "*Compute Engine"
+   upvoted 2 times
+ mwwoodm 4 years, 4 months ago
+Agreed. Per the link included: "To create a budget for your Cloud Billing account, you must be a Billing Account Administrator on the Cloud Billing account." So that eliminates C & D. Then no need for custom alert, eliminating B. The answer is A.
+   upvoted 3 times
+
+3. Anonymous: AdelElagawany Most Recent  3 months, 3 weeks ago
+Selected Answer: A
+I will choose A since it is the closest however I believe none of the four options is correct.
+The four options mention "create a budget" however as per [1], to create a budget for your Cloud Billing account, you need a role that includes the following permissions on the Cloud Billing account:
+1. billing.budgets.create to create a new budget.
+2. billing.budgets.get
+3. billing.budgets.list
+To gain these permissions using a predefined role, ask your administrator to grant you one of the following Cloud Billing IAM roles on your Cloud Billing account:
+Billing Account Administrator
+Billing Account Costs Manager
+I'm assuming in A and B, it meant by "project billing administrator", the "billing account administrator" role so I will go for (A).
+[1] https://cloud.google.com/billing/docs/how-to/budgets#create-budget
+   upvoted 1 times
+
+4. Anonymous: BAofBK 1 year, 2 months ago
+The correct answer is A
+   upvoted 1 times
+
+5. Anonymous: Captain1212 1 year, 4 months ago
+Selected Answer: A
+A is correct because, there is default alert, no need oof custom alert
+   upvoted 3 times
+
+6. Anonymous: Neha_Pallavi 1 year, 4 months ago
+A. Verify that you are the project billing administrator. Select the associated billing account and create a budget and alert for the appropriate project.
+   upvoted 1 times
+
+7. Anonymous: jayjani66 1 year, 6 months ago
+Answer is B.
+Explanation: In Google Cloud, budget alerts are associated with billing accounts, not individual projects. Since all three projects are linked to a single billing account, you need to be the billing administrator to set up a budget and alert for that billing account.
+   upvoted 1 times
+
+8. Anonymous: Buruguduystunstugudunstuy 1 year, 11 months ago
+Selected Answer: A
+Answer A. Verify that you are the project billing administrator. Select the associated billing account and create a budget and alert for the appropriate project.
+In this scenario, you need to create a budget alert for the use of Compute Engine services on a specific project. Since all three projects are linked to a single billing account, you need to make sure that you are the billing administrator for that account. Once verified, you can create a budget and alert for the specific project by selecting the associated billing account and setting the budget and alert for the appropriate project.
+   upvoted 5 times
+ Buruguduystunstugudunstuy 1 year, 11 months ago
+INCORRECT
+Answer B is incorrect because a custom alert is not necessary for this scenario. A budget alert alone is sufficient to notify you when your spending reaches a certain threshold.
+Answer C is incorrect because, while a project administrator can create a budget for the project, they cannot set a budget alert. Only a billing administrator has the necessary permissions to create a budget alert.
+Answer D is incorrect because a project administrator cannot create a custom alert on the associated billing account. Custom alerts can only be created by billing administrators.
+   upvoted 1 times
+
+9. Anonymous: jrisl1991 1 year, 11 months ago
+Selected Answer: A
+I don't even think there's an option for custom budget alert since all budget alerts are kind of the same and we can only customize (with the actual word "customize") the recipients. A should be correct.
+   upvoted 1 times
+
+10. Anonymous: SK0710 2 years, 1 month ago
+Compute Engineer services, please read as Compute Engine services. Ans is A
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #89
+
+Pergunta:
+You are migrating a production-critical on-premises application that requires 96 vCPUs to perform its task. You want to make sure the application runs in a similar environment on GCP. What should you do?
+
+Alternativas:
+- A. When creating the VM, use machine type n1-standard-96.
+- B. When creating the VM, use Intel Skylake as the CPU platform.
+- C. Create the VM using Compute Engine default settings. Use gcloud to modify the running instance to have 96 vCPUs.
+- D. Start the VM using Compute Engine default settings, and adjust as you go based on Rightsizing Recommendations.
+
+Resposta correta:
+A. When creating the VM, use machine type n1-standard-96.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: dan80 Highly Voted  5 years, 7 months ago
+A is correct - https://cloud.google.com/compute/docs/machine-types
+   upvoted 52 times
+ Ahmed_Y 2 years, 5 months ago
+Indeed, there is a n1-standard-96 machine type in the machine types list here https://cloud.google.com/compute/docs/general-purpose-machines
+   upvoted 2 times
+
+2. Anonymous: glam Highly Voted  5 years, 3 months ago
+A. When creating the VM, use machine type n1-standard-96.
+   upvoted 12 times
+
+3. Anonymous: Enamfrancis Most Recent  1 year, 3 months ago
+Selected Answer: A
+why B ?
+Option A is the most straightforward and reliable way to ensure your application runs in a similar environment with the required 96 vCPUs
+   upvoted 1 times
+
+4. Anonymous: BAofBK 2 years, 2 months ago
+The correct answer is A
+   upvoted 1 times
+
+5. Anonymous: Rajeshpaspi 2 years, 3 months ago
+A is the correct answer
+   upvoted 1 times
+
+6. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: A
+A is correct, use machine type n1-standard-96 while creating the VM
+   upvoted 3 times
+
+7. Anonymous: sakdip66 2 years, 9 months ago
+Selected Answer: A
+the goal is to have an equivalent of this app in GCP. therefore A is the best shot we have
+   upvoted 1 times
+
+8. Anonymous: Buruguduystunstugudunstuy 2 years, 11 months ago
+Selected Answer: A
+A. When creating the VM, use machine type n1-standard-96.
+Answer A is the correct answer as it directly addresses the requirement to have 96 vCPUs by selecting the n1-standard-96 machine type. This machine type offers 96 vCPUs, 360 GB of memory, and up to 2,400 GB of local SSD storage.
+https://cloud.google.com/compute/docs/machine-resource
+Answer B is incorrect because selecting a CPU platform alone will not guarantee the availability of the required number of vCPUs.
+Answer C is incorrect because it is not possible to modify a running Compute Engine instance to add vCPUs. vCPUs can only be added or removed during instance creation or by stopping the instance first.
+Answer D is incorrect because while Rightsizing Recommendations can help optimize compute resources, they will not guarantee that the application has the required 96 vCPUs to function properly.
+   upvoted 8 times
+
+9. Anonymous: cslince 3 years, 1 month ago
+Selected Answer: A
+A is correct - https://cloud.google.com/compute/docs/machine-types
+   upvoted 2 times
+
+10. Anonymous: fragment137 3 years, 1 month ago
+the instance name for 96 vcpu N1 is "n1-highcpu-96", not n1-standard-96.
+Possible that has been updated since this question came out?
+   upvoted 3 times
+==============================
+
+==============================
+Page X — Question #90
+
+Pergunta:
+You want to configure a solution for archiving data in a Cloud Storage bucket. The solution must be cost-effective. Data with multiple versions should be archived after 30 days. Previous versions are accessed once a month for reporting. This archive data is also occasionally updated at month-end. What should you do?
+
+Alternativas:
+- A. Add a bucket lifecycle rule that archives data with newer versions after 30 days to Coldline Storage.
+- B. Add a bucket lifecycle rule that archives data with newer versions after 30 days to Nearline Storage.
+- C. Add a bucket lifecycle rule that archives data from regional storage after 30 days to Coldline Storage.
+- D. Add a bucket lifecycle rule that archives data from regional storage after 30 days to Nearline Storage.
+
+Resposta correta:
+B. Add a bucket lifecycle rule that archives data with newer versions after 30 days to Nearline Storage.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: neelesh88 Highly Voted  5 years, 1 month ago
+B is correct
+   upvoted 33 times
+
+2. Anonymous: ESP_SAP Highly Voted  4 years, 10 months ago
+Correct Answer (B):
+NumberOfNewerVersions
+The NumberOfNewerVersions condition is typically only used in conjunction with Object Versioning. If the value of this condition is set to N, an object version satisfies the condition when there are at least N versions (including the live version) newer than it. For a live object version, the number of newer versions is considered to be 0. For the most recent noncurrent version, the number of newer versions is 1 (or 0 if there is no live object version), and so on.
+Important: When specifying this condition in a .json configuration file, you must use numNewerVersions instead of NumberOfNewerVersions.
+https://cloud.google.com/storage/docs/lifecycle#numberofnewerversions
+   upvoted 24 times
+
+3. Anonymous: BAofBK Most Recent  1 year, 8 months ago
+The correct answer is B
+   upvoted 2 times
+
+4. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: B
+B is the right answer, because of data is accessing infrequently and nearline storage is good for it
+   upvoted 4 times
+
+5. Anonymous: SanjeevKumar1983 1 year, 10 months ago
+Selected Answer: B
+B is correct
+   upvoted 1 times
+
+6. Anonymous: jayjani66 1 year, 12 months ago
+Correct ans is A.
+Explanation: In this scenario, you need to archive data after 30 days, which implies that the data with multiple versions is considered for archiving. Since you need to access previous versions once a month for reporting, using Coldline Storage is the most cost-effective option.
+   upvoted 1 times
+ omunoz 1 year, 5 months ago
+Retrieval fees is more expensive in Coldline.
+Standard storage Nearline storage Coldline storage Archive storage
+$0 per GB $0.01 per GB $0.02 per GB $0.05 per GB
+   upvoted 1 times
+
+7. Anonymous: Partha117 2 years, 3 months ago
+Selected Answer: B
+since accessed frequently it will be nearline
+   upvoted 3 times
+ kelliot 1 year, 7 months ago
+the logic is simple :) i agree with you
+   upvoted 1 times
+
+8. Anonymous: Buruguduystunstugudunstuy 2 years, 5 months ago
+Selected Answer: B
+Answer B, adding a bucket lifecycle rule that archives data with newer versions after 30 days to Nearline Storage, is the correct answer for this scenario.
+Nearline Storage is designed for data that is accessed less frequently, such as for backup and archival purposes. It has a minimum storage duration of 30 days, which makes it suitable for archiving data that needs to be kept for a long time but is accessed infrequently. Additionally, Nearline Storage has lower storage costs than Coldline Storage, making it more cost-effective for this use case.
+By adding a bucket lifecycle rule that archives data with newer versions after 30 days to Nearline Storage, you can ensure that the data is automatically moved to a more cost-effective storage class while still being easily accessible for reporting purposes.
+   upvoted 10 times
+ dnur 2 years, 3 months ago
+You're incorrect. Coldline storage has a lower costs that Nearline Storage. https://cloud.google.com/storage/docs/storage-classes.
+   upvoted 4 times
+ eaakgul 2 years, 3 months ago
+The question tells us that the previous versions are accessed once a month for reporting. So, nearline makes more sense in this case. 'Buruguduystunstugudunstuy' has mentioned that nearline has lower storage costs for only this 'use case'
+   upvoted 1 times
+ chikorita 2 years, 3 months ago
+just FYI that my lord, @Buruguduystunstugudunstuy, is always right!!!!1
+   upvoted 5 times
+
+9. Anonymous: leogor 2 years, 8 months ago
+Selected Answer: B
+archives data with newer versions after 30 days to Nearline Storage.
+   upvoted 1 times
+
+10. Anonymous: kadc 2 years, 10 months ago
+Selected Answer: B
+B should be correct:
+Nearline has min storage of 30 days, while Coldline has 90 days.
+Since "archive data is also occasionally updated at month-end", updating object before min storage period is allowed but causes early deletion fees as if the object was stored for the min duration, so using Coldline will always charge for 90 days and not likely to save cost.
+https://cloud.google.com/storage/pricing#early-delete
+   upvoted 1 times
+==============================

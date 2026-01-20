@@ -1,0 +1,2242 @@
+==============================
+Page X — Question #51
+
+Pergunta:
+You need to create an autoscaling managed instance group for an HTTPS web application. You want to make sure that unhealthy VMs are recreated. What should you do?
+
+Alternativas:
+- A. Create a health check on port 443 and use that when creating the Managed Instance Group.
+- B. Select Multi-Zone instead of Single-Zone when creating the Managed Instance Group.
+- C. In the Instance Template, add the label 'health-check'.
+- D. In the Instance Template, add a startup script that sends a heartbeat to the metadata server.
+
+Resposta correta:
+A. Create a health check on port 443 and use that when creating the Managed Instance Group.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: cesar7816 Highly Voted  5 years, 10 months ago
+I'll go with A, MIGs support autohealing, load balancing, autoscaling, and auto-updating. no the Images templates, this is set up in the MIG
+   upvoted 68 times
+
+2. Anonymous: tanito83 Highly Voted  4 years, 7 months ago
+The correct answer is A. Please, modify it.
+   upvoted 15 times
+
+3. Anonymous: Enamfrancis Most Recent  1 year, 3 months ago
+Selected Answer: A
+A is the correct answer.
+   upvoted 1 times
+
+4. Anonymous: XNap 1 year, 10 months ago
+Selected Answer: A
+The correct answer is A. Create a health check on port 443 and use that when creating the Managed Instance Group.
+Option B is related to the availability and distribution of instances across multiple zones, but it does not directly address the requirement of recreating unhealthy VMs.
+Option C is incorrect because labels are not used for configuring health checks in GCP.
+Option D is an alternative method for health checking, but it is not as straightforward as using the built-in health check functionality provided by GCP for managed instance groups.
+   upvoted 5 times
+
+5. Anonymous: fraiacca 2 years, 4 months ago
+Selected Answer: A
+Only A answer has some sense
+   upvoted 2 times
+
+6. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: A
+443 means http A seems more correct
+   upvoted 1 times
+
+7. Anonymous: sthapit 2 years, 5 months ago
+C is incomplete. A all the way
+   upvoted 1 times
+
+8. Anonymous: Nxt_007 2 years, 5 months ago
+Selected Answer: A
+Option A is the correct choice because it involves creating a health check specifically on port 443, which is the standard port for HTTPS traffic. This health check will monitor the health of the instances based on their ability to respond to HTTPS requests. When creating the Managed Instance Group, you would configure it to use this health check to determine the health of the instances
+Options B, C, and D are not directly related to setting up proper health checks for autoscaling and ensuring unhealthy instances are recreated
+   upvoted 2 times
+
+9. Anonymous: Backlander 2 years, 7 months ago
+A for A-Game let's goooo!
+   upvoted 1 times
+
+10. Anonymous: Vamshi_Krishna 2 years, 8 months ago
+Selected Answer: A
+C is definitely incorrect. Adding a label does not recreate unhealthy VMs.
+A is CORRECT.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #52
+
+Pergunta:
+Your company has a Google Cloud Platform project that uses BigQuery for data warehousing. Your data science team changes frequently and has few members.
+You need to allow members of this team to perform queries. You want to follow Google-recommended practices. What should you do?
+
+Alternativas:
+- A. 1. Create an IAM entry for each data scientist's user account. 2. Assign the BigQuery jobUser role to the group.
+- B. 1. Create an IAM entry for each data scientist's user account. 2. Assign the BigQuery dataViewer user role to the group.
+- C. 1. Create a dedicated Google group in Cloud Identity. 2. Add each data scientist's user account to the group. 3. Assign the BigQuery jobUser role to the group.
+- D. 1. Create a dedicated Google group in Cloud Identity. 2. Add each data scientist's user account to the group. 3. Assign the BigQuery dataViewer user role to the group.
+
+Resposta correta:
+C. 1. Create a dedicated Google group in Cloud Identity. 2. Add each data scientist's user account to the group. 3. Assign the BigQuery jobUser role to the group.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: cesar7816
+			
+		
+		
+		
+			
+				Highly Voted 
+			
+		
+		
+			5 years, 10 months ago
+		
+		
+	
+	
+		
+		I'll go with A, MIGs support autohealing, load balancing, autoscaling, and auto-updating. no the Images templates, this is set up in the MIG
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 68 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+2. Anonymous: tanito83
+			
+		
+		
+		
+			
+				Highly Voted 
+			
+		
+		
+			4 years, 7 months ago
+		
+		
+	
+	
+		
+		The correct answer is A. Please, modify it.
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 15 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+3. Anonymous: Enamfrancis
+			
+		
+		
+		
+			
+				Most Recent 
+			
+		
+		
+			1 year, 3 months ago
+		
+		
+	
+	
+		
+			Selected Answer: A
+		
+		A is the correct answer.
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 1 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+4. Anonymous: XNap
+			
+		
+		
+		
+		
+			1 year, 10 months ago
+		
+		
+	
+	
+		
+			Selected Answer: A
+		
+		The correct answer is A. Create a health check on port 443 and use that when creating the Managed Instance Group.
+Option B is related to the availability and distribution of instances across multiple zones, but it does not directly address the requirement of recreating unhealthy VMs.
+Option C is incorrect because labels are not used for configuring health checks in GCP.
+Option D is an alternative method for health checking, but it is not as straightforward as using the built-in health check functionality provided by GCP for managed instance groups.
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 5 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+5. Anonymous: fraiacca
+			
+		
+		
+		
+		
+			2 years, 4 months ago
+		
+		
+	
+	
+		
+			Selected Answer: A
+		
+		Only A answer has some sense
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 2 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+6. Anonymous: Captain1212
+			
+		
+		
+		
+		
+			2 years, 4 months ago
+		
+		
+	
+	
+		
+			Selected Answer: A
+		
+		443 means http A seems more correct
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 1 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+7. Anonymous: sthapit
+			
+		
+		
+		
+		
+			2 years, 5 months ago
+		
+		
+	
+	
+		
+		C is incomplete. A  all the way
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 1 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+8. Anonymous: Nxt_007
+			
+		
+		
+		
+		
+			2 years, 5 months ago
+		
+		
+	
+	
+		
+			Selected Answer: A
+		
+		Option A is the correct choice because it involves creating a health check specifically on port 443, which is the standard port for HTTPS traffic. This health check will monitor the health of the instances based on their ability to respond to HTTPS requests. When creating the Managed Instance Group, you would configure it to use this health check to determine the health of the instances
+Options B, C, and D are not directly related to setting up proper health checks for autoscaling and ensuring unhealthy instances are recreated
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 2 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+9. Anonymous: Backlander
+			
+		
+		
+		
+		
+			2 years, 7 months ago
+		
+		
+	
+	
+		
+		A for A-Game let's goooo!
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 1 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+10. Anonymous: Vamshi_Krishna
+			
+		
+		
+		
+		
+			2 years, 8 months ago
+		
+		
+	
+	
+		
+			Selected Answer: A
+		
+		C is definitely incorrect. Adding a label does not recreate unhealthy VMs.
+A is CORRECT.
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 1 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+==============================
+
+==============================
+Page X — Question #53
+
+Pergunta:
+Your company has a 3-tier solution running on Compute Engine. The configuration of the current infrastructure is shown below.
+
+Each tier has a service account that is associated with all instances within it. You need to enable communication on TCP port 8080 between tiers as follows:
+* Instances in tier #1 must communicate with tier #2.
+* Instances in tier #2 must communicate with tier #3.
+What should you do?
+
+Alternativas:
+- A. 1. Create an ingress firewall rule with the following settings: ג€¢ Targets: all instances ג€¢ Source filter: IP ranges (with the range set to 10.0.2.0/24) ג€¢ Protocols: allow all 2. Create an ingress firewall rule with the following settings: ג€¢ Targets: all instances ג€¢ Source filter: IP ranges (with the range set to 10.0.1.0/24) ג€¢ Protocols: allow all
+- B. 1. Create an ingress firewall rule with the following settings: ג€¢ Targets: all instances with tier #2 service account ג€¢ Source filter: all instances with tier #1 service account ג€¢ Protocols: allow TCP:8080 2. Create an ingress firewall rule with the following settings: ג€¢ Targets: all instances with tier #3 service account ג€¢ Source filter: all instances with tier #2 service account ג€¢ Protocols: allow TCP: 8080
+- C. 1. Create an ingress firewall rule with the following settings: ג€¢ Targets: all instances with tier #2 service account ג€¢ Source filter: all instances with tier #1 service account ג€¢ Protocols: allow all 2. Create an ingress firewall rule with the following settings: ג€¢ Targets: all instances with tier #3 service account ג€¢ Source filter: all instances with tier #2 service account ג€¢ Protocols: allow all
+- D. 1. Create an egress firewall rule with the following settings: ג€¢ Targets: all instances ג€¢ Source filter: IP ranges (with the range set to 10.0.2.0/24) ג€¢ Protocols: allow TCP: 8080 2. Create an egress firewall rule with the following settings: ג€¢ Targets: all instances ג€¢ Source filter: IP ranges (with the range set to 10.0.1.0/24) ג€¢ Protocols: allow TCP: 8080
+
+Resposta correta:
+B. 1. Create an ingress firewall rule with the following settings: ג€¢ Targets: all instances with tier #2 service account ג€¢ Source filter: all instances with tier #1 service account ג€¢ Protocols: allow TCP:8080 2. Create an ingress firewall rule with the following settings: ג€¢ Targets: all instances with tier #3 service account ג€¢ Source filter: all instances with tier #2 service account ג€¢ Protocols: allow TCP: 8080
+
+Top 10 Discussões (sem replies):
+1. Anonymous: cesar7816
+			
+		
+		
+		
+			
+				Highly Voted 
+			
+		
+		
+			5 years, 10 months ago
+		
+		
+	
+	
+		
+		I'll go with A, MIGs support autohealing, load balancing, autoscaling, and auto-updating. no the Images templates, this is set up in the MIG
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 68 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+2. Anonymous: tanito83
+			
+		
+		
+		
+			
+				Highly Voted 
+			
+		
+		
+			4 years, 7 months ago
+		
+		
+	
+	
+		
+		The correct answer is A. Please, modify it.
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 15 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+3. Anonymous: Enamfrancis
+			
+		
+		
+		
+			
+				Most Recent 
+			
+		
+		
+			1 year, 3 months ago
+		
+		
+	
+	
+		
+			Selected Answer: A
+		
+		A is the correct answer.
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 1 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+4. Anonymous: XNap
+			
+		
+		
+		
+		
+			1 year, 10 months ago
+		
+		
+	
+	
+		
+			Selected Answer: A
+		
+		The correct answer is A. Create a health check on port 443 and use that when creating the Managed Instance Group.
+Option B is related to the availability and distribution of instances across multiple zones, but it does not directly address the requirement of recreating unhealthy VMs.
+Option C is incorrect because labels are not used for configuring health checks in GCP.
+Option D is an alternative method for health checking, but it is not as straightforward as using the built-in health check functionality provided by GCP for managed instance groups.
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 5 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+5. Anonymous: fraiacca
+			
+		
+		
+		
+		
+			2 years, 4 months ago
+		
+		
+	
+	
+		
+			Selected Answer: A
+		
+		Only A answer has some sense
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 2 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+6. Anonymous: Captain1212
+			
+		
+		
+		
+		
+			2 years, 4 months ago
+		
+		
+	
+	
+		
+			Selected Answer: A
+		
+		443 means http A seems more correct
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 1 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+7. Anonymous: sthapit
+			
+		
+		
+		
+		
+			2 years, 5 months ago
+		
+		
+	
+	
+		
+		C is incomplete. A  all the way
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 1 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+8. Anonymous: Nxt_007
+			
+		
+		
+		
+		
+			2 years, 5 months ago
+		
+		
+	
+	
+		
+			Selected Answer: A
+		
+		Option A is the correct choice because it involves creating a health check specifically on port 443, which is the standard port for HTTPS traffic. This health check will monitor the health of the instances based on their ability to respond to HTTPS requests. When creating the Managed Instance Group, you would configure it to use this health check to determine the health of the instances
+Options B, C, and D are not directly related to setting up proper health checks for autoscaling and ensuring unhealthy instances are recreated
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 2 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+9. Anonymous: Backlander
+			
+		
+		
+		
+		
+			2 years, 7 months ago
+		
+		
+	
+	
+		
+		A for A-Game let's goooo!
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 1 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+10. Anonymous: Vamshi_Krishna
+			
+		
+		
+		
+		
+			2 years, 8 months ago
+		
+		
+	
+	
+		
+			Selected Answer: A
+		
+		C is definitely incorrect. Adding a label does not recreate unhealthy VMs.
+A is CORRECT.
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 1 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+==============================
+
+==============================
+Page X — Question #54
+
+Pergunta:
+You are given a project with a single Virtual Private Cloud (VPC) and a single subnetwork in the us-central1 region. There is a Compute Engine instance hosting an application in this subnetwork. You need to deploy a new instance in the same project in the europe-west1 region. This new instance needs access to the application. You want to follow Google-recommended practices. What should you do?
+
+Alternativas:
+- A. 1. Create a subnetwork in the same VPC, in europe-west1. 2. Create the new instance in the new subnetwork and use the first instance's private address as the endpoint.
+- B. 1. Create a VPC and a subnetwork in europe-west1. 2. Expose the application with an internal load balancer. 3. Create the new instance in the new subnetwork and use the load balancer's address as the endpoint.
+- C. 1. Create a subnetwork in the same VPC, in europe-west1. 2. Use Cloud VPN to connect the two subnetworks. 3. Create the new instance in the new subnetwork and use the first instance's private address as the endpoint.
+- D. 1. Create a VPC and a subnetwork in europe-west1. 2. Peer the 2 VPCs. 3. Create the new instance in the new subnetwork and use the first instance's private address as the endpoint.
+
+Resposta correta:
+A. 1. Create a subnetwork in the same VPC, in europe-west1. 2. Create the new instance in the new subnetwork and use the first instance's private address as the endpoint.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: cesar7816
+			
+		
+		
+		
+			
+				Highly Voted 
+			
+		
+		
+			5 years, 10 months ago
+		
+		
+	
+	
+		
+		I'll go with A, MIGs support autohealing, load balancing, autoscaling, and auto-updating. no the Images templates, this is set up in the MIG
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 68 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+2. Anonymous: tanito83
+			
+		
+		
+		
+			
+				Highly Voted 
+			
+		
+		
+			4 years, 7 months ago
+		
+		
+	
+	
+		
+		The correct answer is A. Please, modify it.
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 15 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+3. Anonymous: Enamfrancis
+			
+		
+		
+		
+			
+				Most Recent 
+			
+		
+		
+			1 year, 3 months ago
+		
+		
+	
+	
+		
+			Selected Answer: A
+		
+		A is the correct answer.
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 1 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+4. Anonymous: XNap
+			
+		
+		
+		
+		
+			1 year, 10 months ago
+		
+		
+	
+	
+		
+			Selected Answer: A
+		
+		The correct answer is A. Create a health check on port 443 and use that when creating the Managed Instance Group.
+Option B is related to the availability and distribution of instances across multiple zones, but it does not directly address the requirement of recreating unhealthy VMs.
+Option C is incorrect because labels are not used for configuring health checks in GCP.
+Option D is an alternative method for health checking, but it is not as straightforward as using the built-in health check functionality provided by GCP for managed instance groups.
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 5 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+5. Anonymous: fraiacca
+			
+		
+		
+		
+		
+			2 years, 4 months ago
+		
+		
+	
+	
+		
+			Selected Answer: A
+		
+		Only A answer has some sense
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 2 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+6. Anonymous: Captain1212
+			
+		
+		
+		
+		
+			2 years, 4 months ago
+		
+		
+	
+	
+		
+			Selected Answer: A
+		
+		443 means http A seems more correct
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 1 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+7. Anonymous: sthapit
+			
+		
+		
+		
+		
+			2 years, 5 months ago
+		
+		
+	
+	
+		
+		C is incomplete. A  all the way
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 1 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+8. Anonymous: Nxt_007
+			
+		
+		
+		
+		
+			2 years, 5 months ago
+		
+		
+	
+	
+		
+			Selected Answer: A
+		
+		Option A is the correct choice because it involves creating a health check specifically on port 443, which is the standard port for HTTPS traffic. This health check will monitor the health of the instances based on their ability to respond to HTTPS requests. When creating the Managed Instance Group, you would configure it to use this health check to determine the health of the instances
+Options B, C, and D are not directly related to setting up proper health checks for autoscaling and ensuring unhealthy instances are recreated
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 2 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+9. Anonymous: Backlander
+			
+		
+		
+		
+		
+			2 years, 7 months ago
+		
+		
+	
+	
+		
+		A for A-Game let's goooo!
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 1 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+10. Anonymous: Vamshi_Krishna
+			
+		
+		
+		
+		
+			2 years, 8 months ago
+		
+		
+	
+	
+		
+			Selected Answer: A
+		
+		C is definitely incorrect. Adding a label does not recreate unhealthy VMs.
+A is CORRECT.
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 1 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+==============================
+
+==============================
+Page X — Question #55
+
+Pergunta:
+Your projects incurred more costs than you expected last month. Your research reveals that a development GKE container emitted a huge number of logs, which resulted in higher costs. You want to disable the logs quickly using the minimum number of steps. What should you do?
+
+Alternativas:
+- A. 1. Go to the Logs ingestion window in Stackdriver Logging, and disable the log source for the GKE container resource.
+- B. 1. Go to the Logs ingestion window in Stackdriver Logging, and disable the log source for the GKE Cluster Operations resource.
+- C. 1. Go to the GKE console, and delete existing clusters. 2. Recreate a new cluster. 3. Clear the option to enable legacy Stackdriver Logging.
+- D. 1. Go to the GKE console, and delete existing clusters. 2. Recreate a new cluster. 3. Clear the option to enable legacy Stackdriver Monitoring.
+
+Resposta correta:
+A. 1. Go to the Logs ingestion window in Stackdriver Logging, and disable the log source for the GKE container resource.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: cesar7816
+			
+		
+		
+		
+			
+				Highly Voted 
+			
+		
+		
+			5 years, 10 months ago
+		
+		
+	
+	
+		
+		I'll go with A, MIGs support autohealing, load balancing, autoscaling, and auto-updating. no the Images templates, this is set up in the MIG
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 68 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+2. Anonymous: tanito83
+			
+		
+		
+		
+			
+				Highly Voted 
+			
+		
+		
+			4 years, 7 months ago
+		
+		
+	
+	
+		
+		The correct answer is A. Please, modify it.
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 15 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+3. Anonymous: Enamfrancis
+			
+		
+		
+		
+			
+				Most Recent 
+			
+		
+		
+			1 year, 3 months ago
+		
+		
+	
+	
+		
+			Selected Answer: A
+		
+		A is the correct answer.
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 1 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+4. Anonymous: XNap
+			
+		
+		
+		
+		
+			1 year, 10 months ago
+		
+		
+	
+	
+		
+			Selected Answer: A
+		
+		The correct answer is A. Create a health check on port 443 and use that when creating the Managed Instance Group.
+Option B is related to the availability and distribution of instances across multiple zones, but it does not directly address the requirement of recreating unhealthy VMs.
+Option C is incorrect because labels are not used for configuring health checks in GCP.
+Option D is an alternative method for health checking, but it is not as straightforward as using the built-in health check functionality provided by GCP for managed instance groups.
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 5 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+5. Anonymous: fraiacca
+			
+		
+		
+		
+		
+			2 years, 4 months ago
+		
+		
+	
+	
+		
+			Selected Answer: A
+		
+		Only A answer has some sense
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 2 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+6. Anonymous: Captain1212
+			
+		
+		
+		
+		
+			2 years, 4 months ago
+		
+		
+	
+	
+		
+			Selected Answer: A
+		
+		443 means http A seems more correct
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 1 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+7. Anonymous: sthapit
+			
+		
+		
+		
+		
+			2 years, 5 months ago
+		
+		
+	
+	
+		
+		C is incomplete. A  all the way
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 1 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+8. Anonymous: Nxt_007
+			
+		
+		
+		
+		
+			2 years, 5 months ago
+		
+		
+	
+	
+		
+			Selected Answer: A
+		
+		Option A is the correct choice because it involves creating a health check specifically on port 443, which is the standard port for HTTPS traffic. This health check will monitor the health of the instances based on their ability to respond to HTTPS requests. When creating the Managed Instance Group, you would configure it to use this health check to determine the health of the instances
+Options B, C, and D are not directly related to setting up proper health checks for autoscaling and ensuring unhealthy instances are recreated
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 2 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+9. Anonymous: Backlander
+			
+		
+		
+		
+		
+			2 years, 7 months ago
+		
+		
+	
+	
+		
+		A for A-Game let's goooo!
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 1 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+10. Anonymous: Vamshi_Krishna
+			
+		
+		
+		
+		
+			2 years, 8 months ago
+		
+		
+	
+	
+		
+			Selected Answer: A
+		
+		C is definitely incorrect. Adding a label does not recreate unhealthy VMs.
+A is CORRECT.
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 1 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+==============================
+
+==============================
+Page X — Question #56
+
+Pergunta:
+You have a website hosted on App Engine standard environment. You want 1% of your users to see a new test version of the website. You want to minimize complexity. What should you do?
+
+Alternativas:
+- A. Deploy the new version in the same application and use the --migrate option.
+- B. Deploy the new version in the same application and use the --splits option to give a weight of 99 to the current version and a weight of 1 to the new version.
+- C. Create a new App Engine application in the same project. Deploy the new version in that application. Use the App Engine library to proxy 1% of the requests to the new version.
+- D. Create a new App Engine application in the same project. Deploy the new version in that application. Configure your network load balancer to send 1% of the traffic to that new application.
+
+Resposta correta:
+B. Deploy the new version in the same application and use the --splits option to give a weight of 99 to the current version and a weight of 1 to the new version.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: yasu Highly Voted  4 years, 9 months ago
+I will prefer B as the answer.. why we need create new application?
+   upvoted 57 times
+ YAS007 3 years, 5 months ago
+more over, in app engine we cannot create "new application", we have to create a new Project to do that, an app engine projet has 1 application (which can have multiple versions and services)
+   upvoted 21 times
+ nmnm22 1 year, 2 months ago
+"yasu"...nana?
+   upvoted 2 times
+ sanhoo 3 years, 7 months ago
+Agree B is correct. creating a new application in the same project for app engine is anyways not possible.
+   upvoted 10 times
+
+2. Anonymous: Gini Highly Voted  4 years, 9 months ago
+I agree with yasu. And only one app engine can exist in one project. B is the best choice, simple and easy.
+   upvoted 18 times
+
+3. Anonymous: Captain1212 Most Recent  1 year, 4 months ago
+Selected Answer: B
+B is the correct answer
+   upvoted 3 times
+
+4. Anonymous: Buruguduystunstugudunstuy 1 year, 11 months ago
+Selected Answer: B
+The correct answer is B.
+By using the App Engine's traffic splitting feature, we can easily direct a certain percentage of traffic to a specific version of our application. In this case, we want to send 1% of traffic to the new test version and keep the remaining 99% on the current version. This can be achieved by deploying the new version in the same application and using the `--splits` option to give a weight of 99 to the current version and a weight of 1 to the new version.
+Answer A is incorrect because the `--migrate` option is used for migrating traffic to a new version after it has been fully tested and is ready for full deployment.
+Answer C is incorrect because it requires additional configuration to proxy requests to the new version, increasing complexity unnecessarily.
+Answer D is incorrect because it involves configuring a network load balancer, which is not necessary for this use case and adds unnecessary complexity.
+   upvoted 11 times
+ Jelly_Wang 1 year, 8 months ago
+While I agree with your choice and your explanation of B. I also believe C and D are wrong simply because you can only have one App Engine within a project https://cloud.google.com/appengine/docs/flexible/managing-projects-apps-billing#:~:text=Important%3A%20Each%20Cloud%20project%20can,of%20your%20App%20Engine%20application.
+   upvoted 4 times
+
+5. Anonymous: cslince 2 years, 1 month ago
+Selected Answer: B
+B is correct
+   upvoted 1 times
+
+6. Anonymous: leogor 2 years, 2 months ago
+Selected Answer: B
+B. deploy new version with --splits option
+   upvoted 1 times
+
+7. Anonymous: Cornholio_LMC 2 years, 3 months ago
+had this question today
+   upvoted 2 times
+
+8. Anonymous: habros 2 years, 5 months ago
+B! A very natural answer… Perfect for switching users over to new version. Imagine creating multiple projects to update App Engine deployments, isn’t that logically unnecessary?
+   upvoted 1 times
+
+9. Anonymous: Madj 2 years, 6 months ago
+Hint:
+One app engine per project. So Option C,D eliminated. this hint will help in many similar questions.
+Splitting traffic hint will help as well
+   upvoted 4 times
+
+10. Anonymous: AzureDP900 2 years, 7 months ago
+B is right.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #57
+
+Pergunta:
+You have a web application deployed as a managed instance group. You have a new version of the application to gradually deploy. Your web application is currently receiving live web traffic. You want to ensure that the available capacity does not decrease during the deployment. What should you do?
+
+Alternativas:
+- A. Perform a rolling-action start-update with maxSurge set to 0 and maxUnavailable set to 1.
+- B. Perform a rolling-action start-update with maxSurge set to 1 and maxUnavailable set to 0.
+- C. Create a new managed instance group with an updated instance template. Add the group to the backend service for the load balancer. When all instances in the new managed instance group are healthy, delete the old managed instance group.
+- D. Create a new instance template with the new application version. Update the existing managed instance group with the new instance template. Delete the instances in the managed instance group to allow the managed instance group to recreate the instance using the new instance template.
+
+Resposta correta:
+B. Perform a rolling-action start-update with maxSurge set to 1 and maxUnavailable set to 0.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: CarlS Highly Voted  5 years, 3 months ago
+Correct option is B. We need to ensure the global capacity remains intact, for that reason we need to establish maxUnavailable to 0. On the other hand, we need to ensure new instances can be created. We do that by establishing the maxSurge to 1. Option C is more expensive and more difficult to set up and option D won't meet requirements since it won't keep global capacity intact.
+   upvoted 99 times
+ yeanlingmedal71 2 years, 7 months ago
+maxSurge- configure how many new instances the MIG can create above its targetSize during an automated update. For example, if you set maxSurge to 5, the MIG uses the new instance template to create up to 5 new instances above your target size. Setting a higher maxSurge value speeds up your update, at the cost of additional instances
+   upvoted 15 times
+ space_cadet 2 years, 4 months ago
+Thanks for this.
+And setting it to one makes sense, seeing that we want a gradual update
+   upvoted 2 times
+
+2. Anonymous: JavierCorrea Highly Voted  4 years, 10 months ago
+I take my own previous comment back. It's definitely B.
+   upvoted 21 times
+
+3. Anonymous: PrivateHulk Most Recent  1 year, 5 months ago
+I vote for A.
+A rolling update with maxSurge set to 0 ensures that no additional instances beyond the desired size are created during the update.
+By setting maxUnavailable to 1, only one instance is taken down at a time, minimizing the impact on the available capacity during the deployment.
+This approach allows the rolling deployment to proceed in a controlled manner, with each new version gradually replacing instances without decreasing the overall capacity and with zero downtime.
+Not Option B
+because setting maxSurge to 1 and maxUnavailable to 0, could lead to temporarily increased capacity during the update, and it might result in higher resource usage than necessary. This option may not guarantee zero downtime or minimize the impact on the available capacity during the deployment.
+   upvoted 1 times
+
+4. Anonymous: thewalker 1 year, 8 months ago
+Selected Answer: B
+B is the clean way: https://medium.com/@bubu.tripathy/understanding-maxsurge-and-maxunavailable-4966dfafc8ba
+   upvoted 2 times
+
+5. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: B
+B is the correct answer
+   upvoted 1 times
+
+6. Anonymous: Buruguduystunstugudunstuy 2 years, 5 months ago
+Selected Answer: B
+Answer B is the correct answer because it allows for a safe and controlled rolling deployment with zero downtime and without reducing the available capacity during the deployment.
+The `maxSurge` parameter controls the maximum number of new instances that can be created above the desired number of instances during the update process. By setting `maxSurge` to 1, the new version of the application can be gradually rolled out while maintaining the same number of available instances.
+The `maxUnavailable` parameter controls the maximum number of instances that can be unavailable during the update process. By setting `maxUnavailable` to 0, at least one instance of the previous version will be available at all times, ensuring that there is no decrease in available capacity during the deployment.
+By performing a rolling update with `maxSurge` set to 1 and `maxUnavailable` set to 0, the new version of the application can be gradually deployed with zero downtime and no decrease in available capacity.
+   upvoted 11 times
+ Buruguduystunstugudunstuy 2 years, 5 months ago
+Answer A is incorrect because setting maxSurge to 0 means that no additional instances are created beyond the existing number of instances in the group, which can potentially lead to a decrease in capacity. Also, setting maxUnavailable to 1 means that one instance can be unavailable at any given time, which can potentially lead to some users experiencing downtime.
+Answer C is incorrect because creating a new managed instance group would require adding the new group to the backend service, which can take time and potentially cause downtime. Also, deleting the old managed instance group before ensuring that the new group is healthy can cause a decrease in capacity.
+Answer D is incorrect because deleting instances in the managed instance group can cause a temporary decrease in capacity, and it may take some time for new instances to be created with the new instance template. Also, the new instances may take time to warm up, which can cause a delay in serving traffic.
+   upvoted 3 times
+
+7. Anonymous: vlodia 2 years, 6 months ago
+If you do not want any unavailable machines during an update, set the maxUnavailable value to 0 and the maxSurge value to greater than 0. With these settings, Compute Engine removes each old machine only after its replacement new machine is created and running.
+https://cloud.google.com/compute/docs/instance-groups/rolling-out-updates-to-managed-instance-groups#max_unavailable
+   upvoted 3 times
+
+8. Anonymous: rajivdutt 2 years, 6 months ago
+If you do not want any unavailable machines during an update, set the maxUnavailable value to 0 and the maxSurge value to greater than 0. With these settings, Compute Engine removes each old machine only after its replacement new machine is created and running.
+   upvoted 1 times
+
+9. Anonymous: Mission94 2 years, 7 months ago
+HI all,
+if you guys have all the questions and answers please mail it to
+untranslatable[dot]character@gmail[dot]com
+Thanks in advance.
+   upvoted 2 times
+
+10. Anonymous: Rubankumar 2 years, 7 months ago
+Selected Answer: B
+B is Correct
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #58
+
+Pergunta:
+You are building an application that stores relational data from users. Users across the globe will use this application. Your CTO is concerned about the scaling requirements because the size of the user base is unknown. You need to implement a database solution that can scale with your user growth with minimum configuration changes. Which storage solution should you use?
+
+Alternativas:
+- A. Cloud SQL
+- B. Cloud Spanner
+- C. Cloud Firestore
+- D. Cloud Datastore
+
+Resposta correta:
+B. Cloud Spanner
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Fidget_ Highly Voted  5 years, 5 months ago
+B
+Cloud SQL for small relational data, scaled manually
+Cloud Spanner for relational data, scaled automatically
+Cloud Firestore for app-based data(?)
+Cloud Datastore for non-relational data
+Correct me if i'm wrong
+   upvoted 113 times
+ theBestStudent 3 years, 7 months ago
+Just one detail: Cloud Firestore for non relational data (noSql)
+   upvoted 16 times
+ KC_go_reply 2 years, 9 months ago
+'small relational data' as in 3 TB for Shared core or 64 TB for Dedicated core in Cloud SQL
+   upvoted 1 times
+
+2. Anonymous: karol_wu Highly Voted  5 years, 10 months ago
+in my opinion correct is B
+   upvoted 30 times
+
+3. Anonymous: Mohammed52 Most Recent  1 year, 7 months ago
+Selected Answer: B
+Cloud spanner is correct as it will scaled automatically
+   upvoted 2 times
+
+4. Anonymous: Murli1 2 years, 1 month ago
+B is Correct Ans. Cloud Spanner provides a scalable online transaction processing (OLTP) database with high availability and strong consistency at a global scale.
+   upvoted 2 times
+
+5. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: B
+B, for large and automatically scaled
+   upvoted 1 times
+
+6. Anonymous: keton 2 years, 8 months ago
+Correct ans is B... Focus on two words "Relational" which means option C & D has been eliminated bcz these are non-relational DB.And another word 'Globally' which means Option A also eliminated bcz Cloud Sql does not support global deployments.
+   upvoted 3 times
+
+7. Anonymous: Buruguduystunstugudunstuy 2 years, 11 months ago
+Selected Answer: B
+The best storage solution for this scenario would be Cloud Spanner. Cloud Spanner is a fully managed, scalable, relational database that is designed to handle global deployments with ease. It can handle large amounts of data and high transactional volumes. It also provides automatic sharding and synchronous replication, ensuring high availability and durability of data. Cloud Spanner supports SQL semantics and provides a familiar relational database experience to developers, which would make it easy to adopt in existing workflows.
+Cloud SQL, on the other hand, has limits on scalability and does not support global deployments as well as Cloud Spanner.
+Cloud Firestore and Cloud Datastore are NoSQL databases that are better suited for document-based data storage and not optimized for relational data storage.
+   upvoted 10 times
+
+8. Anonymous: cslince 3 years, 1 month ago
+Selected Answer: B
+correct is B
+   upvoted 1 times
+
+9. Anonymous: Tmitchelltec919 3 years, 2 months ago
+could someone please explain why the answer is not A
+   upvoted 1 times
+
+10. Anonymous: leogor 3 years, 2 months ago
+Selected Answer: B
+B. Spanner for autoscale
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #59
+
+Pergunta:
+You are the organization and billing administrator for your company. The engineering team has the Project Creator role on the organization. You do not want the engineering team to be able to link projects to the billing account. Only the finance team should be able to link a project to a billing account, but they should not be able to make any other changes to projects. What should you do?
+
+Alternativas:
+- A. Assign the finance team only the Billing Account User role on the billing account.
+- B. Assign the engineering team only the Billing Account User role on the billing account.
+- C. Assign the finance team the Billing Account User role on the billing account and the Project Billing Manager role on the organization.
+- D. Assign the engineering team the Billing Account User role on the billing account and the Project Billing Manager role on the organization.
+
+Resposta correta:
+C. Assign the finance team the Billing Account User role on the billing account and the Project Billing Manager role on the organization.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Bharathy Highly Voted  5 years, 10 months ago
+Option A is correct, as we don't want the engineering team to link projects to billing account and want only the Finance team. Billing Account User role will help to link projects to the billing account...
+   upvoted 92 times
+ Hasaaaan 4 years, 7 months ago
+Billing Account User also enables the user to make changes in resources.
+   upvoted 1 times
+ pspandher 3 years, 6 months ago
+Billing Account User Role when granted in combination with the Project Billing Manager role, the two roles allow a user to link and unlink projects on the billing account on which the Billing Account User role is granted
+   upvoted 3 times
+ mwwoodm 5 years, 4 months ago
+Option A makes the most sense since Billing Account User can link projects to the billing account and the question reinforces principle of least privilege. Source: https://cloud.google.com/billing/docs/how-to/billing-access
+   upvoted 11 times
+ Nikki2424 1 year, 8 months ago
+Yes, but in combination with Project Billing Manager. Also these two roles won't grant rights on any other resources, which is also intended in the question.
+   upvoted 1 times
+ naveedpk00 5 years, 5 months ago
+Option A is incorrect: Reason-
+This role has very restricted permissions, so you can grant it broadly, typically in combination with Project Creator. These two roles allow a user to create new projects linked to the billing account on which the role is granted.
+Reference: https://cloud.google.com/billing/docs/how-to/billing-access
+I will go with option C.
+   upvoted 40 times
+ willy_p 4 years, 1 month ago
+The question states that the user should ONLY link projects to billing accounts and nothing more. This is why I think A would be the best answer for this scenario.
+   upvoted 8 times
+ Josephsundarraj 2 years, 5 months ago
+Option C gives permission on org level where fin team can modify other projects billing. Question clearly says they should not be able to do that. So I think option A is good here in my opinion.
+   upvoted 4 times
+ Nikki2424 1 year, 8 months ago
+From the documentation:
+"Project Billing Manager: When granted in combination with the Billing Account User role, the Project Billing Manager role allows a user to attach the project to the billing account, but does not grant any rights over resources."
+   upvoted 2 times
+ fishnoodlesoup 4 years, 1 month ago
+The question states that Finance department should ONLY be able to link projects to billing accounts.
+If you look at the definition of Project Billing Creator:
+Project Billing Manager
+(roles/billing.projectManager) Link/unlink the project to/from a billing account.
+It also gives permissions to unlink. Hence, A is correct.
+   upvoted 12 times
+Load full discussion...
+
+2. Anonymous: measme Highly Voted  5 years, 7 months ago
+for me is C:
+https://cloud.google.com/billing/docs/how-to/modify-project#permissions_required_for_this_task_2
+"Roles with adequate permissions to perform this task:
+* Project Owner or Project Billing Manager on the project, AND Billing Account Administrator or Billing Account User for the target Cloud Billing account."
+   upvoted 64 times
+ obeythefist 3 years, 10 months ago
+The question states that the finance group should not be able to make changes to existing projects. Granting the finance team organizational level Billing Account Administrator will allow them to make changes to other projects. C cannot be correct.
+   upvoted 3 times
+ Robertolo 3 years, 3 months ago
+Project Billing Manager does not allow to make any changes to projects. It's just about linking+unlinking projects to billing accounts
+On the other hand, the single role "billing account user" does not grant any right to view projects. Even less likely to link them to any billing account. (see https://cloud.google.com/iam/docs/job-functions/billing "The Billing Account User role gives the service account the permissions to enable billing (associate projects with the organization's billing account for all projects in the organization) and thereby permit the service account to enable APIs that require billing to be enabled."). Thus A is not the correct answer.
+The right answer is C, without any kind of doubt
+   upvoted 4 times
+ Jake500 2 years, 9 months ago
+"Project Billing Manager does not allow to make any changes to projects. It's just about linking+unlinking projects to billing accounts"
+Correct, but the problem states "... You do not want the engineering team to be able to link projects to the billing account." So in that case, wouldn't it be option A?
+   upvoted 2 times
+ fracila 3 years, 2 months ago
+We are assigning the finance team the Billing Account User role on the billing account, which allows them to create new projects linked to the billing account on which the role is granted. We are also assigning them the Project Billing Manager role on the organization (trickles down to the project as well) which lets them attach the project to the billing account, but does not grant any rights over resources.
+   upvoted 4 times
+ sarjan 1 year, 3 months ago
+Correct
+   upvoted 1 times
+
+3. Anonymous: jmotisariya Most Recent  10 months, 1 week ago
+Selected Answer: C
+Correct Answer Option C. Assign the finance team the Billing Account User role on the billing account and the Project Billing Manager role on the organization.
+Explanation:
+The Billing Account User role allows users to view and link projects to a billing account.
+The Project Billing Manager role allows users to manage billing for projects but does not grant broader project management permissions.
+Since the goal is to ensure only the finance team can link projects to the billing account, they need both roles.
+The engineering team should not have billing-related roles, ensuring they cannot link projects to the billing account.
+   upvoted 1 times
+
+4. Anonymous: sh4dw4rri0r 11 months, 4 weeks ago
+Selected Answer: A
+A is correct
+Engineering Team with the Project Creator role will not be able to link projects to a billing account.
+   upvoted 1 times
+
+5. Anonymous: SteveXs 1 year ago
+Selected Answer: C
+When granted in combination with the Billing Account User role, the Project Billing Manager role lets users attach the project to the billing account, but doesn't grant any rights over resources. Project Owners can use this role to let someone else manage the billing for the project without granting them resource access.
+   upvoted 1 times
+
+6. Anonymous: Roman1988 1 year ago
+Selected Answer: C
+Option C. When granted in combination with the Billing Account User role, the Project Billing Manager role lets users attach the project to the billing account, but doesn't grant any rights over resources. Project Owners can use this role to let someone else manage the billing for the project without granting them resource access.
+   upvoted 1 times
+
+7. Anonymous: zAbuQasen 1 year, 1 month ago
+Selected Answer: A
+The Project Billing Manager role on the organization is unnecessary. The Billing Account User role alone is sufficient to allow the finance team to link projects to the billing account.
+   upvoted 1 times
+
+8. Anonymous: user263263 1 year, 1 month ago
+Selected Answer: C
+From the documentation: "Project Billing Manager (on Organization, folder, or project) when granted in combination with the Billing Account User role (on Organization or billing account) ... lets users attach the project to the billing account, but doesn't grant any rights over resources."
+   upvoted 1 times
+
+9. Anonymous: Moin23 1 year, 1 month ago
+Selected Answer: A
+ChatGPT and my opinion also, A
+   upvoted 2 times
+ kamee15 1 year ago
+I checked with ChatGPT, the answer is C.
+   upvoted 1 times
+
+10. Anonymous: calebeowsiany 1 year, 2 months ago
+Selected Answer: A
+A is a well suited answer and it's in accord with the least privilege principle
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #60
+
+Pergunta:
+You have an application running in Google Kubernetes Engine (GKE) with cluster autoscaling enabled. The application exposes a TCP endpoint. There are several replicas of this application. You have a Compute Engine instance in the same region, but in another Virtual Private Cloud (VPC), called gce-network, that has no overlapping IP ranges with the first VPC. This instance needs to connect to the application on GKE. You want to minimize effort. What should you do?
+
+Alternativas:
+- A. 1. In GKE, create a Service of type LoadBalancer that uses the application's Pods as backend. 2. Set the service's externalTrafficPolicy to Cluster. 3. Configure the Compute Engine instance to use the address of the load balancer that has been created.
+- B. 1. In GKE, create a Service of type NodePort that uses the application's Pods as backend. 2. Create a Compute Engine instance called proxy with 2 network interfaces, one in each VPC. 3. Use iptables on this instance to forward traffic from gce-network to the GKE nodes. 4. Configure the Compute Engine instance to use the address of proxy in gce-network as endpoint.
+- C. 1. In GKE, create a Service of type LoadBalancer that uses the application's Pods as backend. 2. Add an annotation to this service: cloud.google.com/load-balancer-type: Internal 3. Peer the two VPCs together. 4. Configure the Compute Engine instance to use the address of the load balancer that has been created.
+- D. 1. In GKE, create a Service of type LoadBalancer that uses the application's Pods as backend. 2. Add a Cloud Armor Security Policy to the load balancer that whitelists the internal IPs of the MIG's instances. 3. Configure the Compute Engine instance to use the address of the load balancer that has been created.
+
+Resposta correta:
+C. 1. In GKE, create a Service of type LoadBalancer that uses the application's Pods as backend. 2. Add an annotation to this service: cloud.google.com/load-balancer-type: Internal 3. Peer the two VPCs together. 4. Configure the Compute Engine instance to use the address of the load balancer that has been created.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: someoneinthecloud Highly Voted  5 years, 5 months ago
+I believe it's A. It's never mentioned in the question that traffic cannot go through the Internet but it's mentioned that effort should be minimized. A requires a lot less effort than C to accomplish the same (no VPC peering, per example).
+   upvoted 63 times
+ pgb54 3 years, 10 months ago
+Totally agree. I had the same thought and looked through the question for any indication that the traffic must be private.
+   upvoted 2 times
+ AmitKM 5 years, 4 months ago
+Yeah, I feel the same. Nowhere does it say that the traffic has to be internal. But it does say "minimal effort" which I feel is option A.
+   upvoted 10 times
+ ShakthiGCP 4 years, 10 months ago
+Ans: A . This sounds correct and avoids unnecessary steps in C. C is also correct but compared to it, A is much easier to achieve. Go over Kubernetes Loadbalancer concepts to get more details. Initially i was thinking C is the Answer. but after putting some time on K8's Network - changed my mind to A.
+   upvoted 15 times
+ ArtistS 2 years, 3 months ago
+A,C are ok for me. But this is a exam. Why the question mention the same region, no overlapping IP ranges means they suggest you to use VPC rather than public traffic. I 99% sure, if there is an official explaniation, there would be A is not correct there is a risk or error prone, sth like this.
+   upvoted 6 times
+
+2. Anonymous: juancambb Highly Voted  5 years, 8 months ago
+i think C is better solution, the solution A pass trafic trought public internet, also C by internal network and the "no overlap ips" in the statament suggest that.
+   upvoted 46 times
+
+3. Anonymous: fais1985 Most Recent  1 year ago
+Selected Answer: A
+A. 1. In GKE, create a Service of type LoadBalancer that uses the application's Pods as backend. 2. Set the service's externalTrafficPolicy to Cluster. 3. Configure the Compute Engine instance to use the address of the load balancer that has been created.
+Why Other Options Are Incorrect:
+B:
+Using a proxy instance with multiple network interfaces and iptables for forwarding traffic is unnecessarily complex and requires significant manual configuration and maintenance.
+C:
+Creating an internal load balancer and peering the VPCs requires additional setup for VPC peering and route configurations. This violates the requirement to minimize effort.
+D:
+Adding a Cloud Armor Security Policy is unnecessary for this use case. Furthermore, the Compute Engine instance is in a different VPC, so using internal IPs of the GKE nodes is not possible without peering.
+   upvoted 1 times
+
+4. Anonymous: psyll0n 1 year, 2 months ago
+Selected Answer: C
+C is the correct answer.
+Reference: https://cloud.google.com/kubernetes-engine/docs/how-to/internal-load-balancing-across-vpc-net
+   upvoted 1 times
+ psyll0n 1 year, 2 months ago
+Reference: https://cloud.google.com/kubernetes-engine/docs/how-to/internal-load-balancing
+   upvoted 1 times
+
+5. Anonymous: subha.elumalai 1 year, 8 months ago
+Correct Answer: A
+   upvoted 1 times
+
+6. Anonymous: DWT33004 1 year, 9 months ago
+Selected Answer: A
+Here's why Option A might be preferred over Option C:
+Simplicity: Option A requires creating a LoadBalancer service in GKE and configuring the Compute Engine instance to use the load balancer's address. This is a straightforward setup and does not involve additional networking configurations.
+Reduced Complexity: Peering two VPCs involves setting up and managing VPC peering configurations, which can be complex, especially if there are overlapping IP ranges. It also requires additional permissions and coordination between different teams.
+Direct Connectivity: Option A provides direct connectivity between the Compute Engine instance and the application running in GKE through the load balancer. Peering VPCs might introduce additional network hops, potentially impacting latency and network performance.
+Scalability and Flexibility: Using a LoadBalancer service in GKE allows for scalability and flexibility, as the load balancer can automatically scale to handle increased traffic and can be easily configured to adapt to changing requirements.
+   upvoted 4 times
+
+7. Anonymous: edoo 1 year, 11 months ago
+Selected Answer: C
+Not A, exposing the service with an external LoadBalancer (externalTrafficPolicy set to Cluster) and not peering VPCs or using an internal load balancer unnecessarily exposes the service to the internet, which is not required for inter-VPC communication and could lead to security concerns.
+All the details in the question are pushing to answer C.
+   upvoted 3 times
+
+8. Anonymous: ovokpus 2 years, 3 months ago
+Selected Answer: C
+Option A suggests creating an external LoadBalancer. This is not the most efficient method because you're exposing your GKE application to the internet just to allow communication between two internal resources.
+Option C suggests creating an internal LoadBalancer, which is the right approach. By using an internal LoadBalancer, the service is only exposed within the Google Cloud environment and won't be accessible from the internet. Peering the two VPCs ensures the two resources can communicate across the VPCs.
+   upvoted 4 times
+
+9. Anonymous: ekta25 2 years, 3 months ago
+C. 1. In GKE, create a Service of type LoadBalancer that uses the application's Pods as backend. 2. Add an annotation to this service: cloud.google.com/load-balancer-type: Internal 3. Peer the two VPCs together. 4. Configure the Compute Engine instance to use the address of the load balancer that has been created.
+   upvoted 2 times
+
+10. Anonymous: SinghAnc 2 years, 3 months ago
+Selected Answer: C
+Correct Answer is C
+Option A suggests setting the service's externalTrafficPolicy to Cluster. While this is a valid configuration, it's not directly related to the scenario described.
+In the given scenario, the goal is to connect a Compute Engine instance from a different VPC to the application running in GKE. This involves networking configurations, peering the VPCs, and potentially setting up a LoadBalancer.
+Setting the externalTrafficPolicy to Cluster primarily affects how traffic is balanced across Pods within the cluster, but it doesn't directly address the requirement of connecting an external instance from a different VPC.
+   upvoted 3 times
+==============================

@@ -1,0 +1,842 @@
+==============================
+Page X — Question #11
+
+Pergunta:
+You need a dynamic way of provisioning VMs on Compute Engine. The exact specifications will be in a dedicated configuration file. You want to follow Google's recommended practices. Which method should you use?
+
+Alternativas:
+- A. Deployment Manager
+- B. Cloud Composer
+- C. Managed Instance Group
+- D. Unmanaged Instance Group
+
+Resposta correta:
+A. Deployment Manager
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Buruguduystunstugudunstuy Highly Voted  3 years ago
+Selected Answer: A
+The correct answer is Option A - Deployment Manager. Deployment Manager is a configuration management tool that allows you to define and deploy a set of resources, including Compute Engine VMs, in a declarative manner. You can use it to specify the exact specifications of your VMs in a configuration file, and Deployment Manager will create and manage those VMs for you. Deployment Manager is recommended by Google as a way to automate and manage the deployment of resources on the Google Cloud Platform.
+https://cloud.google.com/deployment-manager/docs/
+   upvoted 24 times
+ jogoldberg 4 months, 2 weeks ago
+The correct answer (Infrastructure Manager) is missing.
+Deployment Manager USED to be the correct answer, however Deployment Manager goes End of Life on 31-Dec-2025, and will be fully deprecated on 31-Mar-2026.
+   upvoted 1 times
+
+2. Anonymous: shreymath9999 Highly Voted  2 years, 2 months ago
+The question says - "Dynamic way of provision VMs on Compute Engine" which both the Managed Instance group and the Deployment Manager does, but for different purposes. So here the answer can be more of Deployment Manager as it covers the scope of question, while the Managed Instance group can also dynamically provision VMs based on configuration file but only for auto-healing or horizontal scaling purposes, the answer could have been C if the question was asked as "Dynamic way of provision VMs on Compute Engine for horizontal scaling/auto healing"
+   upvoted 10 times
+
+3. Anonymous: svij87 Most Recent  1 month ago
+Selected Answer: A
+Deployment manager tale care of defining and deploying the resources.
+   upvoted 1 times
+
+4. Anonymous: URYC 7 months, 1 week ago
+Selected Answer: A
+The correct answer is Option A - Deployment Manager.
+   upvoted 1 times
+ jogoldberg 4 months, 2 weeks ago
+The correct answer (Infrastructure Manager) is missing.
+Deployment Manager USED to be the correct answer, however Deployment Manager goes End of Life on 31-Dec-2025, and will be fully deprecated on 31-Mar-2026.
+   upvoted 1 times
+
+5. Anonymous: kewgard 7 months, 3 weeks ago
+Selected Answer: A
+A. As its google recommended best practice - although will be deprecated December 2025 and you will need to use Infrastructure manager instead. You specify a dedicated configuration yaml file. It outlines in a declarative way the GCP resources you need. You can preview before you deploy to check correct.
+   upvoted 1 times
+
+6. Anonymous: harsh5kalsait 1 year, 5 months ago
+A - due to provisioning VMs on Compute Engine - exact specifications will be in a dedicated configuration file.
+   upvoted 1 times
+
+7. Anonymous: subha.elumalai 1 year, 8 months ago
+Correct Answer: C
+Reference:
+https://cloud.google.com/compute/docs/instances/
+   upvoted 2 times
+
+8. Anonymous: BAofBK 2 years, 2 months ago
+The correct answer is A
+   upvoted 1 times
+
+9. Anonymous: guicane 2 years, 2 months ago
+Selected Answer: A
+C makes no sense, it's A
+   upvoted 1 times
+ Nikki2424 1 year, 8 months ago
+Why does C make no sense?
+   upvoted 1 times
+
+10. Anonymous: Evan7557 2 years, 3 months ago
+A deployment manager
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #12
+
+Pergunta:
+You have a Dockerfile that you need to deploy on Kubernetes Engine. What should you do?
+
+Alternativas:
+- A. Use kubectl app deploy <dockerfilename>.
+- B. Use gcloud app deploy <dockerfilename>.
+- C. Create a docker image from the Dockerfile and upload it to Container Registry. Create a Deployment YAML file to point to that image. Use kubectl to create the deployment with that file.
+- D. Create a docker image from the Dockerfile and upload it to Cloud Storage. Create a Deployment YAML file to point to that image. Use kubectl to create the deployment with that file.
+
+Resposta correta:
+C. Create a docker image from the Dockerfile and upload it to Container Registry. Create a Deployment YAML file to point to that image. Use kubectl to create the deployment with that file.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Agents89 Highly Voted  5 years, 9 months ago
+C is correct
+   upvoted 42 times
+
+2. Anonymous: Buruguduystunstugudunstuy Highly Voted  3 years ago
+Selected Answer: C
+The correct answer is Option C. To deploy a Docker container on Kubernetes Engine, you should first create a Docker image from the Dockerfile and push it to Container Registry, which is a fully-managed Docker container registry that makes it easy for you to store, manage, and deploy Docker container images. Then, you can create a Deployment YAML file that specifies the image to use and other desired deployment options, and use the kubectl command-line tool to create the deployment based on the YAML file.
+Option A is incorrect because kubectl app deploy is not a valid command.
+Option B is incorrect because gcloud app deploy is used to deploy applications to App Engine, not Kubernetes Engine.
+Option D is incorrect because it involves storing the image in Cloud Storage rather than Container Registry.
+https://cloud.google.com/kubernetes-engine/docs/how-to/deploying-a-container
+   upvoted 26 times
+ ast3citos 2 years, 11 months ago
+The link you provided has stopped working :_(
+   upvoted 3 times
+ jogoldberg 4 months, 2 weeks ago
+Container Registry is deprecated. Effective March 18, 2025, Container Registry is shut down and writing images to Container Registry is unavailable. The solution is now Artifact Registry.
+https://cloud.google.com/artifact-registry/docs/transition/transition-from-gcr
+   upvoted 2 times
+
+3. Anonymous: svij87 Most Recent  1 month ago
+Selected Answer: C
+First you would require to create a docker image from DockerFile then push into registry. After that you can create deployment file which refer to that specific image.
+   upvoted 1 times
+
+4. Anonymous: kewgard 7 months, 3 weeks ago
+Selected Answer: C
+C as you need to create an container image from the dockerfile first and put in artifact registry before you can access to deploy to your cluster.
+   upvoted 1 times
+
+5. Anonymous: Cloudmoh 11 months, 1 week ago
+Selected Answer: C
+The file image should be created from the Dockerfile and pushed to the Registry and from there it should be deployed once it's YAML structure is in place.
+   upvoted 1 times
+
+6. Anonymous: madzzzz 1 year, 3 months ago
+Selected Answer: C
+C is correct
+   upvoted 2 times
+ jogoldberg 4 months, 2 weeks ago
+It isn't, though. None of the answers are correct. C is just the least incorrect :D
+Container Registry is deprecated. Effective March 18, 2025, Container Registry is shut down and writing images to Container Registry is unavailable. The solution is now Artifact Registry.
+https://cloud.google.com/artifact-registry/docs/transition/transition-from-gcr
+   upvoted 1 times
+
+7. Anonymous: subha.elumalai 1 year, 8 months ago
+Correct Answer: C
+Reference -
+https://cloud.google.com/kubernetes-engine/docs/tutorials/hello-app
+   upvoted 1 times
+
+8. Anonymous: BAofBK 2 years, 2 months ago
+The answer is C.
+   upvoted 1 times
+
+9. Anonymous: Evan7557 2 years, 3 months ago
+C is Correct Answer
+   upvoted 1 times
+
+10. Anonymous: dookiecloud 2 years, 4 months ago
+C is correct.
+We need to build docker image then push to Container Registry and setup yaml deployment in GKE to pull our registry image.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #13
+
+Pergunta:
+Your development team needs a new Jenkins server for their project. You need to deploy the server using the fewest steps possible. What should you do?
+
+Alternativas:
+- A. Download and deploy the Jenkins Java WAR to App Engine Standard.
+- B. Create a new Compute Engine instance and install Jenkins through the command line interface.
+- C. Create a Kubernetes cluster on Compute Engine and create a deployment with the Jenkins Docker image.
+- D. Use GCP Marketplace to launch the Jenkins solution.
+
+Resposta correta:
+D. Use GCP Marketplace to launch the Jenkins solution.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Agents89 Highly Voted  5 years, 9 months ago
+D is correct
+   upvoted 35 times
+
+2. Anonymous: Buruguduystunstugudunstuy Highly Voted  3 years ago
+Selected Answer: D
+The correct answer is Option D. By using GCP Marketplace to launch the Jenkins solution, you can quickly deploy a Jenkins server with minimal steps.
+Option A involves deploying the Jenkins Java WAR to App Engine Standard, which requires more steps and may not be suitable for your requirements.
+Option B involves creating a new Compute Engine instance and manually installing Jenkins, which also requires more steps.
+Option C involves creating a Kubernetes cluster and creating a deployment with the Jenkins Docker image, which again involves more steps and may not be the most efficient solution.
+   upvoted 20 times
+
+3. Anonymous: kewgard Most Recent  7 months, 3 weeks ago
+Selected Answer: D
+D is correct. However for most coorporate users this will be disabled. As will be dockerhub which wil lhave a containerised Jenkins server. So for coorp users you will have to install yourself on a fresh instance.
+   upvoted 1 times
+
+4. Anonymous: madzzzz 1 year, 3 months ago
+Selected Answer: B
+maybe b
+   upvoted 1 times
+
+5. Anonymous: BAofBK 2 years, 2 months ago
+The answer is D.
+   upvoted 1 times
+
+6. Anonymous: Evan7557 2 years, 3 months ago
+D Answer
+   upvoted 1 times
+
+7. Anonymous: YourCloudGuru 2 years, 3 months ago
+The correct answer is D
+This is the fastest and easiest way to deploy a Jenkins server on GCP. GCP Marketplace provides pre-configured and pre-packaged applications that you can launch with just a few clicks.
+To deploy Jenkins from GCP Marketplace, follow these steps:
+->Go to the GCP Marketplace.
+->Search for "Jenkins".
+->Click the "Jenkins" app listing.
+->Click the "Launch" button.
+->Configure the Jenkins deployment options, such as the machine type and region.
+->Click the "Deploy" button.
+GCP Marketplace will deploy a Jenkins server to your GCP project. Once the deployment is complete, you can access the Jenkins web UI at the URL provided in the deployment details.
+   upvoted 1 times
+
+8. Anonymous: elviskimutai 2 years, 4 months ago
+D. Use GCP Marketplace to launch the Jenkins solution: This is the most straightforward and efficient method to deploy Jenkins on Google Cloud Platform
+   upvoted 1 times
+
+9. Anonymous: Captain1212 2 years, 4 months ago
+D is the correct answer , fewest steps possible
+   upvoted 1 times
+
+10. Anonymous: vivekvj 2 years, 9 months ago
+Selected Answer: D
+D IS CORRECT
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #14
+
+Pergunta:
+You need to update a deployment in Deployment Manager without any resource downtime in the deployment. Which command should you use?
+
+Alternativas:
+- A. gcloud deployment-manager deployments create --config <deployment-config-path>
+- B. gcloud deployment-manager deployments update --config <deployment-config-path>
+- C. gcloud deployment-manager resources create --config <deployment-config-path>
+- D. gcloud deployment-manager resources update --config <deployment-config-path>
+
+Resposta correta:
+B. gcloud deployment-manager deployments update --config <deployment-config-path>
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Agents89 Highly Voted  4 years, 9 months ago
+B is correct
+   upvoted 39 times
+
+2. Anonymous: Buruguduystunstugudunstuy Highly Voted  2 years ago
+Selected Answer: B
+The correct answer is Option B: `gcloud deployment-manager deployments update --config <deployment-config-path>`. This command updates an existing deployment with the configuration specified in the `deployment-config-path` file. It allows you to make changes to the deployment without any downtime in the resources.
+https://cloud.google.com/sdk/gcloud/reference/deployment-manager/
+   upvoted 5 times
+
+3. Anonymous: jogoldberg Most Recent  4 months, 2 weeks ago
+Selected Answer: B
+This question should be replaced with one about Infra Manager. Deployment manager is going EOL on 31-December-2025 and Deprecated on 31-March-2026.
+   upvoted 1 times
+
+4. Anonymous: kewgard 7 months, 3 weeks ago
+Selected Answer: B
+B. B deployment manager uses a config file to update a change to existing infrastructure - as the question asked to update. A. would create a new deployment.C and D resources keywork only lists and describes cannot use to update as required.
+   upvoted 1 times
+
+5. Anonymous: BAofBK 1 year, 2 months ago
+The correct answer is B
+   upvoted 1 times
+
+6. Anonymous: Evan7557 1 year, 3 months ago
+Answer B is Correct
+   upvoted 1 times
+
+7. Anonymous: YourCloudGuru 1 year, 3 months ago
+Selected Answer: B
+The correct answer is B.
+This command updates an existing deployment with the configuration specified in the deployment-config-path file. Deployment Manager automatically determines whether resources need to be created, updated, or deleted in order to apply the changes.
+Here is an example of how to use the gcloud deployment-manager deployments update command to update a deployment without any resource downtime:
+gcloud deployment-manager deployments update my-deployment --config deployment.yaml
+This command will update the my-deployment deployment with the configuration specified in the deployment.yaml file. Deployment Manager will automatically determine whether resources need to be created, updated, or deleted in order to apply the changes.
+   upvoted 4 times
+
+8. Anonymous: Captain1212 1 year, 4 months ago
+b is the answer, clearly
+   upvoted 1 times
+
+9. Anonymous: sakdip66 1 year, 9 months ago
+I agree B is the 🔑
+   upvoted 1 times
+
+10. Anonymous: Partha117 1 year, 10 months ago
+Selected Answer: B
+gcloud deployment-manager deployments update --config is correct
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #15
+
+Pergunta:
+You need to run an important query in BigQuery but expect it to return a lot of records. You want to find out how much it will cost to run the query. You are using on-demand pricing. What should you do?
+
+Alternativas:
+- A. Arrange to switch to Flat-Rate pricing for this query, then move back to on-demand.
+- B. Use the command line to run a dry run query to estimate the number of bytes read. Then convert that bytes estimate to dollars using the Pricing Calculator.
+- C. Use the command line to run a dry run query to estimate the number of bytes returned. Then convert that bytes estimate to dollars using the Pricing Calculator.
+- D. Run a select count (*) to get an idea of how many records your query will look through. Then convert that number of rows to dollars using the Pricing Calculator.
+
+Resposta correta:
+B. Use the command line to run a dry run query to estimate the number of bytes read. Then convert that bytes estimate to dollars using the Pricing Calculator.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ESP_SAP Highly Voted  4 years, 4 months ago
+Correct Answers is (B):
+On-demand pricing
+Under on-demand pricing, BigQuery charges for queries by using one metric: the number of bytes processed (also referred to as bytes read). You are charged for the number of bytes processed whether the data is stored in BigQuery or in an external data source such as Cloud Storage, Drive, or Cloud Bigtable. On-demand pricing is based solely on usage.
+https://cloud.google.com/bigquery/pricing#on_demand_pricing
+   upvoted 45 times
+
+2. Anonymous: Agents89 Highly Voted  4 years, 8 months ago
+B is Correct
+   upvoted 35 times
+
+3. Anonymous: yomi95 Most Recent  1 year ago
+Selected Answer: B
+A dry run query in BigQuery allows you to estimate the amount of data scanned by your query without actually running it. This is especially useful for queries expected to process a large amount of data.
+You can use the estimated bytes read to calculate the cost using BigQuery's on-demand pricing model, where costs are based on the amount of data processed
+   upvoted 1 times
+
+4. Anonymous: BAofBK 1 year, 2 months ago
+The correct answer is B
+   upvoted 1 times
+
+5. Anonymous: Evan7557 1 year, 3 months ago
+Answer B
+   upvoted 1 times
+
+6. Anonymous: YourCloudGuru 1 year, 3 months ago
+Selected Answer: B
+The correct answer is B.
+This option is the most accurate way to estimate the cost of your query, because it takes into account the actual number of bytes that will be processed by BigQuery.
+Here is an example of how to run a dry run query in BigQuery:
+bq dry run --query "SELECT * FROM <dataset>.<table> WHERE <condition>"
+This command will print the estimated number of bytes that will be processed by BigQuery. You can then use the Pricing Calculator to convert this bytes estimate to dollars.
+Once you have estimated the cost of your query, you can decide whether or not to proceed with running it. If you decide to proceed, you can monitor the cost of your query using the BigQuery Monitoring Console.
+   upvoted 6 times
+
+7. Anonymous: Captain1212 1 year, 4 months ago
+yes B is the correct answer, biq query charges for queries by using one metric
+   upvoted 1 times
+
+8. Anonymous: certified28 1 year, 7 months ago
+Selected Answer: B
+B is Correct
+   upvoted 1 times
+
+9. Anonymous: Partha117 1 year, 10 months ago
+Selected Answer: B
+Calculation should be on bytes read
+   upvoted 3 times
+
+10. Anonymous: BlueJay20 1 year, 11 months ago
+Selected Answer: B
+Calculation on bytes read.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #16
+
+Pergunta:
+You have a single binary application that you want to run on Google Cloud Platform. You decided to automatically scale the application based on underlying infrastructure CPU usage. Your organizational policies require you to use virtual machines directly. You need to ensure that the application scaling is operationally efficient and completed as quickly as possible. What should you do?
+
+Alternativas:
+- A. Create a Google Kubernetes Engine cluster, and use horizontal pod autoscaling to scale the application.
+- B. Create an instance template, and use the template in a managed instance group with autoscaling configured.
+- C. Create an instance template, and use the template in a managed instance group that scales up and down based on the time of day.
+- D. Use a set of third-party tools to build automation around scaling the application up and down, based on Stackdriver CPU usage monitoring.
+
+Resposta correta:
+B. Create an instance template, and use the template in a managed instance group with autoscaling configured.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: mohdafiuddin Highly Voted  5 years ago
+I'll take a simple and logical approach for answering this.
+Let's first break down the question into key requirements -
+1. automatically scale the application based on underlying infrastructure CPU usage.
+2. use virtual machines directly.
+A. Not feasible because VMs are not used directly here.
+B. This is the correct answer.
+C. Time of Day... Easy elimination because this does not scale on CPU usage and time of day is mentioned NOWHERE.
+D. Third Party Tools.... Nobody would use GCP if they needed third party tools to do something as simple as scaling based on CPU usage. all popular cloud providers have native solutions for this including GCP.
+   upvoted 68 times
+ kopper2019 4 years, 9 months ago
+and also D is out because why would I use a third party tool when is a GCP exam
+   upvoted 18 times
+ RMO000 4 years, 3 months ago
+If the resource/solution is not available. It's a possibility.
+   upvoted 5 times
+
+2. Anonymous: coldpar Highly Voted  5 years, 10 months ago
+correct is B as you have to use VM instances directly.
+   upvoted 54 times
+
+3. Anonymous: kewgard Most Recent  7 months, 3 weeks ago
+Selected Answer: B
+B. As instance Template Defines the VM configuration (machine type, startup script, disk, etc.). Managed Instance Group: Uses the template to create and manage multiple VM instances. Supports autoscaling based on CPU usage or other metrics natively. Provides rolling updates and self-healing VMs automatically.Fast scaling solution using built-in Google Cloud features.
+   upvoted 1 times
+
+4. Anonymous: Cloudmoh 11 months, 1 week ago
+Selected Answer: B
+Based on the logic behind this question right, A managed instance group (MIG) with autoscaling is the most operationally efficient way to scale virtual machine instances directly based on CPU usage
+   upvoted 1 times
+
+5. Anonymous: warbon 12 months ago
+Selected Answer: B
+A managed instance group (MIG) with autoscaling is the most operationally efficient way to scale virtual machine instances directly based on CPU usage. The instance template defines the VM configuration, and the autoscaling feature ensures that the application scales quickly and efficiently based on resource utilization, meeting the organization's requirements. Kubernetes and third-party tools are unnecessary for this scenario, and scaling based on time is less dynamic and not tied to actual usage.
+   upvoted 1 times
+
+6. Anonymous: sh00001 1 year, 6 months ago
+The correct option is B as it manges the VMs
+   upvoted 1 times
+
+7. Anonymous: BAofBK 2 years, 2 months ago
+The correct answer is B
+   upvoted 1 times
+
+8. Anonymous: tlopsm 2 years, 2 months ago
+B is the answers you can autoscale based on CPU Usage. D is wrong as it suggests that the triggering is time of day
+   upvoted 1 times
+
+9. Anonymous: Evan7557 2 years, 3 months ago
+Answer C
+   upvoted 1 times
+
+10. Anonymous: YourCloudGuru 2 years, 3 months ago
+Selected Answer: B
+The correct answer is B.
+This option is the most efficient way to scale your application based on CPU usage, because it uses Google Cloud's built-in autoscaling capabilities. Autoscaling allows you to specify a minimum and maximum number of instances, and Google Cloud will automatically add or remove instances as needed to maintain your desired CPU utilization.
+Options A, C, and D are not as efficient, because they require more manual intervention to scale your application.
+Here are the steps to create a managed instance group with autoscaling configured:
+1. Create an instance template.
+2. Create a managed instance group from the instance template.
+3. Configure autoscaling for the managed instance group.
+Once you have configured autoscaling, the managed instance group will automatically add or remove instances as needed to maintain your desired CPU utilization.
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #17
+
+Pergunta:
+You are analyzing Google Cloud Platform service costs from three separate projects. You want to use this information to create service cost estimates by service type, daily and monthly, for the next six months using standard query syntax. What should you do?
+
+Alternativas:
+- A. Export your bill to a Cloud Storage bucket, and then import into Cloud Bigtable for analysis.
+- B. Export your bill to a Cloud Storage bucket, and then import into Google Sheets for analysis.
+- C. Export your transactions to a local file, and perform analysis with a desktop tool.
+- D. Export your bill to a BigQuery dataset, and then write time window-based SQL queries for analysis.
+
+Resposta correta:
+D. Export your bill to a BigQuery dataset, and then write time window-based SQL queries for analysis.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: mohdafiuddin Highly Voted  4 years, 6 months ago
+Solving this by first eliminating the options that don't suit us. By breaking down the question into the key requirements-
+1. Analyzing Google Cloud Platform service costs from three separate projects.
+2. Using standard query syntax. -> (Relational data and SQL)
+A. 'Cloud Storage bucket'........'Cloud Bigtable'. Not feasible, mainly because cloud BigTable is not good for Structured Data (or Relational Data on which we can run SQL queries as per the question's requirements). BigTable is better suited for Semi Structured data and NoSQL data.
+B. 'Cloud Storage bucket'.....'Google Sheets'. Not Feasible because there is no use of SQL in this option, which is one of the requirements.
+C. Local file, external tools... this is automatically eliminated because the operation we need is simple, and there has to be a GCP native solution for this. We shouldn't need to rely on going out of the cloud for such a simple thing.
+D. 'BigQuery'.....'SQL queries' -> This is the right answer.
+   upvoted 112 times
+ ryumada 2 years, 11 months ago
+Cloud billing data can only be exported to a JSON local file and to Bigquery. So, using Cloud Storage to export cloud billing data is not possible to do.
+https://cloud.google.com/billing/docs/how-to/export-data-bigquery
+   upvoted 17 times
+
+2. Anonymous: cesar7816 Highly Voted  5 years, 4 months ago
+Agreed, BigQuery
+   upvoted 18 times
+ yurstev 4 years, 6 months ago
+the key is standard query syntax
+   upvoted 4 times
+
+3. Anonymous: Raghav2650 Most Recent  10 months ago
+Selected Answer: D
+You need a scalable and efficient way to query cost data across multiple projects.
+BigQuery is the best choice because it supports large-scale data analysis using SQL.
+BigQuery allows you to run time-based SQL queries to analyze trends and forecast future costs.
+ou can write queries using window functions (e.g., DATE_TRUNC(), INTERVAL) to break costs down by day or month.
+   upvoted 1 times
+
+4. Anonymous: SAMBIT 1 year, 5 months ago
+Try it here: https://lookerstudio.google.com/reporting/0B7GT7ZlyzUmCZHFhNDlKVENHYmc/page/tLtE
+   upvoted 1 times
+
+5. Anonymous: BAofBK 1 year, 8 months ago
+The correct answer is D
+   upvoted 2 times
+
+6. Anonymous: Evan7557 1 year, 9 months ago
+D is the Answer
+   upvoted 1 times
+
+7. Anonymous: YourCloudGuru 1 year, 10 months ago
+Selected Answer: D
+The correct answer is D.
+BigQuery is a fully-managed, petabyte-scale analytics data warehouse that enables businesses to analyze all their data very quickly. It is also a good choice for analyzing cost data because it can handle large amounts of data and can perform complex queries quickly.
+Time window-based SQL queries allow you to analyze data over a specific time period. For example, you could write a query to calculate the total cost of a particular service for each day of the month.
+Here is an example of a BigQuery query that you could use to calculate the total cost of a particular service for each day of the month:
+sql
+SELECT
+cost,
+DATE(usage_start_time) AS date
+FROM
+`[PROJECT_ID].billing.dataset`
+WHERE
+service_id = 'YOUR_SERVICE_ID'
+GROUP BY
+date
+ORDER BY
+date
+This query will return a table with two columns: `cost` and `date`. The `cost` column will contain the total cost of the service for each day of the month. The `date` column will contain the date for each row.
+   upvoted 2 times
+
+8. Anonymous: Captain1212 1 year, 10 months ago
+yes D, is the correct answer, because we only use bigquery for semi or structured data
+   upvoted 1 times
+
+9. Anonymous: Ashish_Tayal 2 years, 3 months ago
+Selected Answer: D
+In GCP, Always use Big Query to export Billing. And Big Query is best for Analyzing
+   upvoted 3 times
+
+10. Anonymous: Partha117 2 years, 3 months ago
+Selected Answer: D
+Big Query will allow sql analysis
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #18
+
+Pergunta:
+You need to set up a policy so that videos stored in a specific Cloud Storage Regional bucket are moved to Coldline after 90 days, and then deleted after one year from their creation. How should you set up the policy?
+
+Alternativas:
+- A. Use Cloud Storage Object Lifecycle Management using Age conditions with SetStorageClass and Delete actions. Set the SetStorageClass action to 90 days and the Delete action to 275 days (365 ג€" 90)
+- B. Use Cloud Storage Object Lifecycle Management using Age conditions with SetStorageClass and Delete actions. Set the SetStorageClass action to 90 days and the Delete action to 365 days.
+- C. Use gsutil rewrite and set the Delete action to 275 days (365-90).
+- D. Use gsutil rewrite and set the Delete action to 365 days.
+
+Resposta correta:
+B. Use Cloud Storage Object Lifecycle Management using Age conditions with SetStorageClass and Delete actions. Set the SetStorageClass action to 90 days and the Delete action to 365 days.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Sammigbo Highly Voted  5 years, 7 months ago
+Answer is B. There should be no reason to recalculate the time needed to delete after a year.
+   upvoted 60 times
+ JKRowlings 5 years, 1 month ago
+The correct ans is A.
+   upvoted 6 times
+ yvinisiupacuando 4 years, 8 months ago
+Right answer is clearly B, "A" does not make any sense.
+   upvoted 13 times
+
+2. Anonymous: cloudenthu01 Highly Voted  5 years, 6 months ago
+Correct is B.
+You only re-calculate expiry date when objects are re-written using re-write option to another storage class in which case creation date is rest.
+But in this case objects is moveed to Coldline class after 90 days and then we want to delete the object after 365 days.
+   upvoted 44 times
+ T_T_M 5 years, 4 months ago
+You can change the storage class of an existing object either by rewriting the object or by using Object Lifecycle Management...Since Object Life cycle management was used there was no need to recalculate the expiration date and delete action still remains 365 days.
+https://cloud.google.com/storage/docs/storage-classes
+   upvoted 16 times
+
+3. Anonymous: kewgard Most Recent  7 months, 3 weeks ago
+Selected Answer: B
+B. Its basic operation of cloud storage object lifecycle management. Not A as actions are run from measures from object creation time - not time duration after another action happened.
+   upvoted 1 times
+
+4. Anonymous: vaclavbenes1 11 months, 2 weeks ago
+Selected Answer: B
+age
+The age condition is satisfied when a resource reaches the specified age (in days). Age is measured from the resource's creation time.
+https://cloud.google.com/storage/docs/lifecycle#age
+   upvoted 2 times
+
+5. Anonymous: devanshgoyal12 1 year ago
+Selected Answer: D
+Why answer is not D
+   upvoted 1 times
+
+6. Anonymous: peddyua 1 year ago
+Selected Answer: B
+{
+"rule": [
+{
+"action": { "type": "SetStorageClass", "storageClass": "COLDLINE" },
+"condition": { "age": 90 }
+},
+{
+"action": { "type": "Delete" },
+"condition": { "age": 365 }
+}
+]
+}
+   upvoted 1 times
+
+7. Anonymous: narop 1 year ago
+Selected Answer: A
+Cloud Storage Object Lifecycle Management allows you to define conditions and actions for objects based on their age, creation time, or other attributes.
+To meet the requirements:
+Move to Coldline after 90 days: This is achieved by setting a SetStorageClass action with an Age condition of 90 days.
+Delete after 1 year (365 days): Since the object would have been moved to Coldline after 90 days, the remaining time for deletion is 365 - 90 = 275 days. Set a Delete action with an Age condition of 275 days.
+   upvoted 1 times
+
+8. Anonymous: user263263 1 year, 1 month ago
+Selected Answer: B
+A is not correct. age is defined based on creation time. SetStorageClass only affects the modification time, not the creation time. So the 90 days are not relevant for the deletion rule.
+   upvoted 2 times
+
+9. Anonymous: nubelukita45852 1 year, 4 months ago
+Selected Answer: B
+La gestión del ciclo de vida de objetos en Google Cloud Storage permite automatizar el cambio de la clase de almacenamiento y la eliminación de los objetos en función de su antigüedad. Para este caso:
+Después de 90 días, se debe cambiar la clase de almacenamiento a Coldline, lo que se hace usando la acción SetStorageClass.
+Luego, después de 365 días (1 año), los objetos deben ser eliminados usando la acción Delete.
+A es incorrecta porque sugiere eliminar los objetos a los 275 días, lo cual no coincide con el requisito de eliminar los videos después de un año.
+C y D son incorrectas porque gsutil rewrite no es la herramienta correcta para gestionar políticas de ciclo de vida.
+   upvoted 1 times
+
+10. Anonymous: JackSkeletonCoder 1 year, 4 months ago
+Selected Answer: B
+option A can be misguiding but you don't have to specify 275 days since the rule would be implemented based on the creation of object not after the effect of the previous rule. Hence option B
+   upvoted 3 times
+==============================
+
+==============================
+Page X — Question #19
+
+Pergunta:
+You have a Linux VM that must connect to Cloud SQL. You created a service account with the appropriate access rights. You want to make sure that the VM uses this service account instead of the default Compute Engine service account. What should you do?
+
+Alternativas:
+- A. When creating the VM via the web console, specify the service account under the 'Identity and API Access' section.
+- B. Download a JSON Private Key for the service account. On the Project Metadata, add that JSON as the value for the key compute-engine-service- account.
+- C. Download a JSON Private Key for the service account. On the Custom Metadata of the VM, add that JSON as the value for the key compute-engine- service-account.
+- D. Download a JSON Private Key for the service account. After creating the VM, ssh into the VM and save the JSON under ~/.gcloud/compute-engine-service- account.json.
+
+Resposta correta:
+A. When creating the VM via the web console, specify the service account under the 'Identity and API Access' section.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Agents89 Highly Voted  5 years, 8 months ago
+A is correct
+   upvoted 60 times
+ ready2rock 4 years, 7 months ago
+How can this be? It says you HAVE a VM, meaning it's already created. A cannot be the solution.
+   upvoted 13 times
+ jiniguez 4 years, 1 month ago
+As the comment says:
+"To change an instance's service account and access scopes, the instance must be temporarily stopped ... After changing the service account or access scopes, remember to restart the instance." So we can stop the instance, change the service account, then start it up again.
+   upvoted 5 times
+ boof 4 years, 3 months ago
+A seems legit, the answer is worded poorly but is the most correct.
+---
+https://cloud.google.com/compute/docs/access/create-enable-service-accounts-for-instances#changeserviceaccountandscopes
+---
+"To change an instance's service account and access scopes, the instance must be temporarily stopped ... After changing the service account or access scopes, remember to restart the instance." So we can stop the instance, change the service account, then start it up again.
+   upvoted 7 times
+ ashrafh 4 years, 5 months ago
+I vote A
+https://cloud.google.com/compute/docs/access/create-enable-service-accounts-for-instances
+Changing the service account and access scopes for an instance
+If you want to run the VM as a different identity, or you determine that the instance needs a different set of scopes to call the required APIs, you can change the service account and the access scopes of an existing instance. For example, you can change access scopes to grant access to a new API, or change an instance so that it runs as a service account that you created, instead of the Compute Engine default service account. However, Google recommends that you use the fine-grained IAM policies instead of relying on access scopes to control resource access for the service account.
+To change an instance's service account and access scopes, the instance must be temporarily stopped. To stop your instance, read the documentation for Stopping an instance. After changing the service account or access scopes, remember to restart the instance. Use one of the following methods to the change service account or access scopes of the stopped instance.
+Hope this helps :)
+   upvoted 18 times
+
+2. Anonymous: jabrrJ68w02ond1 Highly Voted  4 years, 1 month ago
+Either the question or the answers are wrong. The question says that we HAVE a Linux VM, so we should strike all the answers that include "when creating the VM.." - on the other hand, adding JSON Tokens to VM metadata is terrible because it's readable in clear-text for everyone. So, what do we need to do here?
+   upvoted 14 times
+
+3. Anonymous: Joseph_Covaro Most Recent  11 months, 1 week ago
+Selected Answer: A
+While A doesn't really work, given that the VM is already created, all the other answers are absolutely unacceptable. You should never store private keys as raw text, such as .json.
+   upvoted 1 times
+
+4. Anonymous: warbon 12 months ago
+Selected Answer: A
+The correct way to assign a specific service account to a VM is by specifying it during VM creation in the 'Identity and API Access' section. This ensures the VM uses the specified service account for authentication when accessing Google Cloud services. The other options, which involve manually downloading and managing JSON keys, are not recommended due to security risks and Google's best practices for managing service accounts.
+   upvoted 1 times
+
+5. Anonymous: peddyua 1 year ago
+Selected Answer: C
+seems like A. doesn't fit. As it's ONLY valid only during the VM creation process. It allows you to assign a custom service account instead of the default one.
+However, if the VM is already created, you cannot use this method.
+C. correct answer
+gcloud compute instances stop VM_NAME --zone ZONE
+gcloud compute instances set-service-account VM_NAME \
+--zone ZONE \
+--service-account SERVICE_ACCOUNT_EMAIL
+gcloud compute instances start VM_NAME --zone ZONE
+   upvoted 1 times
+
+6. Anonymous: Sanjai_I 1 year ago
+Selected Answer: C
+Recommended approach: Download a JSON Private Key for the service account. On the Custom Metadata of the VM, add that JSON as the value for the key compute-service-account.
+This will allow the VM to use the specified service account for accessing Cloud SQL, without relying on the default Compute Engine service account.
+The other options are not suitable:
+Option A is for specifying a service account when creating a VM via the web console, but it's not applicable for an existing VM.
+Option B is incorrect, as the compute-engine-service-account key is not a valid key for storing a service account JSON key file.
+Option D is not the correct approach, as saving the JSON key file to ~/.gcloud/compute-engine-service-account.json is not a standard way to configure the service account for a VM.
+   upvoted 1 times
+
+7. Anonymous: errorfetch 1 year, 4 months ago
+Selected Answer: A
+A is correct because the easiest solution is specifying the service account while creating the vm. if you dont specify the default compute engine account is chosen.
+   upvoted 2 times
+
+8. Anonymous: nubelukita45852 1 year, 4 months ago
+Selected Answer: A
+Para asegurarse de que la máquina virtual utilice una cuenta de servicio específica en lugar de la predeterminada de Compute Engine, debes especificar la cuenta de servicio correcta al crear la máquina virtual. En la sección "Identidad y acceso a API", puedes seleccionar la cuenta de servicio adecuada para garantizar que las solicitudes y accesos a otros servicios, como Cloud SQL, se realicen usando los permisos asociados a esa cuenta de servicio.
+B, C y D implican el uso de claves privadas JSON, lo cual no es una práctica recomendada debido a los riesgos de seguridad asociados al manejo de claves manualmente.
+   upvoted 2 times
+
+9. Anonymous: Timfdklfajlksdjlakf 1 year, 4 months ago
+Selected Answer: A
+A is correct.
+   upvoted 1 times
+
+10. Anonymous: hmd2910 1 year, 7 months ago
+The question implies that a Linux VM already exists and needs to be configured to use a specific service account instead of the default Compute Engine service account. This is crucial because it eliminates option A, which focuses on setting the service account during VM creation.
+Why Option C is Correct:
+Custom Metadata : Custom metadata is designed for VM-specific configuration. It's the ideal place to store service account credentials.
+compute-engine-service-account : This is the specific metadata key used to tell the VM which service account to use.
+JSON Private Key : This is the standard format for storing service account credentials.
+   upvoted 3 times
+==============================
+
+==============================
+Page X — Question #20
+
+Pergunta:
+You created an instance of SQL Server 2017 on Compute Engine to test features in the new version. You want to connect to this instance using the fewest number of steps. What should you do?
+
+Alternativas:
+- A. Install a RDP client on your desktop. Verify that a firewall rule for port 3389 exists.
+- B. Install a RDP client in your desktop. Set a Windows username and password in the GCP Console. Use the credentials to log in to the instance.
+- C. Set a Windows password in the GCP Console. Verify that a firewall rule for port 22 exists. Click the RDP button in the GCP Console and supply the credentials to log in.
+- D. Set a Windows username and password in the GCP Console. Verify that a firewall rule for port 3389 exists. Click the RDP button in the GCP Console, and supply the credentials to log in.
+
+Resposta correta:
+D. Set a Windows username and password in the GCP Console. Verify that a firewall rule for port 3389 exists. Click the RDP button in the GCP Console, and supply the credentials to log in.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: vnxt Highly Voted  5 years, 8 months ago
+I would say B is correct. RDP is enabled by default when you crate a Windows instance (no need to chek on it). Just make sure you install an RDP client ( chrome ext or RDP) and set windows password.
+   upvoted 56 times
+ ryumada 3 years, 5 months ago
+The firewall rule for port 3389 is created by default if you create windows server on Compute Engine. So, no need to verify it.
+https://cloud.google.com/compute/docs/instances/connecting-to-windows#before-you-begin
+   upvoted 5 times
+ eledu1985 3 years, 2 months ago
+In the link you provided the first step is to verify firewall rule was created, even if it is the default option!, so D is the most accurate even by the link.
+   upvoted 6 times
+ bubidubi 1 year, 11 months ago
+I disagree. The Q says that you have just created this VM, which means the FW rules for RDP has also been created. I believe the documentations says it a bit wonky as it is something to check if things aren't working after you've done everything right, as someone could have deleted that rule if this server has been up for a while, rather than having to check this right after you've made a new VM.
+I'd say B is better answer than D.
+   upvoted 1 times
+ Gregwaw 2 years, 4 months ago
+You need firewall ingress rule for port 3398 in your VPC. It is not created by default.
+   upvoted 1 times
+ pas77 4 years, 6 months ago
+Obviously, B is not the answer because you have to install an RDP client which is an extra step. D is the answer because you can connect directly using the RDP button in the GCP console.
+   upvoted 23 times
+ jabrrJ68w02ond1 4 years, 1 month ago
+Tested it myself. At least on my Machines, I was asked to First install a RDP Client.
+   upvoted 20 times
+ UtsavDM 4 years, 4 months ago
+No, we can't connect using RDP directly in the GCP console. When we click on it, it asks us to install RDP client. So ultimately, B is more accurate.
+   upvoted 27 times
+
+2. Anonymous: ankit89 Highly Voted  5 years, 8 months ago
+D seems more correct
+   upvoted 35 times
+ obeythefist 3 years, 10 months ago
+I tested this on on Compute Engine today by deploying a new instance. D is not correct. When you click the RDP button, you are asked to install a client or use the Windows RDP client if you are running Windows. There is no option to enter credentials or get an RDP session through the web interface.
+   upvoted 22 times
+
+3. Anonymous: Mobadarin Most Recent  9 months, 3 weeks ago
+Selected Answer: D
+you need firewall ingress rule for port 3398 in your VPC. It is not created by default.
+   upvoted 1 times
+
+4. Anonymous: d5dd70c 1 year ago
+Selected Answer: D
+D looks good
+   upvoted 1 times
+
+5. Anonymous: Arghadeep 1 year ago
+Selected Answer: D
+There is no additional need of installing rdp client which makes and b incorrect, you can directly log in from console. And even the firewall rule although it's default should be verified before establishing connections. D is the absolute answer
+   upvoted 1 times
+
+6. Anonymous: modaknarayan 1 year, 1 month ago
+Selected Answer: D
+D. Set a Windows username and password in the GCP Console. Verify that a firewall rule for port 3389 exists. Click the RDP button in the GCP Console, and supply the credentials to log in.
+Explanation: For connecting to a SQL Server 2017 instance on Google Cloud Compute Engine using the fewest steps, you can use the RDP (Remote Desktop Protocol) connection, which is supported by default for Windows instances. The steps involved include:
+Setting a Windows username and password: You need to specify these credentials in the GCP Console to access the instance via RDP.
+Verifying the firewall rule for port 3389: Port 3389 is the default RDP port, so you need to ensure the appropriate firewall rule is in place.
+Clicking the RDP button in the GCP Console: Once these settings are configured, you can use the RDP button in the console to connect to the instance. You'll then supply the credentials you set in the console.
+   upvoted 2 times
+
+7. Anonymous: zAbuQasen 1 year, 1 month ago
+Selected Answer: D
+Option D correctly includes:
+Setting the Windows username and password in the GCP Console.
+Verifying the firewall rule for port 3389.
+Using the "RDP" button in the GCP Console to log in, ensuring the fewest number of steps.
+   upvoted 1 times
+
+8. Anonymous: mnasruul 1 year, 1 month ago
+Selected Answer: B
+B is Correct, because not option RDP button at Console GCP https://cloud.google.com/compute/docs/instances/connecting-to-windows#other
+   upvoted 1 times
+ mnasruul 1 year, 1 month ago
+Currently GCP support RDP Button at VM GCP https://www.google.com/search?sca_esv=636238c710bc0fc7&sxsrf=ADLYWIIE4h1x6wxfcCsUII3wGOJeLC5P5g:1733916710025&q=RDP+button+in+the+GCP+Console&udm=2&fbs=AEQNm0D7Nkus73mDfRiM-qGSEUWUGRlQvLHQV1vCo9BTpxTWdXf_Rth04xNqa7aHoD5yv9G64fmPfTi2VEH1A-4DF7EBxIPcUtslRrL9UyKNDbAjJZ4ogfz78wrk6C3LLbEGPWofK58Izae8SKteGXNQrtJbqmcwjyEKkFlr9j0j3HzRXs7H1iRv67Sx8M7um58mJG883G2H7e0gr16XyhQdWNKiT3YFzA&sa=X&ved=2ahUKEwj00siMz5-KAxUWRmcHHfmvOtYQtKgLegQIFhAB&biw=1920&bih=940&dpr=1.5#vhid=tU0HqiUlxKFSYM&vssid=mosaic
+   upvoted 1 times
+
+9. Anonymous: halifax 1 year, 1 month ago
+Selected Answer: D
+D is correct because B doesn't mention *using the RDP button*, making the task less efficient. B assumes that you will be forced to implement the second task (install RDP)
+   upvoted 2 times
+
+10. Anonymous: Makar 1 year, 2 months ago
+D is correct
+For connecting to a SQL Server instance (which is running on a Windows Server on Google Compute Engine), using Remote Desktop Protocol (RDP) is the standard method.
+   upvoted 1 times
+==============================

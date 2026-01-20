@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fonte base */
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Reset correto para app fullscreen */
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* IMPORTANTE: box-sizing global */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* NÃO centralizar o app */
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #f3f4f6;
+}
+
+/* Links básicos */
+a {
+  font-weight: 500;
+  color: #2563eb;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #1d4ed8;
+}
+
+/* ===== REVIEW / BOXES ===== */
+
+.white-box {
+  background: #fff;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.08);
+
+  /* FIX CRÍTICO */
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.title-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  font-weight: 600;
+
+  /* FIX CRÍTICO */
+  width: auto;
+  max-width: 100%;
+}
+
+.title-block.correct {
+  background: #dcfce7;
+}
+
+.title-block.incorrect {
+  background: #fee2e2;
+}
+
+.box-content {
+  padding: 16px;
+  max-width: 100%;
+}
+
+.que-category {
+  display: block;
+  margin-bottom: 8px;
+  color: #374151;
+}
+
+.answer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.answer li {
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.answer li.right {
+  background: #dcfce7;
+}
+
+.answer li.wrong {
+  background: #f3f4f6;
+}
+
+.answer li.selected.wrong {
+  background: #fee2e2;
+  border: 2px solid #ef4444;
+}
+
+.explanation-block {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #e5e7eb;
+}

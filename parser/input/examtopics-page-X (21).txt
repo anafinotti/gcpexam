@@ -1,0 +1,758 @@
+==============================
+Page X — Question #211
+
+Pergunta:
+An external member of your team needs list access to compute images and disks in one of your projects. You want to follow Google-recommended practices when you grant the required permissions to this user. What should you do?
+
+Alternativas:
+- A. Create a custom role, and add all the required compute.disks.list and compute.images.list permissions as includedPermissions. Grant the custom role to the user at the project level.
+- B. Create a custom role based on the Compute Image User role. Add the compute.disks.list to the includedPermissions field. Grant the custom role to the user at the project level.
+- C. Create a custom role based on the Compute Storage Admin role. Exclude unnecessary permissions from the custom role. Grant the custom role to the user at the project level.
+- D. Grant the Compute Storage Admin role at the project level.
+
+Resposta correta:
+A. Create a custom role, and add all the required compute.disks.list and compute.images.list permissions as includedPermissions. Grant the custom role to the user at the project level.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: demoro86 Highly Voted  1 year, 4 months ago
+Selected Answer: A
+I have successfully created a custom role with compute.disks.list and compute.image.list permissions. I have also tried creating it based on the Compute Storage Admin role. However, you still need to select compute.disks.list and compute.image.list individually; all permissions are unchecked by default. So A fits fine.
+   upvoted 5 times
+
+2. Anonymous: rahulrauki Most Recent  1 year, 3 months ago
+Selected Answer: A
+You can't give B because, Image user will be able to use the Image to create resources. Only give list access
+   upvoted 3 times
+
+3. Anonymous: joao_01 1 year, 4 months ago
+Its A. Give user ONLY the required permission.
+   upvoted 2 times
+
+4. Anonymous: Captain1212 1 year, 4 months ago
+Selected Answer: A
+A is the correct answer , just create the custom role add all the required permissoons , give to the user
+   upvoted 3 times
+
+5. Anonymous: 3arle 1 year, 5 months ago
+Selected Answer: A
+The key word is "needs list access", so only A meets this requirement
+   upvoted 3 times
+
+6. Anonymous: juliorevk 1 year, 5 months ago
+Selected Answer: A
+https://cloud.google.com/iam/docs/custom-roles-permissions-support - Both compute.disks.list and compute.images.list are available as permissions for custom roles. Makes more sense to make a new custom role than going off an admin one then adjusting it.
+   upvoted 2 times
+
+7. Anonymous: shreykul 1 year, 5 months ago
+Selected Answer: B
+Option B allows you to create a custom role that is based on the existing Compute Image User role, which already includes the necessary permissions for accessing compute images. Then, you add the compute.disks.list permission to the custom role's includedPermissions field to grant the user list access to compute disks as well. This ensures that the user has precisely the permissions needed for their specific tasks and nothing more, following the principle of least privilege.
+   upvoted 4 times
+
+8. Anonymous: shreykul 1 year, 6 months ago
+Selected Answer: A
+https://cloud.google.com/sdk/gcloud/reference/compute/images/list
+https://cloud.google.com/compute/docs/reference/rest/v1/disks/list
+   upvoted 1 times
+
+9. Anonymous: fatanu88 1 year, 6 months ago
+Answer is B: Compute image user role provide permission to list and read images without having other permissions on the image. Granting this role at the project level gives users the ability to list all images in the project and create resources, such as instances and persistent disks, based on images in the project. Adding the compute.disks.list then meet all the question requirements
+   upvoted 2 times
+
+10. Anonymous: FJ82 1 year, 6 months ago
+Selected Answer: C
+Tried this, could not find those permissions when I tried to create custom role directly, you need to create from the role
+   upvoted 3 times
+ techsteph 1 year, 6 months ago
+You're right, changing my answer to C.
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #212
+
+Pergunta:
+You are running a web application on Cloud Run for a few hundred users. Some of your users complain that the initial web page of the application takes much longer to load than the following pages. You want to follow Google’s recommendations to mitigate the issue. What should you do?
+
+Alternativas:
+- A. Set the minimum number of instances for your Cloud Run service to 3.
+- B. Set the concurrency number to 1 for your Cloud Run service.
+- C. Set the maximum number of instances for your Cloud Run service to 100.
+- D. Update your web application to use the protocol HTTP/2 instead of HTTP/1.1.
+
+Resposta correta:
+A. Set the minimum number of instances for your Cloud Run service to 3.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ovokpus Highly Voted  1 year, 3 months ago
+Selected Answer: A
+This is a typical cold start problem. Cold starts happen when a serverless platform like Cloud Run needs to start a new instance to handle a request because no suitable instances are available. This startup time can cause a delay, which is noticeable to users, especially on the first page load.
+   upvoted 10 times
+
+2. Anonymous: AdelElagawany Most Recent  3 months, 1 week ago
+Selected Answer: A
+Set Minimum number of active instances > 0
+   upvoted 1 times
+
+3. Anonymous: VijKall 1 year, 2 months ago
+Selected Answer: A
+Both A and D looks good.
+But going with A as it is worded as some users are impacted during startup, http/2 would help resolve more than what issue is worded here.
+   upvoted 1 times
+
+4. Anonymous: joao_01 1 year, 4 months ago
+Its A. Look at this link: https://cloud.google.com/run/docs/tips/general#optimize_performance
+You'll see that one of Google's recommendations for improve performance and reduce "cold starts", is to set a minimum of instances.
+   upvoted 3 times
+
+5. Anonymous: DannSecurity 1 year, 4 months ago
+I checked the google recommendations for cloud run but they never mention HTTP/2. I am going with A
+   upvoted 1 times
+
+6. Anonymous: Cherrycardo 1 year, 5 months ago
+Selected Answer: A
+https://cloud.google.com/functions/docs/configuring/min-instances
+Even though the initial # of instances present in the VM is not stated, setting a min amount of instances "can further help you avoid cold starts and reduce application latency".
+   upvoted 1 times
+
+7. Anonymous: 3arle 1 year, 5 months ago
+Selected Answer: A
+min. # of instances should solve latency issue
+   upvoted 1 times
+
+8. Anonymous: qannik 1 year, 5 months ago
+Selected Answer: A
+I chose A too.
+The question should be related to GCP products and how can you best configure them.
+I shouldn't be forced to change my app to use HTTP/2
+   upvoted 2 times
+ qannik 1 year, 5 months ago
+https://cloud.google.com/blog/topics/developers-practitioners/3-ways-optimize-cloud-run-response-times
+   upvoted 1 times
+
+9. Anonymous: Vzero2333 1 year, 5 months ago
+I chosse A
+notice ''some of user'' and ''initial web page slowly than other page''
+because the some of user login the web without load and the cloud run scale the instance to 0 so that the users had to waiting the startup new instance sometimes.
+   upvoted 1 times
+
+10. Anonymous: geeroylenkins 1 year, 6 months ago
+Selected Answer: D
+https://www.cloudflare.com/learning/performance/http2-vs-http1.1/
+I'm going with D too.
+B wouldn't help: https://cloud.google.com/run/docs/about-concurrency#concurrency-1
+C wouldn't help - setting a max won't increase speed ever.
+A would not necessarily help - there's no indication that the initial page is taking much longer just because there are too few instances. However, D would improve how things load, as per the first link I posted.
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #213
+
+Pergunta:
+You are building a data lake on Google Cloud for your Internet of Things (IoT) application. The IoT application has millions of sensors that are constantly streaming structured and unstructured data to your backend in the cloud. You want to build a highly available and resilient architecture based on Google-recommended practices. What should you do?
+
+Alternativas:
+- A. Stream data to Pub/Sub, and use Dataflow to send data to Cloud Storage.
+- B. Stream data to Pub/Sub, and use Storage Transfer Service to send data to BigQuery.
+- C. Stream data to Dataflow, and use Dataprep by Trifacta to send data to Bigtable.
+- D. Stream data to Dataflow, and use Storage Transfer Service to send data to BigQuery.
+
+Resposta correta:
+A. Stream data to Pub/Sub, and use Dataflow to send data to Cloud Storage.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: shreykul Highly Voted  1 year, 5 months ago
+Selected Answer: A
+A. Streaming data to Pub/Sub allows you to decouple the ingestion of data from the processing and storage, providing a scalable and reliable message queue that can handle the high volume of data coming from millions of sensors.
+Using Dataflow to consume data from Pub/Sub and send it to Cloud Storage allows for real-time data processing and storage. Dataflow is a fully managed service for processing data in real-time or batch mode, making it an ideal choice for handling the constant stream of data from IoT sensors.
+Storing data in Cloud Storage offers high durability and availability, providing a robust foundation for building a data lake. Cloud Storage is a scalable object storage service that can handle large volumes of structured and unstructured data, making it well-suited for the IoT application's data requirements.
+   upvoted 14 times
+
+2. Anonymous: VijKall Highly Voted  1 year, 2 months ago
+Selected Answer: A
+Pub/Sub , Dataflow and BigTable would have been idle solution, but since Cloud Storage is the only option with that combo, I will go with A.
+   upvoted 7 times
+ nmnm22 1 year, 2 months ago
+ideal*
+   upvoted 2 times
+
+3. Anonymous: joao_01 Most Recent  1 year, 4 months ago
+Selected Answer: A
+Its A, for sure.
+   upvoted 1 times
+
+4. Anonymous: Captain1212 1 year, 4 months ago
+A is the correct answer a there is both unstuctured and strucutder data
+   upvoted 3 times
+
+5. Anonymous: 3arle 1 year, 5 months ago
+Selected Answer: A
+according to https://cloud.google.com/architecture/optimized-large-scale-analytics-ingestion
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #214
+
+Pergunta:
+You are running out of primary internal IP addresses in a subnet for a custom mode VPC. The subnet has the IP range 10.0.0.0/20, and the IP addresses are primarily used by virtual machines in the project. You need to provide more IP addresses for the virtual machines. What should you do?
+
+Alternativas:
+- A. Add a secondary IP range 10.1.0.0/20 to the subnet.
+- B. Change the subnet IP range from 10.0.0.0/20 to 10.0.0.0/18.
+- C. Change the subnet IP range from 10.0.0.0/20 to 10.0.0.0/22.
+- D. Convert the subnet IP range from IPv4 to IPv6.
+
+Resposta correta:
+B. Change the subnet IP range from 10.0.0.0/20 to 10.0.0.0/18.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: joao_01 Highly Voted  1 year, 10 months ago
+Selected Answer: A
+This one is tricky. First i was going with B, then i did some search. Option A and B can indeed add more IPs. However, i think the option is A because between those 2 options the option A we will add IPs without changing the any ours VMs configurations that we currently have. If we choose B might need to change our current VMs configuration in order to reflect the new IP range expanded. You guys understand what i mean?
+Link: https://cloud.google.com/vpc/docs/create-modify-vpc-networks#expand-subnet
+"If you expand the primary IPv4 range of a subnet, you might need to modify other configurations that are assuming this IP address range"
+   upvoted 5 times
+ AdelElagawany 1 year, 8 months ago
+What are the configurations needed?
+First of all the CIDR Range 10.0.0.0/18 Include the CIDR range 10.0.0.0/20 and this is a mandatory step for adjusting the Primary IP CIDR Range so No change needed on the machine level.
+   upvoted 8 times
+ sj209 1 year, 8 months ago
+you will need to update the gateway IP of all the servers in 10.0.0.0/20, while changing to 10.0.0.0/18. So adding a new subnet makes sense.
+   upvoted 1 times
+ sj209 1 year, 8 months ago
+i was wrong, GW does not change. B seems correct
+   upvoted 3 times
+ tlopsm 1 year, 7 months ago
+But the subnet mask will change
+   upvoted 1 times
+ ccpmad 1 year, 1 month ago
+You are wrong, with new subnet range, we dont have to reflect anything to existing vms.
+   upvoted 1 times
+
+2. Anonymous: halifax Most Recent  1 year, 1 month ago
+B is the correct answer
+When you expand a subnet's IP range in Google Cloud from /20 (255.255.240.0) to /18 (255.255.192.0), the existing virtual machines (VMs) will not experience any disruption, and their current configurations will remain intact.
+The subnet mask is updated automatically by Google Cloud. There are no interruptions to network connectivity for running VMs.
+This is impossible to do in traditional Networking(without outage). only in Google cloud :-)
+   upvoted 3 times
+
+3. Anonymous: IshwarChandra 1 year, 3 months ago
+Selected Answer: B
+Purpose of Secondary IP Range: "Adding a secondary IP range allows you to assign additional IP addresses to instances in a subnet without changing the subnet's primary IP range. This can be useful when you want to segregate traffic or allocate specific IP addresses to certain types of instances or workloads within the same subnet."
+In the question, no where the logical separation of vm or traffic segregation is mentioned so by expanding th eprimary ip range will increase the available ips so Option B is correct.
+   upvoted 3 times
+
+4. Anonymous: PiperMe 1 year, 4 months ago
+Selected Answer: B
+Option B offers a practical and scalable solution to address the shortage of IP addresses by enlarging the subnet's range in the most efficient way.
+Option A, while technically feasible, managing multiple IP ranges within a subnet adds complexity and can potentially lead to routing issues. Even with a secondary IP range, you'll likely need to either:
+1. Configure VMs with multiple network interfaces, each assigned an IP from a different range. This adds management overhead.
+2. Re-configure existing VMs with IPs from the new secondary range, potentially causing downtime or requiring complex IP address changes.
+   upvoted 3 times
+
+5. Anonymous: leoalvarezh 1 year, 5 months ago
+Selected Answer: A
+I think that if we go with option B is OK but we need to configure the new mask on VMs
+If we go with option A, for me is OK but VMs are not in the same LAN, we need to configure connectivity but nothing related with that requirement in the question...so maybe A is more accurate
+   upvoted 1 times
+
+6. Anonymous: Raghav2001 1 year, 5 months ago
+B can not be the answer we can use B if the IP address are primarily used by Interfaces or services with in VM
+   upvoted 1 times
+
+7. Anonymous: Cynthia2023 1 year, 6 months ago
+Selected Answer: A
+A. Add a secondary IP range 10.1.0.0/20 to the subnet:
+• This option involves adding a secondary IP range to the existing subnet. This can provide additional IP addresses without changing the existing primary IP range.
+B. Change the subnet IP range from 10.0.0.0/20 to 10.0.0.0/18:
+• This involves expanding the current subnet's CIDR range to a larger block (from /20 to /18). This expansion will significantly increase the number of available IP addresses.
+• However, changing the CIDR block of an existing subnet is not straightforward in GCP. It typically requires creating a new subnet with the desired range and migrating resources, which can be complex and disruptive.
+   upvoted 1 times
+
+8. Anonymous: tesix79748 1 year, 7 months ago
+Selected Answer: B
+All subnets have a primary CIDR range, which is the range of internal IP addresses that define the subnet. Each VM instance gets its primary internal IP address from this range. You can also allocate alias IP ranges from that primary range, or you can add a secondary range to the subnet and allocate alias IP ranges from the secondary range. Use of alias IP ranges does not require secondary subnet ranges. These secondary subnet ranges merely provide an organizational tool.
+https://cloud.google.com/vpc/docs/alias-ip
+   upvoted 4 times
+
+9. Anonymous: Tony_Almaeda 1 year, 8 months ago
+A is the Answer
+(1st) we can use secondary IP range, since we are talking about VMs.
+You can optionally add secondary IP address ranges to a subnet, which are only used by alias IP ranges. However, you can configure alias IP ranges for instances from the primary or secondary range of a subnet.
+Each primary or secondary IPv4 range for all subnets in a VPC network must be a unique valid CIDR block.
+(2nd) 10.1.0.0/20 is a valid block and it will not overlap with 10.0.0.0/20 ( The range is 10.0.0-15.0-255).
+Remember the keywords from the question "primary" and "ip add for the VM)
+   upvoted 3 times
+
+10. Anonymous: Captain1212 1 year, 10 months ago
+B is the correct answer
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #215
+
+Pergunta:
+Your company requires all developers to have the same permissions, regardless of the Google Cloud project they are working on. Your company’s security policy also restricts developer permissions to Compute Engine, Cloud Functions, and Cloud SQL. You want to implement the security policy with minimal effort. What should you do?
+
+Alternativas:
+- A. • Create a custom role with Compute Engine, Cloud Functions, and Cloud SQL permissions in one project within the Google Cloud organization.
+• Copy the role across all projects created within the organization with the gcloud iam roles copy command.
+• Assign the role to developers in those projects.
+- B. • Add all developers to a Google group in Google Groups for Workspace.
+• Assign the predefined role of Compute Admin to the Google group at the Google Cloud organization level.
+- C. • Add all developers to a Google group in Cloud Identity.
+• Assign predefined roles for Compute Engine, Cloud Functions, and Cloud SQL permissions to the Google group for each project in the Google Cloud organization.
+- D. • Add all developers to a Google group in Cloud Identity.
+• Create a custom role with Compute Engine, Cloud Functions, and Cloud SQL permissions at the Google Cloud organization level.
+• Assign the custom role to the Google group.
+
+Resposta correta:
+D. • Add all developers to a Google group in Cloud Identity.
+• Create a custom role with Compute Engine, Cloud Functions, and Cloud SQL permissions at the Google Cloud organization level.
+• Assign the custom role to the Google group.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: PiperMe 1 year, 4 months ago
+Selected Answer: D
+D combines the security of a custom role tailored to the company's policy with the ease of management provided by organization-level assignment to a Cloud Identity group.
+   upvoted 4 times
+
+2. Anonymous: leoalvarezh 1 year, 5 months ago
+Selected Answer: D
+Best practise is to use predefined roles but in this case we need to apply some restrictions about our company's security policy so I think D is the valid response.
+   upvoted 2 times
+
+3. Anonymous: joao_01 1 year, 10 months ago
+Selected Answer: D
+I vote for D
+   upvoted 4 times
+
+4. Anonymous: joao_01 1 year, 10 months ago
+I vote for D
+   upvoted 1 times
+
+5. Anonymous: Captain1212 1 year, 10 months ago
+d is the correct answer
+   upvoted 2 times
+
+6. Anonymous: scanner2 1 year, 10 months ago
+Selected Answer: D
+Permissions provided at the Organization level are inherited to the folder level and project level.
+   upvoted 2 times
+
+7. Anonymous: gpais 1 year, 11 months ago
+Selected Answer: C
+Use predefined roles: Use predefined roles, such as “Editor” or “Viewer”, instead of creating custom roles. This makes it easier to understand the level of access associated with a role.Use custom roles: Create custom roles when predefined roles do not meet the specific needs of your organization.
+In the link below:
+https://cloud.google.com/iam/docs/roles-overview#custom
+When to use custom roles
+In most situations, you should be able to use predefined roles instead of custom roles. Predefined roles are maintained by Google, and are updated automatically when new permissions, features, or services are added to Google Cloud. In contrast, custom roles are not maintained by Google; when Google Cloud adds new permissions, features, or services, your custom roles will not be updated automatically.
+   upvoted 3 times
+
+8. Anonymous: 3arle 1 year, 11 months ago
+Selected Answer: D
+only D meets best practices
+   upvoted 1 times
+
+9. Anonymous: shreykul 1 year, 12 months ago
+Selected Answer: D
+https://www.cloudskillsboost.google/focuses/1035?parent=catalog#:~:text=custom%20role%20at%20the%20organization%20level
+   upvoted 3 times
+==============================
+
+==============================
+Page X — Question #216
+
+Pergunta:
+You are working for a hospital that stores its medical images in an on-premises data room. The hospital wants to use Cloud Storage for archival storage of these images. The hospital wants an automated process to upload any new medical images to Cloud Storage. You need to design and implement a solution. What should you do?
+
+Alternativas:
+- A. Create a Pub/Sub topic, and enable a Cloud Storage trigger for the Pub/Sub topic. Create an application that sends all medical images to the Pub/Sub topic.
+- B. Create a script that uses the gcloud storage command to synchronize the on-premises storage with Cloud Storage, Schedule the script as a cron job.
+- C. Create a Pub/Sub topic, and create a Cloud Function connected to the topic that writes data to Cloud Storage. Create an application that sends all medical images to the Pub/Sub topic.
+- D. In the Google Cloud console, go to Cloud Storage. Upload the relevant images to the appropriate bucket.
+
+Resposta correta:
+B. Create a script that uses the gcloud storage command to synchronize the on-premises storage with Cloud Storage, Schedule the script as a cron job.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: sinh Highly Voted  1 year, 6 months ago
+Same as No.168.
+   upvoted 8 times
+
+2. Anonymous: shreykul Highly Voted  1 year, 12 months ago
+Selected Answer: C
+Option C is more robust and utilises the GCP functionalities correctly.
+   upvoted 7 times
+ qannik 1 year, 11 months ago
+You can not send images to a Pub/Sub topic.
+   upvoted 4 times
+ peddyua 11 months, 3 weeks ago
+Nothing saysaboutarealtime, it'sarchival solution,makes sense to upload once at night in batches, sync will work
+   upvoted 1 times
+
+3. Anonymous: peddyua Most Recent  11 months, 3 weeks ago
+Selected Answer: B
+simple automation with least efforts, and cheap
+   upvoted 2 times
+
+4. Anonymous: halifax 1 year, 1 month ago
+Selected Answer: B
+You can use 'gsutil' or 'gcloud storage' to upload to Cloud Storage
+'gcloud storage' command is more advanced, it has more automation
+while 'gcloud storage' offers enhanced performance and usability features, it does not completely replace 'gsutil'. Users should choose based on their specific needs and the complexity of their tasks.
+   upvoted 1 times
+
+5. Anonymous: PiperMe 1 year, 4 months ago
+Selected Answer: B
+B makes the most sense. Using the gcloud storage command to synchronize offers a straightforward way to mirror the on-premises data with Cloud Storage. Cron jobs are a well-established mechanism for scheduling recurring tasks, ensuring the synchronization process runs according to the hospital's needs. This approach is relatively easy to set up and maintain, especially for on-premises systems where installing additional software might be restricted.
+   upvoted 6 times
+
+6. Anonymous: Cynthia2023 1 year, 6 months ago
+Selected Answer: B
+A. Pub/Sub topic with a Cloud Storage trigger:
+• Google Cloud Pub/Sub is a messaging service for exchanging event data among applications and services. However, creating a Cloud Storage trigger for a Pub/Sub topic isn't feasible as triggers usually work the other way around (Cloud Storage events triggering Pub/Sub messages).
+• This option would not provide a direct or automated way to upload images from on-premises storage to Cloud Storage.
+   upvoted 3 times
+ Cynthia2023 1 year, 6 months ago
+. Script using gcloud storage command and cron job:
+• This approach involves writing a script that synchronizes the on-premises storage with Cloud Storage using the gcloud storage command.
+• Scheduling this script as a cron job would automate the process, allowing for regular uploads of new images without manual intervention.
+• This is a straightforward approach and aligns well with the requirement of automated archival storage.
+   upvoted 3 times
+ Cynthia2023 1 year, 6 months ago
+gcloud storage Command: there is no gcloud storage command in the Google Cloud SDK. The gcloud tool does not directly provide a functionality for synchronizing files to Google Cloud Storage.
+Correct Tool - gsutil: The correct tool to use for synchronizing files with Google Cloud Storage is gsutil, specifically the gsutil rsync command. gsutil is indeed part of the Google Cloud SDK, but it's a separate tool from gcloud.
+   upvoted 3 times
+ Cynthia2023 1 year, 6 months ago
+I still go with B, because it's the closest answer.
+   upvoted 4 times
+
+7. Anonymous: KelvinToo 1 year, 6 months ago
+Selected Answer: A
+Per ChatGPT,
+Option A is the most appropriate solution for the hospital's requirement as it provides an automated, scalable, and event-driven approach for uploading new medical images from the on-premises data room to Cloud Storage.
+   upvoted 1 times
+ PiperMe 1 year, 4 months ago
+You can't use ChatGCP with Google questions! Gemini all the way ;)
+That being said, B is the best solution. It provides a reliable, scheduled, and easy-to-manage solution that aligns perfectly with the hospital's need to automate archival storage of medical images in Cloud Storage. Introducing Pub/Sub and an additional application adds complexity. While Pub/Sub can be useful for event-driven architectures, it's overkill for this basic synchronization.
+   upvoted 1 times
+ PiperMe 1 year, 4 months ago
+ChatGPT... I've been writing GCP too many times today lol
+   upvoted 1 times
+
+8. Anonymous: ogerber 1 year, 7 months ago
+Selected Answer: B
+Its B, replicated question.
+   upvoted 2 times
+
+9. Anonymous: hylee 1 year, 7 months ago
+Selected Answer: B
+Hello, guys. the exact same question was Question. 91.
+and the answer was :
+- Create a script that uses the gsutil command line interface to synchronize the on-premises storage with Cloud Storage. Schedule the script as a cron job.
+So I would vote for B
+   upvoted 4 times
+
+10. Anonymous: carlalap 1 year, 8 months ago
+The answer is C. The hint is "The hospital wants an automated process to upload any new medical images to Cloud Storage". By creating a Cloud Function connected to the topic, you can write a serverless function that automatically executes when a new message is published to the topic. The Cloud Function can then write the data to Cloud Storage, which is a durable and cost-effective storage service for archival purposes.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #217
+
+Pergunta:
+Your company has an internal application for managing transactional orders. The application is used exclusively by employees in a single physical location. The application requires strong consistency, fast queries, and ACID guarantees for multi-table transactional updates. The first version of the application is implemented in PostgreSQL, and you want to deploy it to the cloud with minimal code changes. Which database is most appropriate for this application?
+
+Alternativas:
+- A. Bigtable
+- B. BigQuery
+- C. Cloud SQL
+- D. Firestore
+
+Resposta correta:
+C. Cloud SQL
+
+Top 10 Discussões (sem replies):
+1. Anonymous: shmoeee Highly Voted  1 year, 10 months ago
+Another duplicate question
+   upvoted 6 times
+
+2. Anonymous: Rahaf99 Highly Voted  2 years, 1 month ago
+Selected Answer: C
+Cloud SQL is very similar to postgreSQL
+   upvoted 5 times
+
+3. Anonymous: FormacionCloud314 Most Recent  1 year, 2 months ago
+as already answered in question 188, the answer is CLoud SQL.
+   upvoted 2 times
+
+4. Anonymous: carlalap 2 years, 2 months ago
+Cloud SQL (supports PostgreSQL), so it should require minimal code changes.
+Answer:
+C. Cloud SQL
+   upvoted 2 times
+
+5. Anonymous: xhilmi 2 years, 4 months ago
+So what about this another question?
+Your company has an internal application for managing transactional orders. The application is used exclusively by employees in a single physical location. The application requires strong consistency, fast queries, and ACID guarantees for multi-table transactional updates. The first version of the application is implemented in PostgreSQL, and you want to deploy it to the cloud with minimal code changes. Which database is most appropriate for this application?
+A. BigQuery
+B. Cloud SQL
+C. Cloud Spanner
+D. Cloud Datastore
+It should be Cloud Spanner or Cloud SQL ?
+   upvoted 2 times
+ joao_01 2 years, 3 months ago
+Cloud SQL
+   upvoted 4 times
+
+6. Anonymous: 3arle 2 years, 5 months ago
+Selected Answer: C
+ACID and strong consistency are in C or D, but Firestore is for documents and in question we have "multi-table updates" so there left C
+   upvoted 2 times
+ rahulrauki 2 years, 3 months ago
+You missed the main "postgres" part but yeah
+   upvoted 1 times
+
+7. Anonymous: pritampanda1988 2 years, 5 months ago
+Selected Answer: C
+Cloud SQL is the most appropriate choice for deploying the application with the required characteristics while minimizing code changes and maintaining strong consistency, fast queries, and ACID guarantees for multi-table transactional updates.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #218
+
+Pergunta:
+Your company runs one batch process in an on-premises server that takes around 30 hours to complete. The task runs monthly, can be performed offline, and must be restarted if interrupted. You want to migrate this workload to the cloud while minimizing cost. What should you do?
+
+Alternativas:
+- A. Create an Instance Template with Spot VMs On. Create a Managed Instance Group from the template and adjust Target CPU Utilization. Migrate the workload.
+- B. Migrate the workload to a Compute Engine VM. Start and stop the instance as needed.
+- C. Migrate the workload to a Google Kubernetes Engine cluster with Spot nodes.
+- D. Migrate the workload to a Compute Engine Spot VM.
+
+Resposta correta:
+B. Migrate the workload to a Compute Engine VM. Start and stop the instance as needed.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: shreykul Highly Voted  2 years, 5 months ago
+Selected Answer: B
+B. Migrating the workload to a Compute Engine VM and starting and stopping the instance as needed allows you to control when the task runs. This approach provides flexibility in terms of when to initiate the batch process, and it can be easily scheduled to run monthly. By stopping the instance when the task is not running, you can save on compute costs.
+   upvoted 12 times
+
+2. Anonymous: longph8 Most Recent  10 months ago
+Selected Answer: D
+Spot VMs (Option D) provide the lowest cost and fit the batch process's needs perfectly.
+Regular VMs (Option B) are flexible but cost significantly more without adding value for this use case.
+   upvoted 2 times
+
+3. Anonymous: peddyua 11 months, 3 weeks ago
+Selected Answer: D
+key work 'performed offline' and runs '30 hours' nobody will be sitting and watching this for 30 hours, during night.
+   upvoted 1 times
+
+4. Anonymous: wota 1 year, 1 month ago
+Gemini recommands "Spot VMs", So Answer is D
+   upvoted 1 times
+
+5. Anonymous: Enamfrancis 1 year, 3 months ago
+Selected Answer: D
+D is correct
+   upvoted 2 times
+
+6. Anonymous: Timfdklfajlksdjlakf 1 year, 4 months ago
+Selected Answer: B
+B. is correct. shreykul provided you the correct answer, take it or leave it.
+   upvoted 1 times
+
+7. Anonymous: BuenaCloudDE 1 year, 6 months ago
+Selected Answer: A
+It seems to me that answer is A.
+Scale to zero - After completed batch processes, minimize cost.
+Spot VM - minimize cost.
+failure resistant - do not need restart instance.
+You already have a template - delete and deploy your Compute instances once a month easily and fast.
+Can you explain me unless I understand some thing.
+   upvoted 2 times
+
+8. Anonymous: noopy 1 year, 9 months ago
+Selected Answer: A
+A is the most robust and cost-effective for your scenario. This setup leverages the cost savings of Spot VMs while also providing the ability to handle interruptions through a Managed Instance Group, ensuring the process is completed even if individual instances are preempted. Additionally, the automatic scaling based on CPU utilization helps manage resources efficiently, further reducing costs.
+Thus, A not only minimizes costs by using Spot VMs but also enhances reliability and scalability through a Managed Instance Group, making it the most suitable choice for migrating your batch process to the cloud.
+   upvoted 1 times
+ ccpmad 1 year, 8 months ago
+"runs one batch process"
+So, why would you like a instange group? it is only one batch process. And if it is interrupted, it has to be restarted...for me it is B.
+   upvoted 2 times
+ BuenaCloudDE 1 year, 6 months ago
+It seems to me that answer is A.
+Scale to zero - After completed batch processes, minimize cost.
+Spot VM - minimize cost.
+failure resistant - do not need restart instance.
+You already have a template - delete and deploy your Compute instances once a month easily and fast.
+Can you explain me unless I understand some thing.
+   upvoted 1 times
+
+9. Anonymous: omunoz 1 year, 9 months ago
+I don´t like this kind of questions... but I think is A..
+An Instance Template with Spot VMs (not preemptible)...
+   upvoted 1 times
+ yomi95 1 year, 3 months ago
+But will this 30hour job have to restart every time spot VM is replaced since they can preempt with 30 sec notice.
+   upvoted 1 times
+
+10. Anonymous: pumajd 1 year, 10 months ago
+Selected Answer: B
+Same as 136
+   upvoted 2 times
+ aviiciii 1 year, 6 months ago
+no, this question has different answer choices with the inclusion of spot vms
+   upvoted 3 times
+ Phat 10 months ago
+Google renamed it to spot to align with industry terminilogy.
+   upvoted 1 times
+ 85c887f 9 months, 3 weeks ago
+In 136 we had preemptible VMs, that are limited to 24 h, and this is not a case with a Spot VMS. So answers would not be the same.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #219
+
+Pergunta:
+You are planning to migrate the following on-premises data management solutions to Google Cloud:
+
+• One MySQL cluster for your main database
+• Apache Kafka for your event streaming platform
+• One Cloud SQL for PostgreSQL database for your analytical and reporting needs
+
+You want to implement Google-recommended solutions for the migration. You need to ensure that the new solutions provide global scalability and require minimal operational and infrastructure management. What should you do?
+
+Alternativas:
+- A. Migrate from MySQL to Cloud SQL, from Kafka to Pub/Sub, and from Cloud SQL for PostgreSQL to BigQuery.
+- B. Migrate from MySQL to Cloud Spanner, from Kafka to Pub/Sub, and from Cloud SQL for PostgreSQL to BigQuery.
+- C. Migrate from MySQL to Cloud Spanner, from Kafka to Memorystore, and from Cloud SQL for PostgreSQL to Cloud SQL.
+- D. Migrate from MySQL to Cloud SQL, from Kafka to Memorystore, and from Cloud SQL for PostgreSQL to Cloud SQL.
+
+Resposta correta:
+B. Migrate from MySQL to Cloud Spanner, from Kafka to Pub/Sub, and from Cloud SQL for PostgreSQL to BigQuery.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: VijKall Highly Voted  1 year, 8 months ago
+Selected Answer: B
+Needs Global scalability ---- Spanner is in, CloudSQL is out.
+Kafka --> Pub/Sub & not memory store.
+Postgres --> BigQuery as it needs scalability and for analytics.
+   upvoted 14 times
+
+2. Anonymous: kacper07 Most Recent  1 year, 1 month ago
+B is correct, even M$ copilot chose it :D
+   upvoted 1 times
+
+3. Anonymous: ExamsFR 1 year, 10 months ago
+Selected Answer: B
+B is the correct answer.
+   upvoted 2 times
+
+4. Anonymous: joao_01 1 year, 10 months ago
+Selected Answer: B
+Its B, makes sense
+   upvoted 2 times
+
+5. Anonymous: Captain1212 1 year, 10 months ago
+B is the correrct answer as question demands global scalibity for it cloud spanner , for PostgreSQL to BIG query
+   upvoted 3 times
+
+6. Anonymous: scanner2 1 year, 10 months ago
+Selected Answer: B
+For event streaming -> Cloud Pub/Sub is a good choice.
+https://cloud.google.com/pubsub/docs/overview
+Database for analytics and reporting -> BigQuery is a good choice.
+https://cloud.google.com/bigquery/docs/introduction
+For MySQL, we have two options Cloud SQL or Cloud Spanner. Cloud SQL has MySQL flavored database, while Cloud Spanner provide Google Standard SQL (aka GoogleSQL) which supports standard SQL queries. In addition, the question is asking about "global scalability and require minimal operational and infrastructure management", where Cloud Spanner wins a score.
+Hence, B is the correct answer.
+https://cloud.google.com/spanner
+https://cloud.google.com/spanner/docs/create-query-database-console#create-instance
+https://cloud.google.com/spanner/docs/create-query-database-console#create-database
+   upvoted 2 times
+
+7. Anonymous: 3arle 1 year, 11 months ago
+Selected Answer: B
+agree B
+   upvoted 1 times
+
+8. Anonymous: Speridian 1 year, 11 months ago
+B should be the answer. Cloud Spanner - Global support.
+   upvoted 1 times
+
+9. Anonymous: ankitb4u 1 year, 11 months ago
+B should be the answer as cloud spanner provides scalability
+   upvoted 4 times
+==============================
+
+==============================
+Page X — Question #220
+
+Pergunta:
+During a recent audit of your existing Google Cloud resources, you discovered several users with email addresses outside of your Google Workspace domain. You want to ensure that your resources are only shared with users whose email addresses match your domain. You need to remove any mismatched users, and you want to avoid having to audit your resources to identify mismatched users. What should you do?
+
+Alternativas:
+- A. Create a Cloud Scheduler task to regularly scan your projects and delete mismatched users.
+- B. Create a Cloud Scheduler task to regularly scan your resources and delete mismatched users.
+- C. Set an organizational policy constraint to limit identities by domain to automatically remove mismatched users.
+- D. Set an organizational policy constraint to limit identities by domain, and then retroactively remove the existing mismatched users
+
+Resposta correta:
+D. Set an organizational policy constraint to limit identities by domain, and then retroactively remove the existing mismatched users
+
+Top 10 Discussões (sem replies):
+1. Anonymous: joao_01 Highly Voted  2 years, 4 months ago
+Selected Answer: D
+Its D. "The domain restriction constraint is not retroactive. Once a domain restriction is set, this limitation will apply to IAM policy changes made from that point forward, and not to any previous changes.". Link: https://cloud.google.com/resource-manager/docs/organization-policy/restricting-domains
+   upvoted 8 times
+
+2. Anonymous: denno22 Most Recent  1 year, 3 months ago
+Selected Answer: D
+Organization policies are not retroactive. If you need to force a change to your resource hierarchy that would violate an enforced constraint, you can disable the organization policy, make the change, and then enable the organization policy again.
+   upvoted 1 times
+
+3. Anonymous: Timfdklfajlksdjlakf 1 year, 4 months ago
+Selected Answer: D
+joao_01 provided the appropriate answer, take it or leave it.
+   upvoted 1 times
+
+4. Anonymous: scanner2 2 years, 4 months ago
+Selected Answer: D
+D seems to be most appropriate. You can use organization policy constraint to limit the identities by domain. Once the organization policy is set, you can remove the leftover users that mismatched the conditions.
+https://cloud.google.com/resource-manager/docs/organization-policy/restricting-domains
+   upvoted 4 times
+
+5. Anonymous: Cherrycardo 2 years, 5 months ago
+Selected Answer: D
+https://cloud.google.com/resource-manager/docs/organization-policy/org-policy-constraints
+This list constraint defines the set of domains that email addresses added to Essential Contacts can have.
+By default, email addresses with any domain can be added to Essential Contacts.
+The allowed/denied list must specify one or more domains of the form @example.com. If this constraint is active and configured with allowed values, only email addresses with a suffix matching one of the entries from the list of allowed domains can be added in Essential Contacts.
+This constraint has no effect on updating or removing existing contacts.
+constraints/essentialcontacts.allowedContactDomains
+   upvoted 2 times
+
+6. Anonymous: 3arle 2 years, 5 months ago
+Selected Answer: D
+In order to define an organization policy, you choose a constraint, which is a particular type of restriction
+   upvoted 2 times
+
+7. Anonymous: juliorevk 2 years, 5 months ago
+Selected Answer: D
+https://cloud.google.com/resource-manager/docs/organization-policy/org-policy-constraints - Domain restricted sharing
+If this constraint is active, only principals that belong to the allowed customer IDs can be added to IAM policies. It doesn't specifically say, but I think it doesn't get rid of existing principals.
+   upvoted 2 times
+
+8. Anonymous: Speridian 2 years, 5 months ago
+Should be D. Organization policy does not remove users automatically.
+   upvoted 2 times
+==============================

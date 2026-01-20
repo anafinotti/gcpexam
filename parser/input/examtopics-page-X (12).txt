@@ -1,0 +1,872 @@
+==============================
+Page X — Question #121
+
+Pergunta:
+Your managed instance group raised an alert stating that new instance creation has failed to create new instances. You need to maintain the number of running instances specified by the template to be able to process expected application traffic. What should you do?
+
+Alternativas:
+- A. Create an instance template that contains valid syntax which will be used by the instance group. Delete any persistent disks with the same name as instance names.
+- B. Create an instance template that contains valid syntax that will be used by the instance group. Verify that the instance name and persistent disk name values are not the same in the template.
+- C. Verify that the instance template being used by the instance group contains valid syntax. Delete any persistent disks with the same name as instance names. Set the disks.autoDelete property to true in the instance template.
+- D. Delete the current instance template and replace it with a new instance template. Verify that the instance name and persistent disk name values are not the same in the template. Set the disks.autoDelete property to true in the instance template.
+
+Resposta correta:
+A. Create an instance template that contains valid syntax which will be used by the instance group. Delete any persistent disks with the same name as instance names.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: TAvenger Highly Voted  4 years, 11 months ago
+Really tricky question.
+Ideal scenario would be
+1. create new template, while creating ensure that in the new template disks.autoDelete=true, 3. delete existing persistent disks, 4. make rolling update ...
+In order to switch to new template we need "Rolling update". Unfortunately, it is not mentioned.
+With current options
+C - not correct, we cannot update existing template
+D - not correct, we cannot delete existing template when it is in use (just checked in GCP) (We need rolling update)
+B - will not solve our problem without Rolling update
+A - This is the only option (I know that it can be temporary) that will work without Rolling update according to
+https://cloud.google.com/compute/docs/troubleshooting/troubleshooting-migs
+   upvoted 61 times
+ ShakthiGCP 4 years, 10 months ago
+Well reasoned. I'm also going with A.
+   upvoted 2 times
+ FunkyB 2 years, 11 months ago
+Thank you for providing the link.
+   upvoted 2 times
+ ovokpus 2 years, 3 months ago
+C - you were not told to update existing template. You were told to verify the syntax is correct.
+   upvoted 2 times
+
+2. Anonymous: ESP_SAP Highly Voted  5 years, 5 months ago
+Correct Answer is (C):
+Your instance template has set the disks.autoDelete option to false for boot persistent disks so that when a VM has been deleted (for example, because of autohealing), the persistent disk was not deleted. When the managed instance group attempted to recreate the VM with the same name, it ran into the same issue where a persistent disk already exists with the same name. Delete the existing persistent disk to resolve the immediate problem and update the instance template to set the disks.autoDelete to true if you would like boot persistent disks to be deleted alongside the instance
+https://cloud.google.com/compute/docs/instance-groups/creating-groups-of-managed-instances#troubleshooting
+   upvoted 44 times
+ magistrum 5 years ago
+Can't update instance templates, see below
+   upvoted 19 times
+ JackGlemins 4 years, 10 months ago
+https://cloud.google.com/compute/docs/instance-templates#how_to_update_instance_templates
+   upvoted 12 times
+
+3. Anonymous: guaose Most Recent  2 months, 2 weeks ago
+Selected Answer: D
+Why the other options are less ideal:
+A and B: They don’t mention updating the instance template or setting autoDelete, which is crucial to prevent future disk name conflicts.
+C: While it includes autoDelete, it doesn’t mention updating the template or verifying name uniqueness, which is necessary to resolve the issue.
+   upvoted 1 times
+
+4. Anonymous: dead1407 4 months, 2 weeks ago
+Selected Answer: C
+Instance creation can fail if there are naming conflicts between instance names and persistent disk names, or if disks are not set to auto-delete and already exist. Verifying the template, deleting conflicting disks, and ensuring disks.autoDelete is set to true will help maintain the correct number of running instances as specified by the template.
+   upvoted 1 times
+
+5. Anonymous: Comunidad 7 months, 2 weeks ago
+Selected Answer: C
+Opción Acción Comentario
+A Crear un nuevo instance template con sintaxis válida y eliminar discos persistentes con el mismo nombre que las instancias. Correcto, pero incompleto: no aborda el problema recurrente, solo lo evita momentáneamente.
+C Verificar que el template actual tiene sintaxis válida, eliminar discos persistentes conflictivos, y configurar disks.autoDelete = true. ✅ Solución completa: evita el problema ahora y previene que ocurra de nuevo.
+   upvoted 1 times
+
+6. Anonymous: sabbella 10 months ago
+Selected Answer: C
+If you don’t set autoDelete: true, disks from deleted VMs will stick around
+Google recommends setting autoDelete: true in MIG templates to avoid this exact scenario
+   upvoted 1 times
+
+7. Anonymous: yomi95 1 year, 2 months ago
+Selected Answer: A
+From my understanding this VM creation issue is based on boot disk from a previous failed VM exists within the MIG making the MIG unable to create a New VM for that failed VM (Auto healing). all the answers are based on this solution. (There might be other issues as per below document which needs other solutions).
+But the document states below for boot disk issue scenario in a MIG,
+https://cloud.google.com/compute/docs/troubleshooting/troubleshooting-migs
+"The boot disk already exists
+By default, a new boot persistent disk is created when you create an instance. The name of the boot disk matches the name of the VM. If you name a VM my-instance, the disk is also named my-instance. If a persistent disk already exists with that name, the request fails. To resolve this issue, you can optionally take a snapshot, and then delete the existing persistent disk."
+   upvoted 1 times
+
+8. Anonymous: master9 1 year, 4 months ago
+Selected Answer: C
+Ensure the template is valid.
+Persistent disk naming: Avoid naming disks the same as instances.
+Automatic deletion: Set disks.autoDelete to true in the template for automatic disk removal.
+   upvoted 1 times
+
+9. Anonymous: ccpmad 1 year, 7 months ago
+Is not C
+"Instance templates are designed to create instances with identical configurations. So you cannot update an existing instance template or change an instance template after you create it."
+https://cloud.google.com/compute/docs/instance-templates#how_to_update_instance_templates
+   upvoted 2 times
+
+10. Anonymous: bubidubi 1 year, 11 months ago
+I have no idea and looking at options and explanations from everyone here A, C or D could be the answers.
+I thought it was D personally, but all answers seem to not make any sense. Usually you can discard one or 2, but here all are the same to me.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #122
+
+Pergunta:
+Your company is moving from an on-premises environment to Google Cloud. You have multiple development teams that use Cassandra environments as backend databases. They all need a development environment that is isolated from other Cassandra instances. You want to move to Google Cloud quickly and with minimal support effort. What should you do?
+
+Alternativas:
+- A. 1. Build an instruction guide to install Cassandra on Google Cloud. 2. Make the instruction guide accessible to your developers.
+- B. 1. Advise your developers to go to Cloud Marketplace. 2. Ask the developers to launch a Cassandra image for their development work.
+- C. 1. Build a Cassandra Compute Engine instance and take a snapshot of it. 2. Use the snapshot to create instances for your developers.
+- D. 1. Build a Cassandra Compute Engine instance and take a snapshot of it. 2. Upload the snapshot to Cloud Storage and make it accessible to your developers. 3. Build instructions to create a Compute Engine instance from the snapshot so that developers can do it themselves.
+
+Resposta correta:
+B. 1. Advise your developers to go to Cloud Marketplace. 2. Ask the developers to launch a Cassandra image for their development work.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: DarioFama23 Highly Voted  5 years ago
+B is correct for me.. launch a solution from marketplace
+   upvoted 28 times
+
+2. Anonymous: ESP_SAP Highly Voted  4 years, 11 months ago
+Correct Answer is (B):
+https://medium.com/google-cloud/how-to-deploy-cassandra-and-connect-on-google-cloud-platform-with-a-few-clicks-11ee3d7001d1
+   upvoted 24 times
+ nightflyer 4 years, 7 months ago
+But we are moving from on premises to gcp
+   upvoted 1 times
+ xtian2900 4 years, 10 months ago
+thanks, i always look for your insight
+   upvoted 5 times
+
+3. Anonymous: bubidubi Most Recent  1 year, 5 months ago
+For me the answer is B for no other reason than it mentions Marketplace, which I imagine google wants you to think about and it's what the majority had selected as well.
+   upvoted 1 times
+
+4. Anonymous: thewalker 1 year, 8 months ago
+Selected Answer: B
+B
+With minimal support - a click away:
+https://console.cloud.google.com/marketplace/product/bitnami-launchpad/cassandra?project=fast-art-401415
+   upvoted 2 times
+
+5. Anonymous: scanner2 1 year, 10 months ago
+Selected Answer: B
+Key term is "move to Google Cloud quickly and with minimal support effort". Right away you can think of Google Cloud Marketplace in such situations.
+   upvoted 1 times
+
+6. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: B
+B is the correct answer as , it requires the minimal effoort
+   upvoted 1 times
+
+7. Anonymous: creativenets 2 years, 1 month ago
+Selected Answer: D
+D is the right answer not B. Remember the question states moving from on premise to gcloud. Meaning we already have servers build. We would need those image or snapshot so devs can create their own insance.
+A and B - start from scratch
+C - Doesnt give permissions to devs so you'll have to create the instance (more support effort)
+   upvoted 1 times
+ geeroylenkins 2 years ago
+nah - D is not the right answer. D says build a Cassandra CE instance. The answer does not refer to taking a snapshot of the on-prem instances, it refers to a snapshot of a Compute Engine VM which you'd have to manually build.
+B is correct
+   upvoted 2 times
+
+8. Anonymous: Untamables 2 years, 9 months ago
+Selected Answer: B
+B
+https://cloud.google.com/blog/products/databases/open-source-cassandra-now-managed-on-google-cloud
+   upvoted 3 times
+
+9. Anonymous: AzureDP900 3 years ago
+B absolutely correct, there is no need of manual installs.
+   upvoted 1 times
+
+10. Anonymous: pfabio 3 years, 2 months ago
+Selected Answer: B
+B is correct: You want to move to Google Cloud quickly and with minimal support effort.
+https://cloud.google.com/marketplace
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #123
+
+Pergunta:
+You have a Compute Engine instance hosting a production application. You want to receive an email if the instance consumes more than 90% of its CPU resources for more than 15 minutes. You want to use Google services. What should you do?
+
+Alternativas:
+- A. 1. Create a consumer Gmail account. 2. Write a script that monitors the CPU usage. 3. When the CPU usage exceeds the threshold, have that script send an email using the Gmail account and smtp.gmail.com on port 25 as SMTP server.
+- B. 1. Create a Cloud Monitoring Workspace and associate your Google Cloud Platform (GCP) project with it. 2. Create a Cloud Monitoring Alerting Policy that uses the threshold as a trigger condition. 3. Configure your email address in the notification channel.
+- C. 1. Create a Cloud Monitoring Workspace and associate your GCP project with it. 2. Write a script that monitors the CPU usage and sends it as a custom metric to Cloud Monitoring. 3. Create an uptime check for the instance in Cloud Monitoring.
+- D. 1. In Cloud Logging, create a logs-based metric to extract the CPU usage by using this regular expression: CPU Usage: ([0-9] {1,3})% 2. In Cloud Monitoring, create an Alerting Policy based on this metric. 3. Configure your email address in the notification channel.
+
+Resposta correta:
+B. 1. Create a Cloud Monitoring Workspace and associate your Google Cloud Platform (GCP) project with it. 2. Create a Cloud Monitoring Alerting Policy that uses the threshold as a trigger condition. 3. Configure your email address in the notification channel.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Bobbybash Highly Voted  2 years, 5 months ago
+Selected Answer: B
+B
+By setting up a Cloud Monitoring Alerting Policy and configuring the notification channel to an email address, you can receive email alerts when the CPU usage exceeds the threshold that you set. This can be done by using Google Cloud's built-in monitoring and alerting features, which can be more reliable and easier to manage than setting up a custom script or using external email services.
+   upvoted 5 times
+
+2. Anonymous: ccpmad Most Recent  1 year, 1 month ago
+now, 2024, I think is not necessary to create workspace in monitoring...
+   upvoted 3 times
+ ccpmad 1 year, 1 month ago
+Cloud Monitoring metric scope is now
+   upvoted 1 times
+
+3. Anonymous: dgmon174 1 year, 6 months ago
+What is up with blatantly wrong options being marked as the "correct answer"??
+   upvoted 2 times
+
+4. Anonymous: cooldude26 1 year, 8 months ago
+Selected Answer: B
+The most appropriate and efficient method to set up an alert for high CPU usage on a Google Compute Engine instance using Google's services would be:
+B.
+1. Create a Cloud Monitoring Workspace and associate your Google Cloud Platform (GCP) project with it.
+2. Create a Cloud Monitoring Alerting Policy that uses the threshold as a trigger condition. 3. Configure your email address in the notification channel.
+This option utilizes Google Cloud's built-in Cloud Monitoring service to track the CPU usage and send alerts based on predefined conditions without the need for scripting or managing an email server.
+   upvoted 3 times
+
+5. Anonymous: LDAP_Anand 2 years, 6 months ago
+D. 1. In Cloud Logging, create a logs-based metric to extract the CPU usage by using this regular expression: CPU Usage: ([0-9] {1,3})% 2. In Cloud Monitoring, create an Alerting Policy based on this metric. 3. Configure your email address in the notification channel.
+   upvoted 1 times
+
+6. Anonymous: u422628 2 years, 6 months ago
+Selected Answer: B
+Agree, B works
+   upvoted 2 times
+
+7. Anonymous: fragment137 2 years, 7 months ago
+Selected Answer: B
+Agree it's B if we're talking about StackDriver.
+   upvoted 1 times
+
+8. Anonymous: anolive 2 years, 9 months ago
+Selected Answer: B
+is correct
+   upvoted 1 times
+
+9. Anonymous: ale_brd_111 2 years, 10 months ago
+Selected Answer: B
+answer is B, but I would write it this way as stackdriver is deprecated and Operation Suite uses scopes now.
+1. Create a Cloud Monitoring metric scope and associate your Google Cloud Platform (GCP) project with it.
+2. Create a Cloud Monitoring Alerting Policy that uses the threshold as a trigger condition.
+3. Configure your email address in the notification channel.
+   upvoted 3 times
+==============================
+
+==============================
+Page X — Question #124
+
+Pergunta:
+You have an application that uses Cloud Spanner as a backend database. The application has a very predictable traffic pattern. You want to automatically scale up or down the number of Spanner nodes depending on traffic. What should you do?
+
+Alternativas:
+- A. Create a cron job that runs on a scheduled basis to review Cloud Monitoring metrics, and then resize the Spanner instance accordingly.
+- B. Create a Cloud Monitoring alerting policy to send an alert to oncall SRE emails when Cloud Spanner CPU exceeds the threshold. SREs would scale resources up or down accordingly.
+- C. Create a Cloud Monitoring alerting policy to send an alert to Google Cloud Support email when Cloud Spanner CPU exceeds your threshold. Google support would scale resources up or down accordingly.
+- D. Create a Cloud Monitoring alerting policy to send an alert to webhook when Cloud Spanner CPU is over or under your threshold. Create a Cloud Function that listens to HTTP and resizes Spanner resources accordingly.
+
+Resposta correta:
+D. Create a Cloud Monitoring alerting policy to send an alert to webhook when Cloud Spanner CPU is over or under your threshold. Create a Cloud Function that listens to HTTP and resizes Spanner resources accordingly.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: GCP_Student1 Highly Voted  4 years, 10 months ago
+D. Create a Cloud Monitoring alerting policy to send an alert to webhook when Cloud Spanner CPU is over or under your threshold. Create a Cloud Function that listens to HTTP and resizes Spanner resources accordingly.
+   upvoted 26 times
+
+2. Anonymous: theBestStudent Highly Voted  3 years, 5 months ago
+Selected Answer: D
+Without knowing that much, you can discard easily B,C as they don't make any sense. Automation should be a key in this answer. Also you should discard "A" as with a CronJob you won't spann on time as it will be a fixed time checking. So the only one that is left is D, as just creating an alert and sending it to "something else" (in this case a webhook) in an automated way, should be the common sense way of handling this.
+   upvoted 10 times
+ FeaRoX 2 years, 11 months ago
+Isn't "fixed time chacking" appropriate for quote : very predictable traffic pattern?
+   upvoted 3 times
+ space_cadet 2 years, 10 months ago
+Crossed my mind too, but why check every time when you can trigger a response when it happens.
+Predictability can also be used to determine the threshold.
+   upvoted 2 times
+
+3. Anonymous: BuenaCloudDE Most Recent  1 year, 6 months ago
+Why not A if traffic very predictable?
+   upvoted 2 times
+
+4. Anonymous: cooldude26 2 years, 2 months ago
+Selected Answer: D
+The most suitable approach to automatically scale the number of Cloud Spanner nodes based on predictable traffic patterns is:
+D. Create a Cloud Monitoring alerting policy to send an alert to a webhook when Cloud Spanner CPU is over or under your threshold. Create a Cloud Function that listens to HTTP and resizes Spanner resources accordingly.
+This option utilizes Cloud Monitoring alerts and Cloud Functions to dynamically scale Cloud Spanner resources based on CPU thresholds, providing an automated and responsive solution.
+   upvoted 2 times
+
+5. Anonymous: scanner2 2 years, 4 months ago
+Selected Answer: D
+Correct answer is D.
+   upvoted 1 times
+
+6. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: D
+D is the correct Answer as B or C does not do it automatically, and a doesnot use for long spanning
+   upvoted 1 times
+
+7. Anonymous: temppp 3 years ago
+Why not A is correct as question suggested specific time where as D is like an unpredectiable time?
+   upvoted 3 times
+ jrisl1991 2 years, 11 months ago
+Because even though the traffic has a clear pattern, if the traffic changes one day (like a special holiday for ecommerce websites), you wouldn't be able to serve accordingly. It's never a good practice use fixed jobs for time-based traffic issues.
+   upvoted 3 times
+
+8. Anonymous: roaming_panda 3 years, 1 month ago
+D is definitely correct .. people
+   upvoted 1 times
+
+9. Anonymous: abirroy 3 years, 5 months ago
+Selected Answer: D
+Correct answer is D
+   upvoted 1 times
+
+10. Anonymous: AzureDP900 3 years, 6 months ago
+D is correct, It is part of Tutorials Dojo practice test
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #125
+
+Pergunta:
+Your company publishes large files on an Apache web server that runs on a Compute Engine instance. The Apache web server is not the only application running in the project. You want to receive an email when the egress network costs for the server exceed 100 dollars for the current month as measured by Google Cloud.
+What should you do?
+
+Alternativas:
+- A. Set up a budget alert on the project with an amount of 100 dollars, a threshold of 100%, and notification type of ג€email.ג€
+- B. Set up a budget alert on the billing account with an amount of 100 dollars, a threshold of 100%, and notification type of ג€email.ג€
+- C. Export the billing data to BigQuery. Create a Cloud Function that uses BigQuery to sum the egress network costs of the exported billing data for the Apache web server for the current month and sends an email if it is over 100 dollars. Schedule the Cloud Function using Cloud Scheduler to run hourly.
+- D. Use the Cloud Logging Agent to export the Apache web server logs to Cloud Logging. Create a Cloud Function that uses BigQuery to parse the HTTP response log data in Cloud Logging for the current month and sends an email if the size of all HTTP responses, multiplied by current Google Cloud egress prices, totals over 100 dollars. Schedule the Cloud Function using Cloud Scheduler to run hourly.
+
+Resposta correta:
+C. Export the billing data to BigQuery. Create a Cloud Function that uses BigQuery to sum the egress network costs of the exported billing data for the Apache web server for the current month and sends an email if it is over 100 dollars. Schedule the Cloud Function using Cloud Scheduler to run hourly.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: GCP_Student1 Highly Voted  4 years, 4 months ago
+C. Export the billing data to BigQuery. Create a Cloud Function that uses BigQuery to sum the egress network costs of the exported billing data for the Apache web server for the current month and sends an email if it is over 100 dollars. Schedule the Cloud Function using Cloud Scheduler to run hourly.
+   upvoted 24 times
+
+2. Anonymous: MyName_ Highly Voted  4 years, 3 months ago
+[C]
+I think the keyword here is "as measured by Google Cloud". In Answer D you calculate the price yourself, in C you use the billing provided by GCP. Thus I think the Answer is C.
+   upvoted 13 times
+
+3. Anonymous: dead1407 Most Recent  4 months, 2 weeks ago
+Selected Answer: C
+Since the Apache server is not the only application in the project, a project- or billing-account-wide budget alert would not be specific to the server. Exporting billing data to BigQuery allows you to filter and sum egress costs specifically for the Compute Engine instance running Apache. Automating this with a Cloud Function and Cloud Scheduler ensures you get notified when the threshold is exceeded.
+   upvoted 1 times
+
+4. Anonymous: bubidubi 1 year, 5 months ago
+I would never had guessed C or D. I thought it's A, as it's the most straight forward. C or D are ridiculously complex to me.
+   upvoted 7 times
+ omunoz 1 year, 2 months ago
+You need to filter only Network egress costs, so C make more sense...
+   upvoted 2 times
+
+5. Anonymous: scanner2 1 year, 10 months ago
+Selected Answer: C
+Correct answer is C.
+   upvoted 1 times
+
+6. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: C
+C is the correct answer , as it gives you everything the question wants
+   upvoted 1 times
+
+7. Anonymous: Shenannigan 2 years, 2 months ago
+Selected Answer: A
+Answer is A
+From this Link:
+https://cloud.google.com/load-balancing/docs/ssl
+it states this:
+External SSL proxy load balancers are intended for non-HTTP(S) traffic. For HTTP(S) traffic, we recommend that you use an external HTTP(S) load balancer.
+443 is HTTPS traffic
+for those saying 443 isn't https
+https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml?search=443
+   upvoted 1 times
+ Shenannigan 2 years, 2 months ago
+Disregard this was supposed to be for question 127
+   upvoted 2 times
+
+8. Anonymous: HiddenClouds 2 years, 7 months ago
+Selected Answer: C
+Took the exam this week this question is on there, C is the correct answer you need to remember to filter.
+   upvoted 9 times
+
+9. Anonymous: Charumathi 2 years, 9 months ago
+Selected Answer: C
+C is the correct answer,
+You export the bill to BigQuery and filter for the Egress cost for the particular application, and send an email if the cost is over 100 dollars, to send an email you need to use cloud function to monitor and trigger based on the conditions.
+   upvoted 1 times
+
+10. Anonymous: sylva91 2 years, 10 months ago
+Selected Answer: C
+it can only be the C because "it's not the only app running"
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #126
+
+Pergunta:
+You have designed a solution on Google Cloud that uses multiple Google Cloud products. Your company has asked you to estimate the costs of the solution. You need to provide estimates for the monthly total cost. What should you do?
+
+Alternativas:
+- A. For each Google Cloud product in the solution, review the pricing details on the products pricing page. Use the pricing calculator to total the monthly costs for each Google Cloud product.
+- B. For each Google Cloud product in the solution, review the pricing details on the products pricing page. Create a Google Sheet that summarizes the expected monthly costs for each product.
+- C. Provision the solution on Google Cloud. Leave the solution provisioned for 1 week. Navigate to the Billing Report page in the Cloud Console. Multiply the 1 week cost to determine the monthly costs.
+- D. Provision the solution on Google Cloud. Leave the solution provisioned for 1 week. Use Cloud Monitoring to determine the provisioned and used resource amounts. Multiply the 1 week cost to determine the monthly costs.
+
+Resposta correta:
+A. For each Google Cloud product in the solution, review the pricing details on the products pricing page. Use the pricing calculator to total the monthly costs for each Google Cloud product.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: GCP_user Highly Voted  4 years, 4 months ago
+Yes I agree with A. Makes more sense.
+   upvoted 29 times
+ BobbyFlash 3 years, 8 months ago
+Why not B?? Even though answer A makes sense, they are also stating to provide estimates for "monthly total costs". One would think that it is not only necessary to get estimates from every resource, but also consolidate them to inform the monthly total cost required.
+   upvoted 2 times
+ BobbyFlash 3 years, 8 months ago
+Ignore the comment folks. Sentence B is missing the little thing about the pricing calculator. I go with A.
+   upvoted 8 times
+
+2. Anonymous: GCP_Student1 Highly Voted  4 years, 4 months ago
+A. For each Google Cloud product in the solution, review the pricing details on the products pricing page. Use the pricing calculator to total the monthly costs for each Google Cloud product.
+   upvoted 6 times
+
+3. Anonymous: Charlyescot Most Recent  1 year, 5 months ago
+voy con A, si alguien tiene el listado completo de preguntas, me las envia a escotorin83@hotmail.com , rindo en 10 dias gracias!
+   upvoted 1 times
+
+4. Anonymous: scanner2 1 year, 10 months ago
+Selected Answer: A
+Correct answer is A. Use GCP pricing calculator.
+   upvoted 2 times
+
+5. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: A
+A seems more correct
+   upvoted 2 times
+
+6. Anonymous: Untamables 2 years, 9 months ago
+Selected Answer: A
+Vote A
+https://cloud.google.com/free/docs/estimate-costs-google-cloud-platform
+   upvoted 2 times
+
+7. Anonymous: Charumathi 2 years, 9 months ago
+Selected Answer: A
+A is the correct answer, use the pricing calculator to estimate the pricing for a month and download the estimate to csv file, or you can share the URL of the pricing calculator or email the estimate to the respective people in the company.
+   upvoted 1 times
+
+8. Anonymous: VietmanOfficiel 2 years, 10 months ago
+Selected Answer: A
+[A]
+When "estimate" you need to read "price calculator"
+   upvoted 1 times
+
+9. Anonymous: AzureDP900 3 years ago
+I agree with A
+   upvoted 1 times
+
+10. Anonymous: dishum 3 years, 6 months ago
+Answer is C
+The question says 'cost of solution of the design' means, how it is going to work in practical, means the traffic load, no of users, uploads, downloads, transcations etc etc.
+In this case, the more nearer option is to run for a week, then calculate.
+Answer A is not correct, becoz A is applicable when the cost of the product is to be determined.
+   upvoted 4 times
+ PiperMe 1 year, 5 months ago
+C and D are not optimal due to deployment costs. Provisioning the solution for an extended period just to estimate cost incurs actual expenses. Additionally, a week may not adequately capture fluctuations in usage patterns over a full month.
+   upvoted 1 times
+ SunnyDey 2 years, 8 months ago
+Question has asked to estimate the costs of the solution i.e. the initial setup cost not the running cost. Therefore, C and D discarded and B is of no use without pricing calculator. Question is testing whether you are aware of ths calculator service from Google.
+   upvoted 3 times
+==============================
+
+==============================
+Page X — Question #127
+
+Pergunta:
+You have an application that receives SSL-encrypted TCP traffic on port 443. Clients for this application are located all over the world. You want to minimize latency for the clients. Which load balancing option should you use?
+
+Alternativas:
+- A. HTTPS Load Balancer
+- B. Network Load Balancer
+- C. SSL Proxy Load Balancer
+- D. Internal TCP/UDP Load Balancer. Add a firewall rule allowing ingress traffic from 0.0.0.0/0 on the target instances.
+
+Resposta correta:
+C. SSL Proxy Load Balancer
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Bituz Highly Voted  5 years, 5 months ago
+SSL Proxy Load Balancing support for the following ports: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1883, 3389, 5222, 5432, 5671, 5672, 5900, 5901, 6379, 8085, 8099, 9092, 9200, and 9300. When you use Google- managed SSL certificates with SSL Proxy Load Balancing, the frontend port for traffic must be 443 to enable the Google-managed SSL certificates to be provisioned and renewed.
+   upvoted 32 times
+
+2. Anonymous: DarioFama23 Highly Voted  5 years, 6 months ago
+C is correct
+   upvoted 19 times
+
+3. Anonymous: dead1407 Most Recent  4 months, 2 weeks ago
+Selected Answer: C
+The SSL Proxy Load Balancer is designed to handle SSL-encrypted TCP traffic (such as on port 443) and provides global load balancing with Google’s worldwide edge network. It minimizes latency by terminating SSL connections at the edge closest to the client and then forwarding traffic to your backend instances. The HTTPS Load Balancer is for HTTP/HTTPS (Layer 7) traffic, while the SSL Proxy Load Balancer is for SSL/TLS over TCP (Layer 4) traffic.
+   upvoted 1 times
+
+4. Anonymous: 85c887f 9 months, 3 weeks ago
+Selected Answer: C
+SSL Proxy Load Balancer is specifically for SSL-encrypted TCP traffic. As for port 443 it is clearly stated in question, that application "receives SSL-encrypted TCP traffic on port 443", not HTTP(S) traffic. So we can use 443 port for TCP traffic (tcp:443). https://cloud.google.com/load-balancing/docs/ssl/setting-up-ssl#proxy-protocol
+   upvoted 1 times
+
+5. Anonymous: yomi95 1 year, 2 months ago
+Selected Answer: A
+As per the GCP document below,
+"Proxy Network Load Balancers are intended for TCP traffic only, with or without SSL. For HTTP(S) traffic, we recommend that you use an Application Load Balancer instead."
+https://cloud.google.com/load-balancing/docs/proxy-network-load-balancer
+hence even if both A and C are capable to carter for this requirement, the Google recommendation is A. As per my understanding both A and C can divert client to closest backend service reducing the latency.
+Also in 2024, can refer to below as well.
+"HTTP/3 on your load balancer can improve web page load times, reduce video rebuffering, and improve throughput on higher latency connections."
+https://cloud.google.com/load-balancing/docs/https
+   upvoted 1 times
+
+6. Anonymous: denno22 1 year, 3 months ago
+Selected Answer: A
+https://cloud.google.com/load-balancing/docs/tcp
+Note: Although external proxy Network Load Balancers can support HTTPS traffic, you should use an external Application Load Balancer for HTTPS traffic instead. External Application Load Balancers support a number of HTTP-specific features, including routing by HTTP request path and balancing by request rate.
+   upvoted 1 times
+
+7. Anonymous: BuenaCloudDE 1 year, 6 months ago
+Selected Answer: A
+I remember compliance question was in "Associate Cloud Engineer Certification Learning Path". And I answered SSL Proxy Load Balancer but it was incorrect. Correct answer is A.
+   upvoted 2 times
+
+8. Anonymous: cooldude26 2 years, 2 months ago
+Selected Answer: C
+C. SSL Proxy Load Balancer
+The SSL Proxy Load Balancer is designed specifically for SSL-encrypted traffic and provides SSL termination, minimizing latency for clients worldwide by handling SSL connections efficiently. This load balancer is suitable for applications that receive SSL-encrypted TCP traffic on port 443, making it a good choice for the scenario.
+   upvoted 4 times
+
+9. Anonymous: scanner2 2 years, 4 months ago
+Selected Answer: C
+Correct answer is C.
+External proxy load balancer supports global and regional scope. While external passthrough network load balancer supports regional scope.
+   upvoted 2 times
+
+10. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: C
+C is the right answer , read it carefully TCP traffic
+   upvoted 2 times
+ yayalm 1 year, 11 months ago
+It's not about TCP Traffic. It's about minimizing latency, so in order to achieve that we need to use SSL termination which is a feature of the SSL Proxy LB.
+   upvoted 1 times
+ yayalm 1 year, 11 months ago
+I think i'm wrong cuz HTTPS use TCP and SSL, because HTTPS is HTTP over TLS/SSL(now) so the ans in my pov is A
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #128
+
+Pergunta:
+You have an application on a general-purpose Compute Engine instance that is experiencing excessive disk read throttling on its Zonal SSD Persistent Disk. The application primarily reads large files from disk. The disk size is currently 350 GB. You want to provide the maximum amount of throughput while minimizing costs.
+What should you do?
+
+Alternativas:
+- A. Increase the size of the disk to 1 TB.
+- B. Increase the allocated CPU to the instance.
+- C. Migrate to use a Local SSD on the instance.
+- D. Migrate to use a Regional SSD on the instance.
+
+Resposta correta:
+C. Migrate to use a Local SSD on the instance.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: DarioFama23 Highly Voted  4 years, 6 months ago
+C is correct, local SSD has more IOPS
+   upvoted 36 times
+ RegisFTM 3 years ago
+trick question... locak-ssd is not persistent. increasing the size of of the disk will also increase the iops. A is correct imho.
+   upvoted 8 times
+ obeythefist 2 years, 10 months ago
+I once thought that A was the correct response because of the persistence problem, but reading the question carefully, we must choose C over A.
+The question does not stipulate that the local files must be persistent, and this is the only reason why you would choose "A" over "C".
+Also, the question has an important key word: Minimising costs.
+1TB of zonal persistent disk costs a huge amount more than 350GB of local disk.
+We should choose C.
+   upvoted 9 times
+ pfabio 2 years, 8 months ago
+Very Nice, agree C is correct
+   upvoted 1 times
+ shanx910 2 years, 12 months ago
+Local SSDs have higher throughput and lower latency than standard persistent disks or SSD persistent disks. The data that you store on a local SSD persists only until the instance is stopped or deleted.
+   upvoted 2 times
+ TAvenger 3 years, 11 months ago
+Agree. This is also cheaper than having 350 Gb persistent SSD:
+Here are calculations (taken from GCP when creating instance)
+350 Gb SSD Persistent disk: 59.50$/month, read IOPS: 10 500 with n1-standard-1
+1000 Gb SSD Persistent disk: 170.00$/month, read IOPS: 15 000 with n1-standard-1
+375 Gb Local SSD (NVMe): 30.00$/month, read IOPS: 170 000 with n1-standard-1
+   upvoted 13 times
+
+2. Anonymous: ESP_SAP Highly Voted  4 years, 5 months ago
+Correct Answer is (C):
+Performance
+Standard persistent disks are efficient and economical for handling sequential read/write operations, but they aren't optimized to handle high rates of random input/output operations per second (IOPS). If your apps require high rates of random IOPS, use SSD persistent disks. SSD persistent disks are designed for single-digit millisecond latencies. Observed latency is application specific.
+https://cloud.google.com/compute/docs/disks#performance
+   upvoted 16 times
+ hogtrough 2 years, 11 months ago
+A local SSD is not the same as an SSD persistent disk.
+"Local SSDs are physically attached to the server that hosts your VM instance. Local SSDs have higher throughput and lower latency than standard persistent disks or SSD persistent disks. The data that you store on a local SSD persists only until the instance is stopped or deleted."
+https://cloud.google.com/compute/docs/disks#localssds
+The answer is C.
+   upvoted 4 times
+ hogtrough 2 years, 11 months ago
+Sorry, A not C.
+   upvoted 2 times
+
+3. Anonymous: guaose Most Recent  2 months, 2 weeks ago
+Selected Answer: A
+Zonal SSD Persistent Disks in Google Cloud scale read and write throughput linearly with disk size.
+At 350 GB, your disk has limited throughput. By increasing the size to 1 TB, you significantly increase the read IOPS and throughput, which helps reduce disk read throttling.
+This approach is cost-effective because:
+You stay within the same disk type (Zonal SSD).
+You avoid the higher cost of Local SSDs or Regional SSDs unless absolutely necessary.
+   upvoted 1 times
+
+4. Anonymous: dead1407 4 months, 2 weeks ago
+Selected Answer: A
+On Google Cloud, the throughput and IOPS of a Zonal SSD Persistent Disk scale with the disk size. By increasing the disk size (e.g., to 1 TB), you increase the available throughput and IOPS, which will help reduce disk read throttling. This is a cost-effective solution compared to using Local SSDs (which are more expensive and ephemeral) or Regional SSDs (which are for high availability, not performance). Increasing CPU does not affect disk throughput.
+   upvoted 1 times
+
+5. Anonymous: 85c887f 9 months, 3 weeks ago
+Selected Answer: A
+Correct A. A Local SSD is generally more expensive than a Zonal SSD Persistent Disk. And The ephemeral nature of Local SSDs can lead to additional costs for data replication or backups. So C is a good option for high throughput, but in terms of achieving increased throughput for the least amount of cost, A is the better option.
+   upvoted 1 times
+
+6. Anonymous: cooldude26 1 year, 2 months ago
+Selected Answer: C
+C. Migrate to use a Local SSD on the instance.
+Local SSDs provide high-throughput, low-latency storage that is physically attached to the instance. This can be beneficial for applications experiencing excessive disk read throttling, especially when dealing with large files. Local SSDs are ideal for temporary data that can be recomputed or regenerated if lost, and they can offer improved performance compared to Zonal SSD Persistent Disks.
+(https://cloud.google.com/compute/docs/disks/local-ssd#create_local_ssd_instance) for detailed instructions.
+   upvoted 3 times
+
+7. Anonymous: scanner2 1 year, 4 months ago
+Selected Answer: C
+Local SSD provides more throughput than Persistent disks and is cost effective solution. So, correct answer is C.
+   upvoted 1 times
+
+8. Anonymous: Bobbybash 1 year, 11 months ago
+Selected Answer: C
+C. Migrate to use a Local SSD on the instance. Local SSDs provide higher throughput and lower latency compared to Zonal SSD Persistent Disks, and are optimized for use cases that require high-speed, temporary storage. They are physically attached to the instance, so network latencies are minimized. However, they are not intended for long-term storage and may not provide the same level of durability as persistent disks. Since the application is primarily reading large files from disk and experiencing disk read throttling, using a Local SSD should provide a significant improvement in performance while minimizing costs. Increasing the size of the Zonal SSD Persistent Disk or increasing the allocated CPU to the instance may provide some improvement, but are unlikely to fully address the disk read throttling issue. Migrating to a Regional SSD is also not likely to improve performance significantly, as the disk is still separate from the instance and network latencies can impact performance.
+   upvoted 3 times
+
+9. Anonymous: researched_answer_boi 1 year, 12 months ago
+According to the page containing the tables and to the tables "https://cloud.google.com/compute/docs/disks/performance#n1_vms" and "https://cloud.google.com/compute/docs/disks/performance#n2_vms", the number of CPU cores greatly influence the available max. read THROUGHPUT ("excessive disk read throttling on its Zonal SSD Persistent Disk", "The application primarily reads large files from disk.") on general purpose VMs.
+The question also requires minimizing the costs, however, as Local SSDs are EPHEMERAL, they are out of question for the scenario at hand.
+So, answer "B" seems to be the correct one.
+   upvoted 1 times
+
+10. Anonymous: AwesomeGCP 2 years, 3 months ago
+Selected Answer: C
+C. Migrate to use a Local SSD on the instance
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #129
+
+Pergunta:
+Your Dataproc cluster runs in a single Virtual Private Cloud (VPC) network in a single subnet with range 172.16.20.128/25. There are no private IP addresses available in the VPC network. You want to add new VMs to communicate with your cluster using the minimum number of steps. What should you do?
+
+Alternativas:
+- A. Modify the existing subnet range to 172.16.20.0/24.
+- B. Create a new Secondary IP Range in the VPC and configure the VMs to use that range.
+- C. Create a new VPC network for the VMs. Enable VPC Peering between the VMs' VPC network and the Dataproc cluster VPC network.
+- D. Create a new VPC network for the VMs with a subnet of 172.32.0.0/16. Enable VPC network Peering between the Dataproc VPC network and the VMs VPC network. Configure a custom Route exchange.
+
+Resposta correta:
+A. Modify the existing subnet range to 172.16.20.0/24.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ESP_SAP Highly Voted  5 years, 5 months ago
+Correction.
+Correct Answers is (A):
+gcloud compute networks subnets expand-ip-range
+NAME
+gcloud compute networks subnets expand-ip-range - expand the IP range of a Compute Engine subnetwork
+   upvoted 51 times
+ ccieman2016 3 years, 4 months ago
+I think, you can't expand ip range subnet, if there isn't space in VPC. I read this question a lot, VPC CIDR like with 172.16.20.128/25 and there's only one subnet 172.16.20.128/25 inside this VPC, so you can't expand nothing. for me, there's Letter C and D works, but letter D is necessary extra work. LETTER C is right.
+   upvoted 4 times
+ FeaRoX 2 years, 11 months ago
+There's no information about VPC CIDR, only subnet. You can't tell that there's no space
+   upvoted 2 times
+ BigMac666 2 years, 7 months ago
+VPC's DO NOT have IP range limitations.
+You can only object if 172.16.20.0/25 is in use in the same VPC or in a VPC that this VPC is already peered with.
+.128/25 expands to .0/24 (i.e. "backwards") So as long as it's free, you're good.
+In a question like this, it's obvious that the simple answer is the right one, i.e. A - Expansion.
+   upvoted 3 times
+ gastonreppeto77 2 years, 3 months ago
+- The statement is clear with point 1A and 2A:
+1A.- "single Virtual Private Cloud (VPC) network in a single subnet"
+2A.- "There are no private IP addresses available in the VPC network."
+- Question: How can you expand if there is a single VPC with a single subnet
+and there are no private IP addresses available in the only VPC network ???
+- Result: Yes it has limitation, this question is clear, this is and exam, not the real life, we cannot verify anything else and we have the limitation os the statement.
+   upvoted 1 times
+
+2. Anonymous: francisco_guerra Highly Voted  5 years, 5 months ago
+I think is A,
+   upvoted 37 times
+ passmepls 5 years, 5 months ago
+thank you
+   upvoted 4 times
+ Priyanka109 3 years, 3 months ago
+No it can't be as you can't modify ip address but can expand. There is no ip in the existing vpc so you have to create a new vpc and connect it using peering.
+   upvoted 3 times
+
+3. Anonymous: alex70 Most Recent  9 months, 3 weeks ago
+Selected Answer: B
+B is the Best Answer:
+Minimal steps: Just add a secondary range and assign it to new VMs.
+No downtime: Existing Dataproc cluster remains unaffected.
+Same VPC communication: No need for peering or route changes.
+   upvoted 1 times
+
+4. Anonymous: halifax 1 year, 1 month ago
+Selected Answer: A
+The answer is A, but the question is worded badly: "There are no private IP addresses available in the VPC network. "
+I think they meant to say there are no remaining private IP addresses left to assign to new virtual machine (VM) instances within the specified subnet of the VPC network.
+it is impossible to suggest that they run out of the class B private IP range because, in the Class B private IP address range, there are approximately 65,534 IP addresses.
+   upvoted 1 times
+
+5. Anonymous: vansbg 1 year, 1 month ago
+Selected Answer: C
+I would go with C because "There are no private IP addresses available in the VPC network."
+   upvoted 1 times
+
+6. Anonymous: deskj 1 year, 3 months ago
+Selected Answer: A
+The question asks for the "minimum number of steps", not what is wrong or right. A is the "minimum number of steps".
+   upvoted 1 times
+
+7. Anonymous: denno22 1 year, 3 months ago
+Selected Answer: A
+gcloud compute networks subnets expand-ip-range - expand the IP range of a Compute Engine subnetwork
+https://cloud.google.com/sdk/gcloud/reference/compute/networks/subnets/expand-ip-range
+   upvoted 2 times
+
+8. Anonymous: Enamfrancis 1 year, 3 months ago
+Selected Answer: A
+A is correct answer
+   upvoted 1 times
+
+9. Anonymous: RKS_2021 1 year, 4 months ago
+Selected Answer: A
+Expand the subnet
+   upvoted 1 times
+
+10. Anonymous: klayhung 1 year, 4 months ago
+Selected Answer: A
+The correct answer is A because increasing the disk size is the simplest way to address the issue. Option C is overly complex and unnecessary.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #130
+
+Pergunta:
+You manage an App Engine Service that aggregates and visualizes data from BigQuery. The application is deployed with the default App Engine Service account.
+The data that needs to be visualized resides in a different project managed by another team. You do not have access to this project, but you want your application to be able to read data from the BigQuery dataset. What should you do?
+
+Alternativas:
+- A. Ask the other team to grant your default App Engine Service account the role of BigQuery Job User.
+- B. Ask the other team to grant your default App Engine Service account the role of BigQuery Data Viewer.
+- C. In Cloud IAM of your project, ensure that the default App Engine service account has the role of BigQuery Data Viewer.
+- D. In Cloud IAM of your project, grant a newly created service account from the other team the role of BigQuery Job User in your project.
+
+Resposta correta:
+B. Ask the other team to grant your default App Engine Service account the role of BigQuery Data Viewer.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Hjameel Highly Voted  5 years, 5 months ago
+I think B is the answer
+   upvoted 33 times
+ KC_go_reply 2 years, 7 months ago
+'I think' could you elaborate further please?
+   upvoted 4 times
+
+2. Anonymous: ESP_SAP Highly Voted  5 years, 5 months ago
+Correct Answer is (B):
+Sorry, I copied/pasted the the wrong statement.
+This is the proper explanation regarding to Big Query Data Viewer Role.
+The resource that you need to get access is in the other project.
+roles/bigquery.dataViewer BigQuery Data Viewer
+When applied to a table or view, this role provides permissions to:
+Read data and metadata from the table or view.
+This role cannot be applied to individual models or routines.
+When applied to a dataset, this role provides permissions to:
+Read the dataset's metadata and list tables in the dataset.
+Read data and metadata from the dataset's tables.
+When applied at the project or organization level, this role can also enumerate all datasets in the project. Additional roles, however, are necessary to allow the running of jobs.
+   upvoted 29 times
+
+3. Anonymous: AdelElagawany Most Recent  3 months, 3 weeks ago
+Selected Answer: B
+Why B is Correct
+The application will run its query jobs in your project (Project-A), so it needs the bigquery.jobs.create permission there (which is typically included in BigQuery Job User).
+However, that job needs permission to read the data from the other project (Project-B). The BigQuery Data Viewer (roles/bigquery.dataViewer) role provides exactly this permission (bigquery.tables.getData) and is the role with the least privilege for this task.
+Therefore, you must ask the other team to add your service account as a principal in their project and grant it the BigQuery Data Viewer role on their dataset or project.
+Why A is not correct:
+The BigQuery Job User role is needed to run jobs. Since your application runs the job in its own project, it doesn't need that permission on the other team's project.
+   upvoted 1 times
+
+4. Anonymous: denno22 1 year, 3 months ago
+Selected Answer: B
+BigQuery Data Viewer
+(roles/bigquery.dataViewer)
+When applied to a table or view, this role provides permissions to:
+Read data and metadata from the table or view.
+This role cannot be applied to individual models or routines.
+https://cloud.google.com/bigquery/docs/access-control
+   upvoted 2 times
+
+5. Anonymous: iooj 1 year, 4 months ago
+Selected Answer: A
+Big Query Data Viewer Role allows to read data only in the Cloud Console, you cannot use SQL to select or aggregate data, I assume the app will need to run jobs. How would you write such an app? Please correct me if I am wrong.
+   upvoted 1 times
+
+6. Anonymous: klayhung 1 year, 4 months ago
+Selected Answer: B
+To read data from a BigQuery dataset, you only need to grant the App Engine Service account the role of BigQuery Data Viewer.
+   upvoted 2 times
+
+7. Anonymous: pzacariasf7 1 year, 10 months ago
+Selected Answer: B
+B B B B
+   upvoted 3 times
+
+8. Anonymous: abhi2704 1 year, 10 months ago
+Selected Answer: B
+As the question clearly says - 'read'
+'You do not have access to this project, but you want your application to be able to READ data from the BigQuery dataset'
+Awnser is B
+   upvoted 3 times
+
+9. Anonymous: PiperMe 1 year, 10 months ago
+Selected Answer: B
+A is too permissive. This role includes BigQuery Data Viewer permissions but also the ability to create, run, and manage BigQuery jobs. Your application only needs to read data, not manipulate it. B grants read-only access to BigQuery datasets and tables, which perfectly aligns with the requirement of the App Engine service only needing to visualize data.
+   upvoted 4 times
+
+10. Anonymous: Vijay9032 1 year, 11 months ago
+Selected Answer: B
+To see data, you need either BigQuery User or BigQuery Data Viewer roles
+You CANNOT see data with BigQuery Job User roles
+   upvoted 3 times
+ sukouto 1 year, 11 months ago
+It's true, the jobUser role does not contain permissions to get datasets or tables. I think with the phrasing we can assume that the data is aggregated within the app--not BigQuery--so the query permission is less important than reading the data.
+https://cloud.google.com/bigquery/docs/access-control#bigquery.jobUser
+https://cloud.google.com/bigquery/docs/access-control#bigquery.dataViewer
+   upvoted 1 times
+==============================

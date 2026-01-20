@@ -1,0 +1,918 @@
+==============================
+Page X — Question #101
+
+Pergunta:
+You need to host an application on a Compute Engine instance in a project shared with other teams. You want to prevent the other teams from accidentally causing downtime on that application. Which feature should you use?
+
+Alternativas:
+- A. Use a Shielded VM.
+- B. Use a Preemptible VM.
+- C. Use a sole-tenant node.
+- D. Enable deletion protection on the instance.
+
+Resposta correta:
+D. Enable deletion protection on the instance.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ESP_SAP Highly Voted  5 years, 4 months ago
+Correct Answer is (D):
+Preventing Accidental VM Deletion
+This document describes how to protect specific VM instances from deletion by setting the deletionProtection property on an Instance resource. To learn more about VM instances, read the Instances documentation.
+As part of your workload, there might be certain VM instances that are critical to running your application or services, such as an instance running a SQL server, a server used as a license manager, and so on. These VM instances might need to stay running indefinitely so you need a way to protect these VMs from being deleted.
+By setting the deletionProtection flag, a VM instance can be protected from accidental deletion. If a user attempts to delete a VM instance for which you have set the deletionProtection flag, the request fails. Only a user that has been granted a role with compute.instances.create permission can reset the flag to allow the resource to be deleted.
+https://cloud.google.com/compute/docs/instances/preventing-accidental-vm-deletion
+   upvoted 60 times
+
+2. Anonymous: professor Highly Voted  5 years, 6 months ago
+Agree with D
+You can enabale Termination protection
+   upvoted 15 times
+
+3. Anonymous: iooj Most Recent  1 year, 4 months ago
+Selected Answer: C
+It does't say that someone can delete it and we should prevent deletion.
+   upvoted 1 times
+
+4. Anonymous: Timfdklfajlksdjlakf 1 year, 4 months ago
+Selected Answer: D
+The correct answer is D.
+   upvoted 1 times
+
+5. Anonymous: flummoxed_individual 1 year, 5 months ago
+Selected Answer: C
+C. Question says accidental downtime - this could be caused by many other reasons other than just straight deleting things.
+"Use a sole-tenant node" allows you to have dedicated hardware for your VM instances, providing isolation from other workloads. This isolation can help prevent other teams' actions from impacting your application's availability.
+   upvoted 2 times
+
+6. Anonymous: ccpmad 1 year, 7 months ago
+Selected Answer: D
+(Use a sole-tenant node) is a method to ensure that your VMs run on a physical host dedicated to your project (related to licences etc), but it doesn't specifically prevent accidental downtime caused by other teams in a shared environment.
+   upvoted 1 times
+
+7. Anonymous: JB28 2 years ago
+To prevent accidental deletion of a Compute Engine instance, you can enable deletion protection on the instance. This feature prevents the instance from being deleted by any user until deletion protection is disabled.
+So, the correct answer is: D. Enable deletion protection on the instance.
+   upvoted 1 times
+
+8. Anonymous: kelliot 2 years, 1 month ago
+Selected Answer: D
+for me, is D
+   upvoted 2 times
+
+9. Anonymous: NHarshada12345 2 years, 1 month ago
+Selected Answer: D
+ANS is D:
+By setting the deletionProtection flag, a VM instance can be protected from accidental deletion. If a user attempts to delete a VM instance for which you have set the deletion
+Protection flag, the request fails. Only a user that has been granted a role with compute.
+   upvoted 2 times
+
+10. Anonymous: EmW9117 2 years, 2 months ago
+Selected Answer: D
+C is incorrect as sole-tenant is project-based. The other users in the same project can still cause accidentally deletion of the VM even if using a sole-tenant node.
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #102
+
+Pergunta:
+Your organization needs to grant users access to query datasets in BigQuery but prevent them from accidentally deleting the datasets. You want a solution that follows Google-recommended practices. What should you do?
+
+Alternativas:
+- A. Add users to roles/bigquery user role only, instead of roles/bigquery dataOwner.
+- B. Add users to roles/bigquery dataEditor role only, instead of roles/bigquery dataOwner.
+- C. Create a custom role by removing delete permissions, and add users to that role only.
+- D. Create a custom role by removing delete permissions. Add users to the group, and then add the group to the custom role.
+
+Resposta correta:
+D. Create a custom role by removing delete permissions. Add users to the group, and then add the group to the custom role.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: someoneinthecloud Highly Voted  5 years, 6 months ago
+I believe the key part is the "following Google Best Practices" phrase.
+A - Works, but doesn't follow GCP best practices
+B - Doesn't work as the role grants permission to delete datasets
+C - Works, but is more complicated than A and doesn't follow Google best practices
+D - Correct, more complicated than A, but it follows Google Best Practices.
+   upvoted 74 times
+ TAvenger 4 years, 10 months ago
+Read description carefully "prevent from accidentally deleting the datasets". Not tables, datasets! option B does not allow to delete datesets either.
+Check dateset permissions in the roles/bigquery.dataEditor:
+bigquery.datasets.create
+bigquery.datasets.get
+bigquery.datasets.getIamPolicy
+bigquery.datasets.updateTag
+You CANNOT delete dataset with option "B"
+   upvoted 11 times
+ Bableves 3 years, 9 months ago
+Netiher with A.
+   upvoted 1 times
+ afooh 3 years, 5 months ago
+But it means you will have to add the users one by one which doesn't follow Google best practices...
+   upvoted 3 times
+ YuvarajK 4 years, 7 months ago
+I think A is the Answer and it follow GCP best practices.
+https://cloud.google.com/iam/docs/understanding-roles#bigquery-roles
+We do have the role - BigQuery User which does the below permissions
+When applied to a project, this role also provides the ability to run jobs, including queries, within the project.
+bigquery.datasets.create
+bigquery.datasets.get
+bigquery.datasets.getIamPolicy
+   upvoted 12 times
+ Abhi00754 2 years, 9 months ago
+bigquery.datasets.create allows the creation of new datasets within the project; the creator is granted the BigQuery Data Owner role (roles/bigquery.dataOwner) on these new datasets so he can delete these created datasets
+   upvoted 4 times
+ Abhi00754 2 years, 9 months ago
+D seems correct
+   upvoted 5 times
+ kyo 4 years, 5 months ago
+I don't think A works properly.
+roles/bigquery.user has bigquery.datasets.create. And the documentation states:
+> Additional, allows the creation of new datasets within the project; the creator is granted the BigQuery Data Owner role (roles/bigquery.dataOwner) on these new datasets.
+If bigquery.user creates a new dataset, it's likely that bigquery.user will get permission to delete that dataset. This means that bigquery.user may have permission to delete data.
+https://cloud.google.com/bigquery/docs/access-control
+   upvoted 13 times
+ Bossam 3 years, 5 months ago
+See the question carefully "accidentally deleting the datasets" it is saying not to delete "the" datasets which means original dataset which existed before his creation .So answer is A.
+   upvoted 1 times
+ Zina12 3 years, 1 month ago
+The only way a user can accidentally delete a dataset is if they have the delete permission anyway. So brvinod and kyo's points still stand
+   upvoted 3 times
+ brvinod 3 years, 11 months ago
+A bigquery.user will get a "data owner" role on the datasets he creates. That means he can delete those data sets he created. In that sense A fails to that extent.
+   upvoted 5 times
+
+2. Anonymous: ESP_SAP Highly Voted  5 years, 5 months ago
+Correct Answer is (D):
+The proper answer regarding to bigquery roles is the listed in the options, the proper rol that resolve this requirement is: roles/bigquery.dataViewer
+https://cloud.google.com/bigquery/docs/access-control#custom_roles
+on the other hand, the question explicitly is asking to use the GCP best practices on IAM :
+GCP Best Practices explain clearly these rules:
+Policy management
+❑ Set organization-level IAM policies to grant access to all projects in your organization.
+❑ Grant roles to a Google group instead of individual users when possible. It is easier to add members to and remove members from a Google group instead of updating an IAM policy to add or remove users.
+❑ If you need to grant multiple roles to allow a particular task, create a Google group, grant the roles to that group, and then add users to that group.
+https://cloud.google.com/iam/docs/using-iam-securely#policy_management
+   upvoted 57 times
+ JackGlemins 4 years, 11 months ago
+Other best practice is use predefine roles over custom roles. Maybe A is correct
+   upvoted 8 times
+ JackGlemins 4 years, 11 months ago
+I correct myself: https://cloud.google.com/iam/docs/understanding-custom-roles
+Key Point: Custom roles enable you to enforce the principle of least privilege, ensuring that the user and service accounts in your organization have only the permissions essential to performing their intended functions.
+   upvoted 7 times
+ prashuG 5 years, 4 months ago
+Answer is A: roles/bigquery.user is a BigQuery User role which when applied to a project provides the ability to run jobs, including queries, within the project. A member with this role can enumerate their own jobs, cancel their own jobs, and enumerate datasets within a project.
+Ref: https://cloud.google.com/iam/docs/understanding-roles#bigquery-roles
+   upvoted 5 times
+ j1c4b 4 years, 9 months ago
+you can create data set with bigquery.user role because it has bigquery.datasets.create permissions. And if a user has bigquery.datasets.create permissions, when that user creates a dataset, they are granted bigquery.dataOwner access to it. So A is NOT a choice
+   upvoted 5 times
+
+3. Anonymous: Vismaya Most Recent  2 weeks, 3 days ago
+Selected Answer: D
+D is the answer
+   upvoted 1 times
+
+4. Anonymous: Mogamal 5 months, 1 week ago
+Selected Answer: B
+A. roles/bigquery user: This role only provides permissions to run jobs, list datasets, and view metadata. It does not grant permission to query data, which is a key requirement.
+   upvoted 1 times
+
+5. Anonymous: Anji14 1 year, 3 months ago
+A is correct because the key point is.. users can query the dataset but not delete. For querying, jobs create role required which comes under bigquery user role
+   upvoted 1 times
+
+6. Anonymous: Timfdklfajlksdjlakf 1 year, 4 months ago
+Selected Answer: D
+D. follows Google Best Practice. Others do not or are flat out wrong.
+   upvoted 1 times
+
+7. Anonymous: omunoz 1 year, 8 months ago
+Selected Answer: D
+GCP Best Practices is to create a group of Users and assign it a custom role with the required permissions (least privilege).
+   upvoted 1 times
+
+8. Anonymous: rahulsahni849 1 year, 10 months ago
+Selected Answer: A
+A IS THE ANWER
+   upvoted 1 times
+
+9. Anonymous: blackBeard33 1 year, 10 months ago
+Selected Answer: D
+D is solves the problem and follow best practices. With A you will be able to delete data sets you create.
+   upvoted 1 times
+
+10. Anonymous: Aks14 1 year, 11 months ago
+Selected Answer: A
+You can create a custom role at the project or organization level. Since users are added to role, it should be A. https://cloud.google.com/iam/docs/creating-custom-roles
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #103
+
+Pergunta:
+You have a developer laptop with the Cloud SDK installed on Ubuntu. The Cloud SDK was installed from the Google Cloud Ubuntu package repository. You want to test your application locally on your laptop with Cloud Datastore. What should you do?
+
+Alternativas:
+- A. Export Cloud Datastore data using gcloud datastore export.
+- B. Create a Cloud Datastore index using gcloud datastore indexes create.
+- C. Install the google-cloud-sdk-datastore-emulator component using the apt get install command.
+- D. Install the cloud-datastore-emulator component using the gcloud components install command.
+
+Resposta correta:
+C. Install the google-cloud-sdk-datastore-emulator component using the apt get install command.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: someoneinthecloud Highly Voted  5 years, 6 months ago
+I believe answer is C
+https://cloud.google.com/sdk/docs/downloads-apt-get
+The question is not about the datastore command itself but from where we should run the update command on the Ubuntu to install the component.
+   upvoted 52 times
+ XRiddlerX 5 years, 5 months ago
+I agree with this comment. The answer is C.
+If you installed the SDK from the Ubuntu repo and try to do the following:
+$ gcloud components install cloud-datastore-emulator
+You will receive this message:
+ERROR: (gcloud.components.install)
+You cannot perform this action because the Cloud SDK component manager
+is disabled for this installation. You can run the following command
+to achieve the same result for this installation:
+sudo apt-get install google-cloud-sdk-datastore-emulator
+   upvoted 56 times
+ stepkurniawan 5 years, 4 months ago
+it says that in your Ubuntu, you have Cloud SDK installed already. So it should be able to run the command in D
+   upvoted 4 times
+ Ale1973 5 years, 4 months ago
+Yes, but it says that "The Cloud SDK was installed from the Google Cloud Ubuntu package repository", then to install datastore emulator you should use the command in Option C.
+   upvoted 14 times
+ Ale1973 5 years, 4 months ago
+WOW!!! Today I have learned a new and interesting thing thanks to you...
+   upvoted 8 times
+ myuniquename 4 years, 3 months ago
+absolutely insane if that question comes up during the associate exam, who on earth would know that off the top of their heads?
+   upvoted 36 times
+Load full discussion...
+
+2. Anonymous: professor Highly Voted  5 years, 6 months ago
+Ans is D
+https://cloud.google.com/datastore/docs/tools/datastore-emulator
+   upvoted 27 times
+ Eshkrkrkr 5 years, 2 months ago
+Wrong! The answer is C! When you install SDK using apt Cloud SDK Component Manager is disabled and you need to install extra packages again using apt.
+https://cloud.google.com/sdk/docs/components#managing_cloud_sdk_components
+Note: These instructions will not work if you have installed Cloud SDK using a package manager such as APT or yum because Cloud SDK Component Manager is disabled when using that method of installation.
+   upvoted 26 times
+ SWObaby 5 years, 1 month ago
+I believe the answer is C...
+It is a tricky question!! The question states, "The Cloud SDK was installed from the Google Cloud Ubuntu package repository." For those, who aren't that familiar with Debian/Ubuntu, D seems like an attractive answer. It works as a way to install Datastore...but it does NOT fit the context of the question.
+I recommend looking back to G Cloud SDK installation (Debian/Ubuntu): https://cloud.google.com/sdk/docs/install#deb
+Read the "Installation Steps" in the documentation. In Step 3, "sudo apt-get update && sudo apt-get install google-cloud-sdk". Then, Step 4 is additionally adding other components, such as "sudo apt-get install google-cloud-sdk-datastore-emulator".
+Proving C the correct answer.
+   upvoted 23 times
+ ShakthiGCP 4 years, 10 months ago
+Go With 'C' ... just tried creating a ubuntu server and verified these.. Dont worry about any other options. https://cloud.google.com/sdk/docs/quickstart#deb check this link .
+   upvoted 6 times
+
+3. Anonymous: Vismaya Most Recent  2 weeks, 3 days ago
+Selected Answer: D
+gcloud components install is the correct one
+   upvoted 1 times
+
+4. Anonymous: AdelElagawany 3 months, 3 weeks ago
+Selected Answer: C
+The correct Answer is C
+I managed to reproduce it as below:
+- When using : gcloud components install cloud-datastore-emulator, I got the below error:
+ERROR: (gcloud.components.install)
+You cannot perform this action because the Google Cloud CLI component manager
+is disabled for this installation. You can run the following command
+to achieve the same result for this installation: apt-get install google-cloud-cli-datastore-emulator
+- When using: sudo apt-get install google-cloud-sdk-datastore-emulator, It works.
+   upvoted 1 times
+
+5. Anonymous: RushinthJohn 7 months, 1 week ago
+Selected Answer: D
+You can't directly install the Datastore emulator with apt-get install google-cloud-sdk-datastore-emulator. The Datastore emulator is a component of the Google Cloud SDK (gcloud CLI), and it's installed using the gcloud components install command.
+   upvoted 1 times
+
+6. Anonymous: yodaforce 10 months ago
+Selected Answer: C
+Explanation:
+Since you installed the Cloud SDK from the Google Cloud Ubuntu package repository, you should also install additional components (like the Cloud Datastore emulator) using the same package manager (apt-get) rather than gcloud components install.
+To install the Datastore emulator, run:
+sudo apt-get install google-cloud-sdk-datastore-emulator
+Why Not the Others?
+A. gcloud datastore export → Exports data but does not install the emulator.
+B. gcloud datastore indexes create → Creates Datastore indexes but does not provide local testing.
+D. gcloud components install cloud-datastore-emulator → This command only works if you installed the SDK via the tarball or ZIP method. However, since your installation is from the Google Cloud Ubuntu package repository, you must use apt-get instead.
+   upvoted 1 times
+
+7. Anonymous: peddyua 12 months ago
+Selected Answer: C
+works: apt-get install google-cloud-sdk-datastore-emulator
+   upvoted 1 times
+
+8. Anonymous: 09bd94b 1 year, 1 month ago
+Selected Answer: C
+It is installed using the same procedure as the Cloud SDK
+   upvoted 1 times
+
+9. Anonymous: juankloyd 1 year, 2 months ago
+Selected Answer: C
+C for me.
+   upvoted 1 times
+
+10. Anonymous: deskj 1 year, 3 months ago
+C is correct because the datastore emulator is installed using apt and not gcloud.
+D is incorrect because the "cloud-datastore-emulator" component is a legacy component and is not recommended for use. The correct component to install is "google-cloud-sdk-datastore-emulator".
+https://cloud.google.com/datastore/docs/tools/datastore-emulator
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #104
+
+Pergunta:
+Your company set up a complex organizational structure on Google Cloud. The structure includes hundreds of folders and projects. Only a few team members should be able to view the hierarchical structure. You need to assign minimum permissions to these team members, and you want to follow Google-recommended practices. What should you do?
+
+Alternativas:
+- A. Add the users to roles/browser role.
+- B. Add the users to roles/iam.roleViewer role.
+- C. Add the users to a group, and add this group to roles/browser.
+- D. Add the users to a group, and add this group to roles/iam.roleViewer role.
+
+Resposta correta:
+C. Add the users to a group, and add this group to roles/browser.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ESP_SAP Highly Voted  5 years, 5 months ago
+Correct Answer is (C):
+We need to apply the GCP Best practices.
+roles/browser Browser Read access to browse the hierarchy for a project, including the folder, organization, and IAM policy. This role doesn't include permission to view resources in the project.
+https://cloud.google.com/iam/docs/understanding-roles
+   upvoted 32 times
+
+2. Anonymous: SIX Highly Voted  5 years, 7 months ago
+C is the better answer.
+   upvoted 31 times
+
+3. Anonymous: Ciupaz Most Recent  1 year, 2 months ago
+Selected Answer: A
+Directly assigning the roles/browser role to users (answer A) is a simpler and more immediate solution, without the need to manage groups, which reduces administrative complexity.
+   upvoted 1 times
+
+4. Anonymous: ccpmad 1 year, 7 months ago
+Selected Answer: C
+(roles/browser)
+Read access to browse the hierarchy for a project, including the folder, organization, and allow policy. This role doesn't include permission to view resources in the project.
+https://cloud.google.com/resource-manager/docs/access-control-proj#browser
+To view, only, "view the hierarchical structure", C. But with browser role they will not be able to view resources, only the structure.
+   upvoted 1 times
+
+5. Anonymous: zangetsu2 1 year, 11 months ago
+Selected Answer: C
+https://cloud.google.com/iam/docs/understanding-roles#browser
+   upvoted 1 times
+
+6. Anonymous: AndyMandy 2 years ago
+Selected Answer: D
+https://cloud.google.com/iam/docs/understanding-roles
+   upvoted 1 times
+
+7. Anonymous: nathanBK 2 years, 1 month ago
+Selected Answer: C
+The correct answer is D. Add the users to a group, and add this group to roles/iam.roleViewer role.
+This approach follows Google-recommended practices by utilizing IAM groups to manage user permissions and ensure granular control over access to the organizational structure. By adding users to a group and assigning the roles/iam.roleViewer role to the group, you can effectively grant the necessary permissions to view the hierarchical structure while minimizing the scope of access.
+   upvoted 1 times
+
+8. Anonymous: BAofBK 2 years, 2 months ago
+The answer is D
+   upvoted 1 times
+
+9. Anonymous: scanner2 2 years, 4 months ago
+Selected Answer: C
+C is the correct answer.
+https://cloud.google.com/iam/docs/understanding-roles#browser
+   upvoted 1 times
+
+10. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: C
+C is the correct answer
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #105
+
+Pergunta:
+Your company has a single sign-on (SSO) identity provider that supports Security Assertion Markup Language (SAML) integration with service providers. Your company has users in Cloud Identity. You would like users to authenticate using your company's SSO provider. What should you do?
+
+Alternativas:
+- A. In Cloud Identity, set up SSO with Google as an identity provider to access custom SAML apps.
+- B. In Cloud Identity, set up SSO with a third-party identity provider with Google as a service provider.
+- C. Obtain OAuth 2.0 credentials, configure the user consent screen, and set up OAuth 2.0 for Mobile & Desktop Apps.
+- D. Obtain OAuth 2.0 credentials, configure the user consent screen, and set up OAuth 2.0 for Web Server Applications.
+
+Resposta correta:
+B. In Cloud Identity, set up SSO with a third-party identity provider with Google as a service provider.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: PhilipAWS Highly Voted  4 years ago
+Only option B make sense to me as per - https://support.google.com/cloudidentity/answer/6262987?hl=en&ref_topic=7558767
+   upvoted 31 times
+ nitinz 3 years, 11 months ago
+you nailed it. B is correct.
+   upvoted 3 times
+
+2. Anonymous: poogcp Highly Voted  4 years, 7 months ago
+For me its B option
+   upvoted 31 times
+
+3. Anonymous: AdelElagawany Most Recent  3 months, 3 weeks ago
+Selected Answer: B
+Cloud Identity and Google Workspace support Security Assertion Markup Language (SAML) 2.0 for single sign-on. SAML is an open standard for exchanging authentication and authorization data between a SAML IdP and SAML service providers. When you use SSO for Cloud Identity or Google Workspace, your external IdP is the SAML IdP and Google is the SAML service provider.
+REF: https://cloud.google.com/architecture/identity/single-sign-on#single_sign-on_process
+   upvoted 1 times
+
+4. Anonymous: kelliot 1 year, 1 month ago
+Selected Answer: B
+For me its B
+   upvoted 2 times
+
+5. Anonymous: walker1988 1 year, 2 months ago
+Selected Answer: B
+B is correct
+   upvoted 1 times
+
+6. Anonymous: BAofBK 1 year, 2 months ago
+Option B is makes sense
+   upvoted 1 times
+
+7. Anonymous: ekta25 1 year, 3 months ago
+B. In Cloud Identity, set up SSO with a third-party identity provider with Google as a service provider.
+   upvoted 1 times
+
+8. Anonymous: scanner2 1 year, 4 months ago
+Selected Answer: B
+When you use SSO for Cloud Identity or Google Workspace, your external IdP is the SAML IdP and Google is the SAML service provider.
+https://cloud.google.com/architecture/identity/single-sign-on#single_sign-on_process
+   upvoted 3 times
+
+9. Anonymous: Captain1212 1 year, 4 months ago
+Selected Answer: B
+B is the correct answer as c and d are not SAML
+   upvoted 1 times
+
+10. Anonymous: goshubh 1 year, 4 months ago
+Chat GPT has suggested option A, here's the reason it gave for why B is not the right option-
+setting up SSO with a third-party identity provider with Google as a service provider, is typically used when your organization wants to use an external SSO IdP, not Google Cloud Identity, to authenticate users.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #106
+
+Pergunta:
+Your organization has a dedicated person who creates and manages all service accounts for Google Cloud projects. You need to assign this person the minimum role for projects. What should you do?
+
+Alternativas:
+- A. Add the user to roles/iam.roleAdmin role.
+- B. Add the user to roles/iam.securityAdmin role.
+- C. Add the user to roles/iam.serviceAccountUser role.
+- D. Add the user to roles/iam.serviceAccountAdmin role.
+
+Resposta correta:
+D. Add the user to roles/iam.serviceAccountAdmin role.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: PhilipAWS Highly Voted  5 years ago
+Whoever say C is right answer, please read the question 1000000000 times if not understand - "Your organization has a dedicated person who creates and manages all service accounts for Google Cloud projects. " Dedicated person who creates and manages all service... Now read below;
+To allow a user to manage service accounts, grant one of the following roles:
+Service Account User (roles/iam.serviceAccountUser): Includes permissions to list service accounts, get details about a service account, and impersonate a service account.
+Service Account Admin (roles/iam.serviceAccountAdmin): Includes permissions to list service accounts and get details about a service account. Also includes permissions to create, update, and delete service accounts, and to view or change the IAM policy on a service account.
+Now look in which role mentioned "CREATE"?
+Obviously - roles/iam.serviceAccountAdmin....... So Answer is????
+1M% - D only
+   upvoted 65 times
+ Jhelum 4 years ago
+Calm down Jamal, don't pull out the knife...
+   upvoted 29 times
+ creativenets 2 years, 7 months ago
+He's right. Calm down. Save that bomb for later.
+   upvoted 3 times
+ Romio2023 2 years, 1 month ago
+no, i want to choose C
+   upvoted 1 times
+ iooj 1 year, 4 months ago
+obviously C - 1B%
+   upvoted 1 times
+
+2. Anonymous: SIX Highly Voted  5 years, 7 months ago
+The right answer is D.
+   upvoted 42 times
+
+3. Anonymous: kelliot Most Recent  2 years, 1 month ago
+Selected Answer: D
+No doubt, is D
+   upvoted 2 times
+
+4. Anonymous: thewalker 2 years, 1 month ago
+Selected Answer: D
+D
+As per the documentation:
+https://cloud.google.com/iam/docs/understanding-roles#iam.serviceAccountUser
+https://cloud.google.com/iam/docs/understanding-roles#iam.serviceAccountAdmin
+   upvoted 2 times
+
+5. Anonymous: BAofBK 2 years, 2 months ago
+The correct answer is D
+   upvoted 1 times
+
+6. Anonymous: scanner2 2 years, 4 months ago
+Selected Answer: D
+roles/iam.serviceAccountAdmin --> Create and manage service accounts.
+https://cloud.google.com/iam/docs/understanding-roles#iam.serviceAccountAdmin
+roles/iam.serviceAccountUser --> Run operations as the service account.
+https://cloud.google.com/iam/docs/understanding-roles#iam.serviceAccountUser
+   upvoted 3 times
+
+7. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: D
+D is the right answer, as the persnon needs to create also
+   upvoted 1 times
+
+8. Anonymous: Neha_Pallavi 2 years, 4 months ago
+D.Service Account Admin (roles/iam.serviceAccountAdmin): Includes permissions to list service accounts and get details about a service account. Also includes permissions to create, update, and delete service accounts, and to view or change the IAM policy on a service account.
+   upvoted 2 times
+
+9. Anonymous: AzureDP900 3 years, 6 months ago
+dedicated person who creates and manages all service accounts is key world makes me select D as right answer.
+   upvoted 1 times
+
+10. Anonymous: haroldbenites 3 years, 7 months ago
+Go for D
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #107
+
+Pergunta:
+You are building an archival solution for your data warehouse and have selected Cloud Storage to archive your data. Your users need to be able to access this archived data once a quarter for some regulatory requirements. You want to select a cost-efficient option. Which storage option should you use?
+
+Alternativas:
+- A. Cold Storage
+- B. Nearline Storage
+- C. Regional Storage
+- D. Multi-Regional Storage
+
+Resposta correta:
+A. Cold Storage
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Teegongkia Highly Voted  5 years, 5 months ago
+Took ACE last week and the exact question came out. I go with B as i felt A is a trick answer. There is no Cold Storage in GCP.
+   upvoted 38 times
+ ssankar 5 years, 5 months ago
+Hello Teegongkia ,
+is the questions are still valid ??
+Thanks
+   upvoted 1 times
+ BenAji 4 years, 9 months ago
+Cold data tiering refers to the storage of less frequently, or sporadically accessed data in low cost media such as HDFS (Hadoop Distributed File System) and cloud storage options including Amazon Web Services (AWS), Google Cloud Platform (GCP), and Azure Data Lake Storage (ADLS) that are managed separately from the SAP HANA database, but still accessible at any time. blogs.sap.com/2018/12/03/what-is-sap-hana-cold-data-tiering/
+   upvoted 1 times
+
+2. Anonymous: droogie Highly Voted  5 years, 7 months ago
+This one is confusing. First, there's no 'Cold' storage. It's Coldline.
+Nearline Storage is ideal for data you plan to read or modify on average once per month or less.Coldline Storage is ideal for data you plan to read or modify at most once a quarter.
+https://cloud.google.com/storage/docs/storage-classes
+So with the misspelling of 'Cold' and these guys accessing it every 90 days, I'm leaning towards Nearline
+   upvoted 18 times
+ TAvenger 4 years, 11 months ago
+I believe the question is old, when Regional and Multi-Regional were also storage classes of the GCS.
+Before changes: (Multi-Region, Regional, Nearline, Coldline)
+After recent changes we have
+- Storage Classes (Standard, Nearline, Coldline, Archive)
+- Storage Locations (Regional, Dual-region, Multi-Region)
+It's tricky for exam because we don't to answer according to old version or new version.
+For the latest version, costs for 1Gb for storing (3 month) + retrieval
+Nearline: 0.01 * 3 + 0.01 = 0.04
+Coldline: 0.004 * 3 + 0.02 = 0.032
+Coldline is more cost effective.
+If "Cold" means Coldline (not Archive) the asnwer is A
+If "Cold" means Archive the answer is B
+I hope that "Cold" means Coldline. I would try wirh A
+   upvoted 2 times
+ ri_unhou119 4 years, 8 months ago
+A：
+Google Cloud doc:
+https://cloud.google.com/storage/docs/storage-classes#coldline
+   upvoted 1 times
+ obeythefist 3 years, 10 months ago
+Yes, but the question says the data will be accessed once per quarter, Google's documentation tells us that Coldline is most suitable for data accessed less than once per quarter. This direct part of the question tells us how we must answer.
+   upvoted 4 times
+ Eshkrkrkr 5 years, 2 months ago
+It's a typo. Google wouldn't force to consume knowledge that is a non-best practice from Google. Asnwer is A.
+   upvoted 4 times
+ lxgywil 4 years, 8 months ago
+For Google, these exams are just another business.
+   upvoted 8 times
+ DickDastardly 4 years, 10 months ago
+"Cold" is not a typo. I took the exam today and the answers appeared exactly as listed here.
+   upvoted 13 times
+ sarahf 5 years, 1 month ago
+At the page for data archiving (https://cloud.google.com/storage/archival) the first paragraph says: "Coldline is also ideal for cold storage—data your business expects to touch less than once a quarter."
+So there is such thing as Cold storage according to Google.
+Also at (https://cloud.google.com/storage/docs/storage-classes#archive) they talk about Cold storage: "Cold data storage - Archived data, such as data stored for legal or regulatory reasons, can be stored at low cost as Archive Storage, yet still be available if you need it."
+   upvoted 17 times
+ sanhoo 4 years, 7 months ago
+Thanks for bringing this up. Really helpfull.
+   upvoted 1 times
+ sanhoo 4 years, 7 months ago
+This line indicates that cold storage term is used for - archival / coldline
+"With low latency and a consistent API across Cloud Storage, Archive and Coldline introduce cold storage you can actually use" https://cloud.google.com/storage/archival
+   upvoted 2 times
+
+3. Anonymous: guaose Most Recent  2 months, 2 weeks ago
+Selected Answer: B
+Your users need to be able to access this archived data once a quarter for some regulatory requirements --> more than 1 time in a quarter --> nearline
+   upvoted 1 times
+
+4. Anonymous: yodaforce 10 months ago
+Selected Answer: A
+Once a Quarter. Coldline
+   upvoted 1 times
+
+5. Anonymous: velrisan 1 year ago
+Selected Answer: A
+Is A. Why is not B?. Because is meant for data that is accessed about once a month.
+   upvoted 1 times
+
+6. Anonymous: Moin23 1 year, 1 month ago
+Selected Answer: A
+Cold data storage - Archived data, such as data stored for legal or regulatory reasons, can be stored at low cost as Archive storage, yet still be available if you need it.
+Disaster recovery - In the event of a disaster recovery event, recovery time is key. Cloud Storage provides low latency access to data stored as Archive storage.
+https://cloud.google.com/storage/docs/storage-classes#:~:text=Cold%20data%20storage%20%2D%20Archived%20data,available%20if%20you%20need%20it.
+   upvoted 1 times
+
+7. Anonymous: denno22 1 year, 3 months ago
+Selected Answer: B
+There is no such thing as Cold Storage, only Coldline storage.
+Nearline storage is ideal for data you plan to read or modify on average once per month or less. For example, if you want to continuously add files to Cloud Storage and plan to access those files once a month for analysis, Nearline storage is a great choice.
+https://cloud.google.com/storage/docs/storage-classes
+   upvoted 1 times
+
+8. Anonymous: ccpmad 1 year, 7 months ago
+Selected Answer: B
+For data accessed less than once a year, Archive
+Ok, once a quarter, is 4 times per year, so Cold Storage is not correct for this
+   upvoted 1 times
+
+9. Anonymous: RVSubbareddy 1 year, 8 months ago
+Selected Answer: A
+we have to consider it as coldline storage
+   upvoted 1 times
+
+10. Anonymous: Jonassamr 1 year, 9 months ago
+Selected Answer: B
+i think it's B
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #108
+
+Pergunta:
+A team of data scientists infrequently needs to use a Google Kubernetes Engine (GKE) cluster that you manage. They require GPUs for some long-running, non- restartable jobs. You want to minimize cost. What should you do?
+
+Alternativas:
+- A. Enable node auto-provisioning on the GKE cluster.
+- B. Create a VerticalPodAutscaler for those workloads.
+- C. Create a node pool with preemptible VMs and GPUs attached to those VMs.
+- D. Create a node pool of instances with GPUs, and enable autoscaling on this node pool with a minimum size of 1.
+
+Resposta correta:
+A. Enable node auto-provisioning on the GKE cluster.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Polok Highly Voted  5 years, 7 months ago
+If you need something for long-running, non- restartable jobs you dont use preemptible VMs
+Think answer is D.
+   upvoted 72 times
+
+2. Anonymous: [Removed] Highly Voted  4 years, 9 months ago
+Incorrect options are
+B. VerticalPodAutscaler scales PODS based on the app you deploy.
+For handle infrequently GPU access, you need infrequently GPU nodes
+VerticalAutscaler Pod deployed on a non GPU node it useless,
+[We cant have the node always have GPU for infrequent requests]
+C. Preemptible VMs cant last long
+D. For infrequent access, you don't want to have a permanent homogenous cluster.
+The correct option is "A"
+auto-provisioning = Attaches and deletes node pools to cluster based on the requirements.
+Hence creating a GPU node pool, and auto-scaling would be better
+https://cloud.google.com/kubernetes-engine/docs/how-to/node-auto-provisioning
+   upvoted 25 times
+ kimharsh 4 years, 1 month ago
+A is not correct because you can't add a GPU node to an existing GKE cluster
+Limitations
+Before using GPUs on GKE, keep in mind the following limitations:
+You cannot add GPUs to existing node pools.
+GPU nodes cannot be live migrated during maintenance events.
+GPUs are only supported with general-purpose N1 machine types.
+GPUs are not supported in Windows Server node pools
+REF: https://cloud.google.com/kubernetes-engine/docs/how-to/gpus#limitations
+So the answer should be D
+   upvoted 12 times
+ rachee 4 years, 1 month ago
+Your reference says existing "node pools" not GKE cluster. Auto-provisioning creates new "node pools": https://cloud.google.com/kubernetes-engine/docs/how-to/node-auto-provisioning
+   upvoted 5 times
+ Ridhanya 4 years, 1 month ago
+but node pools are homogenous, so how can we be sure that option A will create a GPU node pool
+   upvoted 3 times
+ wjtb 3 years, 7 months ago
+https://cloud.google.com/kubernetes-engine/docs/how-to/node-auto-provisioning
+Node auto-provisioning creates node pools based on the following information:
+CPU, memory and ephemeral storage resource requests.
+GPU requests
+Pending Pods' node affinities and label selectors.
+Pending Pods' node taints and tolerations.
+   upvoted 10 times
+
+3. Anonymous: Vismaya Most Recent  2 weeks, 3 days ago
+Selected Answer: D
+D is the answer
+   upvoted 1 times
+
+4. Anonymous: Moin23 1 year, 1 month ago
+Selected Answer: D
+no one is talking about non-restartable jobs , it should be D then
+   upvoted 1 times
+
+5. Anonymous: RKS_2021 1 year, 4 months ago
+Selected Answer: A
+Changing the answer
+   upvoted 1 times
+
+6. Anonymous: RKS_2021 1 year, 4 months ago
+Selected Answer: D
+D is right answer
+   upvoted 2 times
+
+7. Anonymous: Timfdklfajlksdjlakf 1 year, 4 months ago
+Selected Answer: A
+It's A. Shit gets only auto-provisioned when your devs actually deploy something that requires a GPU. It doesn't run permanently by default thus saves costs since it only gets provisioned when neededn.
+   upvoted 1 times
+
+8. Anonymous: Timfdklfajlksdjlakf 1 year, 4 months ago
+Selected Answer: A
+A is correct. If the application requires a GPU then auto-provisioning will provision a vm with a GPU
+   upvoted 1 times
+
+9. Anonymous: ccpmad 1 year, 7 months ago
+Selected Answer: D
+"Enable node auto-provisioning" with GPU will not works due to limitation "You cannot add GPUs to existing node pools"
+   upvoted 1 times
+
+10. Anonymous: Sheqos 1 year, 10 months ago
+Selected Answer: D
+Selected Answer: D
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #109
+
+Pergunta:
+Your organization has user identities in Active Directory. Your organization wants to use Active Directory as their source of truth for identities. Your organization wants to have full control over the Google accounts used by employees for all Google services, including your Google Cloud Platform (GCP) organization. What should you do?
+
+Alternativas:
+- A. Use Google Cloud Directory Sync (GCDS) to synchronize users into Cloud Identity.
+- B. Use the cloud Identity APIs and write a script to synchronize users to Cloud Identity.
+- C. Export users from Active Directory as a CSV and import them to Cloud Identity via the Admin Console.
+- D. Ask each employee to create a Google account using self signup. Require that each employee use their company email address and password.
+
+Resposta correta:
+A. Use Google Cloud Directory Sync (GCDS) to synchronize users into Cloud Identity.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: professor Highly Voted  4 years, 6 months ago
+Ans is A
+https://tools.google.com/dlpage/dirsync/
+   upvoted 30 times
+
+2. Anonymous: ESP_SAP Highly Voted  4 years, 5 months ago
+Correct Answer (A):
+Directory Sync
+Google Cloud Directory Sync enables administrators to synchronize users, groups and other data from an Active Directory/LDAP service to their Google Cloud domain directory
+https://tools.google.com/dlpage/dirsync/
+   upvoted 22 times
+
+3. Anonymous: BAofBK Most Recent  1 year, 2 months ago
+The correct answer is A
+   upvoted 1 times
+
+4. Anonymous: scanner2 1 year, 4 months ago
+Selected Answer: A
+https://support.google.com/a/answer/106368?hl=en
+https://cloud.google.com/architecture/identity/federating-gcp-with-active-directory-synchronizing-user-accounts
+https://cloud.google.com/architecture/identity/federating-gcp-with-active-directory-introduction
+   upvoted 2 times
+
+5. Anonymous: Captain1212 1 year, 4 months ago
+Selected Answer: A
+A is the correct answer as it help you to sybchronize users
+   upvoted 1 times
+
+6. Anonymous: Neha_Pallavi 1 year, 4 months ago
+A. Use Google Cloud Directory Sync (GCDS) to synchronize users into Cloud Identity.
+   upvoted 1 times
+
+7. Anonymous: Nazz1977 2 years, 1 month ago
+Selected Answer: A
+A....is right
+   upvoted 1 times
+
+8. Anonymous: AzureDP900 2 years, 6 months ago
+A is right, this is part of Tutorials Dojo practice test
+   upvoted 2 times
+
+9. Anonymous: haroldbenites 2 years, 7 months ago
+Go for A
+   upvoted 1 times
+
+10. Anonymous: crisyeb 2 years, 10 months ago
+Selected Answer: A
+A is correct
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #110
+
+Pergunta:
+You have successfully created a development environment in a project for an application. This application uses Compute Engine and Cloud SQL. Now you need to create a production environment for this application. The security team has forbidden the existence of network routes between these 2 environments and has asked you to follow Google-recommended practices. What should you do?
+
+Alternativas:
+- A. Create a new project, enable the Compute Engine and Cloud SQL APIs in that project, and replicate the setup you have created in the development environment.
+- B. Create a new production subnet in the existing VPC and a new production Cloud SQL instance in your existing project, and deploy your application using those resources.
+- C. Create a new project, modify your existing VPC to be a Shared VPC, share that VPC with your new project, and replicate the setup you have in the development environment in that new project in the Shared VPC.
+- D. Ask the security team to grant you the Project Editor role in an existing production project used by another division of your company. Once they grant you that role, replicate the setup you have in the development environment in that project.
+
+Resposta correta:
+A. Create a new project, enable the Compute Engine and Cloud SQL APIs in that project, and replicate the setup you have created in the development environment.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: poogcp Highly Voted  4 years, 7 months ago
+Correct answer is A.
+   upvoted 35 times
+ pYWORLD 3 years, 5 months ago
+Correct answer!
+   upvoted 4 times
+
+2. Anonymous: JieHeng Highly Voted  3 years, 6 months ago
+Should be A
+it's a best practice "to have one project per application per environment." - https://cloud.google.com/docs/enterprise/best-practices-for-enterprise-organizations#project-structure
+   upvoted 6 times
+
+3. Anonymous: kelliot Most Recent  1 year, 1 month ago
+Selected Answer: A
+A
+Google's best practices says "create a new project for each environment.
+   upvoted 2 times
+
+4. Anonymous: BAofBK 1 year, 2 months ago
+The correct answer is A
+   upvoted 1 times
+
+5. Anonymous: scanner2 1 year, 4 months ago
+Selected Answer: A
+According to Google recommended practices, you should create a separate project for different environments (dev, test, and prod). Also, the question has forbidden the existence of these environments so shared VPC cannot be used.
+   upvoted 1 times
+
+6. Anonymous: Captain1212 1 year, 4 months ago
+Selected Answer: A
+A is the correct answer, as it satisy tyhe requirement of security team , no commiunicatiojn , as option c allows coummnication
+   upvoted 1 times
+
+7. Anonymous: Neha_Pallavi 1 year, 4 months ago
+A. Create a new project, enable the Compute Engine and Cloud SQL APIs in that project, and replicate the setup you have created in the development environment.
+   upvoted 1 times
+
+8. Anonymous: diasporabro 2 years, 3 months ago
+Selected Answer: A
+Satisfies requirements by the security team
+   upvoted 1 times
+
+9. Anonymous: anolive 2 years, 3 months ago
+Selected Answer: A
+make sense
+   upvoted 1 times
+
+10. Anonymous: alexandercamachop 2 years, 5 months ago
+Selected Answer: A
+A is definitely the answer.
+   upvoted 1 times
+==============================

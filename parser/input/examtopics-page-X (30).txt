@@ -1,0 +1,239 @@
+==============================
+Page X — Question #301
+
+Pergunta:
+You are deploying an application to Google Kubernetes Engine (GKE). The application needs to make API calls to a private Cloud Storage bucket. You need to configure your application Pods to authenticate to the Cloud Storage API, but your organization policy prevents the usage of service account keys. You want to follow Google-recommended practices. What should you do?
+
+Alternativas:
+- A. Create the GKE cluster with Workload Identity Federation. Configure the default node service account to access the bucket. Deploy the application into the cluster so the application can use the node service account permissions. Use Identity and Access Management (IAM) to grant the service account access to the bucket.
+- B. Create the GKE cluster with Workload Identity Federation. Create a Google service account and a Kubernetes ServiceAccount, and configure both service accounts to use Workload Identity Federation. Attach the Kubernetes ServiceAccount to the application Pods and configure the Google service account to access the bucket with Identity and Access Management (IAM).
+- C. Create the GKE cluster and deploy the application. Request a security exception to create a Google service account key. Set the constraints/iam.serviceAccountKeyExpiryHours organization policy to 24 hours.
+- D. Create the GKE cluster and deploy the application. Request a security exception to create a Google service account key. Set the constraints/iam.serviceAccountKeyExpiryHours organization policy to 8 hours.
+
+Resposta correta:
+B. Create the GKE cluster with Workload Identity Federation. Create a Google service account and a Kubernetes ServiceAccount, and configure both service accounts to use Workload Identity Federation. Attach the Kubernetes ServiceAccount to the application Pods and configure the Google service account to access the bucket with Identity and Access Management (IAM).
+
+Top 10 Discussões (sem replies):
+1. Anonymous: MohannadSamir 8 months ago
+Selected Answer: B
+Workload Identity is Google's recommended way to access Google Cloud services from within GKE applications. It's more secure than using service account keys and follows security best practices.
+   upvoted 3 times
+==============================
+
+==============================
+Page X — Question #302
+
+Pergunta:
+Your company’s developers use an automation that you recently built to provision Linux VMs in Compute Engine within a Google Cloud project to perform various tasks. You need to manage the Linux account lifecycle and access for these users. You want to follow Google-recommended practices to simplify access management while minimizing operational costs. What should you do?
+
+Alternativas:
+- A. Enable OS Login for all VMs. Use IAM roles to grant user permissions.
+- B. Require your developers to create public SSH keys. Write custom startup scripts to update user permissions.
+- C. Require your developers to create public SSH keys. Make the owner of the public key the root user.
+- D. Enable OS Login for all VMs. Write custom startup scripts to update user permissions.
+
+Resposta correta:
+A. Enable OS Login for all VMs. Use IAM roles to grant user permissions.
+
+Top 10 Discussões (sem replies):
+Nenhuma discussão
+==============================
+
+==============================
+Page X — Question #303
+
+Pergunta:
+You are managing the security configuration of your company’s Google Cloud organization. The Operations team needs specific permissions on both a Google Kubernetes Engine (GKE) cluster and a Cloud SQL instance. Two predefined Identity and Access Management (IAM) roles exist that contain a subset of the permissions needed by the team. You need to configure the necessary IAM permissions for this team while following Google-recommended practices. What should you do?
+
+Alternativas:
+- A. Create a custom IAM role that combines the permissions from the two relevant predefined roles.
+- B. Grant the team the two predefined IAM roles.
+- C. Create a custom IAM role that includes only the required permissions from the predefined roles.
+- D. Grant the team the IAM roles of Kubernetes Engine Admin and Cloud SQL Admin.
+
+Resposta correta:
+C. Create a custom IAM role that includes only the required permissions from the predefined roles.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: MohannadSamir Highly Voted  8 months ago
+Selected Answer: C
+contain a subset of the permissions needed --> Can't use predefined IAM roles
+For least privilege take the neccesary permission only
+That's why it's C
+"In collaboration with Tito"
+   upvoted 7 times
+
+2. Anonymous: psou7 Most Recent  2 weeks ago
+Selected Answer: B
+Not C: why? Custom roles should only be used when predefined roles cannot meet the requirement. They require ongoing maintenance as permissions evolve.
+Roles already exist.
+   upvoted 1 times
+
+3. Anonymous: ECruz 2 months ago
+Selected Answer: C
+It's B
+   upvoted 1 times
+
+4. Anonymous: guaose 2 months, 1 week ago
+Selected Answer: B
+Google-recommended practice is to use predefined IAM roles whenever possible, as they are maintained and updated by Google to reflect best practices and service changes.
+If two predefined roles already contain the necessary permissions, granting both roles is simpler, more maintainable, and avoids the overhead of managing custom roles.
+This approach also ensures least privilege access, assuming the roles are scoped appropriately (e.g., at the resource level rather than project-wide).
+   upvoted 2 times
+
+5. Anonymous: b02d5eb 5 months, 3 weeks ago
+Selected Answer: C
+Correct answer is C
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #304
+
+Pergunta:
+Your organization has decided to deploy all its compute workloads to Kubernetes on Google Cloud and two other cloud providers. You want to build an Infrastructure-as-code solution to automate the provisioning process for all cloud resources. What should you do?
+
+Alternativas:
+- A. Build the solution by using Config Connector, and provision the resources.
+- B. Build the solution by using Terraform, and provision the resources.
+- C. Build solution by using Python and the cloud SDKs from all providers to provision the resources.
+- D. Build the solution by using YAML manifests, and provision the resources.
+
+Resposta correta:
+B. Build the solution by using Terraform, and provision the resources.
+
+Top 10 Discussões (sem replies):
+Nenhuma discussão
+==============================
+
+==============================
+Page X — Question #305
+
+Pergunta:
+You are planning to deploy an application to Google Cloud. Your application processes asynchronous events from Google services and must be accessible from the public Internet. You need to identify how to deploy your application. You want to follow a standardized process while minimizing development costs. You also want to have no costs when your workloads are not in use. What should you do?
+
+Alternativas:
+- A. Deploy your code to GKE. Use Pub/Sub for event delivery.
+- B. Deploy your code to Compute Engine. Use Pub/Sub for event delivery.
+- C. Deploy your code to GKE. Use Eventarc for event delivery.
+- D. Deploy your code to Cloud Run. Use Eventarc for event delivery.
+
+Resposta correta:
+D. Deploy your code to Cloud Run. Use Eventarc for event delivery.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: toasty 6 months, 1 week ago
+Selected Answer: D
+Cloud Run and Evenarc are the serverless solutions.
+Also, Eventarc should be used for public internet.
+   upvoted 1 times
+
+2. Anonymous: MohannadSamir 8 months ago
+Selected Answer: D
+Public internet --> Eventarc
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #306
+
+Pergunta:
+Your company is migrating its workloads to Google Cloud due to an expiring data center contract. The on-premises environment and Google Cloud are not connected. You have decided to follow a lift-and-shift approach, and you plan to modernize the workloads in a future project. Several old applications connect to each other through hard-coded internal IP addresses. You want to migrate these workloads quickly without modifying the application code. You also want to maintain all functionality. What should you do?
+
+Alternativas:
+- A. Migrate your DNS server first. Configure Cloud DNS with a forwarding zone to your migrated DNS server. Then migrate all other workloads with ephemeral internal IP addresses.
+- B. Create a VPC with non-overlapping CIDR ranges compared to your on-premises network. When migrating individual workloads, assign each workload a new static internal IP address.
+- C. Create a VPC with the same CIDR ranges as your on-premises network. When migrating individual workloads, assign each workload the same static internal IP address.
+- D. Migrate all workloads to a single VPC subnet. Configure Cloud NAT for the subnet and manually assign a static IP address to the Cloud NAT gateway.
+
+Resposta correta:
+C. Create a VPC with the same CIDR ranges as your on-premises network. When migrating individual workloads, assign each workload the same static internal IP address.
+
+Top 10 Discussões (sem replies):
+Nenhuma discussão
+==============================
+
+==============================
+Page X — Question #307
+
+Pergunta:
+You are migrating your company’s on-premises compute resources to Google Cloud. You need to deploy batch processing jobs that run every night. The jobs require significant CPU and memory for several hours but can tolerate interruptions. You must ensure that the deployment is cost-effective. What should you do?
+
+Alternativas:
+- A. Use the M1 machine series on Compute Engine.
+- B. Containerize the batch processing jobs and deploy them on Compute Engine.
+- C. Use Spot VMs on Compute Engine.
+- D. Use custom machine types on Compute Engine.
+
+Resposta correta:
+C. Use Spot VMs on Compute Engine.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: SajadAhm 1 month, 2 weeks ago
+Selected Answer: C
+whenever you hear batch and low cost, go for spot VMs
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #308
+
+Pergunta:
+Your company has a rapidly growing social media platform and a user base primarily located in North America. Due to increasing demand, your current on-premises PostgreSQL database, hosted in your United States headquarters data center, no longer meets your needs. You need to identify a cloud-based database solution that offers automatic scaling, multi-region support for future expansion, and maintains low latency. What should you do?
+
+Alternativas:
+- A. Use BigQuery.
+- B. Use Spanner.
+- C. Use Cloud SQL for PostgreSQL.
+- D. Use Bigtable.
+
+Resposta correta:
+B. Use Spanner.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: SajadAhm 1 month, 2 weeks ago
+Selected Answer: B
+when it says multi regional with future expansion, then choose spanner
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #309
+
+Pergunta:
+You are migrating your on-premises workload to Google Cloud. Your company is implementing its Cloud Billing configuration and requires access to a granular breakdown of its Google Cloud costs. You need to ensure that the Cloud Billing datasets are available in BigQuery so you can conduct a detailed analysis of costs. What should you do?
+
+Alternativas:
+- A. Enable Cloud Billing data export to BigQuery when you create a Cloud Billing account.
+- B. Enable Cloud Billing on the project, and link a Cloud Billing account. Then view the billing data table in the BigQuery dataset.
+- C. Create a Cloud Billing account. Enable the BigQuery Data Transfer Service API to export pricing data.
+- D. Enable the BigQuery API, and ensure that the BigQuery User IAM role is selected. Change the BigQuery dataset to select a data location.
+
+Resposta correta:
+A. Enable Cloud Billing data export to BigQuery when you create a Cloud Billing account.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: SajadAhm 1 month, 2 weeks ago
+Selected Answer: A
+the "Export" is the golden word
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #310
+
+Pergunta:
+Your company’s accounting department needs to run an overnight batch workload every day. You must implement a solution that minimizes the cost to run this workload and automatically retries the batch if an execution fails. What should you do?
+
+Alternativas:
+- A. Develop an application that runs the batch workload, and deploy the application as a Google Kubernetes Engine (GKE) CronJob.
+- B. Develop a web application that listens for incoming requests, and deploy the application as a Cloud Run service. Use Cloud Scheduler to call the HTTP endpoint.
+- C. Develop an application that runs the batch workload, and deploy the application as a Cloud Run job. Use Cloud Scheduler to trigger the job.
+- D. Develop a web application that listens for incoming requests, and deploy the application as a Google Kubernetes Engine (GKE) Deployment. Use Cloud Scheduler to call the HTTP endpoint.
+
+Resposta correta:
+C. Develop an application that runs the batch workload, and deploy the application as a Cloud Run job. Use Cloud Scheduler to trigger the job.
+
+Top 10 Discussões (sem replies):
+Nenhuma discussão
+==============================

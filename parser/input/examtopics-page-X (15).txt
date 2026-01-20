@@ -1,0 +1,835 @@
+==============================
+Page X — Question #151
+
+Pergunta:
+You are working with a user to set up an application in a new VPC behind a firewall. The user is concerned about data egress. You want to configure the fewest open egress ports. What should you do?
+
+Alternativas:
+- A. Set up a low-priority (65534) rule that blocks all egress and a high-priority rule (1000) that allows only the appropriate ports.
+- B. Set up a high-priority (1000) rule that pairs both ingress and egress ports.
+- C. Set up a high-priority (1000) rule that blocks all egress and a low-priority (65534) rule that allows only the appropriate ports.
+- D. Set up a high-priority (1000) rule to allow the appropriate ports.
+
+Resposta correta:
+A. Set up a low-priority (65534) rule that blocks all egress and a high-priority rule (1000) that allows only the appropriate ports.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ESP_SAP Highly Voted  4 years, 11 months ago
+Correct Answer is (A):
+Implied rules
+Every VPC network has two implied firewall rules. These rules exist, but are not shown in the Cloud Console:
+Implied allow egress rule. An egress rule whose action is allow, destination is 0.0.0.0/0, and priority is the lowest possible (65535) lets any instance send traffic to any destination, except for traffic blocked by Google Cloud. A higher priority firewall rule may restrict outbound access. Internet access is allowed if no other firewall rules deny outbound traffic and if the instance has an external IP address or uses a Cloud NAT instance. For more information, see Internet access requirements.
+Implied deny ingress rule. An ingress rule whose action is deny, source is 0.0.0.0/0, and priority is the lowest possible (65535) protects all instances by blocking incoming connections to them. A higher priority rule might allow incoming access. The default network includes some additional rules that override this one, allowing certain types of incoming connections.
+https://cloud.google.com/vpc/docs/firewalls#default_firewall_rules
+   upvoted 44 times
+ patashish 3 years ago
+The correct answer is C
+   upvoted 1 times
+ ryumada 2 years, 11 months ago
+You should visit the documentation link he attached. He's copy those statements from the Google Docs.
+   upvoted 2 times
+ Roro_Brother 3 years ago
+Listen that guy because he is right
+   upvoted 1 times
+
+2. Anonymous: bobthebuilder55110 Highly Voted  2 years, 11 months ago
+Selected Answer: A
+Answer is (A) :
+First I was going with C but then I read the question again, let's try to understand both options here, the goal is to deny egress and only allow some ports for some functions to perform. If we go with C, lower the number higher the priority (1000) so the rule with this priority 1000 will overwrite (65534), so If we allow only appropriate ports it will be overwritten with the high-priority (1000) rule and all the egress traffic will be blocked.
+Remember the goal here is to block egress but not all of it since we still want to configure the fewest open ports and this is statefull meaning for open ports traffic will be both ways.
+A fits this condition where it is saying we block all traffic but the required ports are kept open with higher priority which will only allow the required traffic to leave the network.
+   upvoted 17 times
+
+3. Anonymous: Cynthia2023 Most Recent  1 year, 6 months ago
+Selected Answer: A
+Default Egress Behavior: In Google Cloud VPCs, the default behavior is to allow all egress traffic. To restrict egress traffic effectively, you need to explicitly set up firewall rules.
+Blocking All Egress Traffic: The low-priority rule (priority 65534, near the lowest priority) should be configured to block all egress traffic. This creates a baseline rule that denies all egress traffic by default.
+Allowing Specific Ports: The high-priority rule (priority 1000, indicating a higher priority) should be set to allow egress traffic only on the specific ports that are required for the application. Since firewall rules are evaluated in order of priority, this rule will override the default block for these specific ports.
+   upvoted 2 times
+
+4. Anonymous: jimmydice 1 year, 8 months ago
+Correct answer is C: By implementing a high-priority rule to block all egress traffic (since it has a lower number than lower-priority rules), and a low-priority rule to selectively allow specific necessary egress ports (with a higher number), you minimize open egress ports to only the required ones while restricting the rest.
+   upvoted 2 times
+
+5. Anonymous: scanner2 1 year, 10 months ago
+Selected Answer: A
+The rule is evaluated on higher priority to lower priority and depends first come first serve basis.
+https://cloud.google.com/firewall/docs/firewall-policies-overview#rule-evaluation
+   upvoted 1 times
+
+6. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: A
+A is the correct answer
+   upvoted 2 times
+
+7. Anonymous: fragment137 2 years, 7 months ago
+Selected Answer: A
+Correct answer is A.
+Answer will not be D, because Egress traffic is Allowed by default. You will have to explicitly set the rule blocking outbound traffic.
+   upvoted 1 times
+
+8. Anonymous: ryumada 2 years, 11 months ago
+Selected Answer: A
+Read ESP_SAP comment for the explanation. He explains it clearly.
+   upvoted 1 times
+
+9. Anonymous: sonuricky 2 years, 11 months ago
+C is the correct answer
+   upvoted 1 times
+
+10. Anonymous: gscharly 2 years, 11 months ago
+Selected Answer: A
+A: is the answer
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #152
+
+Pergunta:
+Your company runs its Linux workloads on Compute Engine instances. Your company will be working with a new operations partner that does not use Google
+Accounts. You need to grant access to the instances to your operations partner so they can maintain the installed tooling. What should you do?
+
+Alternativas:
+- A. Enable Cloud IAP for the Compute Engine instances, and add the operations partner as a Cloud IAP Tunnel User.
+- B. Tag all the instances with the same network tag. Create a firewall rule in the VPC to grant TCP access on port 22 for traffic from the operations partner to instances with the network tag.
+- C. Set up Cloud VPN between your Google Cloud VPC and the internal network of the operations partner.
+- D. Ask the operations partner to generate SSH key pairs, and add the public keys to the VM instances.
+
+Resposta correta:
+A. Enable Cloud IAP for the Compute Engine instances, and add the operations partner as a Cloud IAP Tunnel User.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: kulikBro Highly Voted  4 years, 9 months ago
+A - https://cloud.google.com/iap/docs/external-identities
+   upvoted 34 times
+ SajadAhm 3 weeks, 1 day ago
+The feature in your link is for Web Apps; for SSH access without a Google account, Option D is the intended answer.
+   upvoted 1 times
+
+2. Anonymous: Bhagirathi Highly Voted  5 years, 1 month ago
+full of confusions for any reader....
+You guys all say A, B, C & D but which one is correct ?
+   upvoted 23 times
+ yc25744 4 years, 6 months ago
+nothing
+   upvoted 8 times
+
+3. Anonymous: guaose Most Recent  2 months, 1 week ago
+Selected Answer: D
+El socio no usa cuentas de Google, por lo que no puedes asignar roles IAM ni usar Cloud IAP (requiere identidad Google).
+La forma recomendada para acceso SSH en Compute Engine sin cuentas de Google es usar claves SSH:
+El socio genera un par de claves (privada y pública).
+Tú agregas la clave pública en la metadata de la VM o en el proyecto.
+   upvoted 1 times
+
+4. Anonymous: dead1407 4 months, 2 weeks ago
+Selected Answer: D
+Since the operations partner does not use Google Accounts, the recommended way to grant them access is by using SSH key pairs. Have them generate SSH keys and add their public keys to the VM instances, allowing secure access without requiring Google Accounts.
+   upvoted 2 times
+
+5. Anonymous: f12345112 10 months, 1 week ago
+Selected Answer: D
+A is not correct as it requires Google account which operations partner does not use.
+D is correct.
+   upvoted 4 times
+
+6. Anonymous: peddyua 12 months ago
+Selected Answer: D
+voting for D
+   upvoted 2 times
+
+7. Anonymous: ritvikk49 1 year ago
+Selected Answer: D
+it is D
+   upvoted 2 times
+
+8. Anonymous: halifax 1 year, 1 month ago
+Selected Answer: D
+A - wrong Identity-Aware Proxy (IAP) is not designed for external users who do not have Google Accounts.
+B- possible but It does open up port 22, which could pose security risks if not properly managed.
+C- This is a complex solution and ongoing management compared to option D.
+D- This method allows external users to access VMs without needing Google Accounts, using standard SSH key authentication(simple method)
+   upvoted 2 times
+
+9. Anonymous: imazy 1 year, 2 months ago
+Selected Answer: A
+People voting for D assuming the Google account is the only mandatory requirement to configure IAP is not true , we can use microsoft, facebook and custom email as well
+   upvoted 1 times
+
+10. Anonymous: sivakarthick16 1 year, 3 months ago
+Selected Answer: D
+A is incorrect because the operations partner does not have a Google account. Activating and enabling Cloud IAP (Identity-Aware Proxy) for the Compute Engine instances would only allow access to users with Google Accounts. In this case, the third-party service provider does not use Google Accounts, so this option would not enable their access.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #153
+
+Pergunta:
+You have created a code snippet that should be triggered whenever a new file is uploaded to a Cloud Storage bucket. You want to deploy this code snippet. What should you do?
+
+Alternativas:
+- A. Use App Engine and configure Cloud Scheduler to trigger the application using Pub/Sub.
+- B. Use Cloud Functions and configure the bucket as a trigger resource.
+- C. Use Google Kubernetes Engine and configure a CronJob to trigger the application using Pub/Sub.
+- D. Use Dataflow as a batch job, and configure the bucket as a data source.
+
+Resposta correta:
+B. Use Cloud Functions and configure the bucket as a trigger resource.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ESP_SAP Highly Voted  4 years, 11 months ago
+Correct Answer is (B):
+Google Cloud Storage Triggers
+Cloud Functions can respond to change notifications emerging from Google Cloud Storage. These notifications can be configured to trigger in response to various events inside a bucket—object creation, deletion, archiving and metadata updates.
+Note: Cloud Functions can only be triggered by Cloud Storage buckets in the same Google Cloud Platform project.
+Event types
+Cloud Storage events used by Cloud Functions are based on Cloud Pub/Sub Notifications for Google Cloud Storage and can be configured in a similar way.
+Supported trigger type values are:
+google.storage.object.finalize
+google.storage.object.delete
+google.storage.object.archive
+google.storage.object.metadataUpdate
+Object Finalize
+Trigger type value: google.storage.object.finalize
+This event is sent when a new object is created (or an existing object is overwritten, and a new generation of that object is created) in the bucket.
+https://cloud.google.com/functions/docs/calling/storage#event_types
+   upvoted 42 times
+
+2. Anonymous: francisco_guerra Highly Voted  4 years, 11 months ago
+The answer is B
+   upvoted 19 times
+ SSPC 4 years, 11 months ago
+Sure B? Please you could share the link with the Google documentation
+   upvoted 1 times
+ Ale1973 4 years, 10 months ago
+https://cloud.google.com/functions/docs/calling/storage
+   upvoted 3 times
+
+3. Anonymous: Cynthia2023 Most Recent  1 year, 6 months ago
+Selected Answer: B
+Google Cloud Functions supports several types of triggers, allowing you to run your functions in response to various events in the Google Cloud environment or via HTTP requests.
+1. HTTP Triggers:
+• HTTP triggers allow your Cloud Function to be invoked via standard HTTP requests. These are useful for building APIs, webhooks, and other services that are accessible over the internet or within your internal network.
+2. Cloud Pub/Sub Triggers:
+• Cloud Functions can be triggered by messages published to Cloud Pub/Sub topics. This is useful for asynchronous event-driven architectures and integrating with systems that publish events to Pub/Sub.
+   upvoted 2 times
+ Cynthia2023 1 year, 6 months ago
+3. Cloud Storage Triggers:
+• Functions can respond to changes in Google Cloud Storage, such as creating, deleting, or updating objects. This is helpful for processing uploaded files, data backups, and more.
+4. Firestore Triggers:
+• These triggers allow functions to execute in response to changes in Google Cloud Firestore data, including document creation, updates, and deletions. They are useful for syncing Firestore data with other data stores, or for handling real-time data updates.
+5. Firebase Realtime Database Triggers:
+• Cloud Functions can be triggered by changes in Firebase Realtime Database. This is similar to Firestore triggers but specific to Firebase's Realtime Database service.
+   upvoted 1 times
+ Cynthia2023 1 year, 6 months ago
+6. Firebase Authentication Triggers:
+• Functions can react to Firebase Authentication events, such as user creation, deletion, or attribute updates. These triggers are useful for custom user management workflows and integration with external systems.
+7. Google Analytics for Firebase Triggers:
+• These triggers enable functions to respond to Analytics events collected by Firebase, useful for custom event processing and integrations.
+8. Scheduled (Cron) Triggers:
+• Cloud Scheduler can be used to trigger functions on a time-based schedule (cron). This is ideal for running batch jobs, regular clean-ups, or other scheduled tasks.
+   upvoted 1 times
+
+4. Anonymous: scanner2 1 year, 10 months ago
+Selected Answer: B
+Use "Object finalized" event of the Cloud Storage bucket as trigger for the Cloud Functions.
+https://cloud.google.com/functions/docs/calling/storage
+   upvoted 2 times
+
+5. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: B
+B seems the correct option, as we can use the cloud functions as per our requirement for the cloud storage bucket..
+   upvoted 1 times
+
+6. Anonymous: Angel_99 2 years, 11 months ago
+Selected Answer: B
+The answer is B
+   upvoted 1 times
+
+7. Anonymous: AzureDP900 3 years ago
+B is correct, it is required on demand when upload happens
+   upvoted 1 times
+
+8. Anonymous: arvsrv 3 years, 6 months ago
+Selected Answer: B
+The answer is B
+   upvoted 2 times
+
+9. Anonymous: Surat 3 years, 6 months ago
+I vote for B
+   upvoted 2 times
+
+10. Anonymous: alaahakim 3 years, 8 months ago
+Selected Answer: B
+Vote For B
+   upvoted 4 times
+==============================
+
+==============================
+Page X — Question #154
+
+Pergunta:
+You have been asked to set up Object Lifecycle Management for objects stored in storage buckets. The objects are written once and accessed frequently for 30 days. After 30 days, the objects are not read again unless there is a special need. The objects should be kept for three years, and you need to minimize cost.
+What should you do?
+
+Alternativas:
+- A. Set up a policy that uses Nearline storage for 30 days and then moves to Archive storage for three years.
+- B. Set up a policy that uses Standard storage for 30 days and then moves to Archive storage for three years.
+- C. Set up a policy that uses Nearline storage for 30 days, then moves the Coldline for one year, and then moves to Archive storage for two years.
+- D. Set up a policy that uses Standard storage for 30 days, then moves to Coldline for one year, and then moves to Archive storage for two years.
+
+Resposta correta:
+B. Set up a policy that uses Standard storage for 30 days and then moves to Archive storage for three years.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ESP_SAP Highly Voted  4 years, 11 months ago
+Correct Answer is (B):
+The key to understand the requirement is : "The objects are written once and accessed frequently for 30 days"
+Standard Storage
+Standard Storage is best for data that is frequently accessed ("hot" data) and/or stored for only brief periods of time.
+Archive Storage
+Archive Storage is the lowest-cost, highly durable storage service for data archiving, online backup, and disaster recovery. Unlike the "coldest" storage services offered by other Cloud providers, your data is available within milliseconds, not hours or days. Archive Storage is the best choice for data that you plan to access less than once a year.
+https://cloud.google.com/storage/docs/storage-classes#standard
+   upvoted 54 times
+ naveedpk00 4 years, 10 months ago
+What if we chose option D to minimize the cost as asked in the question? What do you think?
+   upvoted 1 times
+ gcper 4 years, 9 months ago
+It doesn't minimize the costs. Check the costs of coldline vs archival
+   upvoted 5 times
+
+2. Anonymous: SSPC Highly Voted  4 years, 11 months ago
+I think the correct one is B. Because Nearline has a 30-day minimum storage duration.
+https://cloud.google.com/storage/docs/storage-classes
+   upvoted 15 times
+ pepepy 4 years, 11 months ago
+The object should be kept for three years, and you need to minimize cost, after 30 days it will be moved to archive, ans A
+   upvoted 1 times
+ pepepy 4 years, 11 months ago
+Sorry you are right accessed frequently for 30 days, its B
+   upvoted 6 times
+
+3. Anonymous: Tanidanindo Most Recent  1 year, 6 months ago
+Selected Answer: B
+The objects are written once and accessed frequently for 30 days. Then rarely accessed.
+   upvoted 1 times
+
+4. Anonymous: Jin1206t 1 year, 8 months ago
+Selected Answer: B
+B is the correct answer
+   upvoted 1 times
+
+5. Anonymous: scanner2 1 year, 10 months ago
+Selected Answer: B
+Key terms frequently accessed for 30 days -> Standard storage class.
+Not accessed unless special need for 3 years -> Archive storage class.
+   upvoted 2 times
+
+6. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: B
+B is the correct answer, as the data for first 30 days in accessed frequently so for it we can use the standard , and after it to minimize the cost we can use the archive storage for 3 years
+   upvoted 1 times
+
+7. Anonymous: ashtonez 2 years, 4 months ago
+Answer is B, we cannot select A because data is accedesed frequently and nearline only allows access once per month (you can access more incurring in aditional cost but being not a cost optimized selection)
+   upvoted 1 times
+
+8. Anonymous: thaliath 2 years, 6 months ago
+Answer is A: there is a retrieval fee for data access from nearline. Please check https://cloud.google.com/storage/docs/storage-classes. So Standard storage is the cheaper option
+   upvoted 1 times
+
+9. Anonymous: Charumathi 2 years, 9 months ago
+Selected Answer: B
+B is the correct Answer,
+Frequently accessed data 'Hot Data' should be stored in Standard Storage for 30 days,
+Then this can be moved to Archive after 30 days for period of three years which is accessed only when a special need arises, to reduce cost.
+   upvoted 1 times
+
+10. Anonymous: taiyi078 3 years ago
+https://cloud.google.com/storage/docs/storage-classes#nearline
+Nearline storage is ideal for data you plan to read or modify on average once per month or less. For example, if you want to continuously add files to Cloud Storage and plan to access those files once a month for analysis, Nearline storage is a great choice.
+Nearline storage is also appropriate for data backup, long-tail multimedia content, and data archiving. Note, however, that for data accessed less frequently than once a quarter, Coldline storage or Archive storage are more cost-effective, as they offer lower storage costs.
+   upvoted 2 times
+ taiyi078 3 years ago
+Nearline storage is a low-cost, highly durable storage service for storing infrequently accessed data. Nearline storage is a better choice than Standard storage in scenarios where slightly lower availability, a 30-day minimum storage duration, and costs for data access are acceptable trade-offs for lowered at-rest storage costs.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #155
+
+Pergunta:
+You are storing sensitive information in a Cloud Storage bucket. For legal reasons, you need to be able to record all requests that read any of the stored data. You want to make sure you comply with these requirements. What should you do?
+
+Alternativas:
+- A. Enable the Identity Aware Proxy API on the project.
+- B. Scan the bucket using the Data Loss Prevention API.
+- C. Allow only a single Service Account access to read the data.
+- D. Enable Data Access audit logs for the Cloud Storage API.
+
+Resposta correta:
+D. Enable Data Access audit logs for the Cloud Storage API.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ESP_SAP Highly Voted  4 years, 11 months ago
+Correct Answer is (D):
+Logged information
+Within Cloud Audit Logs, there are two types of logs:
+Admin Activity logs: Entries for operations that modify the configuration or metadata of a project, bucket, or object.
+Data Access logs: Entries for operations that modify objects or read a project, bucket, or object. There are several sub-types of data access logs:
+ADMIN_READ: Entries for operations that read the configuration or metadata of a project, bucket, or object.
+DATA_READ: Entries for operations that read an object.
+DATA_WRITE: Entries for operations that create or modify an object.
+https://cloud.google.com/storage/docs/audit-logs#types
+   upvoted 32 times
+
+2. Anonymous: francisco_guerra Highly Voted  4 years, 11 months ago
+D is the correct one
+   upvoted 19 times
+ SSPC 4 years, 11 months ago
+Yes D is the correct
+   upvoted 6 times
+
+3. Anonymous: PiperMe Most Recent  1 year, 4 months ago
+D is the best answer:
+- Data Access audit logs are specifically designed to track Google Cloud API operations related to data, including reads from Cloud Storage buckets.
+- These logs include details about the user or service account making the request, the time, and the specific data resource accessed.
+- Having this audit trail is essential for demonstrating adherence to regulations around sensitive data handling.
+Why Others Aren't as Ideal:
+A: Identity-Aware Proxy (IAP): IAP focuses on controlling access to web apps behind firewalls but doesn't inherently log all data read operations.
+B: Data Loss Prevention (DLP): DLP is excellent for identifying sensitive data within your bucket but doesn't provide a continuous audit log of every access.
+C: Restricting Access: While limiting access is a security best practice, it doesn't address the legal requirement to log every read operation.
+   upvoted 3 times
+
+4. Anonymous: scanner2 1 year, 10 months ago
+Selected Answer: D
+Enable Data access audit logs for Cloud storage bucket
+https://cloud.google.com/storage/docs/audit-logging
+   upvoted 2 times
+
+5. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: D
+D is the correct answer
+   upvoted 1 times
+
+6. Anonymous: calm_fox 2 years, 7 months ago
+Selected Answer: D
+Only logical option
+   upvoted 1 times
+
+7. Anonymous: AzureDP900 3 years ago
+D is right for this use case
+   upvoted 1 times
+
+8. Anonymous: Akash7 3 years, 2 months ago
+D is correct as Data Access logs pertaining to Cloud Storage operations are not recorded by default. You have to enable them ...
+https://cloud.google.com/storage/docs/audit-logging
+   upvoted 2 times
+
+9. Anonymous: wael_tn 3 years, 2 months ago
+Selected Answer: D
+I think it's D
+   upvoted 1 times
+
+10. Anonymous: Surat 3 years, 6 months ago
+I also vote for D
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #156
+
+Pergunta:
+You are the team lead of a group of 10 developers. You provided each developer with an individual Google Cloud Project that they can use as their personal sandbox to experiment with different Google Cloud solutions. You want to be notified if any of the developers are spending above $500 per month on their sandbox environment. What should you do?
+
+Alternativas:
+- A. Create a single budget for all projects and configure budget alerts on this budget.
+- B. Create a separate billing account per sandbox project and enable BigQuery billing exports. Create a Data Studio dashboard to plot the spending per billing account.
+- C. Create a budget per project and configure budget alerts on all of these budgets.
+- D. Create a single billing account for all sandbox projects and enable BigQuery billing exports. Create a Data Studio dashboard to plot the spending per project.
+
+Resposta correta:
+C. Create a budget per project and configure budget alerts on all of these budgets.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ESP_SAP Highly Voted  5 years, 5 months ago
+Correct Answer is (C):
+Set budgets and budget alerts
+Overview
+Avoid surprises on your bill by creating Cloud Billing budgets to monitor all of your Google Cloud charges in one place. A budget enables you to track your actual Google Cloud spend against your planned spend. After you've set a budget amount, you set budget alert threshold rules that are used to trigger email notifications. Budget alert emails help you stay informed about how your spend is tracking against your budget.
+2. Set budget scope
+Set the budget Scope and then click Next.
+In the Projects field, select one or more projects that you want to apply the budget alert to. To apply the budget alert to all the projects in the Cloud Billing account, choose Select all.
+https://cloud.google.com/billing/docs/how-to/budgets#budget-scop
+   upvoted 49 times
+ dang1986 3 years, 11 months ago
+You're the only answer I take seriously "Thumbs up"
+   upvoted 3 times
+ bobthebuilder55110 3 years, 5 months ago
+wait a minute, why not A ?
+As you said that
+" In the Projects field, select one or more projects that you want to apply the budget alert to. To apply the budget alert to all the projects in the Cloud Billing account, choose Select all. "
+As per this I should be able to create single budget for all the projects and should be able to set alert on that, why create separate budget for all 10 projects ?
+   upvoted 1 times
+ Priyanka109 3 years, 3 months ago
+It will be a combined budget that's why it's C
+   upvoted 2 times
+
+2. Anonymous: Hjameel Highly Voted  5 years, 5 months ago
+I think C is the best answer.
+   upvoted 10 times
+
+3. Anonymous: denno22 Most Recent  1 year, 3 months ago
+Selected Answer: C
+C
+   upvoted 1 times
+
+4. Anonymous: yehia2221 1 year, 5 months ago
+Agree, anwser C, as there is no a common billing account mentioned in the question, we need to create a budget by project.
+   upvoted 1 times
+
+5. Anonymous: Cynthia2023 2 years ago
+Selected Answer: C
+The scope of a budget in GCP can be defined at different levels:
+1. Project-Level Budget:
+2. Billing Account-Level Budget:
+3. Specific Services or Labels:
+• GCP allows you to create budgets for specific services (like Compute Engine, Cloud Storage, etc.) or resources labeled with specific labels within a project or billing account. This level of granularity is useful for tracking costs associated with particular services or resource categories.
+4. Credits and Other Filters:
+• When setting up a budget, you can include or exclude certain types of costs, such as credits, discounts, or taxes, depending on your monitoring needs.
+   upvoted 2 times
+
+6. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: C
+C is the correct answer, because question demands that which project goes over the 500 per month, to check that you need to create the budget per project
+   upvoted 2 times
+
+7. Anonymous: Kopy 3 years, 2 months ago
+Selected Answer: C
+Correct Answer is (C):
+   upvoted 1 times
+
+8. Anonymous: Angel_99 3 years, 5 months ago
+Selected Answer: C
+Key is anyone goes above $500 means it requires project level
+   upvoted 2 times
+
+9. Anonymous: AzureDP900 3 years, 6 months ago
+Key is anyone goes above $500 means it requires project level so C is right
+   upvoted 1 times
+
+10. Anonymous: wael_tn 3 years, 9 months ago
+Selected Answer: C
+Clearly C is the answer
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #157
+
+Pergunta:
+You are deploying a production application on Compute Engine. You want to prevent anyone from accidentally destroying the instance by clicking the wrong button. What should you do?
+
+Alternativas:
+- A. Disable the flag ג€Delete boot disk when instance is deleted.ג€
+- B. Enable delete protection on the instance.
+- C. Disable Automatic restart on the instance.
+- D. Enable Preemptibility on the instance.
+
+Resposta correta:
+B. Enable delete protection on the instance.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ESP_SAP Highly Voted  4 years, 5 months ago
+Correct Answer is (B):
+Preventing Accidental VM Deletion
+This document describes how to protect specific VM instances from deletion by setting the deletionProtection property on an Instance resource. To learn more about VM instances, read the Instances documentation.
+As part of your workload, there might be certain VM instances that are critical to running your application or services, such as an instance running a SQL server, a server used as a license manager, and so on. These VM instances might need to stay running indefinitely so you need a way to protect these VMs from being deleted.
+By setting the deletionProtection flag, a VM instance can be protected from accidental deletion. If a user attempts to delete a VM instance for which you have set the deletionProtection flag, the request fails. Only a user that has been granted a role with compute.instances.create permission can reset the flag to allow the resource to be deleted.
+https://cloud.google.com/compute/docs/instances/preventing-accidental-vm-deletion
+   upvoted 45 times
+ Naree 1 year, 6 months ago
+Mr.ESP_SAP, your answers are on the spot and I look forward to your notes on all the questions first.. Appreciate your effort and support for this cloud community.. :)
+   upvoted 6 times
+
+2. Anonymous: MohammedGhouse Highly Voted  4 years, 5 months ago
+"B" is the answer
+   upvoted 11 times
+
+3. Anonymous: mufuuuu Most Recent  1 year, 1 month ago
+Selected Answer: B
+B. Enable delete protection on the instance.
+   upvoted 3 times
+ mufuuuu 1 year, 1 month ago
+Enabling delete protection helps safeguard your instances from accidental deletion. This means that even if someone attempts to delete the instance through the console or API, they will receive an error, preventing accidental deletion. It acts as an additional layer of protection to avoid critical mistakes.
+   upvoted 1 times
+
+4. Anonymous: scanner2 1 year, 4 months ago
+Selected Answer: B
+https://cloud.google.com/compute/docs/instances/preventing-accidental-vm-deletion
+   upvoted 1 times
+
+5. Anonymous: Captain1212 1 year, 4 months ago
+Selected Answer: B
+B is the correct answer , as it helps to prevent critical instance to get deleted
+   upvoted 1 times
+
+6. Anonymous: AzureDP900 2 years, 6 months ago
+This is straight forward question, enable delete protection. B is right
+   upvoted 1 times
+
+7. Anonymous: Himadhar1997 2 years, 7 months ago
+Selected Answer: B
+Preventing Accidental VM Deletion
+This document describes how to protect specific VM instances from deletion by setting the deletionProtection property on an Instance resource. To learn more about VM instances, read the Instances documentation.
+   upvoted 2 times
+
+8. Anonymous: Surat 3 years ago
+B seems right option
+   upvoted 3 times
+
+9. Anonymous: kped21 3 years ago
+B - on VM Enable delete protection
+   upvoted 2 times
+
+10. Anonymous: jaffarali 3 years, 1 month ago
+Selected Answer: B
+Answer is B. there is an Option in VM instance while creating
+   upvoted 3 times
+==============================
+
+==============================
+Page X — Question #158
+
+Pergunta:
+Your company uses a large number of Google Cloud services centralized in a single project. All teams have specific projects for testing and development. The
+DevOps team needs access to all of the production services in order to perform their job. You want to prevent Google Cloud product changes from broadening their permissions in the future. You want to follow Google-recommended practices. What should you do?
+
+Alternativas:
+- A. Grant all members of the DevOps team the role of Project Editor on the organization level.
+- B. Grant all members of the DevOps team the role of Project Editor on the production project.
+- C. Create a custom role that combines the required permissions. Grant the DevOps team the custom role on the production project.
+- D. Create a custom role that combines the required permissions. Grant the DevOps team the custom role on the organization level.
+
+Resposta correta:
+C. Create a custom role that combines the required permissions. Grant the DevOps team the custom role on the production project.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ESP_SAP Highly Voted  4 years, 11 months ago
+Correct Answer is (C):
+Understanding IAM custom roles
+Key Point: Custom roles enable you to enforce the principle of least privilege, ensuring that the user and service accounts in your organization have only the permissions essential to performing their intended functions.
+Basic concepts
+Custom roles are user-defined, and allow you to bundle one or more supported permissions to meet your specific needs. Custom roles are not maintained by Google; when new permissions, features, or services are added to Google Cloud, your custom roles will not be updated automatically.
+When you create a custom role, you must choose an organization or project to create it in. You can then grant the custom role on the organization or project, as well as any resources within that organization or project.
+https://cloud.google.com/iam/docs/understanding-custom-roles#basic_concepts
+   upvoted 59 times
+
+2. Anonymous: SSPC Highly Voted  4 years, 11 months ago
+"You want to prevent Google Cloud product changes from broadening their permissions in the future." then CUSTOM ROLE
+   upvoted 32 times
+ Rothmansua 3 years, 9 months ago
+Great hint, thanks!
+   upvoted 3 times
+
+3. Anonymous: ram2022 Most Recent  1 year, 7 months ago
+Selected Answer: B
+The answer would be B as it will help the DevOps team to work on any resources for others future production project.
+   upvoted 2 times
+ kuracpalac 1 year, 4 months ago
+But if Google change their roles, they can broaden the rights to those engineers, so that would be a wrong answer IMO. C looks like the correct one from the list.
+   upvoted 1 times
+
+4. Anonymous: rahulrauki 1 year, 9 months ago
+Selected Answer: C
+The giveaway is "prevent google cloud product changes from broadening their permissions". Which means that we need to create a custom role. Also they mentioned all production services and not production projects so C
+   upvoted 3 times
+
+5. Anonymous: scanner2 1 year, 10 months ago
+Selected Answer: C
+Custom roles help you enforce the principle of least privilege, because they help to ensure that the principals in your organization have only the permissions that they need.
+Custom roles are user-defined, and allow you to bundle one or more supported permissions to meet your specific needs. When you create a custom role, you must choose an organization or project to create it in. You can then grant the custom role on the organization or project, as well as any resources within that organization or project.
+Note: You cannot define custom roles at the folder level. If you need to use a custom role within a folder, define the custom role at the organization level.
+https://cloud.google.com/iam/docs/roles-overview#custom
+   upvoted 1 times
+
+6. Anonymous: scanner2 1 year, 10 months ago
+Selected Answer: C
+Custom roles help you enforce the principle of least privilege, because they help to ensure that the principals in your organization have only the permissions that they need.
+Custom roles are user-defined, and allow you to bundle one or more supported permissions to meet your specific needs. When you create a custom role, you must choose an organization or project to create it in. You can then grant the custom role on the organization or project, as well as any resources within that organization or project.
+Note: You cannot define custom roles at the folder level. If you need to use a custom role within a folder, define the custom role at the organization level.
+https://cloud.google.com/iam/docs/roles-overview#custom
+   upvoted 1 times
+
+7. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: C
+C is the correct answer
+   upvoted 2 times
+
+8. Anonymous: sabrinakloud 2 years, 3 months ago
+Selected Answer: C
+C is correct
+   upvoted 1 times
+
+9. Anonymous: slcvlctetri 2 years, 6 months ago
+Selected Answer: C
+Had this question 2 days ago. C is correct.
+   upvoted 1 times
+
+10. Anonymous: Charumathi 2 years, 9 months ago
+Selected Answer: C
+C is the correct answer, give the devops team the least privileged role, only the required permissions to access the production services, as the question states 'to prevent product changes' for which editor role is not recommended either at Project or organizational level, organizational level access gives broad scope to all the projects in the organization, this role cannot be given to the devops team.
+A. Editor has privilege to change the products, and the scope is broad
+B. Editor has privilege to change the products
+C. Recommended, as this will give only required permission at project level to devops team.
+D. They require only project level access. This gives access to all project in the organization.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #159
+
+Pergunta:
+You are building an application that processes data files uploaded from thousands of suppliers. Your primary goals for the application are data security and the expiration of aged data. You need to design the application to:
+* Restrict access so that suppliers can access only their own data.
+* Give suppliers write access to data only for 30 minutes.
+* Delete data that is over 45 days old.
+You have a very short development cycle, and you need to make sure that the application requires minimal maintenance. Which two strategies should you use?
+(Choose two.)
+
+Alternativas:
+- A. Build a lifecycle policy to delete Cloud Storage objects after 45 days.
+- B. Use signed URLs to allow suppliers limited time access to store their objects.
+- C. Set up an SFTP server for your application, and create a separate user for each supplier.
+- D. Build a Cloud function that triggers a timer of 45 days to delete objects that have expired.
+- E. Develop a script that loops through all Cloud Storage buckets and deletes any buckets that are older than 45 days.
+
+Resposta correta:
+B. Use signed URLs to allow suppliers limited time access to store their objects.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ESP_SAP Highly Voted  4 years, 4 months ago
+Correct Answers are: (AB):
+(A) Object Lifecycle Management
+Delete
+The Delete action deletes an object when the object meets all conditions specified in the lifecycle rule.
+Exception: In buckets with Object Versioning enabled, deleting the live version of an object causes it to become a noncurrent version, while deleting a noncurrent version deletes that version permanently.
+https://cloud.google.com/storage/docs/lifecycle#delete
+(B) Signed URLs
+This page provides an overview of signed URLs, which you use to give time-limited resource access to anyone in possession of the URL, regardless of whether they have a Google account
+https://cloud.google.com/storage/docs/access-control/signed-urls
+   upvoted 48 times
+
+2. Anonymous: francisco_guerra Highly Voted  4 years, 5 months ago
+AB is the answer
+   upvoted 16 times
+
+3. Anonymous: scanner2 Most Recent  1 year, 4 months ago
+Selected Answer: AB
+Create object lifecycle policy to automatically delete the objects after 45 days. Create signed URLs to temporarily provide the access for specified amount of time.
+   upvoted 2 times
+
+4. Anonymous: Captain1212 1 year, 4 months ago
+Selected Answer: AB
+AB is the correct answer, as A helps to make a lifecycle policy to delete the data after 45 days and b helps the customer to acces their data as per the question requiremnt
+   upvoted 2 times
+
+5. Anonymous: jrisl1991 1 year, 11 months ago
+Selected Answer: AB
+It's a bit obvious. Cloud functions wouldn't really work well with this and would probably require lots of maintenance just as any other option. AB are the correct ones.
+   upvoted 2 times
+
+6. Anonymous: diasporabro 2 years, 2 months ago
+Selected Answer: AB
+AB achieves this objective
+   upvoted 2 times
+
+7. Anonymous: olme59 2 years, 4 months ago
+Selected Answer: AB
+its clearly AB, life cycle and provider private url
+   upvoted 1 times
+
+8. Anonymous: Angel_99 2 years, 5 months ago
+Selected Answer: AB
+Correct Answer Combo: (AB)
+   upvoted 1 times
+
+9. Anonymous: abirroy 2 years, 5 months ago
+Selected Answer: AB
+Correct Answers are: (AB)
+   upvoted 1 times
+
+10. Anonymous: patashish 2 years, 6 months ago
+Correct Answers are: A and B
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #160
+
+Pergunta:
+Your company wants to standardize the creation and management of multiple Google Cloud resources using Infrastructure as Code. You want to minimize the amount of repetitive code needed to manage the environment. What should you do?
+
+Alternativas:
+- A. Develop templates for the environment using Cloud Deployment Manager.
+- B. Use curl in a terminal to send a REST request to the relevant Google API for each individual resource.
+- C. Use the Cloud Console interface to provision and manage all related resources.
+- D. Create a bash script that contains all requirement steps as gcloud commands.
+
+Resposta correta:
+A. Develop templates for the environment using Cloud Deployment Manager.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: jmgf Highly Voted  4 years, 4 months ago
+A
+You can use Google Cloud Deployment Manager to create a set of Google Cloud resources and manage them as a unit, called a deployment. For example, if your team's development environment needs two virtual machines (VMs) and a BigQuery database, you can define these resources in a configuration file, and use Deployment Manager to create, change, or delete these resources. You can make the configuration file part of your team's code repository, so that anyone can create the same environment with consistent results.
+https://cloud.google.com/deployment-manager/docs/quickstart
+   upvoted 33 times
+
+2. Anonymous: GCP_Student1 Highly Voted  4 years, 4 months ago
+A. Develop templates for the environment using Cloud Deployment Manager.
+   upvoted 11 times
+
+3. Anonymous: omunoz Most Recent  1 year, 2 months ago
+A.
+Infrastructure as Code = Cloud Deployment Manager.
+   upvoted 1 times
+
+4. Anonymous: scanner2 1 year, 10 months ago
+Selected Answer: A
+Cloud Deployment Manager is an infrastructure deployment service that automates the creation and management of Google Cloud resources. Write flexible template and configuration files and use them to create deployments that have a variety of Google Cloud services, such as Cloud Storage, Compute Engine, and Cloud SQL, configured to work together.
+You can use Google Cloud Deployment Manager to create a set of Google Cloud resources and manage them as a unit, called a deployment.
+https://cloud.google.com/deployment-manager/docs
+   upvoted 2 times
+
+5. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: A
+A seems more correct, u can use the deployement manager to create your instances with the same configurstion file
+   upvoted 1 times
+
+6. Anonymous: N_A 2 years, 2 months ago
+Selected Answer: A
+A. Develop templates for the environment using Cloud Deployment Manager.
+Although the preferred IaC tool is Terraform. There no mention of Deployment Manager anymore in the Google on-demand courses but there is an entire course on Terraform.
+   upvoted 2 times
+
+7. Anonymous: PPP_D 2 years, 3 months ago
+I'm going with A
+   upvoted 1 times
+
+8. Anonymous: AzureDP900 3 years ago
+A is right
+   upvoted 1 times
+
+9. Anonymous: POOJA3808 3 years, 4 months ago
+Selected Answer: A
+Develop templates for the environment using Cloud Deployment Manager.
+   upvoted 1 times
+
+10. Anonymous: look1 3 years, 7 months ago
+Selected Answer: A
+Templates only
+   upvoted 2 times
+==============================

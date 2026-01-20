@@ -1,0 +1,768 @@
+==============================
+Page X — Question #171
+
+Pergunta:
+You are working with a Cloud SQL MySQL database at your company. You need to retain a month-end copy of the database for three years for audit purposes.
+What should you do?
+
+Alternativas:
+- A. Set up an export job for the first of the month. Write the export file to an Archive class Cloud Storage bucket.
+- B. Save the automatic first-of-the-month backup for three years. Store the backup file in an Archive class Cloud Storage bucket.
+- C. Set up an on-demand backup for the first of the month. Write the backup to an Archive class Cloud Storage bucket.
+- D. Convert the automatic first-of-the-month backup to an export file. Write the export file to a Coldline class Cloud Storage bucket.
+
+Resposta correta:
+A. Set up an export job for the first of the month. Write the export file to an Archive class Cloud Storage bucket.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: TAvenger Highly Voted  4 years, 4 months ago
+https://cloud.google.com/sql/docs/mysql/backup-recovery/backups
+not B: Automatic backups are made EVERY SINGLE DAY. You can set only the number of backups up to 365. Also you cannot choose your Archival storage as destination
+not C: You cannot setup "on-demand" backup. User would have to make backups manually every month. Also you cannot choose your Archival storage as destination
+not D: You cannot conver backup to export file. Also Coldline class is less cost-effective than Archival class.
+The only option left is "A"
+You can set up your job with any date/time schedule. You can export file to any storage with any storage class.
+   upvoted 53 times
+ djgodzilla 4 years, 1 month ago
+from the same link :
+Can I export a backup?
+No, you can't export a backup. You can only export instance data. See Exporting data from Cloud SQL to a dump in Cloud storage.
+   upvoted 6 times
+
+2. Anonymous: JieHeng Highly Voted  4 years ago
+First need to understand backup vs export, two different concepts. - https://cloud.google.com/sql/docs/mysql/backup-recovery/backups
+A – yes, you can export data from Cloud SQL to Cloud Storage- https://cloud.google.com/sql/docs/mysql/import-export/exporting#cloud-sql
+Not B, C, D – be it automatic or on-demand backup, according to the doc “No, you can't export a backup. You can only export instance data.”
+   upvoted 16 times
+
+3. Anonymous: kamee15 Most Recent  1 year ago
+Selected Answer: A
+Yes, the solution works and aligns with best practices:
+"Set up an export job for the first of the month. Write the export file to an Archive class Cloud Storage bucket."
+The Archive class is cost-effective for long-term storage, and exporting the database ensures a consistent snapshot for audit purposes. Ensure the export job is automated and retains the required files for three years by configuring appropriate lifecycle policies in Cloud Storage.
+   upvoted 1 times
+
+4. Anonymous: omunoz 1 year, 2 months ago
+Should be A:
+Backups are managed by Cloud SQL according to retention policies, and are stored separately from the Cloud SQL instance. Cloud SQL backups differ from an export uploaded to Cloud Storage, where you manage the lifecycle. Backups encompass the entire database. Exports can select specific contents.
+https://cloud.google.com/sql/docs/mysql/backup-recovery/backups#:~:text=for%20more%20information.-,Backups%20versus%20exports,-Backups%20are%20managed
+   upvoted 1 times
+
+5. Anonymous: santhush 1 year, 10 months ago
+https://www.exam-answer.com/retain-month-end-copy-cloud-sql-mysql-database-three-years B is the correct answer.. I am not sure why people are posting wrong answers here.
+   upvoted 1 times
+ Abbru00 1 year, 8 months ago
+cause you're the one wrong:
+https://cloud.google.com/sql/docs/mysql/backup-recovery/backups#can_i_export_a_backup
+   upvoted 2 times
+
+6. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: A
+A is the correct answer, as in a you can export as per your requirement and then moved it to archive class , but in b,c,d you can't do that
+   upvoted 1 times
+
+7. Anonymous: akkinepallyn 2 years, 2 months ago
+Option B is the best choice because it allows you to leverage the automatic first-of-the-month backup feature that is provided by Cloud SQL. Cloud SQL provides automated backups that can be configured to run at specific times, including the first of the month. By retaining the first-of-the-month backup for three years, you can be sure that you have a complete copy of the database for that month.
+   upvoted 1 times
+
+8. Anonymous: Vismaya 2 years, 4 months ago
+Answer A
+   upvoted 1 times
+
+9. Anonymous: researched_answer_boi 2 years, 6 months ago
+Answer A is the correct one according to "https://cloud.google.com/blog/topics/developers-practitioners/scheduling-cloud-sql-exports-using-cloud-functions-and-cloud-scheduler" and "https://cloud.google.com/sql/docs/mysql/backup-recovery/backups#backups_versus_exports".
+   upvoted 1 times
+
+10. Anonymous: Kopy 2 years, 8 months ago
+Selected Answer: A
+So Answer is A.
+You can't export back up. Very clear.
+https://cloud.google.com/sql/docs/mysql/backup-recovery/backups#can_i_export_a_backup
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #172
+
+Pergunta:
+You are monitoring an application and receive user feedback that a specific error is spiking. You notice that the error is caused by a Service Account having insufficient permissions. You are able to solve the problem but want to be notified if the problem recurs. What should you do?
+
+Alternativas:
+- A. In the Log Viewer, filter the logs on severity 'Error' and the name of the Service Account.
+- B. Create a sink to BigQuery to export all the logs. Create a Data Studio dashboard on the exported logs.
+- C. Create a custom log-based metric for the specific error to be used in an Alerting Policy.
+- D. Grant Project Owner access to the Service Account.
+
+Resposta correta:
+C. Create a custom log-based metric for the specific error to be used in an Alerting Policy.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: GCP_Student1 Highly Voted  4 years, 4 months ago
+C. Create a custom log-based metrics for the specific error to be used in an Alerting Policy.
+   upvoted 25 times
+
+2. Anonymous: greatsam321 Highly Voted  4 years, 4 months ago
+C seems to be the right answer.
+   upvoted 11 times
+
+3. Anonymous: AdelElagawany Most Recent  3 months ago
+Selected Answer: C
+There are two types of Alerting Policy: https://cloud.google.com/monitoring/alerts
+- Metrics-based Alerting Policy [1] ==> Cloud Monitoring
+- Logs-based Alerting Policy [2] ==> Cloud Logging
+[1] https://cloud.google.com/monitoring/alerts/using-alerting-ui
+[2] https://cloud.google.com/logging/docs/alerting/log-based-alerts
+   upvoted 1 times
+
+4. Anonymous: pumajd 1 year, 4 months ago
+Selected Answer: C
+https://cloud.google.com/logging/docs/logs-based-metrics
+   upvoted 2 times
+
+5. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: C
+User wants to check the if problem recurs, that can be only possible by Alert, C is the correct option
+   upvoted 4 times
+
+6. Anonymous: _F4LLEN_ 2 years, 3 months ago
+C. The keyword here is "want to be notified" that means an alert.
+   upvoted 2 times
+
+7. Anonymous: Charumathi 2 years, 9 months ago
+Selected Answer: C
+C is the correct answer,
+Since the problem is resolved, We need to monitor if the error recurs, hence we create a custom log based metrics to monitor only the particular service account.
+   upvoted 2 times
+
+8. Anonymous: snkhatri 2 years, 10 months ago
+C as Keyword "want to be notified if the problem recurs"
+   upvoted 1 times
+
+9. Anonymous: AzureDP900 3 years ago
+C right
+   upvoted 1 times
+
+10. Anonymous: AzureDP900 3 years, 1 month ago
+C is correct.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #173
+
+Pergunta:
+You are developing a financial trading application that will be used globally. Data is stored and queried using a relational structure, and clients from all over the world should get the exact identical state of the data. The application will be deployed in multiple regions to provide the lowest latency to end users. You need to select a storage option for the application data while minimizing latency. What should you do?
+
+Alternativas:
+- A. Use Cloud Bigtable for data storage.
+- B. Use Cloud SQL for data storage.
+- C. Use Cloud Spanner for data storage.
+- D. Use Firestore for data storage.
+
+Resposta correta:
+C. Use Cloud Spanner for data storage.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: JieHeng Highly Voted  3 years, 6 months ago
+C, Cloud Spanner, keywords are globally, relational structure and lastly "clients from all over the world should get the exact identical state of the data" which implies strong consistency is needed.
+   upvoted 17 times
+
+2. Anonymous: kamee15 Most Recent  1 year ago
+Selected Answer: C
+The best option is:
+C. Use Cloud Spanner for data storage.
+Reason:
+Cloud Spanner is the only Google Cloud database that provides:
+Global consistency: Ensures all users worldwide see the exact same state of the data.
+Relational structure: Fully supports SQL queries and relational database schema.
+Low latency: Replicates data across multiple regions to minimize read/write latency for global users.
+Scalability: Designed to handle high-scale applications like financial trading.
+Other options don't meet the requirements:
+A. Cloud Bigtable: No relational structure; optimized for wide-column use cases, not relational data.
+B. Cloud SQL: Limited to regional deployments, not suitable for globally distributed applications.
+D. Firestore: Designed for document-based structures, not ideal for relational database use.
+   upvoted 1 times
+
+3. Anonymous: Captain1212 1 year, 4 months ago
+Selected Answer: C
+question demands, exact state of data and minimum latency to users , for this cloud spanner is the only option
+   upvoted 4 times
+
+4. Anonymous: sabrinakloud 1 year, 9 months ago
+Selected Answer: C
+financial trading application
+relational structure
+multiple regions
+   upvoted 2 times
+
+5. Anonymous: ashtonez 1 year, 10 months ago
+Selected Answer: C
+C, always you need to select BBDD check for data analysis bigquery, something very big or fast bigtable, something with HA cloud sql, and something globally available cloud spanner, the key here is globaly available
+   upvoted 4 times
+
+6. Anonymous: Charumathi 2 years, 3 months ago
+Selected Answer: C
+C is the correct answer,
+Keywords, Financial data (large data) used globally, data stored and queried using relational structure (SQL), clients should get exact identical copies(Strong Consistency), Multiple region, low latency to end user, select storage option to minimize latency.
+   upvoted 3 times
+ Charumathi 2 years, 3 months ago
+Spanner powers business-critical applications in retail, financial services, gaming, media and entertainment, technology, healthcare and more.
+Use cases for Cloud Spanner
+https://www.youtube.com/watch?v=1b4flZwAQfM&t=1s
+   upvoted 1 times
+
+7. Anonymous: ale_brd_111 2 years, 3 months ago
+Selected Answer: C
+it's C 100%
+Guys come on, it's a pretty straight forward scenario.
+if you have the keywords "relational DB" and the word "Globally" in a sentence always go for Cloud Spanner.
+   upvoted 4 times
+
+8. Anonymous: learn_GCP 2 years, 3 months ago
+Selected Answer: C
+C. is the answer
+   upvoted 1 times
+
+9. Anonymous: sri333 2 years, 3 months ago
+Why not A. Big table as per keywords relational, global and low latency
+   upvoted 1 times
+ tonyg_2023 2 years ago
+BigTable is not a relational database. Everything else is true for it but it a noSQL non Relational Database.
+   upvoted 3 times
+
+10. Anonymous: zellck 2 years, 4 months ago
+Selected Answer: C
+C is the answer.
+Cloud Spanner is a global relational database.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #174
+
+Pergunta:
+You are about to deploy a new Enterprise Resource Planning (ERP) system on Google Cloud. The application holds the full database in-memory for fast data access, and you need to configure the most appropriate resources on Google Cloud for this application. What should you do?
+
+Alternativas:
+- A. Provision preemptible Compute Engine instances.
+- B. Provision Compute Engine instances with GPUs attached.
+- C. Provision Compute Engine instances with local SSDs attached.
+- D. Provision Compute Engine instances with M1 machine type.
+
+Resposta correta:
+D. Provision Compute Engine instances with M1 machine type.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Rightsaidfred Highly Voted  4 years, 8 months ago
+Yes D, M1 Machine types for ERP i.e. SAP-HANA:
+https://cloud.google.com/compute/docs/machine-types
+   upvoted 31 times
+
+2. Anonymous: epuser4791 Most Recent  2 months ago
+Selected Answer: C
+I would focus on fast disk SSD. The M1 type is optimized for memory, but still small for ERP. Can someone confirm.
+   upvoted 1 times
+
+3. Anonymous: kamee15 1 year ago
+Selected Answer: D
+The best option is:
+D. Provision Compute Engine instances with M1 machine type.
+Reason:
+The M1 machine type is designed for applications that require large amounts of memory, making it ideal for in-memory databases like an ERP system. It provides high memory-to-CPU ratios, ensuring the database can be fully loaded into memory for fast data access.
+Other options don't align with the requirements:
+A. Preemptible Compute Engine instances: Not suitable for critical applications like ERP systems as they can be terminated at any time.
+B. Compute Engine instances with GPUs attached: GPUs are optimized for parallel processing tasks like machine learning, not for memory-intensive in-memory databases.
+C. Compute Engine instances with local SSDs attached: While local SSDs provide fast storage, the application's requirement is for in-memory data, not fast storage.
+   upvoted 1 times
+
+4. Anonymous: denno22 1 year, 3 months ago
+Selected Answer: D
+D
+   upvoted 1 times
+
+5. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: D
+D is the right answer as M1 one are best for the databases i.e SAP hana
+   upvoted 3 times
+
+6. Anonymous: Bobbybash 2 years, 11 months ago
+C. Provision Compute Engine instances with local SSDs attached.
+The best option for an ERP system that holds the full database in-memory for fast data access is to provision Compute Engine instances with local SSDs attached. Local SSDs offer high input/output operations per second (IOPS) and low latency, which can significantly improve the performance of in-memory databases. Preemptible Compute Engine instances are designed for short-lived and fault-tolerant workloads and are not recommended for a critical system like an ERP. GPUs are typically used for specialized compute-intensive workloads like machine learning and deep learning. M1 machine type is a general-purpose machine type and may not provide enough performance for an in-memory database.
+   upvoted 4 times
+
+7. Anonymous: Charumathi 3 years, 3 months ago
+Selected Answer: D
+D is the correct answer,
+M1 machine series
+Medium in-memory databases such as SAP HANA
+Tasks that require intensive use of memory with higher memory-to-vCPU ratios than the general-purpose high-memory machine types.
+In-memory databases and in-memory analytics, business warehousing (BW) workloads, genomics analysis, SQL analysis services.
+Microsoft SQL Server and similar databases.
+   upvoted 3 times
+
+8. Anonymous: snkhatri 3 years, 4 months ago
+D, keyword "Full database in-memory "
+   upvoted 1 times
+
+9. Anonymous: ryumada 3 years, 5 months ago
+Selected Answer: D
+Vote for D as the right answer. M1 machine type is the one of two Memory-Optimized machine types in GCP.
+https://cloud.google.com/compute/docs/machine-types
+   upvoted 2 times
+ ryumada 3 years, 5 months ago
+Read this also to see the difference of the two.
+https://cloud.google.com/compute/docs/memory-optimized-machines
+   upvoted 1 times
+
+10. Anonymous: abirroy 3 years, 5 months ago
+Selected Answer: D
+D: M1 Machine types for ERP i.e. SAP-HANA
+Medium-large in-memory databases such as SAP HANA
+In-memory databases and in-memory analytics
+Microsoft SQL Server and similar databases
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #175
+
+Pergunta:
+You have developed an application that consists of multiple microservices, with each microservice packaged in its own Docker container image. You want to deploy the entire application on Google Kubernetes Engine so that each microservice can be scaled individually. What should you do?
+
+Alternativas:
+- A. Create and deploy a Custom Resource Definition per microservice.
+- B. Create and deploy a Docker Compose File.
+- C. Create and deploy a Job per microservice.
+- D. Create and deploy a Deployment per microservice.
+
+Resposta correta:
+D. Create and deploy a Deployment per microservice.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: obeythefist Highly Voted  2 years, 10 months ago
+I was a little unsure about this question, here's how I understand why D is the best answer
+A. Custom Resource Definition... we have docker containers already, which is an established kind of resource for Kubernetes. We don't need to create a whole new type of resource, so this is wrong.
+B. Docker Compose is a wholly different tool from Kubernetes.
+C. A Kubernetes job describes a specific "task" which involves a bunch of pods and things. It makes no sense to have one job per microservice, a "Job" would be a bunch of different microservices executing together.
+D. is the leftover, correct answer. You can add scaling to each Deployment, an important aspect of the question.
+   upvoted 25 times
+ akshaychavan7 2 years, 8 months ago
+Thanks for your insights! Makes sense.
+   upvoted 2 times
+
+2. Anonymous: Kollipara Highly Voted  3 years, 8 months ago
+D is the correct answer
+   upvoted 20 times
+
+3. Anonymous: taylz876 Most Recent  1 year, 3 months ago
+Selected Answer: D
+To deploy a microservices-based application on Google Kubernetes Engine (GKE), it's common to create and deploy a Deployment per microservice.
+D. Create and deploy a Deployment per microservice.
+Here's why:
+Deployment: In Kubernetes, a Deployment is a resource that allows you to define, create, and manage the desired number of replicas of your application. Each microservice can be independently managed and scaled using its own Deployment.
+This approach provides the flexibility to scale individual microservices as needed and manage their lifecycle effectively. Each microservice will have its own set of pods that can be scaled up or down independently, making it suitable for a microservices architecture.
+   upvoted 5 times
+
+4. Anonymous: Captain1212 1 year, 4 months ago
+Selected Answer: D
+D is the corrrect answer
+   upvoted 1 times
+
+5. Anonymous: scanner2 1 year, 4 months ago
+Selected Answer: D
+D is the correct answer.
+   upvoted 1 times
+
+6. Anonymous: Captain1212 1 year, 4 months ago
+Selected Answer: D
+D seems more correct , as in A , we already have the own docker container image , so no need to create ,
+b is completely diffenret tool,
+c is also of no use
+   upvoted 2 times
+
+7. Anonymous: snkhatri 2 years, 4 months ago
+D, keyword "each microservice can be scaled individually"!
+   upvoted 1 times
+
+8. Anonymous: abirroy 2 years, 5 months ago
+Selected Answer: D
+D is the correct answer
+   upvoted 1 times
+
+9. Anonymous: AzureDP900 2 years, 7 months ago
+D is the best answer among other choices.
+   upvoted 1 times
+
+10. Anonymous: Raz0r 2 years, 11 months ago
+D is right!
+It's one of Googles main ideas to distribute a complex system into microservices. They do it as well and encourage customers to do the same.
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #176
+
+Pergunta:
+You will have several applications running on different Compute Engine instances in the same project. You want to specify at a more granular level the service account each instance uses when calling Google Cloud APIs. What should you do?
+
+Alternativas:
+- A. When creating the instances, specify a Service Account for each instance.
+- B. When creating the instances, assign the name of each Service Account as instance metadata.
+- C. After starting the instances, use gcloud compute instances update to specify a Service Account for each instance.
+- D. After starting the instances, use gcloud compute instances update to assign the name of the relevant Service Account as instance metadata.
+
+Resposta correta:
+A. When creating the instances, specify a Service Account for each instance.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: GoCloud Highly Voted  3 years, 8 months ago
+A .
+   upvoted 24 times
+
+2. Anonymous: JieHeng Highly Voted  3 years, 6 months ago
+A, when you create an instance using the gcloud command-line tool or the Google Cloud Console, you can specify which service account the instance uses when calling Google Cloud APIs - https://cloud.google.com/compute/docs/access/service-accounts#associating_a_service_account_to_an_instance
+   upvoted 20 times
+
+3. Anonymous: Captain1212 Most Recent  1 year, 4 months ago
+Selected Answer: A
+Option A is correct , when you create the instance , that time itself you can specify the service account of each instance
+   upvoted 2 times
+
+4. Anonymous: Bobbybash 1 year, 11 months ago
+Selected Answer: A
+A. When creating the instances, specify a Service Account for each instance.
+To specify a more granular level of service account for each Compute Engine instance, you should specify a Service Account for each instance when you create it. This can be done through the Compute Engine API or the Cloud Console. By doing so, the specified Service Account will be used when calling Google Cloud APIs from that instance.
+Option B, assigning the name of each Service Account as instance metadata, is not the best solution as metadata can be accessed by anyone with access to the instance, which could potentially lead to security issues.
+Options C and D, using gcloud compute instances update to specify a Service Account or assign the name of a Service Account as instance metadata after starting the instances, can also be done, but it is a less efficient approach as it requires additional steps and can lead to human error if not properly documented.
+   upvoted 4 times
+ VarunGo 1 year, 10 months ago
+used chatgpt
+   upvoted 3 times
+
+5. Anonymous: ryumada 2 years, 5 months ago
+Selected Answer: A
+Vote for A, because there is no instance running yet. "You will have several applications running..."
+   upvoted 3 times
+
+6. Anonymous: Roro_Brother 2 years, 6 months ago
+Selected Answer: A
+A, there is no instance running yet
+   upvoted 1 times
+
+7. Anonymous: AzureDP900 2 years, 7 months ago
+A is good option for given scenario.
+   upvoted 1 times
+
+8. Anonymous: somenick 2 years, 9 months ago
+Selected Answer: A
+You can set/update the service account only when the instance is not running
+   upvoted 3 times
+
+9. Anonymous: Majkl93 2 years, 11 months ago
+Selected Answer: A
+A - the instances are not running yet
+   upvoted 2 times
+
+10. Anonymous: Raz0r 2 years, 11 months ago
+A: you can define which GCP service account is associated with a Compute Engine instance when creating one. It is still possible to change the service account later.
+Link to the GCP docs: https://cloud.google.com/compute/docs/access/create-enable-service-accounts-for-instances#using
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #177
+
+Pergunta:
+You are creating an application that will run on Google Kubernetes Engine. You have identified MongoDB as the most suitable database system for your application and want to deploy a managed MongoDB environment that provides a support SLA. What should you do?
+
+Alternativas:
+- A. Create a Cloud Bigtable cluster, and use the HBase API.
+- B. Deploy MongoDB Atlas from the Google Cloud Marketplace.
+- C. Download a MongoDB installation package, and run it on Compute Engine instances.
+- D. Download a MongoDB installation package, and run it on a Managed Instance Group.
+
+Resposta correta:
+B. Deploy MongoDB Atlas from the Google Cloud Marketplace.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: arsh1916 Highly Voted  3 years, 8 months ago
+Simple it's B
+   upvoted 17 times
+
+2. Anonymous: lxgywil Highly Voted  3 years, 8 months ago
+MongoDB Atlas is actually managed and supported by third-party service providers.
+https://console.cloud.google.com/marketplace/details/gc-launcher-for-mongodb-atlas/mongodb-atlas
+   upvoted 14 times
+ lxgywil 3 years, 8 months ago
+I think that's it. The answer is B
+   upvoted 7 times
+
+3. Anonymous: halifax Most Recent  1 year, 1 month ago
+Selected Answer: B
+I see why some of you are confused by the word "Managed and SLA". MongoDB is owned and run by a company called MongoDB Inc :-)
+When you deploy a service like MongoDB Atlas from the Google Cloud Marketplace, MongoDB, Inc. is responsible for the management of that service, including uptime guarantees and support. They provide an SLA that outlines their commitments regarding availability, performance, and support response times.
+   upvoted 1 times
+
+4. Anonymous: rahulrauki 1 year, 3 months ago
+Selected Answer: B
+The keyword is managed MongoDB environment, both C and D are managed by users, A is irrelevant, So B
+   upvoted 4 times
+
+5. Anonymous: Captain1212 1 year, 4 months ago
+Selected Answer: B
+B seems more correct , just deploy it from the Market place.
+   upvoted 2 times
+
+6. Anonymous: WendyLC 1 year, 7 months ago
+Selected Answer: B
+Answer is B
+   upvoted 1 times
+
+7. Anonymous: PKookNN 2 years, 2 months ago
+Selected Answer: B
+the best answer is B
+   upvoted 1 times
+
+8. Anonymous: nosense 2 years, 2 months ago
+Selected Answer: B
+b. fast and simple
+   upvoted 1 times
+
+9. Anonymous: 11kc03 2 years, 2 months ago
+Selected Answer: C
+Answer is B
+   upvoted 1 times
+
+10. Anonymous: learn_GCP 2 years, 3 months ago
+Selected Answer: B
+B. is the answer
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #178
+
+Pergunta:
+You are managing a project for the Business Intelligence (BI) department in your company. A data pipeline ingests data into BigQuery via streaming. You want the users in the BI department to be able to run the custom SQL queries against the latest data in BigQuery. What should you do?
+
+Alternativas:
+- A. Create a Data Studio dashboard that uses the related BigQuery tables as a source and give the BI team view access to the Data Studio dashboard.
+- B. Create a Service Account for the BI team and distribute a new private key to each member of the BI team.
+- C. Use Cloud Scheduler to schedule a batch Dataflow job to copy the data from BigQuery to the BI team's internal data warehouse.
+- D. Assign the IAM role of BigQuery User to a Google Group that contains the members of the BI team.
+
+Resposta correta:
+D. Assign the IAM role of BigQuery User to a Google Group that contains the members of the BI team.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ApaMokus Highly Voted  3 years, 8 months ago
+D is correct
+roles/bigquery.user
+When applied to a dataset, this role provides the ability to read the dataset's metadata and list tables in the dataset.
+When applied to a project, this role also provides the ability to run jobs, including queries, within the project. A member with this role can enumerate their own jobs, cancel their own jobs, and enumerate datasets within a project. Additionally, allows the creation of new datasets within the project; the creator is granted the BigQuery Data Owner role (roles/bigquery.dataOwner) on these new datasets.
+   upvoted 31 times
+
+2. Anonymous: blan_ak Highly Voted  3 years, 5 months ago
+Why on the earth would the answer be C? It has no relevance to the question. The answer is D, hands down
+   upvoted 9 times
+
+3. Anonymous: halifax Most Recent  1 year, 1 month ago
+Selected Answer: D
+Bad question.
+Option D is the best answer (of all the options), but it doesn't give the Custom role to run SQL queries against their data in BigQuery. If you are in doubt, check what the BigQuery User role allows.
+   upvoted 1 times
+
+4. Anonymous: Captain1212 1 year, 4 months ago
+Selected Answer: D
+D is the right answer, just assign them the role by IAM and they will be able to use BQ
+   upvoted 3 times
+
+5. Anonymous: ankyt9 2 years, 1 month ago
+Selected Answer: D
+D is correct
+   upvoted 1 times
+
+6. Anonymous: anolive 2 years, 2 months ago
+Selected Answer: D
+makes mor sense
+   upvoted 1 times
+
+7. Anonymous: sylva91 2 years, 4 months ago
+Selected Answer: D
+D is correct because google recommendations are always to privilege groups to individual accounts and this is what can make the users query the database unlike the Data Studio
+   upvoted 2 times
+
+8. Anonymous: snkhatri 2 years, 4 months ago
+Selected Answer: D
+D is right
+   upvoted 1 times
+
+9. Anonymous: snkhatri 2 years, 4 months ago
+D is correct
+   upvoted 1 times
+
+10. Anonymous: patashish 2 years, 6 months ago
+D is the answer
+Hint - to **run the custom SQL queries*** against the latest data in BigQuery
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #179
+
+Pergunta:
+Your company is moving its entire workload to Compute Engine. Some servers should be accessible through the Internet, and other servers should only be accessible over the internal network. All servers need to be able to talk to each other over specific ports and protocols. The current on-premises network relies on a demilitarized zone (DMZ) for the public servers and a Local Area Network (LAN) for the private servers. You need to design the networking infrastructure on
+Google Cloud to match these requirements. What should you do?
+
+Alternativas:
+- A. 1. Create a single VPC with a subnet for the DMZ and a subnet for the LAN. 2. Set up firewall rules to open up relevant traffic between the DMZ and the LAN subnets, and another firewall rule to allow public ingress traffic for the DMZ.
+- B. 1. Create a single VPC with a subnet for the DMZ and a subnet for the LAN. 2. Set up firewall rules to open up relevant traffic between the DMZ and the LAN subnets, and another firewall rule to allow public egress traffic for the DMZ.
+- C. 1. Create a VPC with a subnet for the DMZ and another VPC with a subnet for the LAN. 2. Set up firewall rules to open up relevant traffic between the DMZ and the LAN subnets, and another firewall rule to allow public ingress traffic for the DMZ.
+- D. 1. Create a VPC with a subnet for the DMZ and another VPC with a subnet for the LAN. 2. Set up firewall rules to open up relevant traffic between the DMZ and the LAN subnets, and another firewall rule to allow public egress traffic for the DMZ.
+
+Resposta correta:
+A. 1. Create a single VPC with a subnet for the DMZ and a subnet for the LAN. 2. Set up firewall rules to open up relevant traffic between the DMZ and the LAN subnets, and another firewall rule to allow public ingress traffic for the DMZ.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: perdigiorno Highly Voted  3 years, 6 months ago
+Passed the test today. About 80% of the questions are here.
+   upvoted 29 times
+ sumanthrao1 3 years, 3 months ago
+you got same questions from this examtopics
+   upvoted 3 times
+ associatecloudexamuser 3 years, 6 months ago
+Congratulations!
+   upvoted 5 times
+
+2. Anonymous: yvinisiupacuando Highly Voted  3 years, 8 months ago
+A is the Right answer. You can discard B and C because they lack the need of creating Network Peering to communicate the DMZ VPC with the LAN VPC (LAN VPC is not exposed to public so they need to communicate via private addresses which cannot be achieved with 2 VPCs without Network Peering). Plus, you can discard B, as you don't need to enable the egress traffic, you always need to enable the ingress traffic as this is never enabled by default.
+   upvoted 28 times
+ Alela 3 years, 8 months ago
+A is wrong. You don't need to set up firewall rules between subnets of the same VPC. C is the answer
+   upvoted 12 times
+ gcpengineer 3 years, 5 months ago
+You need fw rules
+   upvoted 1 times
+ demnok_lannik 2 years, 11 months ago
+of course you do
+   upvoted 2 times
+ Ashii 3 years, 7 months ago
+C is Create a VPC with a subnet for the DMZ and another VPC with a subnet for the LAN. 2. Set up firewall rules to open up relevant traffic between the DMZ and the LAN subnets, and another firewall rule to allow public ingress traffic for the DMZ. Without peering 2 VPC's how this this be done ?
+   upvoted 6 times
+ BenKenGo6 2 years, 4 months ago
+and where do you have the VPC peering to communicate both VPCs?
+   upvoted 2 times
+
+3. Anonymous: halifax Most Recent  1 year, 1 month ago
+Selected Answer: A
+Option C is NOT valid as it overlooks the requirement for VPC peering or another connection method to enable communication between two separate VPCs.
+1. There is no default connection between different VPC
+2. By default all incoming(ingress) traffic is denied. So, a firewall rule is needed even in the same VPC.
+   upvoted 1 times
+
+4. Anonymous: taylz876 1 year, 3 months ago
+Selected Answer: A
+The answer is A:
+Here's the explanation:
+-->Single VPC: Creating a single Virtual Private Cloud (VPC) is a common practice to manage your resources in Google Cloud.
+Subnet for DMZ and LAN: Creating separate subnets within the same VPC for the DMZ (public-facing) and LAN (private) resources is a recommended approach to segregate your resources.
+-->Firewall Rules: Setting up firewall rules allows you to control traffic between the DMZ and LAN subnets and enables you to define specific access policies. You also need to allow public traffic (ingress) into the DMZ to make the public-facing resources accessible from the internet.
+   upvoted 9 times
+
+5. Anonymous: Captain1212 1 year, 4 months ago
+Selected Answer: A
+A is the correct answer, as it meet the question requirment
+   upvoted 2 times
+
+6. Anonymous: diasporabro 2 years, 3 months ago
+Selected Answer: A
+A is the right choice
+   upvoted 1 times
+
+7. Anonymous: snkhatri 2 years, 4 months ago
+Selected Answer: A
+A seems right
+   upvoted 1 times
+
+8. Anonymous: an0nym0us1 2 years, 4 months ago
+hi All what is the ans
+   upvoted 1 times
+
+9. Anonymous: AzureDP900 2 years, 6 months ago
+1 VPC enough for LAN and DMZ , Need to open appropriate firewall rules. A is right.
+   upvoted 1 times
+
+10. Anonymous: S00999 2 years, 7 months ago
+Selected Answer: A
+Vote for A
+By default traffic between subnets on a VPC network is not allowed (except on the "default" network).
+(This blocks traffic between all instances, not just traffic between subnets => FW rules must be defined to allow communications between all instances, regardless the subnets)
+2 VPC will not work without peering.
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #180
+
+Pergunta:
+You have just created a new project which will be used to deploy a globally distributed application. You will use Cloud Spanner for data storage. You want to create a Cloud Spanner instance. You want to perform the first step in preparation of creating the instance. What should you do?
+
+Alternativas:
+- A. Enable the Cloud Spanner API.
+- B. Configure your Cloud Spanner instance to be multi-regional.
+- C. Create a new VPC network with subnetworks in all desired regions.
+- D. Grant yourself the IAM role of Cloud Spanner Admin.
+
+Resposta correta:
+A. Enable the Cloud Spanner API.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: AzureDP900 Highly Voted  3 years, 7 months ago
+A is right
+https://cloud.google.com/spanner/docs/getting-started/set-up
+   upvoted 11 times
+
+2. Anonymous: pfabio Highly Voted  3 years, 7 months ago
+Selected Answer: A
+If you click on Create instance, the message is show in bottom: Cloud Spanner API for your project has been enabled.
+   upvoted 7 times
+
+3. Anonymous: halifax Most Recent  1 year, 1 month ago
+A<------- is the correct first step. why? Because 99% of cloud deployment is done programmatically using IaC, such as Terraform or Google's own IaC, and for that reason alone "Enable the Cloud Spanner API" is a must!!
+   upvoted 1 times
+
+4. Anonymous: denno22 1 year, 3 months ago
+Selected Answer: A
+https://cloud.google.com/spanner/docs/getting-started/set-up
+   upvoted 1 times
+
+5. Anonymous: Akinzoa 2 years ago
+B looks more like it.
+When creating a Cloud Spanner instance, you configure the instance details first before enabling the Cloud Spanner API, if its not enabled by default i.e. if this is the first time you are using Cloud Spanner in your project.
+   upvoted 1 times
+
+6. Anonymous: joao_01 2 years, 4 months ago
+Selected Answer: A
+Its definitely A. Link: https://cloud.google.com/spanner/docs/quickstart-console
+   upvoted 2 times
+
+7. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: A
+Answer A is correct before you do anything first you needto enable the API of that particulr service
+   upvoted 1 times
+
+8. Anonymous: Capability 3 years ago
+Selected Answer: A
+https://cloud.google.com/spanner/docs/quickstart-console?_ga=2.68426577.-1975890344.1661276010&_gac=1.161955406.1673625078.Cj0KCQiAn4SeBhCwARIsANeF9DJxfolckwcRZqaOS7Rem2pzXWGmlBaLlxK4hHSe3YZ4DtE5oHHKVMQaArPUEALw_wcB#:~:text=see%20Pricing.-,Before%20you%20begin,Enable%20the%20Cloud%20Spanner%20API,-Create%20an%20instance
+   upvoted 1 times
+
+9. Anonymous: Capability 3 years ago
+A is right
+https://cloud.google.com/spanner/docs/quickstart-console?_ga=2.68426577.-1975890344.1661276010&_gac=1.161955406.1673625078.Cj0KCQiAn4SeBhCwARIsANeF9DJxfolckwcRZqaOS7Rem2pzXWGmlBaLlxK4hHSe3YZ4DtE5oHHKVMQaArPUEALw_wcB#:~:text=see%20Pricing.-,Before%20you%20begin,Enable%20the%20Cloud%20Spanner%20API,-Create%20an%20instance
+   upvoted 1 times
+
+10. Anonymous: raaad 3 years, 1 month ago
+Selected Answer: A
+Try the scenario yourself. Its A
+   upvoted 1 times
+==============================

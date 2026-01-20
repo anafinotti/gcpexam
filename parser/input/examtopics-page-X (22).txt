@@ -1,0 +1,597 @@
+==============================
+Page X — Question #221
+
+Pergunta:
+Your application is running on Google Cloud in a managed instance group (MIG). You see errors in Cloud Logging for one VM that one of the processes is not responsive. You want to replace this VM in the MIG quickly. What should you do?
+
+Alternativas:
+- A. Use the gcloud compute instances update command with a REFRESH action for the VM.
+- B. Use the gcloud compute instance-groups managed recreate-instances command to recreate the VM.
+- C. Select the MIG from the Compute Engine console and, in the menu, select Replace VMs.
+- D. Update and apply the instance template of the MIG.
+
+Resposta correta:
+B. Use the gcloud compute instance-groups managed recreate-instances command to recreate the VM.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: denno22 1 year, 3 months ago
+Selected Answer: B
+gcloud compute instance-groups managed recreate-instances
+   upvoted 1 times
+
+2. Anonymous: Enamfrancis 1 year, 3 months ago
+Selected Answer: B
+This allows you to quickly recreate the specific VM
+   upvoted 3 times
+
+3. Anonymous: BuenaCloudDE 1 year, 6 months ago
+Selected Answer: B
+Answer is B.
+B: You can recreate one or more VMs
+C: Only option to replace each VMs in MIG
+Compare it:
+https://cloud.google.com/sdk/gcloud/reference/compute/instance-groups/managed/recreate-instances
+https://cloud.google.com/sdk/gcloud/reference/compute/instance-groups/managed/rolling-action/replace
+   upvoted 1 times
+
+4. Anonymous: Leo212003 1 year, 6 months ago
+I think option C is correct, since gcloud CLI might take some extra time to reinitiate the instance, option B looks wrong
+   upvoted 1 times
+
+5. Anonymous: leoalvarezh 1 year, 11 months ago
+The underlying virtual machine instances are deleted and recreated based on the latest instance template configured for the managed instance group.
+   upvoted 1 times
+
+6. Anonymous: Rocky_Jatin 2 years, 3 months ago
+Selected Answer: B
+B hoga common sense
+   upvoted 2 times
+
+7. Anonymous: Ben_oso 2 years, 3 months ago
+Selected Answer: C
+I think its C, because the question talk of "Replace the VM".
+In B you recreate the same VM, so i think the C is more sense.
+   upvoted 2 times
+
+8. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: B
+B is the correct answer , as the question demands in MIG managed instance group. B
+   upvoted 2 times
+
+9. Anonymous: scanner2 2 years, 4 months ago
+Selected Answer: B
+You can recreate specified instance(s) in a managed instance group.
+https://cloud.google.com/sdk/gcloud/reference/compute/instance-groups/managed/recreate-instances
+   upvoted 2 times
+
+10. Anonymous: qannik 2 years, 5 months ago
+Selected Answer: B
+https://cloud.google.com/sdk/gcloud/reference/compute/instance-groups/managed/recreate-instances
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #222
+
+Pergunta:
+You want to permanently delete a Pub/Sub topic managed by Config Connector in your Google Cloud project. What should you do?
+
+Alternativas:
+- A. Use kubectl to create the label deleted-by-cnrm and to change its value to true for the topic resource.
+- B. Use kubectl to delete the topic resource.
+- C. Use gcloud CLI to delete the topic.
+- D. Use gcloud CLI to update the topic label managed-by-cnrm to false.
+
+Resposta correta:
+B. Use kubectl to delete the topic resource.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: nmnm22 Highly Voted  2 years, 2 months ago
+i hate these questions so much
+   upvoted 41 times
+
+2. Anonymous: scanner2 Highly Voted  2 years, 4 months ago
+Selected Answer: B
+If a resource is managed by the Config Connector, you can update/delete it through kubectl command.
+https://cloud.google.com/config-connector/docs/how-to/getting-started#before_you_begin
+   upvoted 6 times
+
+3. Anonymous: denno22 Most Recent  1 year, 3 months ago
+Selected Answer: B
+Deleting a resource
+Use kubectl delete to delete resources. For example, to delete the PubSubTopic you created earlier, run kubectl delete with your pubsub-topic.yaml file:
+kubectl delete -f pubsub-topic.yaml
+   upvoted 1 times
+
+4. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: B
+B is the right answer, if the resource is managed by the config connector you can just use the kubectl to use detele or update the topic resource
+   upvoted 2 times
+
+5. Anonymous: 3arle 2 years, 5 months ago
+Selected Answer: B
+created by kubectl should be removed by it
+   upvoted 3 times
+
+6. Anonymous: qannik 2 years, 5 months ago
+Selected Answer: B
+https://cloud.google.com/config-connector/docs/how-to/getting-started#deleting_a_resource
+   upvoted 2 times
+
+7. Anonymous: Speridian 2 years, 5 months ago
+should be C.
+   upvoted 1 times
+
+8. Anonymous: happydays 2 years, 5 months ago
+Selected Answer: B
+THIS IS B
+   upvoted 1 times
+
+9. Anonymous: gpais 2 years, 5 months ago
+Selected Answer: C
+https://cloud.google.com/sdk/gcloud/reference/pubsub/topics/delete
+   upvoted 1 times
+ qannik 2 years, 5 months ago
+Read the question. It's a Pub/Sub topic managed by Config Connector.
+https://cloud.google.com/config-connector/docs/how-to/getting-started#deleting_a_resource
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #223
+
+Pergunta:
+Your company is using Google Workspace to manage employee accounts. Anticipated growth will increase the number of personnel from 100 employees to 1,000 employees within 2 years. Most employees will need access to your company’s Google Cloud account. The systems and processes will need to support 10x growth without performance degradation, unnecessary complexity, or security issues. What should you do?
+
+Alternativas:
+- A. Migrate the users to Active Directory. Connect the Human Resources system to Active Directory. Turn on Google Cloud Directory Sync (GCDS) for Cloud Identity. Turn on Identity Federation from Cloud Identity to Active Directory.
+- B. Organize the users in Cloud Identity into groups. Enforce multi-factor authentication in Cloud Identity.
+- C. Turn on identity federation between Cloud Identity and Google Workspace. Enforce multi-factor authentication for domain wide delegation.
+- D. Use a third-party identity provider service through federation. Synchronize the users from Google Workplace to the third-party provider in real time.
+
+Resposta correta:
+B. Organize the users in Cloud Identity into groups. Enforce multi-factor authentication in Cloud Identity.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: 0verK0alafied Highly Voted  1 year, 8 months ago
+Selected Answer: B
+Why would you need to federate the identities for Cloud ID and Workspace accounts? It's the same thing! I have a dev gcp org doing exactly this...
+   upvoted 14 times
+
+2. Anonymous: gpais Highly Voted  1 year, 11 months ago
+Selected Answer: C
+I think C is the best
+   upvoted 5 times
+
+3. Anonymous: ritvikk49 Most Recent  1 year ago
+Selected Answer: C
+B is incorrect because organizing user accounts within Cloud Identity and enforcing multi-factor authentication (MFA) alone is a limited approach for handling large-scale growth. While Cloud Identity groups and MFA are important for managing user permissions and enhancing security, this option lacks a robust identity management solution to handle the projected tenfold user increase. It does not address scalability challenges or provide a way to efficiently manage identities across Google Cloud and other services the company might integrate as they expand. While it would add some security, it would not streamline identity management or account synchronization at the scale needed.
+   upvoted 1 times
+
+4. Anonymous: ccpmad 1 year, 2 months ago
+Selected Answer: B
+Google Cloud Identity is Google’s identity provider (idP) that is used by both Workspace and Google Cloud.
+First, I thought it was C, but there is not identity federation between Cloud Identity and Workspace, because Cloud identity goes first and it is used by GCP, Workspace or other Google services.
+Moreover, By default, Cloud Identity Free includes 50 free licenses
+   upvoted 1 times
+
+5. Anonymous: sukouto 1 year, 4 months ago
+Selected Answer: B
+According to the following article, Google Workspace already allows access to Google Cloud platform, so there should be no need for "identity federation between Cloud Identity and Google Workspace" (which I cannot find documentation about). C is out.
+https://cloud.google.com/iam/docs/user-identities
+A and D are out because Google is not going to suggest you use some other identity provider, lol
+   upvoted 3 times
+
+6. Anonymous: PiperMe 1 year, 4 months ago
+Selected Answer: C
+I see everyone is split here, but I like C best. Option C provides a streamlined and secure way to accommodate growth within the Google ecosystem. It prioritizes both ease of management and security.
+You already use Workspace for user management... Adding Active Directory adds complexity and is unnecessary; A is out. While improving security and organization, it doesn't directly solve the issue of seamless access to GCP resources or address user management as you scale; B is out…. While some scenarios might justify it, you're already using Google Workspace for identity. This option adds complexity, cost, and an extra system to manage; D is out….
+   upvoted 2 times
+
+7. Anonymous: leoalvarezh 1 year, 5 months ago
+Selected Answer: C
+I think B helps to manage but the answer in this scenario is C due to allows for seamless integration between user accounts in both services
+   upvoted 2 times
+
+8. Anonymous: blackBeard33 1 year, 5 months ago
+Selected Answer: B
+I choose B.
+   upvoted 2 times
+
+9. Anonymous: KelvinToo 1 year, 6 months ago
+Selected Answer: A
+Per ChatGPT,
+Option A is the most suitable choice as it leverages the scalability and centralization capabilities of Active Directory, integrates with existing systems, and ensures seamless user management and authentication across Google Workspace and Google Cloud, aligning with the requirements for anticipated growth without introducing unnecessary complexity or security issues.
+   upvoted 1 times
+ PiperMe 1 year, 4 months ago
+Please stop using ChatGPT. Active Directory is Azure. This adds significant overhead in setup and management of a new directory system. Integrating it with both Workspace and Google Cloud increases complexity.
+   upvoted 3 times
+
+10. Anonymous: carlalap 1 year, 7 months ago
+Answer is A. It is talking about long term.
+This option can support 10x growth without performance degradation, unnecessary complexity, or security issues, as it leverages the scalability, reliability, and security of Active Directory and Cloud Identity.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #224
+
+Pergunta:
+You want to host your video encoding software on Compute Engine. Your user base is growing rapidly, and users need to be able to encode their videos at any time without interruption or CPU limitations. You must ensure that your encoding solution is highly available, and you want to follow Google-recommended practices to automate operations. What should you do?
+
+Alternativas:
+- A. Deploy your solution on multiple standalone Compute Engine instances, and increase the number of existing instances when CPU utilization on Cloud Monitoring reaches a certain threshold.
+- B. Deploy your solution on multiple standalone Compute Engine instances, and replace existing instances with high-CPU instances when CPU utilization on Cloud Monitoring reaches a certain threshold.
+- C. Deploy your solution to an instance group, and increase the number of available instances whenever you see high CPU utilization in Cloud Monitoring.
+- D. Deploy your solution to an instance group, and set the autoscaling based on CPU utilization.
+
+Resposta correta:
+D. Deploy your solution to an instance group, and set the autoscaling based on CPU utilization.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: scanner2 Highly Voted  1 year, 10 months ago
+Selected Answer: D
+The answer is D.
+You can create a managed instance group with autoscaling enabled based on CPU utilization. This way appropriate number of instances can be added or removed based on the CPU metrics.
+https://cloud.google.com/compute/docs/instance-groups/create-mig-with-basic-autoscaling
+https://cloud.google.com/sdk/gcloud/reference/compute/instance-groups/managed/set-autoscaling
+   upvoted 8 times
+
+2. Anonymous: Akinzoa Most Recent  1 year, 7 months ago
+D is the correct answer!
+   upvoted 1 times
+
+3. Anonymous: VijKall 1 year, 8 months ago
+Selected Answer: D
+Answer is D.
+MIG with scaling using CPU utilization.
+   upvoted 2 times
+
+4. Anonymous: Captain1212 1 year, 10 months ago
+D seems more correct, just set the autoscaling based on the CPU ulilization
+   upvoted 2 times
+
+5. Anonymous: Jerica_ 1 year, 11 months ago
+Selected Answer: D
+D seems most appropriate
+   upvoted 1 times
+
+6. Anonymous: 3arle 1 year, 11 months ago
+Selected Answer: D
+definitely D
+   upvoted 2 times
+
+7. Anonymous: gpais 1 year, 11 months ago
+Selected Answer: D
+https://cloud.google.com/sdk/gcloud/reference/compute/instance-groups/managed/set-autoscaling
+   upvoted 4 times
+==============================
+
+==============================
+Page X — Question #225
+
+Pergunta:
+Your managed instance group raised an alert stating that new instance creation has failed to create new instances. You need to solve the instance creation problem. What should you do?
+
+Alternativas:
+- A. Create an instance template that contains valid syntax which will be used by the instance group. Delete any persistent disks with the same name as instance names.
+- B. Create an instance template that contains valid syntax that will be used by the instance group. Verify that the instance name and persistent disk name values are not the same in the template.
+- C. Verify that the instance template being used by the instance group contains valid syntax. Delete any persistent disks with the same name as instance names. Set the disks.autoDelete property to true in the instance template.
+- D. Delete the current instance template and replace it with a new instance template. Verify that the instance name and persistent disk name values are not the same in the template. Set the disks.autoDelete property to true in the instance template.
+
+Resposta correta:
+A. Create an instance template that contains valid syntax which will be used by the instance group. Delete any persistent disks with the same name as instance names.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: scanner2 Highly Voted  2 years, 4 months ago
+Selected Answer: A
+C is eliminated because you cannot update or modify an existing instance template. It is immutable.
+https://cloud.google.com/compute/docs/instance-templates#how_to_update_instance_templates
+D is eliminated because you cannot delete an instance template if a managed instance group references it.
+https://cloud.google.com/compute/docs/instance-templates/get-list-delete-instance-templates#delete_an_instance_template
+B is eliminated because you cannot set different/custom name for persistent disk in an instance template.
+https://cloud.google.com/sdk/gcloud/reference/compute/instance-templates/create#--create-disk
+So we left with A. Therefore A is the correct answer. Although, it should set the disks.autoDelete property to true for completeness.
+   upvoted 20 times
+ yodaforce 10 months ago
+A is correct answer
+auto-delete If set to yes, the persistent disk is automatically deleted when the instance is deleted. However, if you detach the disk from the instance, deleting the instance doesn't delete the disk.
+The default value is yes.
+https://cloud.google.com/sdk/gcloud/reference/compute/instance-templates/create#--create-disk
+   upvoted 1 times
+
+2. Anonymous: Enamfrancis Most Recent  1 year, 3 months ago
+Selected Answer: C
+C is corrct answer
+   upvoted 1 times
+
+3. Anonymous: Dewansh 2 years, 1 month ago
+Selected Answer: A
+instance templates are immutable so can not modify or update
+   upvoted 3 times
+
+4. Anonymous: recluse7 2 years, 2 months ago
+Selected Answer: C
+When a managed instance group raises an alert indicating that new instance creation has failed, it's important to investigate the issue. This issue is typically related to the configuration of the instance template used by the group. Therefore, the first step is to verify that the instance template being utilized by the instance group contains valid syntax. This includes checking all settings such as machine type, boot disk, and any custom configurations. Valid syntax ensures that the instances created adhere to the specified configurations.
+   upvoted 2 times
+
+5. Anonymous: Ell89 2 years, 3 months ago
+repeated question
+   upvoted 4 times
+
+6. Anonymous: 3arle 2 years, 5 months ago
+Selected Answer: C
+Existing instance group has already template so no requirement to create new one. Problem is with persistent disk so delete it and configure autodelete solves problem now and in future
+   upvoted 1 times
+ 3arle 2 years, 5 months ago
+i was wrong, templates are immutable so you cannot update them, so option A is valid
+   upvoted 2 times
+
+7. Anonymous: happydays 2 years, 5 months ago
+Selected Answer: A
+THIS IS A
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #226
+
+Pergunta:
+You have created an application that is packaged into a Docker image. You want to deploy the Docker image as a workload on Google Kubernetes Engine. What should you do?
+
+Alternativas:
+- A. Upload the image to Cloud Storage and create a Kubernetes Service referencing the image.
+- B. Upload the image to Cloud Storage and create a Kubernetes Deployment referencing the image.
+- C. Upload the image to Artifact Registry and create a Kubernetes Service referencing the image.
+- D. Upload the image to Artifact Registry and create a Kubernetes Deployment referencing the image.
+
+Resposta correta:
+D. Upload the image to Artifact Registry and create a Kubernetes Deployment referencing the image.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: scanner2 Highly Voted  2 years, 4 months ago
+Selected Answer: D
+A and B are eliminated because Cloud Storage is not a preferred place for storing docker images.
+https://cloud.google.com/artifact-registry/docs/docker/store-docker-container-images
+C is eliminated because Kubernetes Service is responsible for networking and connectivity between pods and external entities.
+Kubernetes Deployment is responsible for deploying and managing an application (running in pods) on your GKE cluster.
+https://cloud.google.com/kubernetes-engine/docs/how-to/deploying-workloads-overview#stateless_applications
+   upvoted 7 times
+
+2. Anonymous: denno22 Most Recent  1 year, 3 months ago
+Selected Answer: D
+D is the best answer.
+   upvoted 2 times
+
+3. Anonymous: 3arle 2 years, 5 months ago
+Selected Answer: D
+best choice
+   upvoted 2 times
+
+4. Anonymous: pritampanda1988 2 years, 5 months ago
+Selected Answer: D
+Artifact Registry is a fully managed container registry that integrates seamlessly with Google Kubernetes Engine and other Google Cloud services. By uploading the Docker image to Artifact Registry, you can create a Kubernetes Deployment that references the image stored in Artifact Registry. This ensures that Kubernetes can pull the image from a trusted and managed source, while the Deployment manages the deployment and scaling of the application pods based on the image.
+   upvoted 4 times
+==============================
+
+==============================
+Page X — Question #227
+
+Pergunta:
+You are using Looker Studio to visualize a table from your data warehouse that is built on top of BigQuery. Data is appended to the data warehouse during the day. At night, the daily summary is recalculated by overwriting the table. You just noticed that the charts in Looker Studio are broken, and you want to analyze the problem. What should you do?
+
+Alternativas:
+- A. In Cloud Logging, create a filter for your Looker Studio report.
+- B. Use the open source CLI tool, Snapshot Debugger, to find out why the data was not refreshed correctly.
+- C. Review the Error Reporting page in the Google Cloud console to find any errors.
+- D. Use the BigQuery interface to review the nightly job and look for any errors.
+
+Resposta correta:
+D. Use the BigQuery interface to review the nightly job and look for any errors.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: joao_01 Highly Voted  2 years, 4 months ago
+Selected Answer: D
+This question appear before. I would go with D, altough the question before had opinions between the Cloud Logging and Bigquery options. Despite this i think that D is most appropriate for this case.
+   upvoted 11 times
+
+2. Anonymous: denno22 Most Recent  1 year, 3 months ago
+Selected Answer: D
+D is the best answer.
+   upvoted 1 times
+
+3. Anonymous: elviskimutai 2 years, 3 months ago
+D is the answer
+   upvoted 3 times
+
+4. Anonymous: Mallu_Mounika 2 years, 5 months ago
+Selected Answer: D
+D is right
+   upvoted 3 times
+
+5. Anonymous: happydays 2 years, 5 months ago
+Selected Answer: D
+D is correct
+   upvoted 3 times
+==============================
+
+==============================
+Page X — Question #228
+
+Pergunta:
+You have a batch workload that runs every night and uses a large number of virtual machines (VMs). It is fault-tolerant and can tolerate some of the VMs being terminated. The current cost of VMs is too high. What should you do?
+
+Alternativas:
+- A. Run a test using simulated maintenance events. If the test is successful, use Spot N2 Standard VMs when running future jobs.
+- B. Run a test using simulated maintenance events. If the test is successful, use N2 Standard VMs when running future jobs.
+- C. Run a test using a managed instance group. If the test is successful, use N2 Standard VMs in the managed instance group when running future jobs.
+- D. Run a test using N1 standard VMs instead of N2. If the test is successful, use N1 Standard VMs when running future jobs.
+
+Resposta correta:
+A. Run a test using simulated maintenance events. If the test is successful, use Spot N2 Standard VMs when running future jobs.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Ell89 Highly Voted  2 years, 3 months ago
+Selected Answer: A
+A - spot VMs for fault tolerant workloads
+   upvoted 5 times
+
+2. Anonymous: halifax Most Recent  1 year, 1 month ago
+Selected Answer: A
+Watch out, Spot VM, the new compute instance service from Google does not have a minimum or maximum runtime, this is unlike the previous offerings, preemptible VM, which can only run for 24 hours.
+   upvoted 1 times
+
+3. Anonymous: denno22 1 year, 3 months ago
+Selected Answer: A
+You can use Spot VMs in your clusters and node pools to run stateless, batch, or fault-tolerant workloads that can tolerate disruptions caused by the ephemeral nature of Spot VMs.
+   upvoted 1 times
+
+4. Anonymous: guru_ji 1 year, 11 months ago
+Selected Answer: A
+A is correct.
+   upvoted 1 times
+
+5. Anonymous: joao_01 2 years, 4 months ago
+Selected Answer: A
+Its A, makes sense
+   upvoted 3 times
+
+6. Anonymous: ExamsFR 2 years, 4 months ago
+Selected Answer: A
+A is the correct answer
+   upvoted 1 times
+
+7. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: A
+A is the correct answer as Spot VMs are highly affordable
+   upvoted 1 times
+
+8. Anonymous: scanner2 2 years, 4 months ago
+Selected Answer: A
+Here, the keywords are batch workloads, large number of VMs, tolerate some VMs being terminated, and addressing cost of VMs. Spot VMs have significant discounts than on-demand VMs, therefore A is the correct answer.
+https://cloud.google.com/compute/docs/instances/spot
+   upvoted 2 times
+
+9. Anonymous: 3arle 2 years, 5 months ago
+Selected Answer: A
+Spot VMs are highly affordable compute instances suitable for batch jobs and fault-tolerant workloads. Spot VMs offer the same machine types, options, and performance as regular compute instances. If your applications are fault tolerant and can withstand possible instance preemptions, then Spot instances can reduce your Compute Engine costs by up to 91%!
+   upvoted 4 times
+
+10. Anonymous: gpais 2 years, 5 months ago
+Selected Answer: A
+A definitely
+   upvoted 3 times
+ Alberto06 2 years, 5 months ago
+Please , put the reference, thanks.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #229
+
+Pergunta:
+You created several resources in multiple Google Cloud projects. All projects are linked to different billing accounts. To better estimate future charges, you want to have a single visual representation of all costs incurred. You want to include new cost data as soon as possible. What should you do?
+
+Alternativas:
+- A. Fill all resources in the Pricing Calculator to get an estimate of the monthly cost.
+- B. Use the Reports view in the Cloud Billing Console to view the desired cost information.
+- C. Visit the Cost Table page to get a CSV export and visualize it using Looker Studio.
+- D. Configure Billing Data Export to BigQuery and visualize the data in Looker Studio.
+
+Resposta correta:
+D. Configure Billing Data Export to BigQuery and visualize the data in Looker Studio.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ExamsFR Highly Voted  2 years, 4 months ago
+Selected Answer: D
+D is the correct answer
+"single visual representation of all costs incurred"
+   upvoted 6 times
+
+2. Anonymous: denno22 Most Recent  1 year, 3 months ago
+Selected Answer: D
+Cloud Billing export to BigQuery enables you to export detailed Google Cloud billing data (such as usage, cost estimates, and pricing data) automatically throughout the day to a BigQuery dataset that you specify. Then you can access your Cloud Billing data from BigQuery for detailed analysis, or use a tool like Looker Studio to visualize your data. You can also use this export method to export data to a JSON file.
+   upvoted 1 times
+
+3. Anonymous: yomi95 1 year, 3 months ago
+Answer D
+Same answer is for Q-201 but different question parameters (multiple projects, same billing account, dynamically calculated cost visualizations)
+   upvoted 2 times
+
+4. Anonymous: PiperMe 1 year, 10 months ago
+Selected Answer: D
+Visualize costs = BQ and Looker
+   upvoted 2 times
+
+5. Anonymous: guru_ji 1 year, 11 months ago
+Selected Answer: D
+D is correct.
+   upvoted 1 times
+
+6. Anonymous: joao_01 2 years, 4 months ago
+Selected Answer: D
+Its D, most appropriate
+   upvoted 3 times
+
+7. Anonymous: scanner2 2 years, 4 months ago
+Selected Answer: D
+A and C are straightaway eliminated.
+Cloud Billing Reports displays a chart that plots usage costs for all projects linked to a Cloud Billing account, but projects should be linked to a single Cloud Billing account. So, C is also eliminated.
+https://cloud.google.com/billing/docs/how-to/reports
+You can combine Cloud Billing data export to BigQuery with Looker Studio to stay up to date on your Google Cloud costs.
+https://cloud.google.com/billing/docs/how-to/visualize-data
+   upvoted 4 times
+
+8. Anonymous: gpais 2 years, 5 months ago
+Selected Answer: D
+We want to aggregate the costs for multiple billing accounts
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #230
+
+Pergunta:
+Your company has a large quantity of unstructured data in different file formats. You want to perform ETL transformations on the data. You need to make the data accessible on Google Cloud so it can be processed by a Dataflow job. What should you do?
+
+Alternativas:
+- A. Upload the data to BigQuery using the bq command line tool.
+- B. Upload the data to Cloud Storage using the gcloud storage command.
+- C. Upload the data into Cloud SQL using the import function in the Google Cloud console.
+- D. Upload the data into Cloud Spanner using the import function in the Google Cloud console.
+
+Resposta correta:
+B. Upload the data to Cloud Storage using the gcloud storage command.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: joao_01 1 year, 4 months ago
+Selected Answer: B
+Its B, non structure data
+   upvoted 4 times
+
+2. Anonymous: ExamsFR 1 year, 4 months ago
+Selected Answer: B
+"unstructured data in different file formats"
+   upvoted 4 times
+
+3. Anonymous: Captain1212 1 year, 4 months ago
+Selected Answer: B
+For unstrucutrred data cloud striooage is the right answer
+   upvoted 3 times
+
+4. Anonymous: scanner2 1 year, 4 months ago
+Selected Answer: B
+The question is asking about unstructured data. So, options A, C & E are eliminated.
+B is the correct answer.
+   upvoted 2 times
+
+5. Anonymous: Cherrycardo 1 year, 5 months ago
+Selected Answer: B
+Unstructured is the keyword in this questions. All possible answers are structured, but Cloud Storage.
+   upvoted 2 times
+
+6. Anonymous: 3arle 1 year, 5 months ago
+Selected Answer: B
+only B is for unstructured data
+   upvoted 2 times
+==============================

@@ -1,0 +1,949 @@
+==============================
+Page X — Question #131
+
+Pergunta:
+You need to create a copy of a custom Compute Engine virtual machine (VM) to facilitate an expected increase in application traffic due to a business acquisition.
+What should you do?
+
+Alternativas:
+- A. Create a Compute Engine snapshot of your base VM. Create your images from that snapshot.
+- B. Create a Compute Engine snapshot of your base VM. Create your instances from that snapshot.
+- C. Create a custom Compute Engine image from a snapshot. Create your images from that image.
+- D. Create a custom Compute Engine image from a snapshot. Create your instances from that image.
+
+Resposta correta:
+D. Create a custom Compute Engine image from a snapshot. Create your instances from that image.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ESP_SAP Highly Voted  5 years, 5 months ago
+Correct Answer is (D):
+Preparing your instance for an image
+You can create an image from a disk even while it is attached to a running VM instance. However, your image will be more reliable if you put the instance in a state that is easier for the image to capture. Use one of the following processes to prepare your boot disk for the image:
+Stop the instance so that it can shut down and stop writing any data to the persistent disk.
+If you can't stop your instance before you create the image, minimize the amount of writes to the disk and sync your file system.
+Pause apps or operating system processes that write data to that persistent disk.
+Run an app flush to disk if necessary. For example, MySQL has a FLUSH statement. Other apps might have similar processes.
+Stop your apps from writing to your persistent disk.
+Run sudo sync.
+After you prepare the instance, create the image.
+https://cloud.google.com/compute/docs/images/create-delete-deprecate-private-images#prepare_instance_for_image
+   upvoted 38 times
+
+2. Anonymous: pca2b Highly Voted  4 years, 9 months ago
+B:
+we just need to make 'a copy' of the VM, B works well for that.
+not D: Had the question mentioned more copies, we would need to go the way of images...templates etc. D will work but not needed here.
+   upvoted 15 times
+ djgodzilla 4 years, 7 months ago
+custom images are better a fit if its for a new business workload you just acquired
+   upvoted 2 times
+ wolfie09 3 years, 7 months ago
+What about the answer that says create your instanceS ??
+   upvoted 2 times
+
+3. Anonymous: yomi95 Most Recent  1 year, 2 months ago
+Selected Answer: D
+https://cloud.google.com/compute/docs/images/create-custom
+   upvoted 1 times
+
+4. Anonymous: iooj 1 year, 4 months ago
+Selected Answer: D
+The correct algorithm is:
+1. gcloud compute snapshots create
+2. gcloud compute images create
+3. gcloud compute instances create
+Now, decide which one sounds more accurate for you:
+- B. Create a Compute Engine snapshot of your base VM. Create your instances from that snapshot.
+- D. Create a custom Compute Engine image from a snapshot. Create your instances from that image.
+For me, D sounds more accurate, even though we assume we already have a snapshot.
+   upvoted 3 times
+
+5. Anonymous: ccpmad 1 year, 7 months ago
+Selected Answer: D
+Compute Engine snapshot? What is that?
+There are snapshots of disks, or there are disk image from disk snapshots...
+but here we need the VM image. Not the disks...
+   upvoted 2 times
+
+6. Anonymous: Bagibo 2 years ago
+Selected Answer: D
+It is D
+   upvoted 2 times
+
+7. Anonymous: Kair 2 years, 1 month ago
+You can create custom images from source disks, images, snapshots, or images stored in Cloud Storage and use these images to create virtual machine (VM) instances. Custom images are ideal for situations where you have created and modified a persistent boot disk or specific image to a certain state and need to save that state for creating VMs.
+You need to create image from the snapshot, so answer is D
+https://cloud.google.com/compute/docs/images/create-custom#:~:text=You%20can%20create%20custom%20images,virtual%20machine%20(VM)%20instances.
+   upvoted 2 times
+
+8. Anonymous: ogerber 2 years, 1 month ago
+Selected Answer: D
+You cannot directly create Compute Engine instances from a snapshot. Instances are created from images, not snapshots. The snapshot needs to be converted into a custom image first.
+   upvoted 5 times
+
+9. Anonymous: VijKall 2 years, 2 months ago
+Selected Answer: D
+Choosing D, assuming there is schedule snapshots taken and we are moving forward using those snapshot for creating image and using that image for creating new VM. It is indeed very confusing, as we need to assume few things.
+   upvoted 1 times
+
+10. Anonymous: VijKall 2 years, 2 months ago
+Selected Answer: B
+B&D are creating instance, so A&C are eliminated.
+We need snapshot first, so answer is B.
+D is out as there is no mention of snapshot from where image will be created.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #132
+
+Pergunta:
+You have deployed an application on a single Compute Engine instance. The application writes logs to disk. Users start reporting errors with the application. You want to diagnose the problem. What should you do?
+
+Alternativas:
+- A. Navigate to Cloud Logging and view the application logs.
+- B. Connect to the instance's serial console and read the application logs.
+- C. Configure a Health Check on the instance and set a Low Healthy Threshold value.
+- D. Install and configure the Cloud Logging Agent and view the logs from Cloud Logging.
+
+Resposta correta:
+D. Install and configure the Cloud Logging Agent and view the logs from Cloud Logging.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: hiteshrup Highly Voted  5 years, 4 months ago
+Answer: D
+App logs can't be visible to Cloud Logging until we install Cloud Logging Agent on GCE
+   upvoted 28 times
+ ashrafh 4 years, 5 months ago
+Hi all
+check this document and decide :)
+https://cloud.google.com/logging/docs/agent/logging/installation
+   upvoted 3 times
+ hiteshrup 5 years, 4 months ago
+Continuation of reasoning.
+If Problem statement is not having this statement "The application writes logs to disk", then we might assume that application is writing logs on Cloud Logging with google-fluentd agent API library. However, problem statement is clearly mentioned that logs are writing down on disk, we need agent installed on GCE to fetch those logs from disk to Cloud Logging. If that is not desirable, then option B is left
+   upvoted 8 times
+ hiteshrup 5 years, 4 months ago
+(Correction) Answer is A after rethinking and doing some research by focusing words "App Engine", which has by default enabled Request Logs which has App logs on each request and those logs are enabled for Cloud Logging ..
+https://cloud.google.com/appengine/docs/standard/python/logs#request_logs_vs_application_logs
+   upvoted 3 times
+ rezavage 5 years, 4 months ago
+Cloud logging without agent only works for App engine as you stated . but the question is about the compute engine which has to be equipped first with Logging Agent in order to write logs into Cloud Logging. so based your assumption the correct answer is "D"
+   upvoted 3 times
+ Eshkrkrkr 5 years, 2 months ago
+Wrong! Request Logs has the LIST of App logs and ONLY associated with that request! Read the links you provide!
+   upvoted 2 times
+ cuban123 5 years, 1 month ago
+you must still install the agent:
+https://cloud.google.com/error-reporting/docs/setup/compute-engine#using_logging
+   upvoted 1 times
+Load full discussion...
+
+2. Anonymous: ESP_SAP Highly Voted  5 years, 5 months ago
+Correct Answer is (D):
+In its default configuration, the Logging agent streams logs from common third-party applications and system software to Logging; review the list of default logs. You can configure the agent to stream additional logs; go to Configuring the Logging agent for details on agent configuration and operation.
+It is a best practice to run the Logging agent on all your VM instances. The agent runs under both Linux and Windows. To install the Logging agent, go to Installing the agent.
+https://cloud.google.com/logging/docs/agent
+   upvoted 18 times
+ sapguru 5 years, 4 months ago
+Cloud logging enabled by default for compute engine
+   upvoted 1 times
+ csrazdan 3 years, 6 months ago
+Do you mean the logging agent is installed by default? It depends on the OS you decide. For example, it is installed in Ubuntu but not on RedHat or Windows. Besides installing of the agent is not enough. You have to configure and let the agent know where your application is writing the logs on the disk so that it can monitor and stream the log to cloud monitoring. D is the correct answer
+   upvoted 1 times
+ ESP_SAP 5 years, 4 months ago
+CORRECTION.
+Correct Answer is (A):
+Activity logging is enabled by default for all Compute Engine projects.
+You can see your project's activity logs through the Logs Viewer in the Google Cloud Console:
+In the Cloud Console, go to the Logging page.
+Go to the Logging page
+When in the Logs Viewer, select and filter your resource type from the first drop-down list.
+From the All logs drop-down list, select compute.googleapis.com/activity_log to see Compute Engine activity logs.
+https://cloud.google.com/compute/docs/logging/activity-logs#viewing_logs
+Besides:
+Activity logs are provided as part of the Cloud Logging service. For more information about Logging in general, read the Cloud Logging documentation.
+https://cloud.google.com/compute/docs/logging/activity-logs
+   upvoted 11 times
+ babusartop17 4 years, 5 months ago
+I feel sorry for the woman in your life.
+   upvoted 20 times
+ DamonSalvatore 4 years, 4 months ago
+Haha! That was funny
+   upvoted 2 times
+ mexblood1 5 years, 4 months ago
+Activity Logs do not include 2rd party application logs. Activity logs are more related to operations and changes in the infrastructure. This question is tricky, I think it's either D or B, because if it's only an application on a single instance, you can connect to the instance and read the application logs directly and you save the cost of logging agent.
+   upvoted 9 times
+ mexblood1 5 years, 4 months ago
+Maybe I was assuming serial console is the same than system console, technically I guess they're not the same, hence I guess D will be my chosen answer.
+   upvoted 1 times
+ ESP_SAP 5 years, 4 months ago
+Additional information about VM Image for AWS EC2:
+The Logging agent streams logs from your VM instances and from selected third-party software packages to Cloud Logging. It is a best practice to run the Logging agent on all your VM instances.
+The VM images for Compute Engine and Amazon Elastic Compute Cloud (EC2) don't include the Logging agent, so you must complete these steps to install it on those instances. The agent runs under both Linux and Windows.
+If your VMs are running in Google Kubernetes Engine or App Engine, the agent is already included in the VM image, so you can skip this page.
+   upvoted 3 times
+ magistrum 5 years ago
+This points to D then
+   upvoted 4 times
+Load full discussion...
+
+3. Anonymous: halifax Most Recent  1 year, 1 month ago
+Selected Answer: D
+In a private data center option B is the correct answer, but this is a cloud-based VM, so console access is not automatic, you need to enable it beforehand. once enabled you can access it as follows:
+gcloud compute connect-to-serial-port [INSTANCE_NAME]
+   upvoted 1 times
+
+4. Anonymous: C0D3LK 1 year, 4 months ago
+Selected Answer: D
+Questions are tricky but let's reiterate this question. Hints are that there's an error in the application and that log are written to disk. Which means, it continues to write to the disk where the instance is functional. Therefore, correct method should be to install the agent and then analyze further on the output of the logs. So, answer is D
+   upvoted 1 times
+
+5. Anonymous: ccpmad 1 year, 7 months ago
+Selected Answer: B
+This question is from 2020, in that year there was an Logging agent, now called Legacy Logging agent. It is the Ops Agent of nowadays.
+With that agent, yes, you can configurate it to send personalized logs to GCP. But I think this question says that the app is already malfunctioning, so the logs of that are in the disk. For me it is B.
+   upvoted 1 times
+ ccpmad 1 year, 7 months ago
+for me is b, but there is a recent question 2023: 231 in examtopics.
+And D answer is:
+"D. Install and configure the Ops agent and view the logs from Cloud Logging."
+So to pass the exam, here select D. But for me, the question is confused. Because they want to see past logs, so install ops agent will not show past logs of application.
+   upvoted 1 times
+
+6. Anonymous: moumou 1 year, 11 months ago
+Selected Answer: D
+B will be correct if we talk about VM issues (access to an instance's serial console to debug boot and networking issues, troubleshoot malfunctioning instances, interact with the GRand Unified Bootloader (GRUB), and perform other troubleshooting tasks.)
+   upvoted 1 times
+
+7. Anonymous: SHAAHIBHUSHANAWS 2 years, 1 month ago
+Selected Answer: D
+When and why do we need it? Serial console access is useful in the following situations:
+When the VM is not booting: You can use serial console access to see the boot messages and identify the problem.
+When the VM is hung: You can use serial console access to see what the VM is doing and try to unfreeze it.
+When you need to access the VM’s BIOS or UEFI: You can use serial console access to access the VM’s BIOS or UEFI, which can be useful for changing settings or troubleshooting problems.
+Resolving issues with the VM’s operating system.
+   upvoted 1 times
+
+8. Anonymous: ogerber 2 years, 1 month ago
+Its B, App logs are not provided by default and requires to have an agent installed.
+https://cloud.google.com/compute/docs/troubleshooting/troubleshooting-using-serial-console
+   upvoted 1 times
+
+9. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: D
+D makes more sense , as application writes logs to disk and to diagnose it we need the cloud logging agent
+   upvoted 3 times
+
+10. Anonymous: Praxii 2 years, 8 months ago
+The line "application writes logs to disk" is crucial. It means logs are not available in cloud logging to yet. Hence we need to install the logging agent to send the logs to Cloud Logging.
+Answer is D
+   upvoted 2 times
+ ccpmad 1 year, 7 months ago
+yes you are wright, so you need to see de past logs, so it is B. For the future, after installation of Cloud Logging (now Ops Agent) we will be able to see them in Cloud Logging.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #133
+
+Pergunta:
+An application generates daily reports in a Compute Engine virtual machine (VM). The VM is in the project corp-iot-insights. Your team operates only in the project corp-aggregate-reports and needs a copy of the daily exports in the bucket corp-aggregate-reports-storage. You want to configure access so that the daily reports from the VM are available in the bucket corp-aggregate-reports-storage and use as few steps as possible while following Google-recommended practices. What should you do?
+
+Alternativas:
+- A. Move both projects under the same folder.
+- B. Grant the VM Service Account the role Storage Object Creator on corp-aggregate-reports-storage.
+- C. Create a Shared VPC network between both projects. Grant the VM Service Account the role Storage Object Creator on corp-iot-insights.
+- D. Make corp-aggregate-reports-storage public and create a folder with a pseudo-randomized suffix name. Share the folder with the IoT team.
+
+Resposta correta:
+B. Grant the VM Service Account the role Storage Object Creator on corp-aggregate-reports-storage.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ESP_SAP Highly Voted  4 years, 11 months ago
+Correct Answer is (B):
+Predefined roles
+The following table describes Identity and Access Management (IAM) roles that are associated with Cloud Storage and lists the permissions that are contained in each role. Unless otherwise noted, these roles can be applied either to entire projects or specific buckets.
+Storage Object Creator (roles/storage.objectCreator) Allows users to create objects. Does not give permission to view, delete, or overwrite objects.
+https://cloud.google.com/storage/docs/access-control/iam-roles#standard-roles
+   upvoted 36 times
+ ESP_SAP 4 years, 10 months ago
+Basically, you are giving the permissions to the VM Service Account to create a copy of the daily report on the bucket that the other team has access.
+   upvoted 6 times
+
+2. Anonymous: francisco_guerra Highly Voted  4 years, 11 months ago
+i think is B
+   upvoted 14 times
+ francisco_guerra 4 years, 11 months ago
+Object creator cant see object so i think is D
+   upvoted 1 times
+ lxgywil 4 years, 2 months ago
+VM doesn't need to see the obects - just to create them. It's B:
+The VM is located in project "corp-iot-insights" - give its SA the Storage Object Creator role for bucket "corp-aggregate-reports-storage" that is located in project "corp-aggregate-reports", where your team operates.
+   upvoted 6 times
+
+3. Anonymous: JoseCloudEng1994 Most Recent  1 year ago
+Selected Answer: B
+Its a bit tricky with the projects. They only specify that the VM must be able to create objects on the bucket. No mention of the people on the aggregate-reports group being able to access it
+   upvoted 1 times
+
+4. Anonymous: SAMBIT 1 year, 5 months ago
+Guys ..shared VPC is the key to connect projects. Enjoy
+   upvoted 1 times
+ PiperMe 1 year, 4 months ago
+IAM provides granular control over object-level access, which is a better security practice than opening up entire network segments with Shared VPC. Granting the necessary Storage Object Creator permission directly to the source VM's service account is the most streamlined way to achieve the file transfer with the principle of least privilege. Hypothetically, if the VM also needed access to databases or other network resources in the corp-aggregate-reports project, then Shared VPC could be the appropriate solution.
+   upvoted 2 times
+
+5. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: B
+B is the correct as it gives the service account required access
+   upvoted 1 times
+
+6. Anonymous: tatyavinchu 1 year, 11 months ago
+Selected Answer: B
+Correct Answer is B
+   upvoted 1 times
+
+7. Anonymous: Naree 2 years ago
+Selected Answer: B
+Just take below sentence from the question which is added just for confusion :)
+"Your team operates only in the project corp-aggregate-reports"
+   upvoted 2 times
+
+8. Anonymous: StefiJohnson 2 years, 10 months ago
+Correct Answer is (B)
+   upvoted 1 times
+
+9. Anonymous: theBestStudent 2 years, 11 months ago
+Selected Answer: B
+If that is the default service Account of the Compute Instance, then we should do nothing. As the role is already included. Either way, we should do nothing as the role is already covered. Also we shouldn´t modify Compute instance Service account. But again, I will assume it is not the default.
+   upvoted 1 times
+
+10. Anonymous: AzureDP900 3 years ago
+B is right
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #134
+
+Pergunta:
+You built an application on your development laptop that uses Google Cloud services. Your application uses Application Default Credentials for authentication and works fine on your development laptop. You want to migrate this application to a Compute Engine virtual machine (VM) and set up authentication using Google- recommended practices and minimal changes. What should you do?
+
+Alternativas:
+- A. Assign appropriate access for Google services to the service account used by the Compute Engine VM.
+- B. Create a service account with appropriate access for Google services, and configure the application to use this account.
+- C. Store credentials for service accounts with appropriate access for Google services in a config file, and deploy this config file with your application.
+- D. Store credentials for your user account with appropriate access for Google services in a config file, and deploy this config file with your application.
+
+Resposta correta:
+A. Assign appropriate access for Google services to the service account used by the Compute Engine VM.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ESP_SAP Highly Voted  5 years, 5 months ago
+Correct Answer is (B):
+Best practices
+In general, Google recommends that each instance that needs to call a Google API should run as a service account with the minimum permissions necessary for that instance to do its job. In practice, this means you should configure service accounts for your instances with the following process:
+Create a new service account rather than using the Compute Engine default service account.
+Grant IAM roles to that service account for only the resources that it needs.
+Configure the instance to run as that service account.
+Grant the instance the https://www.googleapis.com/auth/cloud-platform scope to allow full access to all Google Cloud APIs, so that the IAM permissions of the instance are completely determined by the IAM roles of the service account.
+Avoid granting more access than necessary and regularly check your service account permissions to make sure they are up-to-date.
+https://cloud.google.com/compute/docs/access/create-enable-service-accounts-for-instances#best_practices
+   upvoted 55 times
+ Ridhanya 4 years, 1 month ago
+you just gave justification for option A which is right
+   upvoted 2 times
+ ryumada 3 years, 5 months ago
+You should read lxgywil comment. His comment explains how authentication works to access Google Services in your application.
+a relevant link also:
+https://cloud.google.com/storage/docs/reference/libraries#setting_up_authentication
+   upvoted 1 times
+ ryumada 3 years, 5 months ago
+Maybe for the option A you are modifying the default service account because it's not explain which service account used by the VM, is it the default one or the new one?
+The best practice is to Create a new service account rather than using the Compute Engine default service account.
+B still has the bigger prove here as the answer.
+   upvoted 6 times
+ cRobert 5 years, 1 month ago
+From your quote:
+Configure the "instance" to run as that service account.
+From answer B:
+and configure the "application" to use this account.
+You don't add service accounts to applications, ans A
+   upvoted 20 times
+ magistrum 5 years ago
+wording is the clue :)
+   upvoted 1 times
+ TAvenger 4 years, 11 months ago
+It's dirty play with words... All understand that we need custom SA, grant required permissions and attach this SA to the VM...
+Why Google does this?
+   upvoted 7 times
+ lxgywil 4 years, 8 months ago
+When you use a GCP service within your app (code), you have to use its client libraries. When you instantiate a client with client libraries you can pass it a Service Account key, which will define on behalf of which SA the client will be acting. That's how you can configure your app to use a particular service account.
+E.g. https://cloud.google.com/storage/docs/reference/libraries#using_the_client_library
+   upvoted 3 times
+ akshaydoifode88 3 years, 2 months ago
+In question it's written application uses application default credentials. So taking that as a hint. B is the answer because here we are configuring service account key into the application. Similar approach.
+   upvoted 1 times
+
+2. Anonymous: filco72 Highly Voted  5 years, 5 months ago
+I would choose: A. Assign appropriate access for Google services to the service account used by the Compute Engine VM.
+as there is no need to create a new service account.
+   upvoted 20 times
+ Hjameel 5 years, 5 months ago
+I agree, there is no need to create a new service account
+   upvoted 9 times
+ xaqanik 2 years, 10 months ago
+by default a vm uses a default service account. if you grant permission to this service account it will apply to all VMs default service accounts in the project . in this case you need create a new service account and give it appropriate permission
+   upvoted 6 times
+
+3. Anonymous: Emisu Most Recent  10 months, 3 weeks ago
+Selected Answer: A
+A. Assign appropriate access for Google services to the service account used by the Compute Engine VM.
+Here's why:
+Application Default Credentials (ADC): When running on Compute Engine, the application will use the default service account of the VM. By assigning the appropriate access to this service account, you ensure that the application can authenticate seamlessly without requiring additional configuration changes.
+Least Privilege Principle: Assigning only the necessary permissions to the service account adheres to security best practices.
+No Credential Management Hassle: This approach eliminates the need to manage service account keys or include sensitive credentials in configuration files.
+Option B is also a valid option, but it would require additional configuration steps to make the application explicitly use the new service account.
+Options C and D involve storing credentials in config files, which is not recommended due to security risks.
+   upvoted 2 times
+
+4. Anonymous: jopaca1216 1 year, 2 months ago
+Selected Answer: A
+Correct is A.
+look.. "minimal changes", so can't be the option B.
+   upvoted 2 times
+
+5. Anonymous: denno22 1 year, 3 months ago
+Selected Answer: B
+Create a new user-managed service account rather than using the Compute Engine default service account, and grant IAM roles to that service account for only the resources and operations that it needs.
+https://cloud.google.com/compute/docs/access/create-enable-service-accounts-for-instances#best_practices
+   upvoted 1 times
+
+6. Anonymous: AchourOussama 1 year, 4 months ago
+I think the "minimal changes" hint here would make the first option the more suitable one since it doesn't involve creating a new service account.
+   upvoted 1 times
+
+7. Anonymous: ccpmad 1 year, 7 months ago
+Selected Answer: A
+Is not possible to add the service accounts to the application
+   upvoted 1 times
+
+8. Anonymous: pzacariasf7 1 year, 10 months ago
+Selected Answer: B
+B is the answer
+   upvoted 1 times
+
+9. Anonymous: PiperMe 1 year, 10 months ago
+I'd strongly lean towards Option B (Create a service account with appropriate access for Google services and configure the application to use this account) as the most likely correct answer.
+Google's exams emphasize secure design principles. The principle of least privilege is a core tenet, and custom service accounts embody this. Option B aligns precisely with the best practice for production environments and demonstrates a clear understanding of IAM concepts. While Option A could be acceptable with careful permission adjustments, exams often favor the solution most demonstrably secure and aligned with recommended practice out of the box.
+I believe option A might be a trap. Default service accounts can have varying levels of access. The exam might purposely use this ambiguity to test your knowledge of security principles. Focusing on the step of creating a custom service account signals your understanding of the correct IAM workflow.
+   upvoted 5 times
+
+10. Anonymous: Cynthia2023 2 years ago
+Selected Answer: B
+When you create a new Compute Engine VM, it is assigned a default service account, but this default service account is not unique to each VM. Instead, it's a project-wide default service account.
+1. Project-Wide Default Service Account:
+• The default service account is typically named something like PROJECT_NUMBER-compute@developer.gserviceaccount.com. It is the same across all VMs in the project that use the default service account.
+• Permissions granted to this default service account apply to all VMs using this account, which could lead to potential security risks if not managed carefully, especially in projects with multiple VMs having different access requirements.
+   upvoted 3 times
+ Cynthia2023 2 years ago
+2. Creating a New Service Account:
+• For better security and to adhere to the principle of least privilege, it's often recommended to create a new service account with just the necessary permissions for your specific application or VM.
+• This approach allows for more granular control over permissions and reduces the risk of inadvertently granting excessive privileges to all VMs using the default service account.
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #135
+
+Pergunta:
+You need to create a Compute Engine instance in a new project that doesn't exist yet. What should you do?
+
+Alternativas:
+- A. Using the Cloud SDK, create a new project, enable the Compute Engine API in that project, and then create the instance specifying your new project.
+- B. Enable the Compute Engine API in the Cloud Console, use the Cloud SDK to create the instance, and then use the --project flag to specify a new project.
+- C. Using the Cloud SDK, create the new instance, and use the --project flag to specify the new project. Answer yes when prompted by Cloud SDK to enable the Compute Engine API.
+- D. Enable the Compute Engine API in the Cloud Console. Go to the Compute Engine section of the Console to create a new instance, and look for the Create In A New Project option in the creation form.
+
+Resposta correta:
+A. Using the Cloud SDK, create a new project, enable the Compute Engine API in that project, and then create the instance specifying your new project.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ESP_SAP Highly Voted  4 years, 11 months ago
+Correct Answer is (A):
+Quickstart: Creating a New Instance Using the Command Line
+Before you begin
+1. In the Cloud Console, on the project selector page, select or create a Cloud project.
+2. Make sure that billing is enabled for your Google Cloud project. Learn how to confirm billing is enabled for your project.
+To use the gcloud command-line tool for this quickstart, you must first install and initialize the Cloud SDK:
+1. Download and install the Cloud SDK using the instructions given on Installing Google Cloud SDK.
+2. Initialize the SDK using the instructions given on Initializing Cloud SDK.
+To use gcloud in Cloud Shell for this quickstart, first activate Cloud Shell using the instructions given on Starting Cloud Shell.
+https://cloud.google.com/ai-platform/deep-learning-vm/docs/quickstart-cli#before-you-begin
+   upvoted 42 times
+
+2. Anonymous: filco72 Highly Voted  4 years, 11 months ago
+I would choose A. Using the Cloud SDK, create a new project, enable the Compute Engine API in that project, and then create the instance specifying your new project.
+as first I need to create a project. Instance creation cannot automatically create a project.
+   upvoted 13 times
+
+3. Anonymous: PiperMe Most Recent  1 year, 4 months ago
+I always think of "PAP" to help me with this question: Project: A new project must exist as a container for all your resources.
+API: Enable the necessary API, in this case, the Compute Engine API, so you can use its services.
+Provision: Now you can actually create the resource, like your Compute Engine instance.
+   upvoted 4 times
+
+4. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: A
+A is the correct answer, as it follow the right path , to create the compute Engine instance
+   upvoted 2 times
+
+5. Anonymous: tatyavinchu 1 year, 11 months ago
+Correct Answer is A
+   upvoted 1 times
+
+6. Anonymous: dr1ka 3 years, 6 months ago
+Selected Answer: A
+Vote A
+   upvoted 2 times
+
+7. Anonymous: jaffarali 3 years, 7 months ago
+Selected Answer: A
+A is the correct option
+   upvoted 2 times
+
+8. Anonymous: alaahakim 3 years, 8 months ago
+Selected Answer: A
+Correct Ans is : A
+   upvoted 2 times
+
+9. Anonymous: arsh1916 4 years, 2 months ago
+A is correct
+   upvoted 2 times
+
+10. Anonymous: kopper2019 4 years, 3 months ago
+A the way to go
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #136
+
+Pergunta:
+Your company runs one batch process in an on-premises server that takes around 30 hours to complete. The task runs monthly, can be performed offline, and must be restarted if interrupted. You want to migrate this workload to the cloud while minimizing cost. What should you do?
+
+Alternativas:
+- A. Migrate the workload to a Compute Engine Preemptible VM.
+- B. Migrate the workload to a Google Kubernetes Engine cluster with Preemptible nodes.
+- C. Migrate the workload to a Compute Engine VM. Start and stop the instance as needed.
+- D. Create an Instance Template with Preemptible VMs On. Create a Managed Instance Group from the template and adjust Target CPU Utilization. Migrate the workload.
+
+Resposta correta:
+C. Migrate the workload to a Compute Engine VM. Start and stop the instance as needed.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: juliandm Highly Voted  5 years, 5 months ago
+i understand preemptible as a no-go because of "must be restarted if interrupted" here meaning "starting from scratch" . So C seems right
+   upvoted 46 times
+ jcloud965 4 years, 6 months ago
+I agree, C.
+you won't run 30 hours job on preemptible instances that can be stopped at any time and can't run more than 24 hours.
+If the job could be splitted, then preemptible VM is an option.
+   upvoted 6 times
+ Vador 4 years, 3 months ago
+Preemptible seems fine on batch jobs for at least 24hours, not the case in here
+   upvoted 1 times
+ dttncl 4 years, 3 months ago
+I agree with C. You can't risk running a processes that take 30 hours on a preemptible VM (Compute Engine always stops preemptible instances after they run for 24 hours). They are good for "short-lived" batch jobs. The scenario is NOT fault tolerant as the whole process restarts if interrupted.
+https://cloud.google.com/compute/docs/instances/preemptible
+   upvoted 6 times
+
+2. Anonymous: stepkurniawan Highly Voted  5 years, 4 months ago
+Preemptible will be perfect for a batch job that takes less than 24 hours. But it's not in this case.
+   upvoted 16 times
+ Linus11 4 years, 8 months ago
+What if it is a managed group of Pre emptible instances like in D. If one instance stops, another instance will take over.
+I choose D.
+   upvoted 5 times
+ sanhoo 4 years, 7 months ago
+is there an option to specify Pre emptible instances while creating template? I couldn't find that. If so then D can't be true
+   upvoted 1 times
+ djgodzilla 4 years, 7 months ago
+Yes under management> Availability policy > premptibility ON/OFF
+   upvoted 2 times
+
+3. Anonymous: Enamfrancis Most Recent  1 year, 3 months ago
+Option A
+   upvoted 1 times
+
+4. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: C
+Option C is correct, bcoz the job is running for more than 30 hours
+   upvoted 2 times
+
+5. Anonymous: tatyavinchu 2 years, 5 months ago
+Correct Answer is C
+   upvoted 1 times
+
+6. Anonymous: Naree 2 years, 6 months ago
+Selected Answer: C
+Job runs for 30 hours and must be restarted if interrupted are "indirectly proportional" to "Preemptible"
+Ans: C
+   upvoted 1 times
+
+7. Anonymous: ankyt9 3 years, 1 month ago
+Selected Answer: C
+Preemptible VMs are cheaper, but they will not be available beyond 24hrs
+   upvoted 4 times
+
+8. Anonymous: Charumathi 3 years, 3 months ago
+Selected Answer: C
+C is the correct answer,
+Install the workload in a compute engine VM, start and stop the instance as needed, because as per the question the VM runs for 30 hours, process can be performed offline and should not be interrupted, if interrupted we need to restart the batch process again. Preemptible VMs are cheaper, but they will not be available beyond 24hrs, and if the process gets interrupted the preemptible VM will restart.
+   upvoted 2 times
+
+9. Anonymous: KapilDhamija 3 years, 5 months ago
+Selected Answer: C
+C is the correct answer
+   upvoted 1 times
+
+10. Anonymous: ryumada 3 years, 5 months ago
+Selected Answer: C
+The preemptible instance in GKE is same as Compute Engine Instance. They have same behavior that will be last for 24 hours.
+Also, see the key here "...and must be restarted if interrupted.". That means the job will start from the scratch again if the preemptible instance terminated. So, you will just wasted your preemptible instances because the job will never be finished.
+https://cloud.google.com/kubernetes-engine/docs/how-to/preemptible-vms#overview
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #137
+
+Pergunta:
+You are developing a new application and are looking for a Jenkins installation to build and deploy your source code. You want to automate the installation as quickly and easily as possible. What should you do?
+
+Alternativas:
+- A. Deploy Jenkins through the Google Cloud Marketplace.
+- B. Create a new Compute Engine instance. Run the Jenkins executable.
+- C. Create a new Kubernetes Engine cluster. Create a deployment for the Jenkins image.
+- D. Create an instance template with the Jenkins executable. Create a managed instance group with this template.
+
+Resposta correta:
+A. Deploy Jenkins through the Google Cloud Marketplace.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: filco72 Highly Voted  4 years, 5 months ago
+I would choose A. Deploy Jenkins through the Google Cloud Marketplace.
+as this is a well known opportunity on the GCP Marketplace
+   upvoted 29 times
+
+2. Anonymous: ESP_SAP Highly Voted  4 years, 5 months ago
+Correct Answer is (A):
+Installing Jenkins
+In this section, you use Cloud Marketplace to provision a Jenkins instance. You customize this instance to use the agent image you created in the previous section.
+Go to the Cloud Marketplace solution for Jenkins.
+Click Launch on Compute Engine.
+Change the Machine Type field to 4 vCPUs 15 GB Memory, n1-standard-4.
+Machine type selection for Jenkins deployment.
+Click Deploy and wait for your Jenkins instance to finish being provisioned. When it is finished, you will see:
+Jenkins has been deployed.
+https://cloud.google.com/solutions/using-jenkins-for-distributed-builds-on-compute-engine#installing_jenkins
+   upvoted 19 times
+
+3. Anonymous: Captain1212 Most Recent  1 year, 4 months ago
+Selected Answer: A
+Answer is : A as it's the most quick option
+   upvoted 1 times
+
+4. Anonymous: tatyavinchu 1 year, 5 months ago
+Correct Answer is C
+   upvoted 1 times
+
+5. Anonymous: sabrinakloud 1 year, 9 months ago
+Selected Answer: A
+A is correct
+   upvoted 1 times
+
+6. Anonymous: Charumathi 2 years, 3 months ago
+Selected Answer: A
+A is correct answer,
+To quickly deploy Jenkins, deploy it through google cloud marketplace.
+   upvoted 1 times
+
+7. Anonymous: KapilDhamija 2 years, 5 months ago
+Selected Answer: A
+remember as quickly as possible, also Google encourage things to be performed in minimal steps so A is the quickest and easiest choice
+   upvoted 1 times
+
+8. Anonymous: kiwi123 2 years, 5 months ago
+Go for A, the easiest
+   upvoted 1 times
+
+9. Anonymous: pspandher 2 years, 6 months ago
+This is Repeat Question.
+   upvoted 2 times
+
+10. Anonymous: AzureDP900 2 years, 6 months ago
+Cloud Market Place is fastest and best .. A is right
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #138
+
+Pergunta:
+You have downloaded and installed the gcloud command line interface (CLI) and have authenticated with your Google Account. Most of your Compute Engine instances in your project run in the europe-west1-d zone. You want to avoid having to specify this zone with each CLI command when managing these instances.
+What should you do?
+
+Alternativas:
+- A. Set the europe-west1-d zone as the default zone using the gcloud config subcommand.
+- B. In the Settings page for Compute Engine under Default location, set the zone to europeג€"west1-d.
+- C. In the CLI installation directory, create a file called default.conf containing zone=europeג€"west1ג€"d.
+- D. Create a Metadata entry on the Compute Engine page with key compute/zone and value europeג€"west1ג€"d.
+
+Resposta correta:
+A. Set the europe-west1-d zone as the default zone using the gcloud config subcommand.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ESP_SAP Highly Voted  4 years, 11 months ago
+Correct Answer is (A):
+Change your default zone and region in the metadata server
+Note: This only applies to the default configuration.
+You can change the default zone and region in your metadata server by making a request to the metadata server. For example:
+gcloud compute project-info add-metadata \
+--metadata google-compute-default-region=europe-west1,google-compute-default-zone=europe-west1-b
+The gcloud command-line tool only picks up on new default zone and region changes after you rerun the gcloud init command. After updating your default metadata, run gcloud init to reinitialize your default configuration.
+https://cloud.google.com/compute/docs/gcloud-compute#change_your_default_zone_and_region_in_the_metadata_server
+   upvoted 29 times
+ Examan1 4 years, 4 months ago
+Using gcloud config you can set the zone in your active configuration only. This setting does not apply to other gcloud configurations and does not become the default for the project.
+Ref: https://cloud.google.com/sdk/gcloud/reference/config/set
+So I believe correct answer is B as per https://cloud.google.com/compute/docs/regions-zones/changing-default-zone-region#console
+In the Cloud Console, go to the Settings page.
+From the Zone drop-down menu, select a default zone.
+   upvoted 4 times
+ tavva_prudhvi 4 years, 3 months ago
+bro, it mentioned going into the console settings, not the compute engine settings!
+To change your default region or zone:
+In the Cloud Console, go to the Settings page.
+Go to the Settings page
+From the Region drop-down menu, select a default region.
+From the Zone drop-down menu, select a default zone.
+   upvoted 1 times
+ jcloud965 4 years ago
+This setting in the Cloud Console won't be taken into account for gcloud on your active config
+   upvoted 2 times
+ dttncl 3 years, 9 months ago
+I agree the answer is A.
+gcloud config - view and edit Cloud SDK properties
+zone
+Default zone to use when working with zonal Compute Engine resources.
+https://cloud.google.com/sdk/gcloud/reference/config
+   upvoted 3 times
+ xtian2900 4 years, 10 months ago
+does your comment imply that the answer is D ? i'm confused
+   upvoted 3 times
+ mahesh0049 3 years, 6 months ago
+every thing is correct in your explanation but instead of using gcloud compute command they used gcloud config.
+   upvoted 4 times
+ bobthebuilder55110 2 years, 11 months ago
+You can use the gcloud config set command here, https://cloud.google.com/compute/docs/gcloud-compute#set_default_zone_and_region_in_your_local_client
+   upvoted 4 times
+
+2. Anonymous: SSPC Highly Voted  4 years, 11 months ago
+I would go with the answer A
+   upvoted 11 times
+
+3. Anonymous: blackBeard33 Most Recent  1 year, 5 months ago
+Selected Answer: A
+I would choose A
+reference : https://cloud.google.com/sdk/gcloud/reference/config/set
+   upvoted 1 times
+
+4. Anonymous: VijKall 1 year, 8 months ago
+Selected Answer: A
+gcloud config set compute/zone europe-west1-b
+   upvoted 1 times
+
+5. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: A
+A is the correct answer, just set default in cloud console in the starting by the cloud shell commands
+   upvoted 1 times
+
+6. Anonymous: tatyavinchu 1 year, 11 months ago
+Correct Answer is A
+   upvoted 1 times
+
+7. Anonymous: GokulVelusaamy 2 years, 5 months ago
+Selected Answer: A
+We can set the defailt zone using the below CLI command,
+gcloud config set compute/zone ZONE
+Refer : https://cloud.google.com/compute/docs/gcloud-compute#set_default_zone_and_region_in_your_local_client
+   upvoted 1 times
+
+8. Anonymous: Angel_99 2 years, 11 months ago
+Selected Answer: A
+It is clearly mentioned it is to be done via CLI not console
+   upvoted 1 times
+
+9. Anonymous: AzureDP900 3 years ago
+A is right
+   upvoted 1 times
+
+10. Anonymous: Tirthankar17 3 years, 1 month ago
+Selected Answer: A
+A, it is clearly mentioned it is to be done via CLI not console.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #139
+
+Pergunta:
+The core business of your company is to rent out construction equipment at large scale. All the equipment that is being rented out has been equipped with multiple sensors that send event information every few seconds. These signals can vary from engine status, distance traveled, fuel level, and more. Customers are billed based on the consumption monitored by these sensors. You expect high throughput `" up to thousands of events per hour per device `" and need to retrieve consistent data based on the time of the event. Storing and retrieving individual signals should be atomic. What should you do?
+
+Alternativas:
+- A. Create a file in Cloud Storage per device and append new data to that file.
+- B. Create a file in Cloud Filestore per device and append new data to that file.
+- C. Ingest the data into Datastore. Store data in an entity group based on the device.
+- D. Ingest the data into Cloud Bigtable. Create a row key based on the event timestamp.
+
+Resposta correta:
+D. Ingest the data into Cloud Bigtable. Create a row key based on the event timestamp.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: hiteshrup Highly Voted  4 years, 10 months ago
+Answer: D
+Keyword need to look for
+- "High Throughput",
+- "Consistent",
+- "Property based data insert/fetch like ngine status, distance traveled, fuel level, and more." which can be designed in column,
+- "Large Scale Customer Base + Each Customer has multiple sensor which send event in seconds" This will go for pera bytes situation,
+- Export data based on the time of the event.
+- Atomic
+o BigTable will fit all requirement.
+o DataStore is not fully Atomic
+o CloudStorage is not a option where we can export data based on time of event. We need another solution to do that
+o FireStore can be used with MobileSDK.
+So go with Option D: Big Table
+   upvoted 51 times
+
+2. Anonymous: Hjameel Highly Voted  4 years, 11 months ago
+D is the best answer , Cloud Bigtable
+   upvoted 8 times
+ har_riy 4 years, 5 months ago
+Simple analogy.
+Information every few seconds --> Time Series --> Big Table
+   upvoted 6 times
+
+3. Anonymous: SHAAHIBHUSHANAWS Most Recent  1 year, 7 months ago
+Selected Answer: D
+https://cloud.google.com/bigtable/docs/overview
+   upvoted 1 times
+
+4. Anonymous: Linhtinh603 1 year, 7 months ago
+Answer D is the best for high throughput and IoT, but I concern about creating a row key based on the event timestamp, will it be leading a hotspots issue?
+   upvoted 2 times
+
+5. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: D
+D is the right answer, as its can help with Automatically
+   upvoted 1 times
+
+6. Anonymous: Tosssha 2 years, 5 months ago
+ReadModifyWriteRow requests are atomic:
+https://cloud.google.com/bigtable/docs/writes
+   upvoted 1 times
+
+7. Anonymous: xaqanik 2 years, 5 months ago
+it say any type of information. it means there can be an image file for instance. so, Bigtable is the best fit for this scenario
+   upvoted 1 times
+
+8. Anonymous: alex000 2 years, 6 months ago
+Selected Answer: C
+Answer: C
+key work: atomic transaction
+https://cloud.google.com/datastore/docs/concepts/overview
+   upvoted 2 times
+
+9. Anonymous: Cornholio_LMC 2 years, 10 months ago
+had this question today
+   upvoted 5 times
+
+10. Anonymous: tomis2 3 years ago
+Selected Answer: D
+Timeseries + IoT = Bigtable
+   upvoted 4 times
+==============================
+
+==============================
+Page X — Question #140
+
+Pergunta:
+You are asked to set up application performance monitoring on Google Cloud projects A, B, and C as a single pane of glass. You want to monitor CPU, memory, and disk. What should you do?
+
+Alternativas:
+- A. Enable API and then share charts from project A, B, and C.
+- B. Enable API and then give the metrics.reader role to projects A, B, and C.
+- C. Enable API and then use default dashboards to view all projects in sequence.
+- D. Enable API, create a workspace under project A, and then add projects B and C.
+
+Resposta correta:
+D. Enable API, create a workspace under project A, and then add projects B and C.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: jlclaude Highly Voted  4 years, 5 months ago
+D. workspaces is made for monitoring multiple projects.
+   upvoted 39 times
+
+2. Anonymous: Hjameel Highly Voted  4 years, 5 months ago
+D , Workspace to monitor multiple projects.
+   upvoted 12 times
+ Khoka 4 years, 2 months ago
+https://cloud.google.com/monitoring/workspaces
+   upvoted 3 times
+
+3. Anonymous: Captain1212 Most Recent  1 year, 4 months ago
+Selected Answer: D
+Option D is the correct Answer, First create the Workspace under A then add it to the Project B and C
+   upvoted 2 times
+
+4. Anonymous: Bobbybash 1 year, 11 months ago
+Selected Answer: D
+D. Enable API, create a workspace under project A, and then add projects B and C.
+To monitor multiple Google Cloud projects in a single pane of glass, you can use Google Cloud's operations suite, formerly known as Stackdriver. By enabling the Cloud Monitoring API and creating a workspace under project A, you can add projects B and C to the same workspace. This will allow you to view metrics for CPU, memory, and disk usage for all projects in the same workspace. You can also set up alerting policies to be notified of any potential issues across all projects.
+Enabling the API alone or giving metrics.reader role to the projects will not provide a single pane of glass view of all the projects. Similarly, using default dashboards will not provide a unified view of all projects in a single dashboard.
+   upvoted 3 times
+
+5. Anonymous: SathishBandi 2 years, 1 month ago
+Selected Answer: D
+In question, mentioned 'as a single pane of glass' and workspace are meant for Monitoring
+   upvoted 2 times
+
+6. Anonymous: Charumathi 2 years, 3 months ago
+Selected Answer: D
+D is the correct answer,
+Keep Project A as host project in workspace and Project B and C as Service Project, and monitor the metrics of the Project A for a centralized view.
+   upvoted 1 times
+
+7. Anonymous: ale_brd_111 2 years, 3 months ago
+Selected Answer: D
+Stackdriver workspaces are deprecated, now in the monitoring page of the Project you want, you need to select the "Scopes". Anyway he closest answer is D.
+Scopes allow you to monitor multiple projects.
+https://cloud.google.com/monitoring/settings/multiple-projects
+   upvoted 2 times
+
+8. Anonymous: KapilDhamija 2 years, 5 months ago
+Selected Answer: D
+D should be the correct answer
+   upvoted 1 times
+
+9. Anonymous: AzureDP900 2 years, 6 months ago
+D is correct
+   upvoted 1 times
+
+10. Anonymous: Rutu_98 2 years, 8 months ago
+Selected Answer: D
+D is correct
+   upvoted 1 times
+==============================

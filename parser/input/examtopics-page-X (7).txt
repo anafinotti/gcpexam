@@ -1,0 +1,833 @@
+==============================
+Page X — Question #71
+
+Pergunta:
+You are using Container Registry to centrally store your company's container images in a separate project. In another project, you want to create a Google
+Kubernetes Engine (GKE) cluster. You want to ensure that Kubernetes can download images from Container Registry. What should you do?
+
+Alternativas:
+- A. In the project where the images are stored, grant the Storage Object Viewer IAM role to the service account used by the Kubernetes nodes.
+- B. When you create the GKE cluster, choose the Allow full access to all Cloud APIs option under 'Access scopes'.
+- C. Create a service account, and give it access to Cloud Storage. Create a P12 key for this service account and use it as an imagePullSecrets in Kubernetes.
+- D. Configure the ACLs on each image in Cloud Storage to give read-only access to the default Compute Engine service account.
+
+Resposta correta:
+A. In the project where the images are stored, grant the Storage Object Viewer IAM role to the service account used by the Kubernetes nodes.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ESP_SAP Highly Voted  5 years, 5 months ago
+Correct Answer (A):
+IAM permissions
+IAM permissions determine who can access resources. All users, service accounts, and other identities that interact with Container Registry must have the appropriate Cloud Storage permissions.
+By default, Google Cloud use default service accounts to interact with resources within the same project. For example, the Cloud Build service account can both push and pull images when Container Registry is in the same project.
+You must configure or modify permissions yourself if:
+You are using a service account in one project to access Container Registry in a different project
+You are using a default service account with read-only access to storage, but you want to both pull and push images
+You are using a custom service account to interact with Container Registry
+https://cloud.google.com/container-registry/docs/access-control
+   upvoted 64 times
+
+2. Anonymous: XRiddlerX Highly Voted  5 years, 5 months ago
+A is correct...
+Container Registry uses Cloud Storage buckets as the underlying storage for container images. You control access to your images by granting appropriate Cloud Storage permissions to a user, group, service account, or other identity.
+If the service account needs to access Container Registry in another project, you must grant the required permissions in the project with Container Registry.
+Reference:
+https://cloud.google.com/container-registry/docs/access-control#permissions
+   upvoted 21 times
+
+3. Anonymous: gseva Most Recent  11 months, 1 week ago
+Selected Answer: A
+Container Registry stores images in Cloud Storage buckets under gcr.io, us.gcr.io, etc.
+GKE nodes need permission to pull images from this registry.
+   upvoted 1 times
+
+4. Anonymous: Enamfrancis 1 year, 3 months ago
+Selected Answer: A
+A is correct
+   upvoted 1 times
+
+5. Anonymous: omunoz 1 year, 8 months ago
+As per https://cloud.google.com/container-registry/docs/access-control.
+Container Registry is deprecated and scheduled for shutdown. After May 15, 2024, Artifact Registry will host images for the gcr.io domain in Google Cloud projects without previous Container Registry usage. After March 18, 2025, Container Registry will be shut down.
+Artifact Registry is the recommended service for container image storage and management on Google Cloud.
+   upvoted 1 times
+
+6. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: A
+A is the correct answer , as granting this role allow to download the image
+   upvoted 2 times
+
+7. Anonymous: sakdip66 2 years, 9 months ago
+Selected Answer: A
+Grating Storage Object Viewer IAM Role to the service account used by Kubernetes nodes allow the nodes to download the images from Container registry.
+   upvoted 1 times
+
+8. Anonymous: Buruguduystunstugudunstuy 2 years, 11 months ago
+Selected Answer: A
+Answer A. In the project where the images are stored, grant the Storage Object Viewer IAM role to the service account used by the Kubernetes nodes.
+To ensure that Kubernetes can download container images from Container Registry, you need to grant the necessary permissions to the service account used by the Kubernetes nodes. In this case, you would need to grant the Storage Object Viewer IAM role to the service account used by the Kubernetes nodes in the project where the images are stored. This role allows the service account to read objects from Cloud Storage buckets, including the container images in Container Registry.
+   upvoted 5 times
+
+9. Anonymous: jrisl1991 2 years, 11 months ago
+Selected Answer: A
+Definitely A seems more practical and accurate.
+   upvoted 1 times
+
+10. Anonymous: GaneshSurwase 3 years, 3 months ago
+CORRET ANS is A
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #72
+
+Pergunta:
+You deployed a new application inside your Google Kubernetes Engine cluster using the YAML file specified below.
+
+You check the status of the deployed pods and notice that one of them is still in PENDING status:
+
+You want to find out why the pod is stuck in pending status. What should you do?
+
+Alternativas:
+- A. Review details of the myapp-service Service object and check for error messages.
+- B. Review details of the myapp-deployment Deployment object and check for error messages.
+- C. Review details of myapp-deployment-58ddbbb995-lp86m Pod and check for warning messages.
+- D. View logs of the container in myapp-deployment-58ddbbb995-lp86m pod and check for warning messages.
+
+Resposta correta:
+C. Review details of myapp-deployment-58ddbbb995-lp86m Pod and check for warning messages.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: spudleymcdudley Highly Voted  4 years, 6 months ago
+It's C - https://kubernetes.io/docs/tasks/debug-application-cluster/debug-application/#debugging-pods
+   upvoted 31 times
+
+2. Anonymous: someoneinthecloud Highly Voted  4 years, 6 months ago
+Answer is C - You can't view logs of a pod that isn't deployed, so D is incorrect.
+C allows you to check the pod deployment messages and look for errors
+   upvoted 24 times
+ sidharthwader 3 years, 6 months ago
+What u said is incorrect you can view pod's log even in pending state.
+kubectl logs <pon-name> -n <namespace>
+   upvoted 3 times
+
+3. Anonymous: Captain1212 Most Recent  1 year, 4 months ago
+Selected Answer: C
+C is correct, as its help you to check the error
+   upvoted 2 times
+
+4. Anonymous: Buruguduystunstugudunstuy 1 year, 11 months ago
+Selected Answer: C
+Answer C. Review details of myapp-deployment-58ddbbb995-lp86m Pod and check for warning messages.
+To find out why a pod is stuck in pending status, you can review the details of the pod and check for any warning messages. Answer C is the correct answer because it suggests reviewing the details of the specific pod that is stuck in pending status. You can use the kubectl describe pod <pod-name> command to view detailed information about the pod, including any warning messages that might indicate why the pod is not scheduled.
+   upvoted 3 times
+
+5. Anonymous: AKSHAT09jain 2 years ago
+D : we first check logs
+   upvoted 1 times
+
+6. Anonymous: Zoze 2 years, 2 months ago
+Selected Answer: C
+I vote C; because if we imagine that we will go to a main menu that display the errors of the all deployment object as hole, we will surely navigate thin to the pod menu ! so the C option will direct take us to the second menu.
+   upvoted 1 times
+
+7. Anonymous: Charumathi 2 years, 3 months ago
+C is correct,
+Debugging Pods
+The first step in debugging a Pod is taking a look at it. Check the current state of the Pod and recent events with the following command:
+kubectl describe pods ${POD_NAME}
+   upvoted 1 times
+
+8. Anonymous: Letahrgicbeagle 2 years, 4 months ago
+Selected Answer: C
+Definitely
+   upvoted 1 times
+
+9. Anonymous: Dheeraj1986 2 years, 5 months ago
+Selected Answer: B
+I guess it's B. its deployment that creates the pod and it has the information why it is not able to create. it shows the information if you describe the deployment ( kubectl describe deployment )
+   upvoted 1 times
+
+10. Anonymous: abirroy 2 years, 5 months ago
+Selected Answer: C
+Answer is C
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #73
+
+Pergunta:
+You are setting up a Windows VM on Compute Engine and want to make sure you can log in to the VM via RDP. What should you do?
+
+Alternativas:
+- A. After the VM has been created, use your Google Account credentials to log in into the VM.
+- B. After the VM has been created, use gcloud compute reset-windows-password to retrieve the login credentials for the VM.
+- C. When creating the VM, add metadata to the instance using 'windows-password' as the key and a password as the value.
+- D. After the VM has been created, download the JSON private key for the default Compute Engine service account. Use the credentials in the JSON file to log in to the VM.
+
+Resposta correta:
+B. After the VM has been created, use gcloud compute reset-windows-password to retrieve the login credentials for the VM.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: John_Iam Highly Voted  5 years, 1 month ago
+Correct Answer is B.
+B. After the VM has been created, use gcloud compute reset-windows-password to retrieve the login credentials for the VM.
+https://cloud.google.com/sdk/gcloud/reference/beta/compute/reset-windows-password
+   upvoted 63 times
+ voler 5 years ago
+Yes! "If the Windows account does not exist, this command will cause the account to be created and the password for that new account will be returned."
+   upvoted 5 times
+ dan80 5 years, 1 month ago
+did you even look at the link you provide ? it clearly say gcloud beta compute reset-windows-password my-instance and not gcloud compute reset-windows-password. D is correct - https://cloud.google.com/iam/docs/creating-managing-service-account-keys
+   upvoted 4 times
+ dan80 5 years, 1 month ago
+nobody talk on reset the password but how to access the Windows - best way - Service Account
+   upvoted 1 times
+ KerolesKhalil 2 years, 1 month ago
+Service accounts shouldn't be used for RDP , they are used to machine authentication with services.
+   upvoted 1 times
+ KerolesKhalil 2 years, 1 month ago
+Also how you will RDP with Service account and private key
+You need username and password , it is not ssh
+   upvoted 1 times
+ lxgywil 4 years, 2 months ago
+Oh yes? Then what about this link (for non-beta command)?
+https://cloud.google.com/sdk/gcloud/reference/compute/reset-windows-password
+"If the Windows account does not exist, this command will cause the account to be created and the password for that new account will be returned."
+The answer is obviously B. Just test it and it'll become very clear
+   upvoted 7 times
+ ragu123 4 years, 11 months ago
+Correct answer is B.
+gcloud beta compute reset-windows-password allows a user to reset and retrieve a password for a Windows virtual machine instance. If the Windows account does not exist, this command will cause the account to be created and the password for that new account will be returned.
+   upvoted 4 times
+
+2. Anonymous: Buruguduystunstugudunstuy Highly Voted  2 years, 5 months ago
+Selected Answer: B
+CORRECT:
+Answer B. After the VM has been created, use gcloud compute reset-windows-password to retrieve the login credentials for the VM.
+INCORRECT:
+Answer A is not correct because Google Account credentials cannot be used to log in to Windows VMs.
+Answer C is not correct because metadata can be used to specify some settings for a VM, but the 'windows-password' metadata key is not used for specifying the login password for a Windows VM.
+Answer D is not correct because the JSON private key for the default Compute Engine service account is not used for logging in to a Windows VM.
+   upvoted 8 times
+
+3. Anonymous: Sakshi1221 Most Recent  1 year, 7 months ago
+Why this website has published all incorrect answers
+   upvoted 2 times
+
+4. Anonymous: BAofBK 1 year, 8 months ago
+The correct answer is B.
+   upvoted 1 times
+
+5. Anonymous: dataSoftNinja 1 year, 8 months ago
+what is rdp meaning please ?
+   upvoted 1 times
+ lagx 1 year, 4 months ago
+remote desktop protocal used to connect and login into windows machine, similar to ssh protocal for linux machine
+   upvoted 1 times
+
+6. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: B
+Yes , B is the corrrect answer
+   upvoted 1 times
+
+7. Anonymous: sakdip66 2 years, 3 months ago
+Selected Answer: B
+after creating Windows VM on COmpute Engine it has a local user account as well. This acct is used to login to the VM via RDP. If you forget the password you can use gcloud compute reset-windows-password to reset it. This command generates a new password and sets it for the user account on the VM.
+   upvoted 1 times
+
+8. Anonymous: Partha117 2 years, 3 months ago
+Selected Answer: B
+Correct option B
+   upvoted 1 times
+
+9. Anonymous: smanoj85 2 years, 4 months ago
+Option B is correct. After creating a Windows VM instance on Compute Engine, you need to use the gcloud compute reset-windows-password command to retrieve the login credentials for the VM. This command generates a new Windows password and displays it in the output of the command. You can then use this password to log in to the VM via RDP.
+Option A is incorrect because logging in to the VM using your Google Account credentials is not a supported method for Windows VM instances.
+Option C is also incorrect because 'windows-password' is not a recognized metadata key for Windows VM instances.
+Option D is incorrect because you cannot use the JSON private key for the default Compute Engine service account to log in to a Windows VM instance via RDP.
+   upvoted 2 times
+
+10. Anonymous: cslince 2 years, 7 months ago
+Selected Answer: B
+Correct Answer is B.
+B. After the VM has been created, use gcloud compute reset-windows-password to retrieve the login credentials for the VM
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #74
+
+Pergunta:
+You want to configure an SSH connection to a single Compute Engine instance for users in the dev1 group. This instance is the only resource in this particular
+Google Cloud Platform project that the dev1 users should be able to connect to. What should you do?
+
+Alternativas:
+- A. Set metadata to enable-oslogin=true for the instance. Grant the dev1 group the compute.osLogin role. Direct them to use the Cloud Shell to ssh to that instance.
+- B. Set metadata to enable-oslogin=true for the instance. Set the service account to no service account for that instance. Direct them to use the Cloud Shell to ssh to that instance.
+- C. Enable block project wide keys for the instance. Generate an SSH key for each user in the dev1 group. Distribute the keys to dev1 users and direct them to use their third-party tools to connect.
+- D. Enable block project wide keys for the instance. Generate an SSH key and associate the key with that instance. Distribute the key to dev1 users and direct them to use their third-party tools to connect.
+
+Resposta correta:
+A. Set metadata to enable-oslogin=true for the instance. Grant the dev1 group the compute.osLogin role. Direct them to use the Cloud Shell to ssh to that instance.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: poogcp Highly Voted  5 years, 1 month ago
+A correct one
+   upvoted 46 times
+ nithinpb180 5 years, 1 month ago
+Agree with that
+   upvoted 3 times
+ spudleymcdudley 5 years ago
+For further evidence... https://cloud.google.com/compute/docs/instances/managing-instance-access
+   upvoted 8 times
+
+2. Anonymous: student002 Highly Voted  4 years, 9 months ago
+Pure from logic thinking: A can't be right. If the group get access to that instance with enable-oslogin=true, then they could have access to every instance that has enable-oslogin=true. Or do I miss something?
+   upvoted 11 times
+ magistrum 4 years, 6 months ago
+I'm convinced with this logic
+   upvoted 1 times
+ bgallet 3 years, 7 months ago
+clearly, question say "the only ressource they need to access in this project"
+as you said, all ressources will be available if we set the role
+   upvoted 2 times
+ jrisl1991 2 years, 5 months ago
+That's not necessarily true - https://cloud.google.com/compute/docs/oslogin/set-up-oslogin. The doc says "If you want enable OS Login for all VMs in a project, set the metadata at the project-level. If you want to enable OS Login for a single VM, set the metadata at the instance-level."
+That means you can do it at the instance level, so there shouldn't be a problem with following A.
+   upvoted 3 times
+ akshaychavan7 3 years, 1 month ago
+Note the sentence "Set metadata to enable-oslogin=true for the instance." This means the metadata for oslogin has been set to that particular instance only, and not for all.
+   upvoted 6 times
+
+3. Anonymous: Cynthia2023 Most Recent  1 year, 6 months ago
+Selected Answer: A
+OS Login Feature:
+OS Login is a feature in GCP that manages SSH access to your Compute Engine instances using IAM (Identity and Access Management) roles. When OS Login is enabled, it allows you to use IAM roles to grant or revoke SSH access to your instances, which can be more secure and manageable than traditional SSH key management.
+Enabling OS Login:
+Setting the instance metadata enable-oslogin=true enables the OS Login feature on that specific Compute Engine instance.
+When OS Login is enabled, traditional SSH keys defined in the project or instance metadata are ignored, and the instance instead relies on IAM roles for SSH access.
+   upvoted 5 times
+
+4. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: A
+A is correct as , it gives the only specific access
+   upvoted 3 times
+
+5. Anonymous: KerolesKhalil 2 years, 1 month ago
+Selected Answer: A
+https://cloud.google.com/compute/docs/oslogin/set-up-oslogin
+   upvoted 1 times
+
+6. Anonymous: sakdip66 2 years, 3 months ago
+Selected Answer: A
+Enabling OSLogin allow user to login to Google Cloud credentials to authenticate to instance, instead of SSH key.
+Granting 'compute.osLogin' to the dev1 lets them login using OSLogin to the resourcee
+BD are incorrect because "block project-wide SSH keys" is an advance security features taht is used for high secured environment where more granular control over SSH us required
+C is hassle because it manually ditribute keys to each user in Dev1 which is time consuming
+   upvoted 1 times
+
+7. Anonymous: Buruguduystunstugudunstuy 2 years, 5 months ago
+Selected Answer: A
+Answer B is incorrect because setting the service account to no service account has no impact on SSH access to the VM instance.
+Answer C is incorrect because generating an SSH key for each user in the dev1 group and distributing them is cumbersome and not scalable, especially if you have many users.
+Answer D is incorrect because generating a single SSH key and distributing it to multiple users undermines security, as it means any of the users in possession of the key can access the VM instance.
+   upvoted 3 times
+
+8. Anonymous: FeaRoX 2 years, 5 months ago
+In my opinion A would be best, but they have to use this and only this 1 instance. You don't know if any other instances has this metadata set up - if they do, dev1 team has also access to this instances, what invalidates the answer. To make sure they are using only this 1 instance, I'd say D.
+   upvoted 2 times
+
+9. Anonymous: jrisl1991 2 years, 5 months ago
+Selected Answer: A
+Based on https://cloud.google.com/compute/docs/oslogin/set-up-oslogin I'd go for A.
+   upvoted 1 times
+
+10. Anonymous: alex000 2 years, 6 months ago
+Selected Answer: C
+The dev1 users should be able to connect only to this VM instance
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #75
+
+Pergunta:
+You need to produce a list of the enabled Google Cloud Platform APIs for a GCP project using the gcloud command line in the Cloud Shell. The project name is my-project. What should you do?
+
+Alternativas:
+- A. Run gcloud projects list to get the project ID, and then run gcloud services list --project <project ID>.
+- B. Run gcloud init to set the current project to my-project, and then run gcloud services list --available.
+- C. Run gcloud info to view the account value, and then run gcloud services list --account <Account>.
+- D. Run gcloud projects describe <project ID> to verify the project value, and then run gcloud services list --available.
+
+Resposta correta:
+A. Run gcloud projects list to get the project ID, and then run gcloud services list --project <project ID>.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: dan80 Highly Voted  5 years, 1 month ago
+A is the correct answer, log to gcloud and run the commands, doesnt make sense to run cloud init and gcloud services list --available gives you the full services that are available.
+   upvoted 50 times
+ raffiq 5 years, 1 month ago
+Yes, Answer A correct. it shows only enabled services of API
+   upvoted 6 times
+
+2. Anonymous: lxgywil Highly Voted  4 years, 2 months ago
+"A" is correct.
+For those, who have doubts:
+`gcloud services list --available` returns not only the enabled services in the project but also services that CAN be enabled. Therefore, option B is incorrect.
+https://cloud.google.com/sdk/gcloud/reference/services/list#--available
+   upvoted 12 times
+ squishy_fishy 4 years, 1 month ago
+Best answer!
+   upvoted 1 times
+
+3. Anonymous: pzacariasf7 Most Recent  1 year, 4 months ago
+Selected Answer: A
+A is correct!
+   upvoted 1 times
+
+4. Anonymous: sabrinakloud 2 years, 3 months ago
+Selected Answer: A
+Answer: A
+   upvoted 1 times
+
+5. Anonymous: Buruguduystunstugudunstuy 2 years, 5 months ago
+Selected Answer: A
+Let's do a side-by-side analysis of Answer A and Answer D to clear our doubts:
+Answer A: Run gcloud projects list to get the project ID, and then run gcloud services list --project <project ID>.
+This option first retrieves the project ID by running the gcloud projects list command.
+Then, it uses the gcloud services list command with the --project flag to list the enabled APIs for the specified project.
+   upvoted 4 times
+ Buruguduystunstugudunstuy 2 years, 5 months ago
+Answer D: Run gcloud projects describe <project ID> to verify the project value, and then run gcloud services list --available.
+This option uses the gcloud projects describe command with the project ID to retrieve information about the specified project, including the project ID.
+Then, it uses the gcloud services list command with the --available flag to list all available APIs, not just the ones that are enabled for the specified project.
+Based on the scenario presented in the question, we want to produce a list of the enabled APIs for a GCP project, NOT a list of all available APIs. Therefore, Answer A is more appropriate because it specifically lists the enabled APIs for the specified project.
+Answer D lists all available APIs which may include APIs that are not enabled in the project, which could cause confusion or unnecessary information.
+Therefore, Answer A is the correct option in this case.
+   upvoted 4 times
+
+6. Anonymous: Bobbybash 2 years, 5 months ago
+Selected Answer: D
+D. Run gcloud projects describe <project ID> to verify the project value, and then run gcloud services list --available.
+To produce a list of enabled Google Cloud Platform APIs for a GCP project using the gcloud command line, you can first run gcloud projects describe <project ID> to verify the project ID for the project in question. Then, you can run gcloud services list --available to list all the available APIs and see which ones are enabled for the project. This command shows the full list of services and their status, including whether they are enabled, disabled, or ready for use. Option A is incorrect because it lists all the available services, regardless of whether they are enabled or not. Option B is incorrect because it lists only the available services, which might not be enabled in the project. Option C is incorrect because it shows account information and not service information.
+   upvoted 1 times
+
+7. Anonymous: Charumathi 2 years, 9 months ago
+A is correct answer,
+Run the following command to list the enabled APIs and services in your current project:
+gcloud services list
+whereas, Run the following command to list the APIs and services available to you in your current project:
+gcloud services list --available
+   upvoted 1 times
+
+8. Anonymous: AzureDP900 3 years ago
+A is the correct answer
+   upvoted 1 times
+
+9. Anonymous: haroldbenites 3 years, 1 month ago
+Go for A
+   upvoted 1 times
+
+10. Anonymous: luciorifa 3 years, 5 months ago
+Selected Answer: A
+A is the correct answer
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #76
+
+Pergunta:
+You are building a new version of an application hosted in an App Engine environment. You want to test the new version with 1% of users before you completely switch your application over to the new version. What should you do?
+
+Alternativas:
+- A. Deploy a new version of your application in Google Kubernetes Engine instead of App Engine and then use GCP Console to split traffic.
+- B. Deploy a new version of your application in a Compute Engine instance instead of App Engine and then use GCP Console to split traffic.
+- C. Deploy a new version as a separate app in App Engine. Then configure App Engine using GCP Console to split traffic between the two apps.
+- D. Deploy a new version of your application in App Engine. Then go to App Engine settings in GCP Console and split traffic between the current version and newly deployed versions accordingly.
+
+Resposta correta:
+D. Deploy a new version of your application in App Engine. Then go to App Engine settings in GCP Console and split traffic between the current version and newly deployed versions accordingly.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: SIX Highly Voted  5 years, 1 month ago
+Correct answer is D
+   upvoted 54 times
+
+2. Anonymous: mohdafiuddin Highly Voted  4 years, 6 months ago
+Splitting the question to the key requirements
+1. new version of an application hosted in an App Engine environment.
+2. test the new version with 1% of users
+App engine supports versioning and traffic splitting so no need to involve anything else
+(source - https://cloud.google.com/appengine#all-features)
+A. ....'Google Kubernetes Engine'.... - No need to involve GKE. Not the right option
+B. ....'Compute Engine instance'.... - No need to involve Compute Engine.
+C. ....'Separate app in App Engine'....- No need to deploy as a separate app. versioning is supported already. Not the right option.
+D. This is the right answer.
+   upvoted 33 times
+ akshaychavan7 3 years, 1 month ago
+Just to add, for option C you cannot have two applications deployed inside an app engine project. In order to do so, you need to create the application inside a new project.
+So, we just eliminate option C.
+   upvoted 5 times
+
+3. Anonymous: tmpcs Most Recent  1 year, 6 months ago
+the correct answer is D
+   upvoted 1 times
+
+4. Anonymous: BAofBK 1 year, 8 months ago
+The correct answer is D.
+   upvoted 1 times
+
+5. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: D
+D is correct , because you cannot create a sepearte app in the same app engine
+   upvoted 2 times
+
+6. Anonymous: Neha_Pallavi 1 year, 10 months ago
+D. Deploy a new version of your application in App Engine. Then go to App Engine settings in GCP Console and split traffic between the current version and newly deployed versions accordingly
+   upvoted 1 times
+
+7. Anonymous: trainingexam 2 years ago
+Selected Answer: D
+App engine provides out of box functionality to split the traffic between multiple versions
+   upvoted 1 times
+
+8. Anonymous: sabrinakloud 2 years, 3 months ago
+Selected Answer: D
+Answer D is the correct answer
+   upvoted 1 times
+
+9. Anonymous: ashtonez 2 years, 4 months ago
+Selected Answer: D
+D correct, no more than 1 app engine per project GKE or CE doesnt make sense, the right approach is deploying new version and splitting traffic
+   upvoted 1 times
+
+10. Anonymous: Buruguduystunstugudunstuy 2 years, 5 months ago
+Selected Answer: D
+Answer D is the correct answer as App Engine is designed to allow you to deploy multiple versions of the same application and route traffic between them. To test the new version with 1% of users, you can deploy the new version alongside the current version and then use the App Engine Traffic Splitting feature to gradually increase the percentage of users who are routed to the new version. This can be done easily using GCP Console.
+Answers A and B are not the optimal solutions as Kubernetes Engine and Compute Engine do not offer the same level of built-in traffic splitting and routing features as App Engine.
+Answer C is also POSSIBLE but may not be the best approach since deploying a separate app requires additional configuration and maintenance. It is simpler to deploy multiple versions of the same application and use App Engine Traffic Splitting to route traffic between them.
+   upvoted 3 times
+==============================
+
+==============================
+Page X — Question #77
+
+Pergunta:
+You need to provide a cost estimate for a Kubernetes cluster using the GCP pricing calculator for Kubernetes. Your workload requires high IOPs, and you will also be using disk snapshots. You start by entering the number of nodes, average hours, and average days. What should you do next?
+
+Alternativas:
+- A. Fill in local SSD. Fill in persistent disk storage and snapshot storage.
+- B. Fill in local SSD. Add estimated cost for cluster management.
+- C. Select Add GPUs. Fill in persistent disk storage and snapshot storage.
+- D. Select Add GPUs. Add estimated cost for cluster management.
+
+Resposta correta:
+A. Fill in local SSD. Fill in persistent disk storage and snapshot storage.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: dan80 Highly Voted  5 years, 1 month ago
+This one is Tricky, local SSD is require for High IOPS - https://cloud.google.com/compute/docs/disks/local-ssd , but it say using disk snapshots. A is correct.
+   upvoted 63 times
+
+2. Anonymous: poogcp Highly Voted  5 years, 1 month ago
+A is correct .
+   upvoted 16 times
+
+3. Anonymous: Gayathri29 Most Recent  1 year, 6 months ago
+A is correct
+   upvoted 1 times
+
+4. Anonymous: tmpcs 1 year, 6 months ago
+Obviously the correct answer is A
+   upvoted 1 times
+
+5. Anonymous: BAofBK 1 year, 8 months ago
+The correct answer is C
+   upvoted 1 times
+
+6. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: A
+A is correct , as ssd requires the High IOPS
+   upvoted 2 times
+
+7. Anonymous: trainingexam 2 years ago
+Selected Answer: A
+A is correct
+   upvoted 1 times
+
+8. Anonymous: sakdip66 2 years, 3 months ago
+Selected Answer: A
+since the requirement is high IOPs Local SSD is our best option. that makes:
+C and D as irrelevant.
+B Add estimated cost for cluster management is not related to storage requirement mentioned in the scenario
+   upvoted 1 times
+
+9. Anonymous: Buruguduystunstugudunstuy 2 years, 5 months ago
+Selected Answer: A
+To provide a cost estimate for a Kubernetes cluster using the GCP pricing calculator for Kubernetes, after entering the number of nodes, average hours, and average days, you should fill in the required storage and snapshot details.
+Given that your workload requires high IOPs and will also be using disk snapshots, the appropriate option would be;
+A. Fill in local SSD. Fill in persistent disk storage and snapshot storage.
+   upvoted 4 times
+ chikorita 2 years, 3 months ago
+my lord! you're always right
+   upvoted 2 times
+
+10. Anonymous: NosFerazi 2 years, 5 months ago
+Selected Answer: B
+Why do I need to fill out persistent disk storage and snapshot storage, it is already populated.
+filling out local ssd should suffice. going with B
+   upvoted 1 times
+ Buruguduystunstugudunstuy 2 years, 5 months ago
+If persistent disk storage and snapshot storage are already populated in the GCP pricing calculator, you do not need to fill them out again. In that case, selecting local SSD and adding an estimated cost for cluster management, as suggested in Answer B, would be sufficient.
+However, it is important to note that the cost estimate may not be accurate if any of the details in the GCP pricing calculator are incorrect or do not match your requirements. Therefore, it is always a good practice to review all the details and ensure that they are accurate and up to date before finalizing the cost estimate.
+In summary, if persistent disk storage and snapshot storage are already populated, and you only require local SSD and an estimated cost for cluster management, then Answer B is a valid choice. Still, I go with Answer A my friend. :)
+   upvoted 3 times
+==============================
+
+==============================
+Page X — Question #78
+
+Pergunta:
+You are using Google Kubernetes Engine with autoscaling enabled to host a new application. You want to expose this new application to the public, using HTTPS on a public IP address. What should you do?
+
+Alternativas:
+- A. Create a Kubernetes Service of type NodePort for your application, and a Kubernetes Ingress to expose this Service via a Cloud Load Balancer.
+- B. Create a Kubernetes Service of type ClusterIP for your application. Configure the public DNS name of your application using the IP of this Service.
+- C. Create a Kubernetes Service of type NodePort to expose the application on port 443 of each node of the Kubernetes cluster. Configure the public DNS name of your application with the IP of every node of the cluster to achieve load-balancing.
+- D. Create a HAProxy pod in the cluster to load-balance the traffic to all the pods of the application. Forward the public traffic to HAProxy with an iptable rule. Configure the DNS name of your application using the public IP of the node HAProxy is running on.
+
+Resposta correta:
+A. Create a Kubernetes Service of type NodePort for your application, and a Kubernetes Ingress to expose this Service via a Cloud Load Balancer.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: arsav Highly Voted  4 years, 11 months ago
+HAProxy is HTTP only, doesnt support HTTPS, so you can reject option D
+https://www.haproxy.org/#desc
+Cluster IP - is an internal IP, you cannot expose public externally. reject option B
+out of option A and C
+C, port 443 is https but public DNS is not going to give you a load balancing
+A is the right choice,
+kubernets ingress exposes HTTPS
+https://kubernetes.io/docs/concepts/services-networking/ingress/
+and cloud load balancer is the right choice which will help to expose the app to public
+   upvoted 53 times
+ NoniGeorge 4 years ago
+Pretty sure that option D works more from on premise then cloud because with cloud you pretty much don't have to configure your ip tables !
+   upvoted 1 times
+
+2. Anonymous: dan80 Highly Voted  5 years, 7 months ago
+A is correct.
+   upvoted 33 times
+ magistrum 5 years ago
+Saw this which provides good context https://medium.com/google-cloud/kubernetes-nodeport-vs-loadbalancer-vs-ingress-when-should-i-use-what-922f010849e0
+   upvoted 21 times
+ nitinz 4 years, 11 months ago
+you nailed it.
+   upvoted 2 times
+
+3. Anonymous: yehia2221 Most Recent  1 year, 5 months ago
+option A is correct, but do not use it in real deployments, it is a bad practice. I am wondering why they didn't mention Cluster IP and exposing it via an ingress or at least a service of type loadbalancer
+   upvoted 1 times
+
+4. Anonymous: Cynthia2023 2 years ago
+Selected Answer: A
+In Kubernetes, a Service of type NodePort is a way to expose your applications to external traffic. It's one of the several types of Services available in Kubernetes to control how external sources can access services running within the cluster. Here's what a NodePort service entails:
+Exposing Services Outside the Cluster:
+A NodePort service makes your application accessible from outside the Kubernetes cluster by opening a specific port (the NodePort) on all the nodes (VMs) in your cluster. This port is randomly selected from a defined range (default: 30000-32767) unless you specify a particular port.
+   upvoted 2 times
+ Cynthia2023 2 years ago
+When a NodePort service is created, each node in the cluster allocates the specified NodePort. External traffic can access the service by hitting any node's IP address at the NodePort, regardless of whether that node is actually running a pod for the service.
+Kubernetes internally routes that traffic to the appropriate pods, even if they are running on different nodes.
+   upvoted 1 times
+
+5. Anonymous: BAofBK 2 years, 2 months ago
+The correct answer is A
+   upvoted 1 times
+
+6. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: A
+option A is correct as you need load balancing and in option c dns will not give you load balancing
+   upvoted 2 times
+
+7. Anonymous: frantishk 2 years, 5 months ago
+I didnt know, that ClusterIP is an internal IP and you cannot expose public externally..
+Thanks !
+   upvoted 2 times
+
+8. Anonymous: trainingexam 2 years, 6 months ago
+Selected Answer: A
+A is very easy solution
+   upvoted 1 times
+
+9. Anonymous: Buruguduystunstugudunstuy 2 years, 11 months ago
+Selected Answer: A
+To expose a new application hosted on Google Kubernetes Engine with autoscaling enabled to the public using HTTPS on a public IP address, the most appropriate option would be;
+A. Create a Kubernetes Service of type NodePort for your application, and a Kubernetes Ingress to expose this Service via a Cloud Load Balancer.
+   upvoted 1 times
+
+10. Anonymous: GS300 2 years, 12 months ago
+Selected Answer: A
+A works and is correct, but service type should be ClusterIP
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #79
+
+Pergunta:
+You need to enable traffic between multiple groups of Compute Engine instances that are currently running two different GCP projects. Each group of Compute
+Engine instances is running in its own VPC. What should you do?
+
+Alternativas:
+- A. Verify that both projects are in a GCP Organization. Create a new VPC and add all instances.
+- B. Verify that both projects are in a GCP Organization. Share the VPC from one project and request that the Compute Engine instances in the other project use this shared VPC.
+- C. Verify that you are the Project Administrator of both projects. Create two new VPCs and add all instances.
+- D. Verify that you are the Project Administrator of both projects. Create a new VPC and add all instances.
+
+Resposta correta:
+B. Verify that both projects are in a GCP Organization. Share the VPC from one project and request that the Compute Engine instances in the other project use this shared VPC.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: dan80 Highly Voted  4 years, 7 months ago
+B - https://cloud.google.com/vpc/docs/shared-vpc
+   upvoted 34 times
+
+2. Anonymous: glam Highly Voted  4 years, 3 months ago
+B. Verify that both projects are in a GCP Organization. Share the VPC from one project and request that the Compute Engine instances in the other project use this shared VPC.
+   upvoted 10 times
+
+3. Anonymous: trainingexam Most Recent  1 year, 6 months ago
+Selected Answer: B
+shared-vpc is right option
+   upvoted 2 times
+
+4. Anonymous: sabrinakloud 1 year, 9 months ago
+Selected Answer: B
+Use shared VPC
+   upvoted 1 times
+
+5. Anonymous: Partha117 1 year, 10 months ago
+Selected Answer: B
+Shared VPC is the correct choice here
+   upvoted 1 times
+
+6. Anonymous: Buruguduystunstugudunstuy 1 year, 11 months ago
+Selected Answer: B
+To enable traffic between multiple groups of Compute Engine instances running in different VPCs of different GCP projects, the best option would be;
+B. Verify that both projects are in a GCP Organization. Share the VPC from one project and request that the Compute Engine instances in the other project use this shared VPC.
+   upvoted 4 times
+
+7. Anonymous: hems4all 2 years, 1 month ago
+Selected Answer: B
+B correct
+   upvoted 1 times
+
+8. Anonymous: cslince 2 years, 1 month ago
+Selected Answer: B
+B is correc
+   upvoted 1 times
+
+9. Anonymous: Zoze 2 years, 2 months ago
+Selected Answer: B
+B is correct because is the concept of the shared VPC.
+   upvoted 1 times
+
+10. Anonymous: darcal95 2 years, 4 months ago
+ok, is B, but that means that the VMs in the "other project" have to change their ip?
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #80
+
+Pergunta:
+You want to add a new auditor to a Google Cloud Platform project. The auditor should be allowed to read, but not modify, all project items.
+How should you configure the auditor's permissions?
+
+Alternativas:
+- A. Create a custom role with view-only project permissions. Add the user's account to the custom role.
+- B. Create a custom role with view-only service permissions. Add the user's account to the custom role.
+- C. Select the built-in IAM project Viewer role. Add the user's account to this role.
+- D. Select the built-in IAM service Viewer role. Add the user's account to this role.
+
+Resposta correta:
+C. Select the built-in IAM project Viewer role. Add the user's account to this role.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: cloudenthu01 Highly Voted  5 years ago
+C is correct
+roles/Viewer role provides access to all resources under the projects but do not alter the state of these resources
+   upvoted 45 times
+ mav3r1ck 2 years, 11 months ago
+It should be A.
+https://cloud.google.com/iam/docs/faq#when_would_i_use_basic_roles
+When would I use basic roles?
+You can use basic roles in development and test environments, where it might be appropriate for some principals to have wide-ranging permissions. Avoid basic roles in production environments.
+   upvoted 5 times
+ mav3r1ck 2 years, 11 months ago
+Principle of least privilege
+   upvoted 2 times
+ creativenets 2 years, 1 month ago
+i disagree.
+   upvoted 1 times
+ jrisl1991 2 years, 5 months ago
+But in this case we're not asked to follow any best practices. Besides, the help article says "In production environments, do not grant basic roles unless there is no alternative.", and in this case there's no alternative since we need to grant access to all resources.
+   upvoted 1 times
+
+2. Anonymous: glam Highly Voted  4 years, 9 months ago
+C. Select the built-in IAM project Viewer role. Add the user's account to this role.
+   upvoted 13 times
+
+3. Anonymous: DWT33004 Most Recent  1 year, 3 months ago
+Selected Answer: C
+C. Select the built-in IAM project Viewer role. Add the user's account to this role.
+Explanation:
+IAM Project Viewer Role: The IAM project Viewer role provides read-only access to all resources within a Google Cloud Platform project. This role allows the user to view project items, including resources and configurations, but does not grant permissions to modify them. This aligns with the requirement of allowing the auditor to read, but not modify, all project items.
+Built-in Role: The IAM project Viewer role is a built-in role provided by Google Cloud Platform. It is specifically designed for users who need read-only access to project resources.
+Least Privilege: Selecting the IAM project Viewer role ensures that the auditor has the necessary permissions to perform their tasks without granting them unnecessary privileges. It follows the principle of least privilege, providing only the permissions required to fulfill their role.
+   upvoted 4 times
+
+4. Anonymous: tmwf 1 year, 4 months ago
+Selected Answer: C
+I think C is more correct .
+   upvoted 1 times
+
+5. Anonymous: thewalker 1 year, 8 months ago
+Selected Answer: C
+C is better though it is a basic role, as the question says all the project items.
+   upvoted 2 times
+
+6. Anonymous: BAofBK 1 year, 8 months ago
+The correct answer is C
+   upvoted 1 times
+
+7. Anonymous: ArtistS 1 year, 9 months ago
+C is correct. Project viewer provide read-only permissions to all resources; no permission to change resources.
+   upvoted 1 times
+
+8. Anonymous: drinkwater 1 year, 9 months ago
+To grant an auditor read-only access to all project items on Google Cloud Platform, you should choose option A:
+A. Create a custom role with view-only project permissions. Add the user's account to the custom role.
+Explanation:
+- Creating a custom role allows you to define specific permissions tailored to your needs, in this case, view-only access to project items.
+- By selecting the necessary read-only project permissions for the custom role, you can provide the auditor with the appropriate level of access without allowing modifications.
+- Adding the user's account to this custom role will grant them the specified permissions.
+Option B refers to "view-only service permissions," which may not provide the desired level of access to all project items.
+Options C and D suggest using built-in roles, but they may have more permissions than needed for a read-only auditor role. Custom roles offer a more precise approach for achieving the specified permissions.
+   upvoted 1 times
+
+9. Anonymous: jayjani66 1 year, 12 months ago
+Answer is C. Select the built-in IAM project Viewer role. Add the user's account to this role.
+The IAM project Viewer role is a built-in role in Google Cloud that provides read-only access to all resources within a project. This role allows users to view project items, configurations, and metadata but does not grant any permission to modify or make changes to the resources.
+   upvoted 1 times
+
+10. Anonymous: trainingexam 2 years ago
+Selected Answer: A
+with principle of leastprivilege should be A
+Also, question is asking to set permission on single project. Basic principles grants permissions on all project.
+   upvoted 2 times
+==============================

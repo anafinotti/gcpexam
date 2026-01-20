@@ -1,0 +1,708 @@
+==============================
+Page X — Question #241
+
+Pergunta:
+You used the gcloud container clusters command to create two Google Cloud Kubernetes (GKE) clusters: prod-cluster and dev-cluster.
+
+• prod-cluster is a standard cluster.
+• dev-cluster is an auto-pilot cluster.
+
+When you run the kubectl get nodes command, you only see the nodes from prod-cluster. Which commands should you run to check the node status for dev-cluster?
+
+Alternativas:
+- A. gcloud container clusters get-credentials dev-cluster
+kubectl get nodes
+- B. gcloud container clusters update -generate-password dev-cluster kubectl get nodes
+- C. kubectl config set-context dev-cluster
+kubectl cluster-info
+- D. kubectl config set-credentials dev-cluster
+kubectl cluster-info
+
+Resposta correta:
+A. gcloud container clusters get-credentials dev-cluster
+kubectl get nodes
+
+Top 10 Discussões (sem replies):
+1. Anonymous: pritampanda1988 Highly Voted  2 years, 4 months ago
+Selected Answer: A
+gcloud container clusters get-credentials updates a kubeconfig file with appropriate credentials and endpoint information to point kubectl at a specific cluster in Google Kubernetes Engine
+   upvoted 6 times
+
+2. Anonymous: denno22 Most Recent  1 year, 3 months ago
+Selected Answer: A
+gcloud container clusters get-credentials updates a kubeconfig file with appropriate credentials and endpoint information to point kubectl at a specific cluster in Google Kubernetes Engine.
+https://cloud.google.com/sdk/gcloud/reference/container/clusters/get-credentials
+   upvoted 1 times
+
+3. Anonymous: joao_01 2 years, 4 months ago
+Selected Answer: A
+Its the A
+   upvoted 1 times
+
+4. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: A
+A is the correct answer as it , updated the config file
+   upvoted 1 times
+
+5. Anonymous: 3arle 2 years, 5 months ago
+Selected Answer: A
+gcloud container clusters get-credentials updates a kubeconfig file with appropriate credentials and endpoint information to point kubectl at a specific cluster in Google Kubernetes Engine
+   upvoted 3 times
+
+6. Anonymous: qannik 2 years, 5 months ago
+Selected Answer: A
+The gcloud container clusters get-credentials command sets the Kubernetes context to the specified cluster (in this case, dev-cluster). This ensures that the subsequent kubectl commands will be executed against the dev-cluster.
+After setting the context, the kubectl get nodes command is used to retrieve the node status for the dev-cluster, showing the list of nodes in the cluster.
+   upvoted 2 times
+
+7. Anonymous: Speridian 2 years, 5 months ago
+It should be A
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #242
+
+Pergunta:
+You recently discovered that your developers are using many service account keys during their development process. While you work on a long term improvement, you need to quickly implement a process to enforce short-lived service account credentials in your company. You have the following requirements:
+
+• All service accounts that require a key should be created in a centralized project called pj-sa.
+• Service account keys should only be valid for one day.
+
+You need a Google-recommended solution that minimizes cost. What should you do?
+
+Alternativas:
+- A. Implement a Cloud Run job to rotate all service account keys periodically in pj-sa. Enforce an org policy to deny service account key creation with an exception to pj-sa.
+- B. Implement a Kubernetes CronJob to rotate all service account keys periodically. Disable attachment of service accounts to resources in all projects with an exception to pj-sa.
+- C. Enforce an org policy constraint allowing the lifetime of service account keys to be 24 hours. Enforce an org policy constraint denying service account key creation with an exception on pj-sa.
+- D. Enforce a DENY org policy constraint over the lifetime of service account keys for 24 hours. Disable attachment of service accounts to resources in all projects with an exception to pj-sa.
+
+Resposta correta:
+C. Enforce an org policy constraint allowing the lifetime of service account keys to be 24 hours. Enforce an org policy constraint denying service account key creation with an exception on pj-sa.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: qannik Highly Voted  1 year, 5 months ago
+Selected Answer: C
+You can use an org policy to enforce a 24-hour lifetime for service account keys.
+You can use an org policy to deny service account key creation, with an exception for the pj-sa project.
+This is a Google-recommended solution and it is relatively inexpensive.
+   upvoted 5 times
+
+2. Anonymous: joao_01 Most Recent  1 year, 4 months ago
+Selected Answer: C
+Its C, makes sense
+   upvoted 3 times
+
+3. Anonymous: Captain1212 1 year, 4 months ago
+c is the coorect answer
+   upvoted 3 times
+
+4. Anonymous: scanner2 1 year, 4 months ago
+Selected Answer: C
+C is correct.
+https://cloud.google.com/resource-manager/docs/organization-policy/restricting-service-accounts#limit_key_expiry
+https://cloud.google.com/resource-manager/docs/organization-policy/restricting-service-accounts#disable_service_account_key_creation
+   upvoted 3 times
+
+5. Anonymous: 3arle 1 year, 5 months ago
+Selected Answer: C
+it should be C
+   upvoted 3 times
+
+6. Anonymous: niedobry 1 year, 5 months ago
+Answer is C. Constraint: constraints/iam.serviceAccountKeyExpiryHours does not accept DENY values so D can not be correct.
+   upvoted 3 times
+==============================
+
+==============================
+Page X — Question #243
+
+Pergunta:
+Your company is running a three-tier web application on virtual machines that use a MySQL database. You need to create an estimated total cost of cloud infrastructure to run this application on Google Cloud instances and Cloud SQL. What should you do?
+
+Alternativas:
+- A. Create a Google spreadsheet with multiple Google Cloud resource combinations. On a separate sheet, import the current Google Cloud prices and use these prices for the calculations within formulas.
+- B. Use the Google Cloud Pricing Calculator and select the Cloud Operations template to define your web application with as much detail as possible.
+- C. Implement a similar architecture on Google Cloud, and run a reasonable load test on a smaller scale. Check the billing information, and calculate the estimated costs based on the real load your system usually handles.
+- D. Use the Google Cloud Pricing Calculator to determine the cost of every Google Cloud resource you expect to use. Use similar size instances for the web server, and use your current on-premises machines as a comparison for Cloud SQL.
+
+Resposta correta:
+D. Use the Google Cloud Pricing Calculator to determine the cost of every Google Cloud resource you expect to use. Use similar size instances for the web server, and use your current on-premises machines as a comparison for Cloud SQL.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: rsvd Highly Voted  2 years, 5 months ago
+Selected Answer: D
+There is no such thing called "Cloud Operations template"
+   upvoted 10 times
+ namanthony 9 months, 3 weeks ago
+Access the Google Cloud Pricing Calculator. Click the “+ Add to estimate” button. In the search box, type “Cloud Operations”. Or more specifically: type each part like “Logging”, “Monitoring”, “Error Reporting”, or “Trace”. You will see items such as: Cloud Logging Cloud Monitoring Cloud Trace Cloud Error Reporting
+   upvoted 1 times
+
+2. Anonymous: qannik Highly Voted  2 years, 5 months ago
+Selected Answer: D
+Google Cloud Pricing Calculator, is the recommended approach for creating an estimated total cost of cloud infrastructure. By selecting the relevant Google Cloud resources (such as instances for web servers and Cloud SQL for the database), and specifying similar sizes and configurations, you can obtain a more accurate estimation of the costs.
+   upvoted 5 times
+
+3. Anonymous: meh_33 Most Recent  1 year, 5 months ago
+Selected Answer: D
+Where is Raaad for such a tough questions no comment . D
+   upvoted 2 times
+
+4. Anonymous: sukouto 1 year, 10 months ago
+Note to all: there is no such thing as a "Cloud Operations Template" => B is out.
+   upvoted 3 times
+
+5. Anonymous: VijKall 2 years, 2 months ago
+Selected Answer: D
+Google Cloud Pricing Calculator is the recommended approach for cost estimation and you provide resources similar to what you see in on-premises for Web servers and add Cloud SQL as a managed service.
+   upvoted 4 times
+
+6. Anonymous: ArtistS 2 years, 2 months ago
+D is correct. It can give u a more accurate figure.
+   upvoted 3 times
+
+7. Anonymous: joao_01 2 years, 4 months ago
+Selected Answer: D
+Its D, try to simulate using what we have
+   upvoted 2 times
+
+8. Anonymous: scanner2 2 years, 4 months ago
+Selected Answer: D
+D is correct.
+   upvoted 2 times
+
+9. Anonymous: ptapia_el 2 years, 5 months ago
+es la D
+   upvoted 2 times
+
+10. Anonymous: 3arle 2 years, 5 months ago
+Selected Answer: D
+it's D
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #244
+
+Pergunta:
+You have a Bigtable instance that consists of three nodes that store personally identifiable information (PII) data. You need to log all read or write operations, including any metadata or configuration reads of this database table, in your company’s Security Information and Event Management (SIEM) system. What should you do?
+
+Alternativas:
+- A. • Navigate to Cloud Monitoring in the Google Cloud console, and create a custom monitoring job for the Bigtable instance to track all changes.
+• Create an alert by using webhook endpoints, with the SIEM endpoint as a receiver.
+- B. • Navigate to the Audit Logs page in the Google Cloud console, and enable Admin Write logs for the Bigtable instance.
+• Create a Cloud Functions instance to export logs from Cloud Logging to your SIEM.
+- C. • Navigate to the Audit Logs page in the Google Cloud console, and enable Data Read, Data Write and Admin Read logs for the Bigtable instance.
+• Create a Pub/Sub topic as a Cloud Logging sink destination, and add your SIEM as a subscriber to the topic.
+- D. • Install the Ops Agent on the Bigtable instance during configuration.
+• Create a service account with read permissions for the Bigtable instance.
+• Create a custom Dataflow job with this service account to export logs to the company’s SIEM system.
+
+Resposta correta:
+C. • Navigate to the Audit Logs page in the Google Cloud console, and enable Data Read, Data Write and Admin Read logs for the Bigtable instance.
+• Create a Pub/Sub topic as a Cloud Logging sink destination, and add your SIEM as a subscriber to the topic.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: taylz876 Highly Voted  2 years, 3 months ago
+Selected Answer: C
+Option C is the most appropriate choice for capturing audit and data access logs from a Bigtable instance and sending them to your SIEM system.
+1) Enabling Data Read, Data Write, and Admin Read logs for the Bigtable instance ensures that you capture the relevant operations, including read and write operations, as well as administrative reads, in the audit logs.
+2) Creating a Pub/Sub topic as a Cloud Logging sink destination allows you to export the logs from Cloud Logging to Pub/Sub. This is a common approach for sending logs to external systems, including SIEMs.
+3) Adding your SIEM as a subscriber to the Pub/Sub topic ensures that the logs are forwarded to your SIEM system, allowing you to monitor and analyze them for security and compliance purposes.
+NB:A Cloud Logging sink destination is a configuration that specifies where logs collected by Google Cloud's Cloud Logging service should be sent or exported. It allows you to control the destination of logs generated by various Google Cloud services, such as Compute Engine, Cloud Storage, BigQuery, and more.
+   upvoted 10 times
+
+2. Anonymous: denno22 Most Recent  1 year, 3 months ago
+Selected Answer: C
+https://cloud.google.com/bigtable/docs/audit-logging#permission-type
+   upvoted 1 times
+
+3. Anonymous: sinh 2 years ago
+Selected Answer: C
+https://cloud.google.com/bigtable/docs/audit-logging
+   upvoted 2 times
+
+4. Anonymous: joao_01 2 years, 4 months ago
+Selected Answer: C
+Its C!
+   upvoted 1 times
+
+5. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: C
+C is the correct answer, as it helps you to read and write
+   upvoted 2 times
+
+6. Anonymous: scanner2 2 years, 4 months ago
+Selected Answer: C
+C is correct.
+   upvoted 1 times
+
+7. Anonymous: 3arle 2 years, 5 months ago
+Selected Answer: C
+Data Access audit logs—except for BigQuery—are disabled by default and you need to enable them
+   upvoted 2 times
+
+8. Anonymous: qannik 2 years, 5 months ago
+Selected Answer: B
+Enabling Admin Write logs for the Bigtable instance in Cloud Logging will capture administrative write actions on the Bigtable instance. This includes any configuration changes and metadata reads related to the Bigtable instance.
+Creating a Cloud Functions instance and configuring it to export logs from Cloud Logging to your SIEM allows you to take the captured logs and route them to your SIEM system in a format that your SIEM can understand. Cloud Functions can act as a serverless function to process and forward the logs to your SIEM using an appropriate method, such as sending them via an API or message queue.
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #245
+
+Pergunta:
+You want to set up a Google Kubernetes Engine cluster. Verifiable node identity and integrity are required for the cluster, and nodes cannot be accessed from the internet. You want to reduce the operational cost of managing your cluster, and you want to follow Google-recommended practices. What should you do?
+
+Alternativas:
+- A. Deploy a private autopilot cluster.
+- B. Deploy a public autopilot cluster.
+- C. Deploy a standard public cluster and enable shielded nodes.
+- D. Deploy a standard private cluster and enable shielded nodes.
+
+Resposta correta:
+A. Deploy a private autopilot cluster.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: scanner2 Highly Voted  2 years, 4 months ago
+Selected Answer: A
+In a private cluster, nodes only have internal IP addresses, which means that nodes and Pods are isolated from the internet by default.
+https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters
+Shielded GKE Nodes provide strong, verifiable node identity and integrity to increase the security of Google Kubernetes Engine (GKE) nodes.
+Note: For GKE Autopilot clusters, the Shielded GKE Nodes feature is enabled by default and cannot be overridden.
+https://cloud.google.com/kubernetes-engine/docs/how-to/shielded-gke-nodes
+   upvoted 10 times
+
+2. Anonymous: Timfdklfajlksdjlakf Most Recent  1 year, 4 months ago
+Selected Answer: A
+scanner2 provided the correct answer.
+   upvoted 1 times
+
+3. Anonymous: ashrafh 1 year, 5 months ago
+as per chatgpt
+Option A. Deploy a private autopilot cluster is a good choice because it combines:
+Reduced Operational Costs: Google manages the infrastructure, scaling, and maintenance, minimizing your management overhead.
+Enhanced Security: Private Autopilot clusters use shielded nodes, ensuring verifiable node identity and integrity, and are not accessible from the internet.
+Google-Recommended Practices: Autopilot clusters follow best practices for performance and security with minimal configuration required from you.
+   upvoted 1 times
+
+4. Anonymous: jithinlife 1 year, 9 months ago
+Selected Answer: D
+Deploying a standard private cluster and enabling shielded nodes would meet all the requirements. In a private cluster, nodes are not accessible from the internet by default, ensuring enhanced security. Enabling shielded nodes provides verifiable node identity and integrity, further strengthening the security measures. Additionally, following Google-recommended practices, such as using standard clusters instead of autopilot clusters, offers more control and helps reduce operational costs.
+   upvoted 1 times
+ BuenaCloudDE 1 year, 6 months ago
+Shielded GKE Nodes feature is enabled by default.
+   upvoted 2 times
+ BuenaCloudDE 1 year, 6 months ago
+For GKE Autopilot clusters.
+   upvoted 2 times
+
+5. Anonymous: sukouto 1 year, 10 months ago
+Selected Answer: D
+Reposting this subcomment because I believe most people are reading this incorrectly, and I want to contribute to the answers ratio:
+Why is everyone so sure that "operational cost" refers to work-hours and not money? (i.e. "operating costs")
+From Wikipedia: Operating costs or operational costs, are the expenses which are related to the operation of a business, or to the operation of a device, component, piece of equipment or facility.
+This question is asking to reduce the MONETARY cost. Standard costs less than Autopilot. Accordingly, the answer should be D.
+   upvoted 1 times
+ sukouto 1 year, 10 months ago
+FYI to all, the phrase "operational cost" is only found in two GCP documents (both blog articles, not official product documentation), and they use competing definitions... So this is a poorly worded question.
+That said, since this was phrased as "operational cost of *managing your cluster*", I think I may have been incorrect. It seems perhaps this is indeed referring to the reduction of work-hours and manual effort needed to manage the cluster.
+   upvoted 1 times
+
+6. Anonymous: sukouto 1 year, 11 months ago
+Since A and D both seem to provide the identity/integrity and internet inaccessibility, it seems the critical distinction is based on "reduce the operational cost of managing your cluster". "Operational cost" doesn't seem to be a commonly used term (from a quick google search), but "operating costs" seem to refer specifically to monetary expenses, not work-hours. Wouldn't a standard cluster be cheaper than autopilot? Thus the answer is D, not A?
+   upvoted 1 times
+
+7. Anonymous: KelvinToo 2 years ago
+Selected Answer: D
+ChatGPT says Option D,
+By following this approach, you can meet your requirements for node security and access control while also benefitting from the operational cost savings associated with managed GKE clusters and Google's best practices for security.
+   upvoted 2 times
+ PiperMe 1 year, 10 months ago
+Stop. Using. Chat GPT.
+D is viable for security, but with the standard GKE mode, you'd be responsible for managing the control plane and node-level operations, increasing operational complexity. "You want to reduce the operational cost of managing your cluster"
+Option A leverages the managed experience of Autopilot with the security of private nodes and shielded GKE for node identity/integrity. The answer is A.
+   upvoted 1 times
+ sukouto 1 year, 10 months ago
+Why is everyone so sure that "operational cost" refers to work-hours and not money? (i.e. "operating costs")
+From Wikipedia: Operating costs or operational costs, are the expenses which are related to the operation of a business, or to the operation of a device, component, piece of equipment or facility.
+This question is asking to reduce the MONETARY cost. Standard costs less than Autopilot. Accordingly, the answer should be D.
+   upvoted 1 times
+
+8. Anonymous: MARINE777 2 years ago
+Selected Answer: D
+Autopilot clusters are fully managed and do not have the option to restrict internet access.
+In a private cluster, nodes are not accessible from the internet by default. Enabling shielded nodes provides verifiable node identity and integrity.
+   upvoted 1 times
+ PiperMe 1 year, 10 months ago
+This is incorrect. By default, Autopilot clusters create nodes within a private VPC network. This inherently restricts internet access to the nodes themselves. The answer is A.
+   upvoted 2 times
+
+9. Anonymous: ArtistS 2 years, 2 months ago
+A is correct. “reduce the operational cost of managing your cluster”, means you need to choose an autopilot cluster. Google will manage your cluster configuration. And about the “cannot be accessed from the internet” you should use shielded nodes.
+   upvoted 2 times
+
+10. Anonymous: rsvd 2 years, 5 months ago
+Selected Answer: A
+Note: For GKE Autopilot clusters, the Shielded GKE Nodes feature is enabled by default and cannot be overridden.
+   upvoted 4 times
+==============================
+
+==============================
+Page X — Question #246
+
+Pergunta:
+Your company wants to migrate their on-premises workloads to Google Cloud. The current on-premises workloads consist of:
+
+• A Flask web application
+• A backend API
+• A scheduled long-running background job for ETL and reporting
+
+You need to keep operational costs low. You want to follow Google-recommended practices to migrate these workloads to serverless solutions on Google Cloud. What should you do?
+
+Alternativas:
+- A. Migrate the web application to App Engine and the backend API to Cloud Run. Use Cloud Tasks to run your background job on Compute Engine.
+- B. Migrate the web application to App Engine and the backend API to Cloud Run. Use Cloud Tasks to run your background job on Cloud Run.
+- C. Run the web application on a Cloud Storage bucket and the backend API on Cloud Run. Use Cloud Tasks to run your background job on Cloud Run.
+- D. Run the web application on a Cloud Storage bucket and the backend API on Cloud Run. Use Cloud Tasks to run your background job on Compute Engine.
+
+Resposta correta:
+B. Migrate the web application to App Engine and the backend API to Cloud Run. Use Cloud Tasks to run your background job on Cloud Run.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: interesting_owl Highly Voted  1 year, 6 months ago
+Selected Answer: B
+it's asking for a serverless solution so A and D are automatically out due to the inclusion of Compute Engine (server-based solution). you would use App engine to run a web app, not cloud storage. That's why it's B
+   upvoted 8 times
+
+2. Anonymous: joao_01 Most Recent  1 year, 10 months ago
+Selected Answer: B
+Its B, it's serveless and low cost
+   upvoted 3 times
+
+3. Anonymous: scanner2 1 year, 10 months ago
+Selected Answer: B
+Since the question is asking about serverless solutions. Here, B is the correct answer.
+Migrate web application to the App Engine.
+Migrate backend API to Cloud Run.
+Migrate scheduled long-running job to Cloud Task that will run the background job using Cloud Run.
+   upvoted 4 times
+
+4. Anonymous: 3arle 1 year, 11 months ago
+Selected Answer: B
+B is most reasonable
+   upvoted 2 times
+
+5. Anonymous: qannik 1 year, 11 months ago
+Selected Answer: B
+https://cloud.google.com/architecture/migration-to-gcp-deploying-your-workloads
+   upvoted 3 times
+
+6. Anonymous: gpais 1 year, 11 months ago
+Selected Answer: B
+B seems the best option
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #247
+
+Pergunta:
+Your company is moving its continuous integration and delivery (CI/CD) pipeline to Compute Engine instances. The pipeline will manage the entire cloud infrastructure through code. How can you ensure that the pipeline has appropriate permissions while your system is following security best practices?
+
+Alternativas:
+- A. • Attach a single service account to the compute instances.
+• Add minimal rights to the service account.
+• Allow the service account to impersonate a Cloud Identity user with elevated permissions to create, update, or delete resources.
+- B. • Add a step for human approval to the CI/CD pipeline before the execution of the infrastructure provisioning.
+• Use the human approvals IAM account for the provisioning.
+- C. • Attach a single service account to the compute instances.
+• Add all required Identity and Access Management (IAM) permissions to this service account to create, update, or delete resources.
+- D. • Create multiple service accounts, one for each pipeline with the appropriate minimal Identity and Access Management (IAM) permissions.
+• Use a secret manager service to store the key files of the service accounts.
+• Allow the CI/CD pipeline to request the appropriate secrets during the execution of the pipeline.
+
+Resposta correta:
+D. • Create multiple service accounts, one for each pipeline with the appropriate minimal Identity and Access Management (IAM) permissions.
+• Use a secret manager service to store the key files of the service accounts.
+• Allow the CI/CD pipeline to request the appropriate secrets during the execution of the pipeline.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: guaose 2 months, 1 week ago
+Selected Answer: A
+Principio de privilegios mínimos
+Uso de impersonación (actAs)
+Seguridad y trazabilidad
+   upvoted 1 times
+
+2. Anonymous: 41168b9 2 months, 3 weeks ago
+Selected Answer: A
+Attach a single service account to the compute instances.
+This is the Compute Engine VM's identity. This service account should only have minimal, non-sensitive permissions, such as logging or monitoring access. This adheres to the Principle of Least Privilege for the base VM.
+Add minimal rights to the service account.
+As noted above, keep the VM's inherent identity highly restricted.
+Allow the service account to impersonate a Cloud Identity user with elevated permissions to create, update, or delete resources.
+The VM's service account is granted the iam.serviceAccountUser role on a separate, privileged Service Account (often called the "Provisioner" or "Deployer" SA).
+When the pipeline needs to manage infrastructure, the VM service account impersonates the privileged account for a short time to execute the tasks.
+   upvoted 1 times
+
+3. Anonymous: Ice_age 1 year, 1 month ago
+Some of these questions are just endurance tests to drain you before you finish reading the entire question and all of the answers.
+   upvoted 2 times
+
+4. Anonymous: iooj 1 year, 4 months ago
+It seems, you all just use chat gpt to get the answer. But did you even notice it says one they need to move only one pipeline?
+   upvoted 1 times
+ iooj 1 year, 4 months ago
+By the way, chat gpt o1-preview says: that A is the answer
+Principle of Least Privilege: By assigning minimal rights to the service account, you limit access to only what's necessary for regular operations.
+Impersonation for Elevated Actions: Allowing the service account to impersonate a Cloud Identity user with elevated permissions ensures that higher-level permissions are used only when needed and are tightly controlled.
+Security Best Practices: This approach avoids the use of long-lived credentials or storing service account keys, reducing potential security risks.
+   upvoted 2 times
+
+5. Anonymous: PiperMe 1 year, 10 months ago
+Selected Answer: D
+Option D combines the principle of least privilege with granular permissions, secure credential management, and controlled access during pipeline execution.
+   upvoted 3 times
+
+6. Anonymous: guru_ji 1 year, 11 months ago
+Selected Answer: D
+Options A and C both involve attaching a single service account to the compute instances, which goes against the principle of least privilege and increases the risk if that single account is compromised. Option B introduces human approval into the CI/CD pipeline, which could slow down the deployment process and might not be feasible for fully automated deployments. Therefore, option D is the most suitable choice for ensuring both security and efficiency in the CI/CD pipeline setup.
+   upvoted 4 times
+
+7. Anonymous: Cynthia2023 2 years ago
+Selected Answer: D
+Principle of Least Privilege: Creating separate service accounts for different aspects of your CI/CD pipeline allows you to adhere to the principle of least privilege. This means each service account is granted only the permissions necessary for its specific role in the pipeline.
+Security and Organization: Using multiple service accounts makes it easier to manage permissions, track activities, and audit usage for specific tasks or components of your CI/CD process.
+Secret Management: Storing the service account key files in a secret manager service (like Google Cloud Secret Manager) enhances security. This approach securely manages and accesses these keys, reducing the risk of unauthorized access or exposure.
+Dynamic Access: Allowing the CI/CD pipeline to request the appropriate secrets during execution ensures that credentials are provided only when needed and aren't unnecessarily exposed or stored in less secure environments.
+   upvoted 3 times
+ Cynthia2023 2 years ago
+A. Single Service Account with Impersonation: While using a single service account with minimal rights and impersonation can work, it introduces complexity and might not offer the same level of granularity and security as multiple service accounts. Impersonation also adds an additional layer that needs to be securely managed.
+   upvoted 2 times
+
+8. Anonymous: KelvinToo 2 years ago
+Selected Answer: D
+ChatGPT says Option D,
+By following this approach, you can ensure that your CI/CD pipeline has appropriate permissions while adhering to security best practices, including the principle of least privilege and secure management of credentials.
+   upvoted 2 times
+ 1826c27 11 months, 1 week ago
+what Is the point of telling us what chatgpt said? we all have access to chatgpt idiot
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #248
+
+Pergunta:
+Your application stores files on Cloud Storage by using the Standard Storage class. The application only requires access to files created in the last 30 days. You want to automatically save costs on files that are no longer accessed by the application. What should you do?
+
+Alternativas:
+- A. Create an object lifecycle on the storage bucket to change the storage class to Archive Storage for objects with an age over 30 days.
+- B. Create a cron job in Cloud Scheduler to call a Cloud Functions instance every day to delete files older than 30 days.
+- C. Create a retention policy on the storage bucket of 30 days, and lock the bucket by using a retention policy lock.
+- D. Enable object versioning on the storage bucket and add lifecycle rules to expire non-current versions after 30 days.
+
+Resposta correta:
+A. Create an object lifecycle on the storage bucket to change the storage class to Archive Storage for objects with an age over 30 days.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Gius3 2 days, 4 hours ago
+Selected Answer: B
+Answer is B, as even the ARchive Class has a cost
+   upvoted 1 times
+
+2. Anonymous: Phat 9 months, 4 weeks ago
+Selected Answer: A
+It seems we need to select ones with cheapest cost instead of deleting them.
+   upvoted 1 times
+
+3. Anonymous: kapara 1 year ago
+Selected Answer: A
+The question is badly worded - because they didn't tell us what they intend to do with the files afterwards.
+I choose A anyway, because with lifecycle management you can delete files after 30 days, and using other services in this situation is really unnecessary..
+   upvoted 2 times
+
+4. Anonymous: denno22 1 year, 3 months ago
+Selected Answer: B
+It is cheaper to delete the files as there is no requirement to keep them.
+   upvoted 2 times
+
+5. Anonymous: louisaok 1 year, 3 months ago
+Selected Answer: A
+This is the same logic as Microsoft:
+when you have 2 options: one needs to pay and the other is free, choose the one with fee.
+That is the right answer.
+   upvoted 3 times
+
+6. Anonymous: master9 1 year, 4 months ago
+Selected Answer: A
+Cloud Storage lifecycle management, you can automatically transition objects between storage classes based on certain conditions, such as age. Since your application only requires access to files created in the last 30 days, you can set a lifecycle rule to move files that are older than 30 days to Archive Storage, which offers the lowest storage costs but is designed for infrequent access.
+   upvoted 3 times
+
+7. Anonymous: klayhung 1 year, 4 months ago
+Selected Answer: A
+This option utilizes Cloud Storage's built-in object lifecycle management feature, which can automatically transition files older than 30 days to Archive Storage, thereby saving storage costs without requiring manual management. In comparison, option B is feasible but more complex and does not align with best practices.
+   upvoted 2 times
+
+8. Anonymous: caminosdk 1 year, 4 months ago
+Selected Answer: B
+B is correct
+   upvoted 2 times
+
+9. Anonymous: rajeevpt 1 year, 5 months ago
+A
+A is Correct because it suggests changing the storage class to Archive Storage for objects with an age of over 30 days through a lifecycle rule on the storage bucket. This is a cost-effective solution because Google Cloud Storage offers different storage classes with varying costs. The "Archive Storage" class is designed for infrequently accessed data and comes at a lower cost compared to the standard storage class. Using a lifecycle rule to transition objects older than 30 days to the Archive Storage class helps save costs by utilizing a more cost-efficient storage class for older data.
+   upvoted 1 times
+
+10. Anonymous: flummoxed_individual 1 year, 6 months ago
+Selected Answer: A
+Another classic annoyingly vague question, but I would have to go with A because 'normally' you would keep files for longer than 30 days. If it is ok to delete, then B
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #249
+
+Pergunta:
+Your manager asks you to deploy a workload to a Kubernetes cluster. You are not sure of the workload's resource requirements or how the requirements might vary depending on usage patterns, external dependencies, or other factors. You need a solution that makes cost-effective recommendations regarding CPU and memory requirements, and allows the workload to function consistently in any situation. You want to follow Google-recommended practices. What should you do?
+
+Alternativas:
+- A. Configure the Horizontal Pod Autoscaler for availability, and configure the cluster autoscaler for suggestions.
+- B. Configure the Horizontal Pod Autoscaler for availability, and configure the Vertical Pod Autoscaler recommendations for suggestions.
+- C. Configure the Vertical Pod Autoscaler recommendations for availability, and configure the Cluster autoscaler for suggestions.
+- D. Configure the Vertical Pod Autoscaler recommendations for availability, and configure the Horizontal Pod Autoscaler for suggestions.
+
+Resposta correta:
+B. Configure the Horizontal Pod Autoscaler for availability, and configure the Vertical Pod Autoscaler recommendations for suggestions.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Urbanvzla Highly Voted  1 year, 6 months ago
+Selected Answer: B
+Horizontal Pod Autoscaler (HPA): It automatically scales the number of pods in a deployment, replica set, or stateful set based on observed CPU utilization (or, with custom metrics support, on some other application-provided metrics). This helps maintain availability by ensuring that your application has the necessary number of pods to handle the workload.
+Vertical Pod Autoscaler (VPA): It automatically adjusts the CPU and memory reservations for your pods to help "right size" your applications. This is particularly useful when you're unsure of the resource requirements. VPA makes recommendations for the appropriate CPU and memory settings based on usage patterns, which can be very effective for cost optimization.
+This combination ensures that your workload is both horizontally scalable (to handle changes in demand) and vertically optimized (to use resources efficiently), following Google-recommended practices for Kubernetes workloads.
+   upvoted 9 times
+
+2. Anonymous: PiperMe Most Recent  1 year, 4 months ago
+Selected Answer: B
+I believe B is the best choice: HPA ensures availability by scaling the number of pods based on metrics (like CPU utilization). The VPA analyzes resource utilization and provides recommendations for CPU and memory requests and limits. This is key for right-sizing your pods for optimal cost efficiency.
+   upvoted 2 times
+
+3. Anonymous: Lakshvenkat 1 year, 6 months ago
+Selected Answer: D
+D is the correct answer
+   upvoted 1 times
+ kuracpalac 1 year, 4 months ago
+VPA is not recommended as per Google requirements, so that answer must be wrong.
+   upvoted 1 times
+
+4. Anonymous: Cynthia2023 1 year, 6 months ago
+Selected Answer: B
+Horizontal Pod Autoscaler (HPA): HPA automatically adjusts the number of pods in a deployment based on observed CPU utilization (or other select metrics). This is crucial for maintaining the availability of your workload, especially if the workload experiences varying levels of traffic or load. HPA ensures that there are enough pods to handle the load, scaling out (adding more pods) when demand is high and scaling in (removing pods) when demand is low.
+Vertical Pod Autoscaler (VPA) Recommendations: VPA automatically adjusts the CPU and memory reservations for pods in a deployment. It can operate in a mode where it only provides recommendations (without automatically applying them), which is useful for understanding the resource needs of your workload. VPA recommendations can guide you in setting appropriate CPU and memory limits based on the observed usage of your workload.
+   upvoted 3 times
+ Cynthia2023 1 year, 6 months ago
+A. Cluster Autoscaler for Suggestions: While the Cluster Autoscaler is useful for scaling the number of nodes in the cluster, it doesn’t provide recommendations on the CPU and memory requirements for individual pods.
+C. VPA for Availability, Cluster Autoscaler for Suggestions: VPA can automatically adjust pod sizes, but using it for ensuring availability might lead to frequent and potentially disruptive pod restarts. The Cluster Autoscaler is again more about node-level scaling rather than providing pod resource recommendations.
+D. VPA for Availability, HPA for Suggestions: This configuration isn't ideal as VPA's primary function isn't about maintaining high availability but rather about optimizing resource allocation. HPA, on the other hand, is specifically designed for scaling the number of pods based on load, which is directly related to availability.
+   upvoted 1 times
+
+5. Anonymous: kaby1987 1 year, 6 months ago
+Selected Answer: B
+Ans is B
+B. Configure the Horizontal Pod Autoscaler for availability, and configure the Vertical Pod Autoscaler recommendations for suggestions.
+This approach allows you to manage the number of pods based on the workload (HPA) and get optimal CPU and memory settings for each pod (VPA), which is in line with Google-recommended practices for managing Kubernetes workloads with uncertain resource requirements. This combination ensures that your workload can function consistently in varying situations by automatically adjusting both the quantity of pods and the resources each pod is allocated.
+   upvoted 2 times
+
+6. Anonymous: KelvinToo 1 year, 6 months ago
+Selected Answer: D
+ChatGPT says option D,
+By configuring VPA for resource recommendations based on actual usage patterns and HPA for scaling pod instances based on demand, you can ensure that your workload is both cost-effective and capable of adapting to varying resource requirements, all while following Google-recommended practices for Kubernetes workloads.
+   upvoted 1 times
+ PiperMe 1 year, 4 months ago
+Chat strikes again. Option B provides a more tailored and Google-recommended approach given the uncertainty about the workload's resource needs. It prioritizes establishing an efficient baseline with VPA before relying on HPA for scaling.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #250
+
+Pergunta:
+You need to migrate invoice documents stored on-premises to Cloud Storage. The documents have the following storage requirements:
+
+• Documents must be kept for five years.
+• Up to five revisions of the same invoice document must be stored, to allow for corrections.
+• Documents older than 365 days should be moved to lower cost storage tiers.
+
+You want to follow Google-recommended practices to minimize your operational and development costs. What should you do?
+
+Alternativas:
+- A. Enable retention policies on the bucket, and use Cloud Scheduler to invoke a Cloud Function to move or delete your documents based on their metadata.
+- B. Enable retention policies on the bucket, use lifecycle rules to change the storage classes of the objects, set the number of versions, and delete old files.
+- C. Enable object versioning on the bucket, and use Cloud Scheduler to invoke a Cloud Functions instance to move or delete your documents based on their metadata.
+- D. Enable object versioning on the bucket, use lifecycle conditions to change the storage class of the objects, set the number of versions, and delete old files.
+
+Resposta correta:
+D. Enable object versioning on the bucket, use lifecycle conditions to change the storage class of the objects, set the number of versions, and delete old files.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Cynthia2023 Highly Voted  1 year, 6 months ago
+Selected Answer: D
+- Object Versioning: Enabling object versioning on the Cloud Storage bucket allows you to store up to five revisions of the same invoice document. This satisfies the requirement for keeping multiple versions of each document for corrections.
+- Lifecycle Conditions: Google Cloud Storage allows you to define lifecycle conditions for objects within a bucket. These conditions can automatically change the storage class of objects when they meet certain criteria, such as age. After 365 days, you can automatically move documents to lower-cost storage classes like Nearline, Coldline, or Archive, which reduces storage costs while still retaining the data.
+- Version Management and Deletion: The lifecycle rules can also be configured to manage the number of object versions retained and to delete old versions or objects, ensuring compliance with the five-year retention requirement.
+   upvoted 8 times
+ Cynthia2023 1 year, 6 months ago
+Why B is not correct:
+Lifecycle rules in Google Cloud Storage can be used to manage the deletion of old versions of objects. However, it's important to note that lifecycle rules alone do not set the number of versions to keep; they can only delete versions based on age or other criteria.
+Lifecycle rules in Google Cloud Storage do not have a direct setting to limit the number of object versions (like keeping only the last five versions). Object versioning in Google Cloud Storage keeps all versions of an object until they are explicitly deleted (either manually or through lifecycle rules).
+   upvoted 5 times
+
+2. Anonymous: TanTran04 Most Recent  1 year, 3 months ago
+Selected Answer: D
+Follow D
+   upvoted 1 times
+
+3. Anonymous: sukouto 1 year, 4 months ago
+Selected Answer: B
+I believe the answer is actually B, and D won't cut it.
+D does not address the need "Documents must be kept for five years." A retention policy is required, otherwise someone can just delete a document.
+Someone else suggested that you can't set object versioning with life cycle rules, but that's not quite true. https://cloud.google.com/storage/docs/lifecycle
+You can, but it does require object versioning to be enabled... So none of these answers are ideal, but I think the omission of setting a retention policy explicitly misses the first requirement stated.
+   upvoted 2 times
+ sukouto 1 year, 4 months ago
+Upon further reading, it seems Retention Policies and Object Versioning are mutually exclusive, meaning B cannot cover the second requirement. https://cloud.google.com/storage/docs/object-versioning
+It's not explicitly stated, but it is implied that Object Versioning can prevent total deletion (i.e. deleting a live version of an object moves it to a non-current version).
+I guess the answer will have to be D
+   upvoted 5 times
+
+4. Anonymous: JB28 1 year, 6 months ago
+The correct answer is **D. Enable object versioning on the bucket, use lifecycle conditions to change the storage class of the objects, set the number of versions, and delete old files**.
+Here's why:
+- **Object versioning** allows you to keep up to five revisions of the same invoice document.
+- **Lifecycle conditions** can be used to automatically change the storage class of objects older than 365 days to a lower-cost storage tier.
+- You can also set the number of versions to keep and automatically delete old files, which helps to manage storage costs effectively.
+This approach aligns with Google-recommended practices and helps to minimize operational and development costs.
+   upvoted 4 times
+
+5. Anonymous: Gocool28 1 year, 6 months ago
+Obvious answer is D
+   upvoted 1 times
+ 1826c27 11 months, 2 weeks ago
+why not B mr Obvious? "Documents must be kept for five years." - how does D cover this requirement?
+   upvoted 1 times
+
+6. Anonymous: KelvinToo 1 year, 6 months ago
+Selected Answer: D
+Per ChatGPT, Option D aligns with Google-recommended practices for managing objects in Cloud Storage, including versioning, lifecycle management, and cost optimization, making it the best choice for the given scenario.
+   upvoted 1 times
+ 1826c27 11 months, 2 weeks ago
+Per my grandma, Option A aligns with Google-recommended practices for managing objects in Cloud Storage, including versioning, lifecycle management, and cost optimization, making it the best choice for the given scenario.
+   upvoted 1 times
+
+7. Anonymous: shiowbah 1 year, 6 months ago
+D. Enable object versioning on the bucket, use lifecycle conditions to change the storage class of the objects, set the number of versions, and delete old files.
+   upvoted 1 times
+==============================

@@ -1,0 +1,1456 @@
+==============================
+Page X — Question #31
+
+Pergunta:
+You want to send and consume Cloud Pub/Sub messages from your App Engine application. The Cloud Pub/Sub API is currently disabled. You will use a service account to authenticate your application to the API. You want to make sure your application can use Cloud Pub/Sub. What should you do?
+
+Alternativas:
+- A. Enable the Cloud Pub/Sub API in the API Library on the GCP Console.
+- B. Rely on the automatic enablement of the Cloud Pub/Sub API when the Service Account accesses it.
+- C. Use Deployment Manager to deploy your application. Rely on the automatic enablement of all APIs used by the application being deployed.
+- D. Grant the App Engine Default service account the role of Cloud Pub/Sub Admin. Have your application enable the API on the first connection to Cloud Pub/ Sub.
+
+Resposta correta:
+A. Enable the Cloud Pub/Sub API in the API Library on the GCP Console.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ESP_SAP Highly Voted  4 years, 4 months ago
+Correct Answer is (A)
+Quickstart: using the Google Cloud Console
+This page shows you how to perform basic tasks in Pub/Sub using the Google Cloud Console.
+Note: If you are new to Pub/Sub, we recommend that you start with the interactive tutorial.
+Before you begin
+Set up a Cloud Console project.
+Set up a project
+Click to:
+Create or select a project.
+Enable the Pub/Sub API for that project.
+You can view and manage these resources at any time in the Cloud Console.
+Install and initialize the Cloud SDK.
+Note: You can run the gcloud tool in the Cloud Console without installing the Cloud SDK. To run the gcloud tool in the Cloud Console, use Cloud Shell .
+https://cloud.google.com/pubsub/docs/quickstart-console
+   upvoted 33 times
+
+2. Anonymous: Bharathy Highly Voted  4 years, 8 months ago
+We need to enable the pub/sub API, if we are going to use it in your project... then APP engine can able to access it with required ServiceAccount
+   upvoted 25 times
+
+3. Anonymous: Cloudmoh Most Recent  11 months, 1 week ago
+Selected Answer: A
+Yes, the Cloud pub/sub-API should be enabled.
+   upvoted 1 times
+
+4. Anonymous: Romio2023 1 year, 1 month ago
+hello test
+   upvoted 1 times
+
+5. Anonymous: Captain1212 1 year, 4 months ago
+Yes A, is more correct as first you need to enable the API itself
+   upvoted 1 times
+
+6. Anonymous: bidyut123 1 year, 7 months ago
+Selected Answer: A
+ANSWER SHOULD BE A.
+   upvoted 2 times
+
+7. Anonymous: Buruguduystunstugudunstuy 1 year, 11 months ago
+Selected Answer: A
+Answer A is correct. Enable the Cloud Pub/Sub API in the API Library on the GCP Console.
+Since the Cloud Pub/Sub API is currently disabled, the first step is to enable it. This can be done through the API Library on the GCP Console. Once the API is enabled, the service account can be used to authenticate the App Engine application to the Cloud Pub/Sub API.
+Answer B is incorrect because there is no automatic enablement of APIs when a service account accesses them. The API needs to be enabled manually in the API Library or through the command-line interface.
+Answer C is incorrect because enabling APIs through Deployment Manager requires that the APIs be enabled in the project before Deployment Manager can use them.
+Answer D is incorrect because granting the App Engine Default service account the Cloud Pub/Sub Admin role could be a security risk, and it is not necessary to enable the API.
+   upvoted 9 times
+
+8. Anonymous: AzureDP900 2 years, 7 months ago
+A is right
+   upvoted 1 times
+
+9. Anonymous: sedado77 2 years, 7 months ago
+Selected Answer: A
+Yup its A
+   upvoted 3 times
+
+10. Anonymous: haroldbenites 2 years, 7 months ago
+go for A
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #32
+
+Pergunta:
+You need to monitor resources that are distributed over different projects in Google Cloud Platform. You want to consolidate reporting under the same Stackdriver
+Monitoring dashboard. What should you do?
+
+Alternativas:
+- A. Use Shared VPC to connect all projects, and link Stackdriver to one of the projects.
+- B. For each project, create a Stackdriver account. In each project, create a service account for that project and grant it the role of Stackdriver Account Editor in all other projects.
+- C. Configure a single Stackdriver account, and link all projects to the same account.
+- D. Configure a single Stackdriver account for one of the projects. In Stackdriver, create a Group and add the other project names as criteria for that Group.
+
+Resposta correta:
+C. Configure a single Stackdriver account, and link all projects to the same account.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: sahedge Highly Voted  5 years ago
+First of all D is incorrect, Groups are used to define alerts on set of resources(such as VM instances, databases, and load balancers). FYI tried adding Two projects into a group it did not allowed me as the "AND"/"OR" criteria for the group failed with this combination of resources.
+C is correct because,
+When you intially click on Monitoring(Stackdriver Monitoring) it creates a workspac(a stackdriver account) linked to the ACTIVE(CURRENT) Project from which it was clicked.
+Now if you change the project and again click onto Monitoring it would create an another workspace(a stackdriver account) linked to the changed ACTIVE(CURRENT) Project, we don't want this as this would not consolidate our result into a single dashboard(workspace/stackdriver account).
+If you have accidently created two diff workspaces merge them under Monitoring > Settings > Merge Workspaces > MERGE.
+If we have only one workspace and two projects we can simply add other GCP Project under
+Monitoring > Settings > GCP Projects > Add GCP Projects.
+In both of these cases we did not create a GROUP, we just linked GCP Project to the workspace(stackdriver account).
+   upvoted 101 times
+
+2. Anonymous: coldpar Highly Voted  5 years, 10 months ago
+C is correct not D
+   upvoted 36 times
+
+3. Anonymous: KC_go_reply Most Recent  1 year, 3 months ago
+Selected Answer: C
+The correct answer is **C. Configure a single Stackdriver account, and link all projects to the same account.**
+Stackdriver Monitoring (now Google Cloud Monitoring) doesn't work on a per-project account basis. There's a single Monitoring service that spans your entire Google Cloud organization. All projects within the organization can automatically report metrics to this single Monitoring instance. You don't need to create separate accounts or use complex workarounds like Shared VPC or inter-project service accounts. Option C directly addresses this by leveraging the inherent design of Cloud Monitoring.
+Options A, B, and D are incorrect because they introduce unnecessary complexity and don't utilize the built-in functionality of Google Cloud Monitoring for consolidated reporting across multiple projects. They might even lead to permission issues and difficulties in maintaining a unified view of your resources.
+   upvoted 3 times
+
+4. Anonymous: RJ78 1 year, 4 months ago
+Selected Answer: D
+This method provides a centralized and flexible way to monitor resources across different projects, without requiring complex network configurations or additional accounts.
+   upvoted 1 times
+
+5. Anonymous: edoo 1 year, 11 months ago
+Selected Answer: C
+D is incorrect because a stackdriver group can group resources but not projects. Creating a single Stackdriver account in one project and creating a Group with other project names as criteria does not automatically aggregate and monitor metrics from different projects in a single dashboard. While creating a Group can help organize and manage metrics, it does not provide a solution for linking and monitoring metrics from different projects. You would still need to separately configure and link each project to the Stackdriver account to monitor their respective metrics.
+   upvoted 2 times
+
+6. Anonymous: gsmasad 2 years, 2 months ago
+Selected Answer: C
+C is more correct, just link them into one
+   upvoted 2 times
+
+7. Anonymous: Yad_datatonic 2 years, 4 months ago
+Selected Answer: C
+Option C is the recommended approach because it allows you to configure a single Stackdriver account and link all your projects to this account. This way, you can centralise monitoring, create custom dashboards, set up alerts, and gain a unified view of your resources distributed across different projects in a more straightforward and consolidated manner. It provides a single point of access and management for monitoring across all projects, which is typically the desired outcome for multi-project environments.
+   upvoted 1 times
+
+8. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: C
+C is more correct, just link them into one
+   upvoted 1 times
+
+9. Anonymous: SanjeevKumar1983 2 years, 4 months ago
+Selected Answer: D
+https://cloud.google.com/monitoring/settings
+Best practices for scoping projects
+We recommend that you use a new Google Cloud project or one without resources as the scoping project when you want to view metrics for multiple Google Cloud projects or AWS accounts.
+When a metrics scope contains monitored projects, to chart or monitor only those metrics stored in the scoping project, you must specify filters that exclude metrics from the monitored projects. The requirement to use filters increases the complexity of chart and alerting policy, and it increases the possibility of a configuration error. The recommendation ensures that these scoping projects don't generate metrics, so there are no metrics in the projects to chart or monitor.
+   upvoted 1 times
+
+10. Anonymous: shreykul 2 years, 6 months ago
+Selected Answer: C
+C is correct
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #33
+
+Pergunta:
+You are deploying an application to a Compute Engine VM in a managed instance group. The application must be running at all times, but only a single instance of the VM should run per GCP project. How should you configure the instance group?
+
+Alternativas:
+- A. Set autoscaling to On, set the minimum number of instances to 1, and then set the maximum number of instances to 1.
+- B. Set autoscaling to Off, set the minimum number of instances to 1, and then set the maximum number of instances to 1.
+- C. Set autoscaling to On, set the minimum number of instances to 1, and then set the maximum number of instances to 2.
+- D. Set autoscaling to Off, set the minimum number of instances to 1, and then set the maximum number of instances to 2.
+
+Resposta correta:
+A. Set autoscaling to On, set the minimum number of instances to 1, and then set the maximum number of instances to 1.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: sahedge
+			
+		
+		
+		
+			
+				Highly Voted 
+			
+		
+		
+			5 years ago
+		
+		
+	
+	
+		
+		First of all D is incorrect, Groups are used to define alerts on set of resources(such as VM instances, databases, and load balancers). FYI tried adding Two projects into a group it did not allowed me as the "AND"/"OR" criteria for the group failed with this combination of resources.
+C is correct because,
+When you intially click on Monitoring(Stackdriver Monitoring) it creates a workspac(a stackdriver account) linked to the ACTIVE(CURRENT) Project from which it was clicked. 
+Now if you change the project and again click onto Monitoring it would create an another workspace(a stackdriver account) linked to the changed ACTIVE(CURRENT) Project, we don't want this as this would not consolidate our result into a single dashboard(workspace/stackdriver account). 
+If you have accidently created two diff workspaces merge them under Monitoring > Settings >  Merge Workspaces > MERGE.
+If we have only one workspace and two projects we can simply add other GCP Project under 
+Monitoring > Settings > GCP Projects > Add GCP Projects.
+In both of these cases we did not create a GROUP, we just linked GCP Project to the workspace(stackdriver account).
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 101 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+2. Anonymous: coldpar
+			
+		
+		
+		
+			
+				Highly Voted 
+			
+		
+		
+			5 years, 10 months ago
+		
+		
+	
+	
+		
+		C is correct not D
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 36 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+3. Anonymous: KC_go_reply
+			
+		
+		
+		
+			
+				Most Recent 
+			
+		
+		
+			1 year, 3 months ago
+		
+		
+	
+	
+		
+			Selected Answer: C
+		
+		The correct answer is **C. Configure a single Stackdriver account, and link all projects to the same account.**
+Stackdriver Monitoring (now Google Cloud Monitoring) doesn't work on a per-project account basis.  There's a single Monitoring service that spans your entire Google Cloud organization.  All projects within the organization can automatically report metrics to this single Monitoring instance.  You don't need to create separate accounts or use complex workarounds like Shared VPC or inter-project service accounts.  Option C directly addresses this by leveraging the inherent design of Cloud Monitoring.
+Options A, B, and D are incorrect because they introduce unnecessary complexity and don't utilize the built-in functionality of Google Cloud Monitoring for consolidated reporting across multiple projects.  They might even lead to permission issues and difficulties in maintaining a unified view of your resources.
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 3 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+4. Anonymous: RJ78
+			
+		
+		
+		
+		
+			1 year, 4 months ago
+		
+		
+	
+	
+		
+			Selected Answer: D
+		
+		This method provides a centralized and flexible way to monitor resources across different projects, without requiring complex network configurations or additional accounts.
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 1 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+5. Anonymous: edoo
+			
+		
+		
+		
+		
+			1 year, 11 months ago
+		
+		
+	
+	
+		
+			Selected Answer: C
+		
+		D is incorrect because a stackdriver group can group resources but not projects. Creating a single Stackdriver account in one project and creating a Group with other project names as criteria does not automatically aggregate and monitor metrics from different projects in a single dashboard. While creating a Group can help organize and manage metrics, it does not provide a solution for linking and monitoring metrics from different projects. You would still need to separately configure and link each project to the Stackdriver account to monitor their respective metrics.
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 2 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+6. Anonymous: gsmasad
+			
+		
+		
+		
+		
+			2 years, 2 months ago
+		
+		
+	
+	
+		
+			Selected Answer: C
+		
+		C is more correct, just link them into one
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 2 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+7. Anonymous: Yad_datatonic
+			
+		
+		
+		
+		
+			2 years, 4 months ago
+		
+		
+	
+	
+		
+			Selected Answer: C
+		
+		Option C is the recommended approach because it allows you to configure a single Stackdriver account and link all your projects to this account. This way, you can centralise monitoring, create custom dashboards, set up alerts, and gain a unified view of your resources distributed across different projects in a more straightforward and consolidated manner. It provides a single point of access and management for monitoring across all projects, which is typically the desired outcome for multi-project environments.
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 1 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+8. Anonymous: Captain1212
+			
+		
+		
+		
+		
+			2 years, 4 months ago
+		
+		
+	
+	
+		
+			Selected Answer: C
+		
+		C is more correct, just link them into one
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 1 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+9. Anonymous: SanjeevKumar1983
+			
+		
+		
+		
+		
+			2 years, 4 months ago
+		
+		
+	
+	
+		
+			Selected Answer: D
+		
+		https://cloud.google.com/monitoring/settings
+Best practices for scoping projects
+We recommend that you use a new Google Cloud project or one without resources as the scoping project when you want to view metrics for multiple Google Cloud projects or AWS accounts.
+When a metrics scope contains monitored projects, to chart or monitor only those metrics stored in the scoping project, you must specify filters that exclude metrics from the monitored projects. The requirement to use filters increases the complexity of chart and alerting policy, and it increases the possibility of a configuration error. The recommendation ensures that these scoping projects don't generate metrics, so there are no metrics in the projects to chart or monitor.
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 1 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+10. Anonymous: shreykul
+			
+		
+		
+		
+		
+			2 years, 6 months ago
+		
+		
+	
+	
+		
+			Selected Answer: C
+		
+		C is correct
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 1 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+==============================
+
+==============================
+Page X — Question #34
+
+Pergunta:
+You want to verify the IAM users and roles assigned within a GCP project named my-project. What should you do?
+
+Alternativas:
+- A. Run gcloud iam roles list. Review the output section.
+- B. Run gcloud iam service-accounts list. Review the output section.
+- C. Navigate to the project and then to the IAM section in the GCP Console. Review the members and roles.
+- D. Navigate to the project and then to the Roles section in the GCP Console. Review the roles and status.
+
+Resposta correta:
+C. Navigate to the project and then to the IAM section in the GCP Console. Review the members and roles.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: coldpar Highly Voted  5 years, 4 months ago
+Correct answer is C as IAM section provides the list of both Members and Roles.Option A is wrong as it would provide information about the roles only.Option B is wrong as it would provide only the service accounts.Option D is wrong as it would provide information about the roles only.
+   upvoted 68 times
+
+2. Anonymous: Agents89 Highly Voted  5 years, 3 months ago
+C is the correct answer
+   upvoted 11 times
+
+3. Anonymous: Cloudmoh Most Recent  11 months, 1 week ago
+Selected Answer: C
+Option C contains steps on to check for Members and Roles
+   upvoted 1 times
+
+4. Anonymous: Dinya_jui 1 year, 6 months ago
+C is the correct answer as it will details regarding the users as well as the Roles
+   upvoted 2 times
+
+5. Anonymous: JB28 1 year, 7 months ago
+Option c
+   upvoted 1 times
+
+6. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: C
+c seems more legit
+   upvoted 1 times
+
+7. Anonymous: Shweta2jun 2 years, 2 months ago
+Selected Answer: C
+C is correct answer
+   upvoted 1 times
+
+8. Anonymous: Buruguduystunstugudunstuy 2 years, 5 months ago
+Selected Answer: C
+Answer C is the correct answer.
+To verify the IAM users and roles assigned within a GCP project, you can navigate to the project and then to the IAM section in the GCP Console. In the IAM section, you can review the members and roles assigned to the project. This will allow you to see who has what level of access to the project resources.
+Answer A is incorrect because it lists the roles available in the project, but it does not show the IAM users and roles assigned to those roles.
+Answer B is incorrect because it lists the service accounts in the project, but it does not show the IAM users and roles assigned to those service accounts.
+Answer D is incorrect because it lists the roles available in the project, but it does not show the IAM users and roles assigned to those roles.
+   upvoted 2 times
+
+9. Anonymous: leogor 2 years, 9 months ago
+C. Navigate to the project and then to the IAM section in the GCP Console. Review the members and roles.
+   upvoted 1 times
+
+10. Anonymous: SaiSaiA 3 years ago
+Selected Answer: C
+C is the only logical answers. If you go IAM & Admin > IAM: You can see Principals and Roles. Users, groups, service accounts are Principals
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #35
+
+Pergunta:
+You need to create a new billing account and then link it with an existing Google Cloud Platform project. What should you do?
+
+Alternativas:
+- A. Verify that you are Project Billing Manager for the GCP project. Update the existing project to link it to the existing billing account.
+- B. Verify that you are Project Billing Manager for the GCP project. Create a new billing account and link the new billing account to the existing project.
+- C. Verify that you are Billing Administrator for the billing account. Create a new project and link the new project to the existing billing account.
+- D. Verify that you are Billing Administrator for the billing account. Update the existing project to link it to the existing billing account.
+
+Resposta correta:
+B. Verify that you are Project Billing Manager for the GCP project. Create a new billing account and link the new billing account to the existing project.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: coldpar
+			
+		
+		
+		
+			
+				Highly Voted 
+			
+		
+		
+			5 years, 4 months ago
+		
+		
+	
+	
+		
+		Correct answer is C as IAM section provides the list of both Members and Roles.Option A is wrong as it would provide information about the roles only.Option B is wrong as it would provide only the service accounts.Option D is wrong as it would provide information about the roles only.
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 68 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+2. Anonymous: Agents89
+			
+		
+		
+		
+			
+				Highly Voted 
+			
+		
+		
+			5 years, 3 months ago
+		
+		
+	
+	
+		
+		C is the correct answer
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 11 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+3. Anonymous: Cloudmoh
+			
+		
+		
+		
+			
+				Most Recent 
+			
+		
+		
+			11 months, 1 week ago
+		
+		
+	
+	
+		
+			Selected Answer: C
+		
+		Option C contains steps on to check for Members and Roles
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 1 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+4. Anonymous: Dinya_jui
+			
+		
+		
+		
+		
+			1 year, 6 months ago
+		
+		
+	
+	
+		
+		C is the correct answer as it will details regarding the users as well as the Roles
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 2 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+5. Anonymous: JB28
+			
+		
+		
+		
+		
+			1 year, 7 months ago
+		
+		
+	
+	
+		
+		Option c
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 1 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+6. Anonymous: Captain1212
+			
+		
+		
+		
+		
+			1 year, 10 months ago
+		
+		
+	
+	
+		
+			Selected Answer: C
+		
+		c seems more legit
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 1 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+7. Anonymous: Shweta2jun
+			
+		
+		
+		
+		
+			2 years, 2 months ago
+		
+		
+	
+	
+		
+			Selected Answer: C
+		
+		C is correct answer
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 1 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+8. Anonymous: Buruguduystunstugudunstuy
+			
+		
+		
+		
+		
+			2 years, 5 months ago
+		
+		
+	
+	
+		
+			Selected Answer: C
+		
+		Answer C is the correct answer.
+To verify the IAM users and roles assigned within a GCP project, you can navigate to the project and then to the IAM section in the GCP Console. In the IAM section, you can review the members and roles assigned to the project. This will allow you to see who has what level of access to the project resources.
+Answer A is incorrect because it lists the roles available in the project, but it does not show the IAM users and roles assigned to those roles.
+Answer B is incorrect because it lists the service accounts in the project, but it does not show the IAM users and roles assigned to those service accounts.
+Answer D is incorrect because it lists the roles available in the project, but it does not show the IAM users and roles assigned to those roles.
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 2 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+9. Anonymous: leogor
+			
+		
+		
+		
+		
+			2 years, 9 months ago
+		
+		
+	
+	
+		
+		C. Navigate to the project and then to the IAM section in the GCP Console. Review the members and roles.
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 1 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+
+10. Anonymous: SaiSaiA
+			
+		
+		
+		
+		
+			3 years ago
+		
+		
+	
+	
+		
+			Selected Answer: C
+		
+		C is the only logical answers. If you go IAM & Admin > IAM: You can see Principals and Roles. Users, groups, service accounts are Principals
+		
+			
+				
+				
+				
+				
+				
+			
+			
+				upvoted 1 times
+			
+			
+			
+		
+		
+		
+		
+			
+			
+			
+		
+	
+	
+		...
+==============================
+
+==============================
+Page X — Question #36
+
+Pergunta:
+You have one project called proj-sa where you manage all your service accounts. You want to be able to use a service account from this project to take snapshots of VMs running in another project called proj-vm. What should you do?
+
+Alternativas:
+- A. Download the private key from the service account, and add it to each VMs custom metadata.
+- B. Download the private key from the service account, and add the private key to each VM's SSH keys.
+- C. Grant the service account the IAM Role of Compute Storage Admin in the project called proj-vm.
+- D. When creating the VMs, set the service account's API scope for Compute Engine to read/write.
+
+Resposta correta:
+C. Grant the service account the IAM Role of Compute Storage Admin in the project called proj-vm.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: jackdbd Highly Voted  3 years, 6 months ago
+C is the correct answer.
+It took me a while to figure it out because I didn't understand how service accounts work across project. This article made it clear for me. https://gtseres.medium.com/using-service-accounts-across-projects-in-gcp-cf9473fef8f0
+You create the service account in proj-sa and take note of the service account email, then you go to proj-vm in IAM > ADD and add the service account's email as new member and give it the Compute Storage Admin role.
+   upvoted 47 times
+ JelloMan 2 years, 9 months ago
+As of now, service accounts may be impersonated (new-term). AKA, you can create a service account in one project and then impersonate it in others. Essentially, it involves the same steps as what the medium article suggests (create a service account in the principal (main) project and then add the email of the main project to the project you want to impersonate) https://cloud.google.com/iam/docs/impersonating-service-accounts#impersonate-sa-level
+   upvoted 3 times
+ SaiSaiA 2 years, 6 months ago
+I have tried C, it doesn't work. Also, this refers to a different Principal (user) impersonating a Service Account which is a different case from what is in the question.
+   upvoted 1 times
+
+2. Anonymous: kishoredeena Highly Voted  4 years, 7 months ago
+Option C is the right one
+   upvoted 22 times
+
+3. Anonymous: Captain1212 Most Recent  1 year, 4 months ago
+Selected Answer: C
+C seems more correct, because you want to use it, you need access for it
+   upvoted 1 times
+
+4. Anonymous: sthapit 1 year, 5 months ago
+C is the answer
+   upvoted 1 times
+
+5. Anonymous: findsidd 1 year, 5 months ago
+C is the correct answer.
+Compute Storage Admin (roles/compute.storageAdmin) has permissions to create, modify, and delete disks, images, and snapshots.
+For example, if your company has someone who manages project images and you don't want them to have the editor role on the project, then grant this role to their account on the project.
+The most common way to let an application authenticate as a service account is to attach a service account to the resource running the application. For example, you can attach a service account to a Compute Engine instance so that applications running on that instance can authenticate as the service account. Then, you can grant the service account IAM roles to let the service account—and, by extension, applications on the instance—access Google Cloud resources.
+   upvoted 2 times
+
+6. Anonymous: Buruguduystunstugudunstuy 1 year, 11 months ago
+Selected Answer: C
+Answer C is correct. Grant the service account the IAM Role of Compute Storage Admin in the project called proj-vm.
+To take snapshots of VMs running in another project, you need to grant the service account that will take the snapshots the necessary IAM role to perform the action. In this case, granting the service account in the proj-sa project the Compute Storage Admin role in the proj-vm project will allow it to take snapshots of VMs running in that project.
+Answers A and B are incorrect because they involve downloading and adding the private key of the service account to each VM, which is not necessary and potentially risky.
+Answer D is also incorrect because setting the service account's API scope for Compute Engine to read/write only grants it permission to perform actions on resources within the same project.
+https://cloud.google.com/iam/docs/creating-managing-service-accounts
+https://cloud.google.com/iam/docs/granting-roles-to-service-accounts
+   upvoted 7 times
+
+7. Anonymous: leogor 2 years, 2 months ago
+C. Grant the service account the IAM Role of Compute Storage Admin in the project called proj-vm.
+   upvoted 1 times
+
+8. Anonymous: habros 2 years, 5 months ago
+Safe to eliminate any options that demand transferring of private keys. NOT SAFE
+Hence, C.
+   upvoted 3 times
+ theBestStudent 2 years, 3 months ago
+highly agree with this thoughts! transferring private keys is a big no no here.
+   upvoted 1 times
+
+9. Anonymous: RanjithK 2 years, 6 months ago
+Answer is C
+   upvoted 1 times
+
+10. Anonymous: AzureDP900 2 years, 7 months ago
+C. is the correct answer
+Compute Storage Admin
+(roles/compute.storageAdmin)
+Permissions to create, modify, and delete disks, images, and snapshots.
+For example, if your company has someone who manages project images and you don't want them to have the editor role on the project, then grant this role to their account on the project.
+Lowest-level resources where you can grant this role:
+Disk
+Image
+Snapshot Beta
+   upvoted 4 times
+==============================
+
+==============================
+Page X — Question #37
+
+Pergunta:
+You created a Google Cloud Platform project with an App Engine application inside the project. You initially configured the application to be served from the us- central region. Now you want the application to be served from the asia-northeast1 region. What should you do?
+
+Alternativas:
+- A. Change the default region property setting in the existing GCP project to asia-northeast1.
+- B. Change the region property setting in the existing App Engine application from us-central to asia-northeast1.
+- C. Create a second App Engine application in the existing GCP project and specify asia-northeast1 as the region to serve your application.
+- D. Create a new GCP project and create an App Engine application inside this new project. Specify asia-northeast1 as the region to serve your application.
+
+Resposta correta:
+D. Create a new GCP project and create an App Engine application inside this new project. Specify asia-northeast1 as the region to serve your application.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Bharathy Highly Voted  5 years, 10 months ago
+Option D is correct, as there can be only one App Engine application inside a project . C is incorrect, as GCP can't have two app engine applications..
+   upvoted 96 times
+ jcloud965 4 years, 6 months ago
+Yes, and you can't change an App Engine application region once created
+   upvoted 28 times
+
+2. Anonymous: saurabh1805 Highly Voted  5 years, 7 months ago
+Each Cloud project can contain only a single App Engine application, and once created you cannot change the location of your App Engine application.
+https://cloud.google.com/appengine/docs/flexible/nodejs/managing-projects-apps-billing#create
+   upvoted 43 times
+
+3. Anonymous: devjay24 Most Recent  9 months, 3 weeks ago
+Selected Answer: C
+a project can have more than one app engine - but the only condition is there should be one app engine per region. So option C should make sense
+   upvoted 1 times
+
+4. Anonymous: garg.vnay 1 year, 5 months ago
+Selected Answer: D
+Why showing correct answer as C????
+   upvoted 1 times
+
+5. Anonymous: AmirJZsecENG 1 year, 10 months ago
+Selected Answer: D
+why the correct answer is D?
+   upvoted 1 times
+ AmirJZsecENG 1 year, 10 months ago
+and why here is mentioning that C is correct?
+   upvoted 1 times
+
+6. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: D
+D seems more correct , as a project can only have a single app engine application
+   upvoted 2 times
+
+7. Anonymous: bobthebuilder_karkedikhayenge 2 years, 4 months ago
+Selected Answer: D
+Each Google Cloud project can contain only a single App Engine application, and once created you cannot change the location of your App Engine application
+   upvoted 4 times
+
+8. Anonymous: sthapit 2 years, 5 months ago
+D as you cannot have more than one APP engine
+   upvoted 1 times
+
+9. Anonymous: Neha_Pallavi 2 years, 5 months ago
+Option D is correct.
+There can be only one App Engine application inside a project
+Besides, you cannot change an app's region after you set it.
+https://cloud.google.com/appengine/docs/standard/locations
+   upvoted 1 times
+
+10. Anonymous: findsidd 2 years, 5 months ago
+Option D is correct.
+There can be only one App Engine application inside a project
+Besides, you cannot change an app's region after you set it.
+https://cloud.google.com/appengine/docs/standard/locations
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #38
+
+Pergunta:
+You need to grant access for three users so that they can view and edit table data on a Cloud Spanner instance. What should you do?
+
+Alternativas:
+- A. Run gcloud iam roles describe roles/spanner.databaseUser. Add the users to the role.
+- B. Run gcloud iam roles describe roles/spanner.databaseUser. Add the users to a new group. Add the group to the role.
+- C. Run gcloud iam roles describe roles/spanner.viewer - -project my-project. Add the users to the role.
+- D. Run gcloud iam roles describe roles/spanner.viewer - -project my-project. Add the users to a new group. Add the group to the role.
+
+Resposta correta:
+B. Run gcloud iam roles describe roles/spanner.databaseUser. Add the users to a new group. Add the group to the role.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: yasu Highly Voted  4 years, 10 months ago
+I think it should be B, setup a group first are suggested way from Google.
+   upvoted 74 times
+
+2. Anonymous: Agents89 Highly Voted  4 years, 9 months ago
+B is the correct option
+   upvoted 26 times
+
+3. Anonymous: warbon Most Recent  12 months ago
+Selected Answer: A
+Adding users to a group (Options B and D) is unnecessary unless you specifically want to manage access via a group.
+   upvoted 2 times
+
+4. Anonymous: thewalker 1 year, 1 month ago
+Selected Answer: B
+B
+as per the best practice.
+   upvoted 2 times
+
+5. Anonymous: gsmasad 1 year, 2 months ago
+Selected Answer: B
+B is correct Because adding a group instead to the user is a GCP best practice
+   upvoted 1 times
+
+6. Anonymous: Captain1212 1 year, 4 months ago
+Selected Answer: B
+b seems more legit as it will add in the group and they need edit access also
+   upvoted 2 times
+
+7. Anonymous: Fajmayor 1 year, 4 months ago
+Selected Answer: B
+Setup group and add role to it
+   upvoted 1 times
+
+8. Anonymous: sthapit 1 year, 5 months ago
+I go with B but TO have more controlled access, A is correct as well
+   upvoted 1 times
+
+9. Anonymous: findsidd 1 year, 5 months ago
+Selected Answer: B
+Google groups can help you manage users at scale. Each member of a Google group inherits the Identity and Access Management (IAM) roles granted to that group. This inheritance means that you can use a group's membership to manage users' roles instead of granting IAM roles to individual users.
+https://cloud.google.com/iam/docs/groups-in-cloud-console#:~:text=To%20add%20members%3A%20Click%20person,add%20them%20to%20the%20group.
+   upvoted 2 times
+
+10. Anonymous: Ash_34 1 year, 6 months ago
+Selected Answer: B
+B is the correct option as spanner users are grouped into a single group and can be added to the IAM role. Easy for management work.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #39
+
+Pergunta:
+You create a new Google Kubernetes Engine (GKE) cluster and want to make sure that it always runs a supported and stable version of Kubernetes. What should you do?
+
+Alternativas:
+- A. Enable the Node Auto-Repair feature for your GKE cluster.
+- B. Enable the Node Auto-Upgrades feature for your GKE cluster.
+- C. Select the latest available cluster version for your GKE cluster.
+- D. Select ג€Container-Optimized OS (cos)ג€ as a node image for your GKE cluster.
+
+Resposta correta:
+B. Enable the Node Auto-Upgrades feature for your GKE cluster.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Lush Highly Voted  4 years, 8 months ago
+The answer is B
+https://cloud.google.com/kubernetes-engine/versioning-and-upgrades
+   upvoted 43 times
+
+2. Anonymous: 4bsolut Highly Voted  4 years, 6 months ago
+"Creating or upgrading a cluster by specifying the version as <latest> does not provide automatic upgrades. Enable automatic node upgrades to ensure that the nodes in your cluster up to date with the latest stable version." --source: https://cloud.google.com/kubernetes-engine/versioning-and-upgrades
+-Correct answer: B
+   upvoted 36 times
+
+3. Anonymous: Captain1212 Most Recent  1 year, 4 months ago
+b is corrent , as auto updates provide the more stable version
+   upvoted 3 times
+
+4. Anonymous: Buruguduystunstugudunstuy 1 year, 11 months ago
+Selected Answer: B
+Answer B is correct. Google Kubernetes Engine (GKE) supports multiple versions of Kubernetes, and new versions are regularly released. To ensure that your GKE cluster runs a supported and stable version of Kubernetes, it is recommended to enable the Node Auto-Upgrades feature. This feature automatically upgrades the Kubernetes version of each node in the cluster to the latest stable version.
+Answer A, enabling the Node Auto-Repair feature, is focused on repairing or replacing nodes in case they become unresponsive, but it doesn't address the need for running a supported and stable version of Kubernetes.
+Answer C, selecting the latest available cluster version, may not always be the best option as new versions may have bugs or issues that have not yet been identified.
+Answer D, selecting Container-Optimized OS (cos) as a node image, is focused on using a lightweight and secure operating system optimized for running containers, but it doesn't address the need for running a supported and stable version of Kubernetes.
+   upvoted 10 times
+ sthapit 1 year, 5 months ago
+True. B is the correct choice
+   upvoted 1 times
+
+5. Anonymous: leogor 2 years, 2 months ago
+Selected Answer: B
+B. Enable the Node Auto-Upgrades
+   upvoted 1 times
+
+6. Anonymous: AzureDP900 2 years, 7 months ago
+B is correct.
+Creating or upgrading a cluster by specifying the version as latest does not provide automatic upgrades. Enable node auto-upgrades to ensure that the nodes in your cluster are up-to-date with the latest stable version.
+   upvoted 2 times
+
+7. Anonymous: pfabio 2 years, 7 months ago
+Selected Answer: B
+Node auto-upgrades help you keep the nodes in your cluster up-to-date with the cluster control plane version when your control plane is updated on your behalf. When you create a new cluster or node pool with Google Cloud console or the gcloud command, node auto-upgrade is enabled by default.
+   upvoted 2 times
+
+8. Anonymous: Harbeeb 2 years, 8 months ago
+Selected Answer: B
+https://cloud.google.com/kubernetes-engine/versioning-and-upgrades
+   upvoted 1 times
+
+9. Anonymous: shawnkkk 3 years, 2 months ago
+B. Enable the Node Auto-Upgrades feature for your GKE cluster.
+   upvoted 4 times
+
+10. Anonymous: vishnukumartr 3 years, 2 months ago
+B. Enable the Node Auto-Upgrades feature for your GKE cluster.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #40
+
+Pergunta:
+You have an instance group that you want to load balance. You want the load balancer to terminate the client SSL session. The instance group is used to serve a public web application over HTTPS. You want to follow Google-recommended practices. What should you do?
+
+Alternativas:
+- A. Configure an HTTP(S) load balancer.
+- B. Configure an internal TCP load balancer.
+- C. Configure an external SSL proxy load balancer.
+- D. Configure an external TCP proxy load balancer.
+
+Resposta correta:
+A. Configure an HTTP(S) load balancer.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Gini Highly Voted  5 years, 9 months ago
+According to the documentation of SSL Proxy Load Balacing on Google, "SSL Proxy Load Balancing is intended for non-HTTP(S) traffic. For HTTP(S) traffic, we recommend that you use HTTP(S) Load Balancing." in my opinion A should be the most suitable choice.
+   upvoted 62 times
+ yvinisiupacuando 4 years, 8 months ago
+Agree with you but, A is not the most suitable choice, it is the only choice, as the other Load Balancers cannot route HTTP(S) traffic.
+   upvoted 17 times
+
+2. Anonymous: Agents89 Highly Voted  5 years, 9 months ago
+For HTTP(s) Load balancer, the client SSL session terminates at the load balancer. A is the correct option.
+   upvoted 29 times
+
+3. Anonymous: d6685b2 Most Recent  1 year, 8 months ago
+why A is correcte ?
+   upvoted 1 times
+ JackSkeletonCoder 1 year, 4 months ago
+In opt B, Internal tcp only deals with ip and ports in a vpc i.e 'internally' and does not deal with http/s or ssl/tls
+In opt C external SSL can serve application over https but not the ssl termination part.
+In opt D external TCP only deals with web application over HTTP and not the secured one. To top it off, it can't even terminate SSL session.
+Hence the only viable option is HTTP(S) load balancer.
+   upvoted 3 times
+
+4. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: A
+google recommend https for terminate the ssl session so A seems more legit
+   upvoted 1 times
+
+5. Anonymous: sthapit 2 years, 5 months ago
+Question mentions HTTPS, SO A is the correct answer.
+   upvoted 2 times
+
+6. Anonymous: Buruguduystunstugudunstuy 2 years, 11 months ago
+Selected Answer: A
+Answer A is correct. Google recommends using an HTTP(S) load balancer for terminating SSL sessions and load-balancing traffic to an instance group serving a public web application over HTTPS.
+Answer B is incorrect because it is an internal load balancer, which is not suitable for serving public web applications. Internal load balancers are used for private/internal applications.
+Answer C is incorrect because SSL proxy load balancers do not terminate the SSL session, instead they pass the SSL traffic directly to the backends without decrypting it. SSL proxy load balancers are used when you need to ensure that SSL is used end-to-end between the client and the backend, and when you want to offload SSL processing from the backends.
+Answer D is incorrect because TCP proxy load balancers do not terminate SSL sessions. TCP proxy load balancers are used for non-HTTP traffic and can balance traffic at the TCP layer, but they do not have the ability to terminate SSL sessions.
+   upvoted 23 times
+ chikorita 2 years, 9 months ago
+yo never fail us, my lord!
+   upvoted 1 times
+
+7. Anonymous: leogor 3 years, 2 months ago
+Selected Answer: A
+HTTP(S) load balancer.
+   upvoted 1 times
+
+8. Anonymous: AzureDP900 3 years, 7 months ago
+I will go with A
+   upvoted 1 times
+
+9. Anonymous: Akash7 3 years, 7 months ago
+A is correct.
+According to this guide for setting up an HTTP (S) load balancer in GCP: The client SSL session terminates at the load balancer. Sessions between the load balancer and the instance can either be HTTPS (recommended) or HTTP.
+   upvoted 1 times
+
+10. Anonymous: haroldbenites 3 years, 7 months ago
+Go for C.
+It dont say Global balancer.
+   upvoted 1 times
+==============================

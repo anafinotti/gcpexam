@@ -1,0 +1,911 @@
+==============================
+Page X — Question #1
+
+Pergunta:
+Every employee of your company has a Google account. Your operational team needs to manage a large number of instances on Compute Engine. Each member of this team needs only administrative access to the servers. Your security team wants to ensure that the deployment of credentials is operationally efficient and must be able to determine who accessed a given instance. What should you do?
+
+Alternativas:
+- A. Generate a new SSH key pair. Give the private key to each member of your team. Configure the public key in the metadata of each instance.
+- B. Ask each member of the team to generate a new SSH key pair and to send you their public key. Use a configuration management tool to deploy those keys on each instance.
+- C. Ask each member of the team to generate a new SSH key pair and to add the public key to their Google account. Grant the ג€compute.osAdminLoginג€ role to the Google group corresponding to this team.
+- D. Generate a new SSH key pair. Give the private key to each member of your team. Configure the public key as a project-wide public SSH key in your Cloud Platform project and allow project-wide public SSH keys on each instance.
+
+Resposta correta:
+C. Ask each member of the team to generate a new SSH key pair and to add the public key to their Google account. Grant the ג€compute.osAdminLoginג€ role to the Google group corresponding to this team.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: dan80 Highly Voted  1 year, 4 months ago
+C is correct - https://cloud.google.com/compute/docs/instances/managing-instance-access
+   upvoted 85 times
+ adedj99 1 year, 4 months ago
+We recommend collecting users with the same responsibilities into groups and assigning IAM roles to the groups rather than to individual users. For example, you can create a "data scientist" group and assign appropriate roles to enable interaction with BigQuery and Cloud Storage. When a new data scientist joins your team, you can simply add them to the group and they will inherit the defined permissions. You can create and manage groups through the Admin Console.
+   upvoted 16 times
+
+2. Anonymous: zakhili Highly Voted  5 years, 7 months ago
+Send private key to users is not safe, i think it's C
+   upvoted 22 times
+
+3. Anonymous: svij87 Most Recent  1 month ago
+Selected Answer: C
+Sharing Private key is security concern.
+   upvoted 1 times
+
+4. Anonymous: ValidItexams_com 3 months, 4 weeks ago
+Selected Answer: C
+I can proudly say that I cleared the Google Associate-Cloud-Engineer Exam without any difficulty.
+   upvoted 2 times
+
+5. Anonymous: BlairOnIce 5 months, 3 weeks ago
+Selected Answer: C
+When dealing with a large number of users it makes sense to use groups
+   upvoted 1 times
+
+6. Anonymous: Hismajesty 6 months, 2 weeks ago
+Selected Answer: C
+Each team member must generate a new SSH key pair and add the public key to their Google account. Grant the "compute.osAdminLogin" role to the corresponding Google group for this team.
+   upvoted 1 times
+
+7. Anonymous: joaonunatings 6 months, 4 weeks ago
+Selected Answer: C
+C is correct
+   upvoted 1 times
+
+8. Anonymous: SayujM 7 months, 2 weeks ago
+Selected Answer: C
+Satisfies both the requirements a) providing Admin access & b) identifying who accessed the VM.
+   upvoted 1 times
+
+9. Anonymous: emiliyasoftware 1 year ago
+Selected Answer: C
+c is correct because you should never give your private keys
+   upvoted 1 times
+
+10. Anonymous: Jayz1992 1 year ago
+Selected Answer: C
+I have taken GCP ACE exam today morning and also cleared exam.
+Below are my suggestions and observations.
+1. Almost 75-80% questions were from these exams (ExamTopics).
+2. You will get same options as like this forum.
+3. If your concepts are clear and if you have done good practice on these questions, you will be able to clear exam.
+4. Please read question and options carefully, lot of questions are having almost same answer with some twist.
+5. so what is required from question, and what options are available? eliminate groups on the basis of logic and words and try to get correct answer on the basis of your functional knowledge.
+Best luck
+   upvoted 8 times
+ AS2606 10 months, 4 weeks ago
+bro how can i connect with you ?
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #2
+
+Pergunta:
+You need to create a custom VPC with a single subnet. The subnet's range must be as large as possible. Which range should you use?
+
+Alternativas:
+- A. 0.0.0.0/0
+- B. 10.0.0.0/8
+- C. 172.16.0.0/12
+- D. 192.168.0.0/16
+
+Resposta correta:
+B. 10.0.0.0/8
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Khaled_Rashwan Highly Voted  1 year, 4 months ago
+B is correct
+to calculate the range size for a network:
+10.0.0.0/x for example
+range= 2^(32-x)
+then the smaller x, the larger the range
+0.0.0.0/0 is not a valid network ip but is the broadcast ip
+   upvoted 19 times
+
+2. Anonymous: ovokpus Highly Voted  1 year, 3 months ago
+Selected Answer: B
+In Google Cloud Platform (GCP), when creating a VPC network, you should use the IP ranges that are reserved for private networks as defined by the RFC 1918. Here are the private IP address ranges defined by RFC 1918:
+10.0.0.0 to 10.255.255.255 (10.0.0.0/8)
+172.16.0.0 to 172.31.255.255 (172.16.0.0/12)
+192.168.0.0 to 192.168.255.255 (192.168.0.0/16)
+From the provided options:
+A. 0.0.0.0/0: This is not a private IP address range. It represents all possible IP addresses.
+B. 10.0.0.0/8: This is a private IP range that covers all IP addresses from 10.0.0.0 to 10.255.255.255. It's the largest range among the options.
+C. 172.16.0.0/12: This is a private IP range, but it's smaller than 10.0.0.0/8.
+D. 192.168.0.0/16: This is also a private IP range, but it's smaller than both B and C.
+So, if you want the subnet's range to be as large as possible:
+The correct answer is B. 10.0.0.0/8.
+   upvoted 9 times
+
+3. Anonymous: Hismajesty Most Recent  6 months, 2 weeks ago
+Selected Answer: B
+because the right answer is B
+   upvoted 1 times
+
+4. Anonymous: SayujM 7 months, 2 weeks ago
+Selected Answer: B
+key here is to understand 0.0.0.0/0 is not a valid private IP range, which leaves us with option-b 10.0.0.0/8 which is in the valid private IP range & spans from 10.0.0.0 to 10.255.255.255 ( 2^24) IPs.
+   upvoted 1 times
+
+5. Anonymous: Meera1986 7 months, 3 weeks ago
+Selected Answer: B
+The correct answer is B
+   upvoted 1 times
+
+6. Anonymous: MANGANDA 1 year ago
+Selected Answer: B
+This CIDR notation provides the largest possible private subnet range. It allows for about 16 million IP addresses (from 10.0.0.0 to 10.255.255.255) and is a good choice for a VPC that may require a large IP address space.
+   upvoted 1 times
+
+7. Anonymous: rxvybgfbhlswfllbxa 1 year, 3 months ago
+I will become an Associate Cloud Engineer
+   upvoted 1 times
+
+8. Anonymous: theanupmaurya 1 year, 3 months ago
+The correct answer is B. 10.0.0.0/8.
+Here's why:
+Class A: 10.0.0.0/8 provides the largest subnet range with 16,777,214 possible IP addresses. This is because it uses only the first 8 bits for the network address, leaving the remaining 24 bits for host addresses.
+Class B: 172.16.0.0/12 provides a smaller range with 1,048,574 possible IP addresses.
+Class C: 192.168.0.0/16 provides an even smaller range with 65,534 possible IP addresses.
+0.0.0.0/0: This is not a valid subnet range for a VPC. It represents the entire internet.
+Therefore, using the 10.0.0.0/8 range for your single subnet VPC will provide you with the maximum number of available IP addresses.
+   upvoted 1 times
+
+9. Anonymous: Buruguduystunstugudunstuy 1 year, 3 months ago
+Selected Answer: B
+Option B is the correct answer.
+To create a custom VPC with a single subnet with the largest possible range, you should use the range 10.0.0.0/8. This range consists of 16,777,216 addresses, which is more than enough for most use cases.
+   upvoted 1 times
+
+10. Anonymous: YourCloudGuru 1 year, 3 months ago
+B is the correct answer: 10.0.0.0/8.
+This is the largest subnet range that you can use in a custom VPC. It has 16,777,216 addresses, which is more than enough for most organizations.
+The other options are smaller subnet ranges:
+0.0.0.0/0 is the entire IPv4 address space. It is not recommended to use this range for a subnet, because it would give you too many IP addresses to manage.
+172.16.0.0/12 has 1,048,576 addresses.
+192.168.0.0/16 has 65,536 addresses.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #3
+
+Pergunta:
+You want to select and configure a cost-effective solution for relational data on Google Cloud Platform. You are working with a small set of operational data in one geographic location. You need to support point-in-time recovery. What should you do?
+
+Alternativas:
+- A. Select Cloud SQL (MySQL). Verify that the enable binary logging option is selected.
+- B. Select Cloud SQL (MySQL). Select the create failover replicas option.
+- C. Select Cloud Spanner. Set up your instance with 2 nodes.
+- D. Select Cloud Spanner. Set up your instance as multi-regional.
+
+Resposta correta:
+A. Select Cloud SQL (MySQL). Verify that the enable binary logging option is selected.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: YashBindlish Highly Voted  1 year, 4 months ago
+A is Correct. You must enable binary logging to use point-in-time recovery. Enabling binary logging causes a slight reduction in write performance. https://cloud.google.com/sql/docs/mysql/backup-recovery/backups
+   upvoted 52 times
+ ryumada 1 year, 4 months ago
+In this link below, the docs explains clearly that point-in-time recovery requires binary logging.
+https://cloud.google.com/sql/docs/mysql/backup-recovery/pitr#disk-usage
+   upvoted 6 times
+
+2. Anonymous: Bharathy Highly Voted  5 years, 10 months ago
+A is correct, as Binary Logging enables Point in Recovery in Cloud SQL
+   upvoted 11 times
+
+3. Anonymous: 4384d42 Most Recent  1 week, 2 days ago
+Selected Answer: A
+Now the option in GCP has changed the name to"Enable point-in-time recovery":
+[X] Enable point-in-time recovery
+Allows you to recover data from a specific point in time, down to a fraction of a second. Enables binary logs (required for replication).
+   upvoted 1 times
+
+4. Anonymous: BlairOnIce 5 months, 3 weeks ago
+Selected Answer: A
+Point-in time = binary logging
+   upvoted 1 times
+
+5. Anonymous: kewgard 7 months, 3 weeks ago
+Selected Answer: A
+A. binary logging is uaed to setup point in time recovery. This basically records every single action to the db (crud) and stores on a binary log. So can be used to replicate. Logging like this means you can recover to any point in time rather than just eg 1 months agao when you last backed up - this way you can choose the day instead - ie before the issue occurred. MOre finer grained recovery. add a little latency to to sql response though.
+   upvoted 1 times
+
+6. Anonymous: Akp965 9 months, 3 weeks ago
+Selected Answer: A
+A is correct .................
+you need to enable binary logging. Cloud SQL for MySQL supports binary logging, which allows you to perform point-in-time recovery of the database.
+   upvoted 1 times
+
+7. Anonymous: denno22 1 year, 3 months ago
+Selected Answer: A
+https://cloud.google.com/sql/docs/mysql/backup-recovery/restore#tips-pitr
+   upvoted 1 times
+ denno22 1 year, 3 months ago
+When you create a Cloud SQL instance in the Google Cloud console, PITR is enabled by default.
+PITR uses binary logging to archive logs.
+   upvoted 1 times
+
+8. Anonymous: harsh5kalsait 1 year, 4 months ago
+**Best Choice: A**
+Cloud SQL (MySQL) with binary logging enabled will provide point-in-time recovery capabilities, which meet your requirement for relational data in a single geographic location. It is also cost-effective for smaller datasets compared to Cloud Spanner.
+   upvoted 1 times
+
+9. Anonymous: MUNHU 1 year, 7 months ago
+I agree with A
+   upvoted 1 times
+
+10. Anonymous: Ele24 1 year, 11 months ago
+Selected Answer: A
+A is Correct
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #4
+
+Pergunta:
+You want to configure autohealing for network load balancing for a group of Compute Engine instances that run in multiple zones, using the fewest possible steps.
+You need to configure re-creation of VMs if they are unresponsive after 3 attempts of 10 seconds each. What should you do?
+
+Alternativas:
+- A. Create an HTTP load balancer with a backend configuration that references an existing instance group. Set the health check to healthy (HTTP)
+- B. Create an HTTP load balancer with a backend configuration that references an existing instance group. Define a balancing mode and set the maximum RPS to 10.
+- C. Create a managed instance group. Set the Autohealing health check to healthy (HTTP)
+- D. Create a managed instance group. Verify that the autoscaling setting is on.
+
+Resposta correta:
+C. Create a managed instance group. Set the Autohealing health check to healthy (HTTP)
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ReyBan Highly Voted  1 year, 3 months ago
+C, Agreed
+reference : https://cloud.google.com/compute/docs/tutorials/high-availability-autohealing
+Pro Tip: Use separate health checks for load balancing and for autohealing. Health checks for load balancing detect unresponsive instances and direct traffic away from them. Health checks for autohealing detect and recreate failed instances, so they should be less aggressive than load balancing health checks. Using the same health check for these services would remove the distinction between unresponsive instances and failed instances, causing unnecessary latency and unavailability for your users.
+   upvoted 96 times
+ ashrafh 4 years, 5 months ago
+I also vote for C
+go to gcp console create a httpa load balancer and in the health check settings take your mouse to question mark it says
+"""Ensures that requests are sent only to instances that are up and running"""
+so its not recreating, if the vm not working it redirect to one which work.
+go to gpc console create MIG and check the questions mark of Autohealing health check settings it says
+"""Autohealing allows recreating VM instances when needed. You can use a health check to recreate a VM instance if the health check finds it unresponsive. If you don't select a health check, Compute Engine will recreate VM instances only when they're not running."""
+hope this help :)
+   upvoted 28 times
+
+2. Anonymous: bryanchew Highly Voted  5 years, 9 months ago
+A. Create an HTTP load balancer with a backend configuration that references an existing instance group. Set the health check to healthy(HTTP)
+This is a possible answer. This answer assumes that the existing backend is configured correctly.
+B. Create an HTTP load balancer with a backend configuration that references an existing instance group. Define a balancing mode and set the maximum RPS to 10.
+This is a possible answer. This answer assumes that the existing backend is configured correctly. This answer adds an additional step over answer A.
+C. Create a managed instance group. Set the Autohealing health check to healthy(HTTP)
+This is only a partial solution. The default configuration is auto scaling enabled. You still need to create the HTTP Load Balancer.
+D. Create a managed instance group. Verify that the auto scaling setting is on.
+This is only a partial solution. Creating a Managed Instance Group with Auto Scaling is required, but you still need to create the HTTP Load Balancer.
+Therefore the best answer is A in my opinion.
+   upvoted 23 times
+ koniec 5 years, 2 months ago
+It's A.
+Managed group already exists so create a LB with health checks.
+If you go for C, you will have to create a LB anyway so it's more steps to achieve the goal
+   upvoted 1 times
+ tavva_prudhvi 4 years, 9 months ago
+https://www.youtube.com/watch?v=dT7xDEtALPQ&list=PLIivdWyY5sqIij_cgINUHZDMnGjVx3rxi&index=36
+step-1: go to the instance group
+step-2: click edit
+step-3: scroll down you will see auto-healing off by default change to ON
+step-4: create a health check saying 10 seconds as CHECK INTERVAL and UNHEALTHY THRESHOLD=3
+   upvoted 8 times
+ DickDastardly 4 years, 10 months ago
+It can't be A as a load balancer does not re-create unhealthy instances, as per the requirement.
+Has to be C
+https://cloud.google.com/compute/docs/instance-groups
+   upvoted 6 times
+ Ridhanya 4 years, 1 month ago
+it cannot be option A because as you said, load balancer with the health check is already present and now the problem is simply auto healing. so we need to focus only on recreation which can happen only if option C is correct
+   upvoted 3 times
+ THutch 1 year, 4 months ago
+It can't be A or B. Question clearly states, "using the fewest possible steps" and setting up an HTTP load balancer is a long, drawn out process that requires quite a few steps and is never mentioned as part of the requirement.
+   upvoted 2 times
+Load full discussion...
+
+3. Anonymous: kewgard Most Recent  7 months, 3 weeks ago
+Selected Answer: C
+Definately C. this is the only way to create such autohealing. you create an instance group and then you choose the option for autohealing. When you do you can set a url to send a health check to and set a check interval time and timout
+   upvoted 1 times
+
+4. Anonymous: toasty 8 months, 3 weeks ago
+Selected Answer: C
+C, agree with you
+   upvoted 1 times
+
+5. Anonymous: SaiSaiA 1 year, 3 months ago
+C is the only one with the AUTOHEALING option, but it is not really correct. Remember, the GIVEN information are "a NETWORK load balancer and a group of Compute Engine Instances that run in multiple zones" which gives us an idea that the existing configuration is a target pool-based network lb.
+If we are to use the existing group of VMs, we need to choose UNMANAGED Instance Group, UNMANAGED Instance Group does not have Autohealing, only a health check. Health check only checks if VMs are responsive or not but does not re-create instances as what Autohealing and Autoscaling do.
+You can also try re-creating the scenario or check this
+https://cloud.google.com/load-balancing/docs/network/transition-to-backend-services#console
+So, if a MANAGED INSTANCE group is to be used, then you need to create an instance template and use it for your MIG. Ofc, you cannot use the existing VMs, then you create a new load balancer. Ofc, the existing group of VMs mentioned in the question will no longer be used but rather a new set of VMs based on the instance template will be created. The choices should be updated.
+   upvoted 2 times
+
+6. Anonymous: Buruguduystunstugudunstuy 1 year, 3 months ago
+Selected Answer: C
+Option C is correct because creating a managed instance group allows you to use autohealing to automatically recreate VMs that are unresponsive after 3 attempts of 10 seconds each. You can set the Autohealing health check to healthy (HTTP) to specify the health check that determines whether the instances are considered healthy or not. If an instance becomes unresponsive, Autohealing will recreate the instance and attach it to the managed instance group.
+https://cloud.google.com/compute/docs/instance-groups/autohealing-instance-groups
+   upvoted 2 times
+ Shivangi30 2 years, 7 months ago
+The link url is invalid
+   upvoted 1 times
+
+7. Anonymous: YourCloudGuru 1 year, 3 months ago
+The correct answer is C.
+Managed instance groups are groups of homogeneous Compute Engine instances that are managed as a single entity. They can be used to distribute traffic across multiple instances and to provide high availability.
+Autohealing is a feature of managed instance groups that automatically replaces instances that fail health checks. You can configure autohealing to recreate instances if they are unresponsive after a certain number of attempts.
+To configure autohealing for network load balancing, you need to create a managed instance group and set the Autohealing health check to healthy (HTTP). The health check will periodically probe the instances in the group to see if they are responding. If an instance fails the health check, autohealing will recreate it.
+   upvoted 1 times
+
+8. Anonymous: harsh5kalsait 1 year, 3 months ago
+Option C correct C. Create a managed instance group. Set the Autohealing health check to healthy (HTTP)
+Explanation:
+* Managed Instance Groups (MIGs) are specifically designed for managing and scaling groups of instances. They offer features like autohealing, load balancing, and autoscaling.
+* Autohealing is a key feature of MIGs that allows you to automatically recreate unhealthy instances based on health checks.
+Why other options are incorrect:
+* A and B involve creating an HTTP load balancer, which is not directly related to autohealing. Load balancers distribute traffic but do not handle instance health checks and recreation.
+* D only creates a managed instance group and verifies autoscaling, which is not sufficient for autohealing. Autohealing requires a health check configuration.
+By choosing option C, you directly address the requirements of configuring autohealing for a group of Compute Engine instances with the fewest possible steps.
+   upvoted 1 times
+
+9. Anonymous: errorfetch 1 year, 4 months ago
+Selected Answer: C
+here we clearly need auto healing capability so C is correct.
+   upvoted 1 times
+
+10. Anonymous: boydocarta 1 year, 5 months ago
+C, Agreed
+Pro Tip: Use separate health checks for load balancing and for autohealing. Health checks for load balancing detect unresponsive instances and direct traffic away from them. Health checks for autohealing detect and recreate failed instances, so they should be less aggressive than load balancing health checks. Using the same health check for these services would remove the distinction between unresponsive instances and failed instances, causing unnecessary latency and unavailability for your users.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #5
+
+Pergunta:
+You are using multiple configurations for gcloud. You want to review the configured Kubernetes Engine cluster of an inactive configuration using the fewest possible steps. What should you do?
+
+Alternativas:
+- A. Use gcloud config configurations describe to review the output.
+- B. Use gcloud config configurations activate and gcloud config list to review the output.
+- C. Use kubectl config get-contexts to review the output.
+- D. Use kubectl config use-context and kubectl config view to review the output.
+
+Resposta correta:
+D. Use kubectl config use-context and kubectl config view to review the output.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: zukko78 Highly Voted  5 years, 8 months ago
+D is correct
+   upvoted 46 times
+ nhusain 4 years, 8 months ago
+https://medium.com/google-cloud/kubernetes-engine-kubectl-config-b6270d2b656c
+explains it well
+   upvoted 11 times
+
+2. Anonymous: poogcp Highly Voted  5 years, 7 months ago
+C is correct , Use kubectl config get-contexts to review the output : shows the clusters and the configurations and based on the output we can identify the inactive configurations
+   upvoted 25 times
+ Gurnoor 5 years, 7 months ago
+This is wrong get-contexts does not show clusters it only shows contexts.
+   upvoted 11 times
+ jilly 5 years, 6 months ago
+True .
+Will give only below results
+kubectl config get-contexts
+CURRENT NAME CLUSTER AUTHINFO NAMESPACE
+* white white dazwilkin
+black black dazwilkin
+   upvoted 1 times
+ fracila 3 years, 2 months ago
+kubectl config get-contexts displays a list of contexts as well as the clusters that use them. Here's a sample output.
+   upvoted 2 times
+
+3. Anonymous: yves95 Most Recent  1 week ago
+Selected Answer: A
+Correct
+   upvoted 1 times
+
+4. Anonymous: Vismaya 3 weeks ago
+Selected Answer: A
+A is correct
+   upvoted 1 times
+
+5. Anonymous: SKSINDIAN 3 weeks, 4 days ago
+Selected Answer: A
+kubectl only shows the configuraiton after the gcloud container clusters get-credential, so we shoudl use the gcloud config command
+   upvoted 1 times
+
+6. Anonymous: Arshad1812 5 months, 1 week ago
+Selected Answer: A
+A is correct.
+gcloud config configurations describe
+This command lets you inspect the details of any configuration (active or inactive) without switching.
+   upvoted 2 times
+
+7. Anonymous: Hismajesty 6 months, 2 weeks ago
+Selected Answer: A
+This command enables you to view the settings, including cluster details, of the inactive configuration without activating it. This approach is the most efficient and concise method for inspection. Keep in mind that all kubectl commands will only display Kubernetes contexts after switching to them, not Google Cloud configurations. To improve your understanding of gcloud, you can activate the interactive help mode by using the command `gcloud beta interactive`.
+   upvoted 2 times
+
+8. Anonymous: kewgard 7 months, 3 weeks ago
+Selected Answer: A
+A. As the kubectl just read you local .kubectl config file. the question was about gcloud configuration of a k8s cluster. As its not active must use describe.
+   upvoted 2 times
+
+9. Anonymous: kewgard 7 months, 3 weeks ago
+Selected Answer: A
+This command shows the settings (including the cluster) of the inactive configuration without needing to activate it. This is the most efficient and minimal way to inspect it. All the kubectl commands will only show k8s contexts (once you switch to it) not the gcloud configurations . turn on gcloud interactive help mode - gcloud beta interative - this will help you learn gcloud
+   upvoted 1 times
+
+10. Anonymous: MuhannadYW 8 months ago
+Selected Answer: A
+Why C and D are not ideal:
+They assume that the inactive config already updated the kubectl context, which may not be true.
+kubectl config get-contexts only shows kubeconfig contexts, not gcloud config clusters.
+kubectl config use-context and kubectl config view affect your active kubeconfig, which can break workflows if misused.
+They require the config to have been previously used and exported to kubeconfig (i.e., gcloud container clusters get-credentials must have been run).
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #6
+
+Pergunta:
+Your company uses Cloud Storage to store application backup files for disaster recovery purposes. You want to follow Google's recommended practices. Which storage option should you use?
+
+Alternativas:
+- A. Multi-Regional Storage
+- B. Regional Storage
+- C. Nearline Storage
+- D. Coldline Storage
+
+Resposta correta:
+D. Coldline Storage
+
+Top 10 Discussões (sem replies):
+1. Anonymous: poogcp Highly Voted  5 years, 7 months ago
+Best Answer is " Archive Storage "
+https://cloud.google.com/storage/docs/storage-classes
+But as per the given option next best solution is " Coldline Storage"
+   upvoted 75 times
+ Mutune 4 years, 10 months ago
+Perfectly stated
+   upvoted 7 times
+ toasty 8 months, 3 weeks ago
+Archive storage requires a lot of time to access files, and we are dealing with backups (we require fast acess times to restore service)
+   upvoted 2 times
+ Sami_27 1 year, 3 months ago
+No, archive storage might not be the correct choice as we need to consider the access time. Coldline Storage provides relatively faster access times compared to Archive Storage, which is important if you need to recover data quickly in a disaster scenario.
+Coldline Storage: Fits well with disaster recovery use cases where data is infrequently accessed but needs to be available relatively quickly if a disaster occurs.
+   upvoted 4 times
+
+2. Anonymous: zukko78 Highly Voted  5 years, 8 months ago
+D is correct,
+Coldline Storage COLDLINE 90 days
+99.95% in multi-regions and dual-regions
+99.9% in regions
+   upvoted 14 times
+
+3. Anonymous: NetExpert Most Recent  2 weeks ago
+Selected Answer: D
+Coldline Storage: Fits well with disaster recovery use cases where data is infrequently accessed but needs to be available relatively quickly if a disaster occurs.
+   upvoted 1 times
+
+4. Anonymous: sandipsmenon 4 months ago
+Selected Answer: D
+The Keyword here is backup here. Coldline is designed for disaster recovery and long-term archival.
+   upvoted 2 times
+
+5. Anonymous: AgentR 5 months, 3 weeks ago
+Selected Answer: D
+Best Answer is Coldline. Please dont use to much of brain to answer this question. The question is very vague and assuming something is where most people got it wrong.
+Question is clear.
+Disaster recovery and best practices.
+Option A is eliminated since we need that kind of storage for frequent retrieval.
+Option D is best since data is retrived only when we have a DR scenario and it happen once in a blue moon.
+DO NOT PUT LOT OF THINKING. JUST READ THE QUESTION AND DONT ASSUME ANYTHING
+   upvoted 3 times
+
+6. Anonymous: ucanmanda 5 months, 3 weeks ago
+Selected Answer: A
+It is Coldline Storage because question says that which Cloud Storage that you need. Not a Method that you have used.
+   upvoted 1 times
+
+7. Anonymous: SayujM 7 months, 1 week ago
+Selected Answer: A
+Went of searching online and read that a full disaster recovery plan also considers:
+1) Recovery Point Objective (RPO): This is the maximum amount of data (measured in time) that you are willing to lose in a disaster. For backups, your RPO dictates how frequently you need to create them.
+2) Recovery Time Objective (RTO): This is the maximum amount of time that can pass after a disaster before your application or system must be available again. Your RTO influences how quickly you can restore your backups.
+hence we would want data to be highly available & also reasonably quick to retrieve when a disaster strikes. Considering that option of Multi-regional Standard Storage makes the most sense.
+   upvoted 1 times
+
+8. Anonymous: Kessel 8 months, 3 weeks ago
+Selected Answer: A
+It doesn't say that we want the most economical solution. Given that multi-regional provides instant failover and availability, I would go with A. Certainly not D, because there is too much of a delay in getting back your data for retrieval.
+   upvoted 1 times
+
+9. Anonymous: AbsurdDragon 10 months, 3 weeks ago
+Selected Answer: A
+DR needs to be tested when you do pentesting
+DR needs to be sanity checked at some frequency depending on the importance of your app.
+DR needs to be kept up to date with your app changes - regular snapshots and writes.
+Coldline is too expensive for regular writes and as needed reads.
+DR needs to be there when something catastrophic happens (or not too bad). If there's a hurricane in North Carolina that knocks google's DC out - and both your app and DR were hosted there - that sucks, ideally you should have had your DR in a couple of different regions.
+Thus A - multi region is the answer
+   upvoted 1 times
+
+10. Anonymous: Joseph_Covaro 11 months, 1 week ago
+Selected Answer: D
+I believe Coldline Storage is the answer in absence of Archive Storage. Note how the bucket is responsible for disaster recovery, meaning it should already be in a different region from our operational data, therefore making Multi-Regional-Storage unnecessary.
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #7
+
+Pergunta:
+Several employees at your company have been creating projects with Cloud Platform and paying for it with their personal credit cards, which the company reimburses. The company wants to centralize all these projects under a single, new billing account. What should you do?
+
+Alternativas:
+- A. Contact cloud-billing@google.com with your bank account details and request a corporate billing account for your company.
+- B. Create a ticket with Google Support and wait for their call to share your credit card details over the phone.
+- C. In the Google Platform Console, go to the Resource Manage and move all projects to the root Organizarion.
+- D. In the Google Cloud Platform Console, create a new billing account and set up a payment method.
+
+Resposta correta:
+D. In the Google Cloud Platform Console, create a new billing account and set up a payment method.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: samcat84 Highly Voted  5 years, 7 months ago
+C is incomplete. Moving projects under an organisation doesn't change their linked billing project.
+https://cloud.google.com/resource-manager/docs/migrating-projects-billing
+----
+Note: The link between projects and billing accounts is preserved, irrespective of the hierarchy. When you move your existing projects into the organization they will continue to work and be billed as they used to before the migration, even if the corresponding billing account has not been migrated yet.
+----
+D is incomplete as well, after setting the billing account in the organisation you need to link the projects to the new billing account.
+   upvoted 58 times
+ sarahf 5 years, 1 month ago
+I agree that neither C or D is correct. I did the cert a month ago and this question was not on it. Although a similar question about how to change the payment method from your own card in your project to to the company's "card". So they might have removed this one.
+   upvoted 3 times
+ ehizren 4 years, 11 months ago
+What's was the answer your chose for your particular exam question?
+   upvoted 7 times
+ GokulVelusaamy 3 years, 2 months ago
+We need to add a new payment method and need to set that as Primary, post that we need to remove the previous one
+"If you want to remove a payment method, you should add a new payment method first."
+Refer : https://cloud.google.com/billing/docs/how-to/payment-methods
+   upvoted 2 times
+ Raz0r 3 years, 11 months ago
+The given answers make D the only possible solution. C can not be right, you all need to look it up here: https://cloud.google.com/resource-manager/docs/project-migration#change_billing_account
+   upvoted 3 times
+ ryumada 3 years, 5 months ago
+This link explains clearly that move a project won't affect billing.
+https://cloud.google.com/resource-manager/docs/project-migration#permissions-billing
+   upvoted 3 times
+
+2. Anonymous: poogcp Highly Voted  5 years, 7 months ago
+C is correct Answer. there will be 1 billing account for the organization and all projects under that organization are linked to single billing account.
+   upvoted 18 times
+ arathefu 3 years, 10 months ago
+https://cloud.google.com/resource-manager/docs/project-migration#change_billing_account
+"Moving a project from one organization to another won't impact billing, and charges will continue against the old billing account. "
+   upvoted 7 times
+ Neha_Pallavi 2 years, 6 months ago
+The question is under the organization different projects are maintained the different cloud platforms.all the different project should single corporate bill account instead of the employee billing account. So try to update the corporate bill account details and mark it as primary for the all projects, post that employee account details need to removed. So suitable recomanded option is D
+   upvoted 1 times
+
+3. Anonymous: sandipsmenon Most Recent  4 months ago
+Selected Answer: D
+C → Partially correct (you may move projects under the org for management), but this doesn’t set up billing. That’s about resource hierarchy, not payment.
+D → Correct. The recommended practice is to create a new billing account in the Google Cloud Console, attach a corporate payment method, and then link projects to this billing account.
+   upvoted 1 times
+
+4. Anonymous: MuhannadYW 8 months ago
+Selected Answer: D
+D. In the Google Cloud Platform Console, create a new billing account and set up a payment method
+Explanation:
+To centralize billing across multiple Google Cloud projects, the company should:
+Create a new corporate billing account in the Google Cloud Console.
+Add a corporate payment method (like a company credit card or bank account).
+Reassign each project to the new billing account via the Billing section in the console.
+   upvoted 1 times
+
+5. Anonymous: psyll0n 1 year, 2 months ago
+D is the correct answer!
+   upvoted 1 times
+ psyll0n 1 year, 2 months ago
+Consolidate multiple Billing Accounts into your main Billing Accounts.
+1. First identify your main Billing Accounts and the projects you want to link to those billing accounts.
+2. Link or move existing projects onto your main Billing Accounts.
+Reference: https://cloud.google.com/billing/docs/onboarding-checklist
+   upvoted 1 times
+
+6. Anonymous: Makar 1 year, 2 months ago
+Answer is correct (D)
+1.Create a New Billing Account: Go to the "Billing" section in the Google Cloud Platform Console. Follow the instructions to set up a new billing account. During this process, you will specify the payment method that the company prefers to use, such as a corporate credit card or bank account.
+2.Associate Projects with the New Billing Account: Once the billing account is created, you can then link all existing projects to this centralized billing account. This is done under the “Billing” section for each project, where you can change the billing account associated with the project.
+   upvoted 1 times
+
+7. Anonymous: Buruguduystunstugudunstuy 1 year, 3 months ago
+Selected Answer: D
+Option A is incorrect because you cannot request a corporate billing account by emailing cloud-billing@google.com. This email address is for general billing inquiries and support.
+Option B is incorrect because you cannot create a ticket with Google Support to share your credit card details over the phone. To set up a payment method for a billing account, you must do it through the Google Cloud Platform Console.
+Option C is incorrect because moving projects to the root organization will not create a new billing account. You must first create a new billing account and then move the projects to the root organization to ensure that they are all billed to the same billing account.
+Therefore, the correct answer is Option D.
+https://cloud.google.com/billing/docs/how-to/manage-billing-account#create_a_new_billing_account
+   upvoted 5 times
+
+8. Anonymous: YourCloudGuru 1 year, 3 months ago
+Selected Answer: D
+The correct answer is D. You have to follow the complete steps to successfully:
+1. Create a new Billing Account
+2. Move the existing projects into the new billing account
+3. Cancel the earlier billing accounts of individual projects
+This would meet all the requirements in the question - to centrally have all the projects under a single billing account.
+   upvoted 4 times
+
+9. Anonymous: Nido1919 1 year, 4 months ago
+D is correct,
+"get-contexts" shows us our Kubernetes cluster contexts, that's right. But the question says that you want to review the cluster itself, so you need to use-context to get into the cluster. Answer A: Using `gcloud config configurations described` will only show you the details of the current configuration, not the Kubernetes Engine cluster of an inactive configuration. Answer B: Using `gcloud config configurations activate` and `gcloud config list` to review the output will only show you the list of configurations and activate one of them, but it won't provide you with the details of the Kubernetes Engine cluster of an inactive configuration. Answer C: Using `kubectl config get-contexts` will only list the available contexts, including their clusters, but it won't provide you with the details of the Kubernetes Engine cluster of an inactive configuration.
+   upvoted 1 times
+
+10. Anonymous: Nido1919 1 year, 4 months ago
+Correct Answer is D
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #8
+
+Pergunta:
+You have an application that looks for its licensing server on the IP 10.0.3.21. You need to deploy the licensing server on Compute Engine. You do not want to change the configuration of the application and want the application to be able to reach the licensing server. What should you do?
+
+Alternativas:
+- A. Reserve the IP 10.0.3.21 as a static internal IP address using gcloud and assign it to the licensing server.
+- B. Reserve the IP 10.0.3.21 as a static public IP address using gcloud and assign it to the licensing server.
+- C. Use the IP 10.0.3.21 as a custom ephemeral IP address and assign it to the licensing server.
+- D. Start the licensing server with an automatic ephemeral IP address, and then promote it to a static internal IP address.
+
+Resposta correta:
+A. Reserve the IP 10.0.3.21 as a static internal IP address using gcloud and assign it to the licensing server.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Khaled_Rashwan Highly Voted  5 years, 8 months ago
+A
+IP 10.0.3.21 is internal by default, and to ensure that it will be static non-changing it should be selected as static internal ip address.
+   upvoted 31 times
+ riccamini 3 years, 2 months ago
+How do you know it is internal by default?
+   upvoted 1 times
+ yeanlingmedal71 3 years, 1 month ago
+https://cloud.google.com/vpc/docs/subnets#valid-ranges
+   upvoted 6 times
+
+2. Anonymous: zukko78 Highly Voted  5 years, 8 months ago
+it's obvious, A
+   upvoted 24 times
+
+3. Anonymous: Buruguduystunstugudunstuy Most Recent  1 year, 3 months ago
+Selected Answer: A
+The correct answer is Option A.
+To deploy the licensing server on Compute Engine and ensure that the application can reach it, you should reserve the IP 10.0.3.21 as a static internal IP address and assign it to the licensing server.
+By reserving IP 10.0.3.21 as a static internal IP address, you can ensure that the application can reach the licensing server at that IP address without changing the application's configuration.
+To reserve the IP 10.0.3.21 as a static internal IP address and assign it to a Compute Engine instance using gcloud, you can use the following command:
+gcloud compute instances create [INSTANCE_NAME] --address [IP_ADDRESS] --no-address
+Replace [INSTANCE_NAME] with the name of the Compute Engine instance that you want to create, and [IP_ADDRESS] with the desired static internal IP address (in this case, 10.0.3.21).
+The --no-address flag specifies that the instance should not be assigned a public IP address.
+   upvoted 5 times
+
+4. Anonymous: YourCloudGuru 1 year, 3 months ago
+Selected Answer: A
+The correct answer is A. Reserve the IP 10.0.3.21 as a static internal IP address using gcloud and assign it to the licensing server.
+To reserve a static internal IP address, you can use the gcloud command-line tool. For example, to reserve the IP address 10.0.3.21, you would run the following command:
+gcloud compute addresses reserve 10.0.3.21
+Once you have reserved the static internal IP address, you can assign it to the licensing server by running the following command:
+gcloud compute instances set-address licensing-server --address 10.0.3.21
+Once you have assigned the static internal IP address to the licensing server, the application will be able to reach it using that IP address.
+   upvoted 4 times
+
+5. Anonymous: harsh5kalsait 1 year, 5 months ago
+Correct A: Due to an Application licensing server on the Static IP 10.0.3.21. You need to deploy the licensing server on Compute Engine. You do not want to change the configuration of the application and want the application to be able to reach the licensing server.
+   upvoted 1 times
+
+6. Anonymous: sam422 1 year, 7 months ago
+D
+Application Compatibility: It maintains the application's existing configuration looking for the IP 10.0.3.21 (assumed to be an internal address).
+Static IP: Promoting the ephemeral IP to static ensures the licensing server retains the 10.0.3.21 address even after restarts.
+   upvoted 1 times
+
+7. Anonymous: subha.elumalai 1 year, 8 months ago
+Correct Answer is A
+   upvoted 1 times
+
+8. Anonymous: vipuldhage 2 years ago
+I agree that we should not expose the licensing server to the internet. But at the same time the in the question it is not mentioned that the application is deployed in the gcp environment.
+   upvoted 5 times
+
+9. Anonymous: BAofBK 2 years, 2 months ago
+The correct answer is A
+   upvoted 1 times
+
+10. Anonymous: Evan7557 2 years, 3 months ago
+A is Right Ans
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #9
+
+Pergunta:
+You are deploying an application to App Engine. You want the number of instances to scale based on request rate. You need at least 3 unoccupied instances at all times. Which scaling type should you use?
+
+Alternativas:
+- A. Manual Scaling with 3 instances.
+- B. Basic Scaling with min_instances set to 3.
+- C. Basic Scaling with max_instances set to 3.
+- D. Automatic Scaling with min_idle_instances set to 3.
+
+Resposta correta:
+D. Automatic Scaling with min_idle_instances set to 3.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: zukko78 Highly Voted  5 years, 8 months ago
+D is correct.
+App Engine supports the following scaling types, which controls how and when instances are created:
+Automatic
+Basic
+Manual
+You specify the scaling type in your app's app.yaml.
+Automatic scaling
+Automatic scaling creates instances based on request rate, response latencies, and other application metrics. You can specify thresholds for each of these metrics, as well as a minimum number instances to keep running at all times.
+   upvoted 54 times
+ vincent2023 2 years, 4 months ago
+https://cloud.google.com/appengine/docs/legacy/standard/python/how-instances-are-managed
+   upvoted 3 times
+
+2. Anonymous: Finger41 Highly Voted  4 years, 8 months ago
+D is correct : https://cloud.google.com/appengine/docs/standard/go/config/appref
+"App Engine calculates the number of instances necessary to serve your current application traffic based on scaling settings such as target_cpu_utilization and target_throughput_utilization. Setting min_idle_instances specifies the number of instances to run in addition to this calculated number. For example, if App Engine calculates that 5 instances are necessary to serve traffic, and min_idle_instances is set to 2, App Engine will run 7 instances (5, calculated based on traffic, plus 2 additional per min_idle_instances)."
+   upvoted 17 times
+
+3. Anonymous: kewgard Most Recent  7 months, 3 weeks ago
+Selected Answer: D
+D. As setting min idle will provide you the min 3 unoccupied instances at all times. A : is manual so not recommeneded, setting min and max instances will not provide 'at least 3 unnoccupied inatances - as per the question requirement.
+   upvoted 2 times
+
+4. Anonymous: djmanvaro 1 year ago
+Selected Answer: D
+it is correct
+   upvoted 1 times
+
+5. Anonymous: Makar 1 year, 2 months ago
+Answer D is correct
+min_idle_instances set to 3: Setting the min_idle_instances to 3 ensures that there are always at least 3 instances ready and waiting to handle incoming requests. This setting helps in managing sudden spikes in traffic by reducing latency, as these instances do not require any spin-up time
+   upvoted 1 times
+
+6. Anonymous: Buruguduystunstugudunstuy 1 year, 3 months ago
+Selected Answer: D
+The correct answer is Option D.
+To scale the number of instances based on request rate and ensure that there are always at least 3 unoccupied instances, you should use Automatic Scaling with min_idle_instances set to 3.
+Automatic Scaling automatically scales the number of instances based on request rate and other metrics, such as CPU and memory utilization. By setting min_idle_instances to 3, you can ensure that the instance group maintains at least 3 idle instances at all times, ready to handle incoming requests.
+   upvoted 2 times
+
+7. Anonymous: YourCloudGuru 1 year, 3 months ago
+Selected Answer: D
+The correct answer is D. Automatic Scaling with min_idle_instances set to 3. By setting min_idle_instances to 3, you can ensure that there are always at least 3 instances available to handle new requests. The other options are not as good:
+A. Manual Scaling requires you to manually adjust the number of instances running your application.
+B. Basic Scaling is a simpler version of Automatic Scaling. It automatically scales the number of instances based on request rate, but it does not allow you to specify the minimum number of idle instances. This means that there is no guarantee that there will always be at least 3 instances available to handle new requests.
+C. The max_instances setting specifies the maximum number of instances to keep running. By setting max_instances to 3, you are limiting the number of instances that your application can scale to. This is not ideal, especially if your application experiences sudden spikes in traffic.
+   upvoted 6 times
+
+8. Anonymous: JoniMONI 1 year, 3 months ago
+Selected Answer: D
+D. Automatic Scaling with min_idle_instances set to 3.
+Automatic scaling adjusts the number of instances based on the request rate, while maintaining a minimum number of instances available. By setting min_idle_instances to 3, you ensure that at least 3 instances are running and available to handle requests, even when the request rate is low.
+Manual scaling allows you to set a fixed number of instances, but does not automatically adjust based on the request rate. Basic scaling adjusts the number of instances based on the request rate, but does not allow you to set a minimum number of idle instances.
+In order to keep at least 3 instances running and ready to handle requests, Automatic scaling with min_idle_instances set to 3 is the correct option.
+   upvoted 4 times
+
+9. Anonymous: subha.elumalai 1 year, 8 months ago
+Correct Answer: D
+Reference:
+https://cloud.google.com/appengine/docs/standard/python/how-instances-are-managed
+   upvoted 1 times
+
+10. Anonymous: thewalker 2 years, 1 month ago
+D.
+As per, https://cloud.google.com/appengine/docs/legacy/standard/python/how-instances-are-managed#scaling_types
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #10
+
+Pergunta:
+You have a development project with appropriate IAM roles defined. You are creating a production project and want to have the same IAM roles on the new project, using the fewest possible steps. What should you do?
+
+Alternativas:
+- A. Use gcloud iam roles copy and specify the production project as the destination project.
+- B. Use gcloud iam roles copy and specify your organization as the destination organization.
+- C. In the Google Cloud Platform Console, use the 'create role from role' functionality.
+- D. In the Google Cloud Platform Console, use the 'create role' functionality and select all applicable permissions.
+
+Resposta correta:
+A. Use gcloud iam roles copy and specify the production project as the destination project.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: coldpar Highly Voted  5 years, 10 months ago
+Correct Answer is A not B
+   upvoted 43 times
+
+2. Anonymous: Agents89 Highly Voted  5 years, 8 months ago
+Correct answer is A
+   upvoted 24 times
+
+3. Anonymous: kewgard Most Recent  7 months, 3 weeks ago
+Selected Answer: A
+A. as this command exists and its inputs the destination project are a parameter. Also B would copy to the whole org with is bad. C does not exist and D is a lot or work.
+   upvoted 1 times
+
+4. Anonymous: MuhannadYW 8 months ago
+Selected Answer: C
+Why C is correct:
+The "create role from role" feature in the GCP Console allows you to quickly create a new custom role by cloning an existing one, even across different projects.
+This minimizes effort and prevents errors compared to manually selecting permissions again.
+   upvoted 1 times
+
+5. Anonymous: ChristN 1 year, 3 months ago
+Selected Answer: A
+A could be possible if we were talking about organization in the question, But here, it's clearly specified "*project*"
+"You have a development project with appropriate IAM roles defined. You are creating a production project and want to have the same IAM roles on the new project, using the fewest possible steps."
+from google doc: https://cloud.google.com/sdk/gcloud/reference/iam/roles/copy
+EXAMPLES
+To create a copy of an existing role spanner.databaseAdmin into an organization with 1234567, run:
+gcloud iam roles copy --source="roles/spanner.databaseAdmin" --destination=CustomViewer --dest-organization=1234567
+To create a copy of an existing role spanner.databaseAdmin into a project with PROJECT_ID, run:
+gcloud iam roles copy --source="roles/spanner.databaseAdmin" --destination=CustomSpannerDbAdmin --dest-project=PROJECT_ID
+   upvoted 4 times
+
+6. Anonymous: Buruguduystunstugudunstuy 1 year, 3 months ago
+Selected Answer: A
+The correct answer is Option A.
+To create the same IAM roles in a production project as in a development project, using the fewest possible steps, you can use the gcloud iam roles copy command and specify the production project as the destination project.
+The `gcloud iam roles copy` command allows you to copy IAM roles between projects or organizations. By specifying the production project as the destination project, you can copy the IAM roles from the development project to the production project.
+Option B is incorrect because specifying your organization as the destination organization will copy the IAM roles to all projects within the organization, which is not what you want.
+   upvoted 9 times
+
+7. Anonymous: YourCloudGuru 1 year, 3 months ago
+Selected Answer: A
+The correct answer is A. Use gcloud iam roles copy and specify the production project as the destination project.
+The gcloud iam roles copy command copies a role from one project to another. To use this command, you will need to know the name of the role that you want to copy and the name of the destination project.
+For example, to copy the role roles/compute.instanceAdmin from the project my-dev-project to the project my-prod-project, you would run the following command:
+gcloud iam roles copy roles/compute.instanceAdmin my-dev-project my-prod-project
+This command will copy the role roles/compute.instanceAdmin to the project my-prod-project. The role will have the same permissions in the production project as it does in the development project.
+   upvoted 7 times
+
+8. Anonymous: Amolbhombe 1 year, 7 months ago
+Selected Answer: A
+Correct answer is A
+   upvoted 3 times
+
+9. Anonymous: sidobill 1 year, 7 months ago
+Selected Answer: A
+A is right. B will propagate for all projects, not desired as per case description
+   upvoted 2 times
+
+10. Anonymous: subha.elumalai 1 year, 8 months ago
+Correct Answer: B
+Reference:
+https://cloud.google.com/sdk/gcloud/reference/iam/roles/copy
+   upvoted 1 times
+ sidobill 1 year, 7 months ago
+the exact same link shows A as right one. If you set dest org for it, it will inherint for all other projects.
+   upvoted 2 times
+==============================

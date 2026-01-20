@@ -1,0 +1,567 @@
+==============================
+Page X — Question #261
+
+Pergunta:
+You are in charge of provisioning access for all Google Cloud users in your organization. Your company recently acquired a startup company that has their own Google Cloud organization. You need to ensure that your Site Reliability Engineers (SREs) have the same project permissions in the startup company's organization as in your own organization. What should you do?
+
+Alternativas:
+- A. In the Google Cloud console for your organization, select Create role from selection, and choose destination as the startup company's organization.
+- B. In the Google Cloud console for the startup company, select Create role from selection and choose source as the startup company's Google Cloud organization.
+- C. Use the gcloud iam roles copy command, and provide the Organization ID of the startup company's Google Cloud Organization as the destination.
+- D. Use the gcloud iam roles copy command, and provide the project IDs of all projects in the startup company's organization as the destination.
+
+Resposta correta:
+C. Use the gcloud iam roles copy command, and provide the Organization ID of the startup company's Google Cloud Organization as the destination.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: halifax 1 year ago
+If the correct answer is C ? How do you do it on the 'gcloud cli' command? I only know how to do it using project ID - can you do it using org ID?
+gcloud iam roles copy \
+--source="roles/<source_role_id>" \
+--destination=<destination_role_name> \
+--dest-project=<destination_project_id>
+I think, the 'gcloud cli ' command only copies roles from one organization to another within Google Cloud using project ID, not org ID!
+   upvoted 1 times
+
+2. Anonymous: yomi95 1 year, 3 months ago
+I'm confused between C and D, both use "gcloud iam roles copy" which is required for this scenario, but most voted answer is C while I'm unsure why giving project level permission is incorrect. According to lease privilege SRE should be okay to get permission project by project which is a hassle than C but it is not incorrect and can be done.
+Anyone pls correct me or give a link to an official document.
+   upvoted 1 times
+ yomi95 1 year, 3 months ago
+According to Gemini (Couldn't find official source) below is correct which means D is also possible answer. in the question is does not say fewest steps or best practice method.
+gcloud iam roles copy --source-organization=organizations/123456789 --destination-projects=projects/project1,projects/project2,projects/project3 --role-ids=roles/compute.admin,roles/storage.objectViewer
+   upvoted 2 times
+ denno22 1 year, 3 months ago
+We could have a large number of projects, so copying by project may not be practical. Therefore copying by organisation is fewest steps.
+Also just copying to all projects gives the same result as copying by organisation, but involves more steps.
+   upvoted 1 times
+
+3. Anonymous: Cristianssenn 1 year, 8 months ago
+The keys in question are SRE and project permissions. Choosing C will copy all your organization IAM permissions and not the only ones defined for SRE at project level.
+So, the correct answer is D.
+   upvoted 1 times
+ iooj 1 year, 4 months ago
+--dest-project=DEST_PROJECT - the project of the destination role.
+We cannot specify all projects. So, I think that's the trick here.
+   upvoted 2 times
+
+4. Anonymous: Matheus_1346 1 year, 8 months ago
+Selected Answer: C
+The correct one is C
+   upvoted 1 times
+
+5. Anonymous: PiperMe 1 year, 10 months ago
+Selected Answer: C
+C. The gcloud iam roles copy command is designed specifically for copying IAM roles between different resources, including organizations.
+   upvoted 4 times
+
+6. Anonymous: KelvinToo 2 years ago
+Selected Answer: C
+Per ChatGPT, Option C is the correct choice for achieving consistency in project permissions across both organizations by leveraging the gcloud iam roles copy command and providing the Organization ID of the startup company's Google Cloud Organization as the destination.
+   upvoted 2 times
+
+7. Anonymous: shiowbah 2 years ago
+C. Use the gcloud iam roles copy command, and provide the Organization ID of the startup company's Google Cloud Organization as the destination.
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #262
+
+Pergunta:
+You need to extract text from audio files by using the Speech-to-Text API. The audio files are pushed to a Cloud Storage bucket. You need to implement a fully managed, serverless compute solution that requires authentication and aligns with Google-recommended practices. You want to automate the call to the API by submitting each file to the API as the audio file arrives in the bucket. What should you do?
+
+Alternativas:
+- A. Create an App Engine standard environment triggered by Cloud Storage bucket events to submit the file URI to the Google Speech-to-TextAPI.
+- B. Run a Kubernetes job to scan the bucket regularly for incoming files, and call the Speech-to-Text API for each unprocessed file.
+- C. Run a Python script by using a Linux cron job in Compute Engine to scan the bucket regularly for incoming files, and call the Speech-to-Text API for each unprocessed file.
+- D. Create a Cloud Function triggered by Cloud Storage bucket events to submit the file URI to the Google Speech-to-Text API.
+
+Resposta correta:
+D. Create a Cloud Function triggered by Cloud Storage bucket events to submit the file URI to the Google Speech-to-Text API.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: LaCubanita 1 year, 3 months ago
+Why not App Engine? since it's also serverless.
+   upvoted 3 times
+
+2. Anonymous: yomi95 1 year, 3 months ago
+Selected Answer: D
+Reasons-
+Serverless: Cloud Functions provide a serverless environment, eliminating the need for managing infrastructure.
+Triggered by Cloud Storage events: The Cloud Function can be triggered automatically as new audio files are added to the bucket, automating the process of submitting them to the API.
+Authentication: Cloud Functions can use service accounts to authenticate with the Speech-to-Text API, ensuring secure access.
+Fully managed: Cloud Functions handle the execution environment, scaling, and other operational aspects, reducing your management overhead.
+Google-recommended practices: Using Cloud Functions and Cloud Storage aligns with Google's recommended practices for building serverless applications.
+   upvoted 4 times
+
+3. Anonymous: pzacariasf7 1 year, 10 months ago
+Selected Answer: D
+D, as PiperMe said.
+   upvoted 1 times
+
+4. Anonymous: PiperMe 1 year, 10 months ago
+Selected Answer: D
+- Cloud Functions is serverless
+- It can be directly triggered by Cloud Storage events
+- Can integrate with the Speech-to-Text API
+   upvoted 3 times
+
+5. Anonymous: KelvinToo 2 years ago
+Selected Answer: D
+Per ChatGPT, Option D provides a serverless, scalable, and fully managed solution that aligns with Google-recommended practices for automating the extraction of text from audio files using the Speech-to-Text API in response to Cloud Storage bucket events.
+   upvoted 3 times
+
+6. Anonymous: shiowbah 2 years ago
+D. Create a Cloud Function triggered by Cloud Storage bucket events to submit the file URI to the Google Speech-to-Text API.
+   upvoted 4 times
+==============================
+
+==============================
+Page X — Question #263
+
+Pergunta:
+Your customer wants you to create a secure website with autoscaling based on the compute instance CPU load. You want to enhance performance by storing static content in Cloud Storage. Which resources are needed to distribute the user traffic?
+
+Alternativas:
+- A. An external HTTP(S) load balancer with a managed SSL certificate to distribute the load and a URL map to target the requests for the static content to the Cloud Storage backend.
+- B. An external network load balancer pointing to the backend instances to distribute the load evenly. The web servers will forward the request to the Cloud Storage as needed.
+- C. An internal HTTP(S) load balancer together with Identity-Aware Proxy to allow only HTTPS traffic.
+- D. An external HTTP(S) load balancer to distribute the load and a URL map to target the requests for the static content to the Cloud Storage backend. Install the HTTPS certificates on the instance.
+
+Resposta correta:
+A. An external HTTP(S) load balancer with a managed SSL certificate to distribute the load and a URL map to target the requests for the static content to the Cloud Storage backend.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Cynthia2023 Highly Voted  2 years ago
+Selected Answer: A
+Why D is not correct:
+Installing HTTPS Certificates on the Instance: While this approach can work, it's generally more efficient and secure to use a managed SSL certificate with the load balancer itself, rather than installing and managing certificates on each individual instance. Managing SSL certificates on the load balancer simplifies certificate management, especially in an autoscaling environment where new instances are frequently created and removed.
+   upvoted 8 times
+ yomi95 1 year, 3 months ago
+Option A: preferred.
+Uses an external HTTP(S) load balancer with a managed SSL certificate. This means that the SSL certificate is managed by Google Cloud, and you don't need to install or renew it on your compute instances. This simplifies the management of your website and ensures that it is always accessible over HTTPS.
+Option D:
+Uses an external HTTP(S) load balancer but requires you to install the HTTPS certificates on the instance. This means that you are responsible for managing and renewing the certificates, which can be more complex and time-consuming.
+   upvoted 1 times
+ kuracpalac 1 year, 10 months ago
+I'd say because the answer contains "Install the HTTPS certificates on the instance.", which is not a good way to go about things. You;d want the managed SSL cert (ans A) so that you don't have to worry about it. So A makes more sense.
+   upvoted 3 times
+
+2. Anonymous: TanTran04 Most Recent  1 year, 10 months ago
+Selected Answer: A
+Choose option A
+   upvoted 1 times
+
+3. Anonymous: KelvinToo 2 years ago
+Selected Answer: A
+ChatGPT says the answer is A.
+   upvoted 1 times
+ KelvinToo 2 years ago
+Option A aligns with the requirements of security, autoscaling, and performance optimization by leveraging Cloud Storage for static content while efficiently distributing user traffic.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #264
+
+Pergunta:
+The core business of your company is to rent out construction equipment at large scale. All the equipment that is being rented out has been equipped with multiple sensors that send event information every few seconds. These signals can vary from engine status, distance traveled, fuel level, and more. Customers are billed based on the consumption monitored by these sensors. You expect high throughput – up to thousands of events per hour per device – and need to retrieve consistent data based on the time of the event. Storing and retrieving individual signals should be atomic. What should you do?
+
+Alternativas:
+- A. Create files in Cloud Storage as data comes in.
+- B. Create a file in Filestore per device, and append new data to that file.
+- C. Ingest the data into Cloud SQL. Use multiple read replicas to match the throughput.
+- D. Ingest the data into Bigtable. Create a row key based on the event timestamp.
+
+Resposta correta:
+D. Ingest the data into Bigtable. Create a row key based on the event timestamp.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: denno22 1 year, 3 months ago
+Selected Answer: D
+https://cloud.google.com/bigtable/docs/overview#what-its-good-for
+   upvoted 2 times
+
+2. Anonymous: TanTran04 1 year, 10 months ago
+Selected Answer: D
+I saw this Q from somewhere before :3
+   upvoted 2 times
+
+3. Anonymous: sinh 2 years ago
+This is the same question as No. 139.
+   upvoted 3 times
+
+4. Anonymous: Cynthia2023 2 years ago
+Selected Answer: D
+it asks to retrieve consistent data based on the time of the event. D is the only option matching.
+   upvoted 2 times
+
+5. Anonymous: apb98 2 years ago
+Selected Answer: D
+D. Explanation:
+- Bigtable is a highly scalable, NoSQL database designed for high throughput and low-latency applications, making it suitable for scenarios with high ingest rates and rapid data retrieval.
+- Creating a row key based on the event timestamp would facilitate efficient retrieval of time-based data, ensuring consistency and atomicity for individual signals.
+- Bigtable's design allows for fast access to data using row keys, providing optimal performance when retrieving specific signals or events based on timestamps.
+- It also offers the scalability needed for handling thousands of events per hour per device.
+   upvoted 3 times
+ apb98 2 years ago
+Options A, B, and C might not efficiently handle the high throughput and atomic retrieval requirements:
+- Cloud Storage (Option A) might not offer the necessary atomicity for individual signal retrieval.
+- Filestore (Option B) could struggle with scaling and might not provide the atomic access needed for individual signal retrieval.
+- Cloud SQL (Option C) could face challenges in scaling to handle the high throughput effectively and might not match the required performance and atomicity for individual signal retrieval compared to Bigtable.
+   upvoted 2 times
+
+6. Anonymous: KelvinToo 2 years ago
+Selected Answer: D
+ChatGPT says the answer is D.
+   upvoted 1 times
+
+7. Anonymous: shiowbah 2 years ago
+D. Ingest the data into Bigtable. Create a row key based on the event timestamp.
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #265
+
+Pergunta:
+You just installed the Google Cloud CLI on your new corporate laptop. You need to list the existing instances of your company on Google Cloud. What must you do before you run the gcloud compute instances list command? (Choose two.)
+
+Alternativas:
+- A. Run gcloud auth login, enter your login credentials in the dialog window, and paste the received login token to gcloud CLI.
+- B. Create a Google Cloud service account, and download the service account key. Place the key file in a folder on your machine where gcloud CLI can find it.
+- C. Download your Cloud Identity user account key. Place the key file in a folder on your machine where gcloud CLI can find it.
+- D. Run gcloud config set compute/zone $my_zone to set the default zone for gcloud CLI.
+- E. Run gcloud config set project $my_project to set the default project for gcloud CLI.
+
+Resposta correta:
+A. Run gcloud auth login, enter your login credentials in the dialog window, and paste the received login token to gcloud CLI.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: apb98 Highly Voted  2 years ago
+Selected Answer: A
+AE (I couldn't select both).
+In addition to authenticating your account (Option A) to ensure the necessary permissions, setting the default project using `gcloud config set project [Your_Project_ID]` is crucial. It guarantees that subsequent commands are executed within the intended project's context. Both steps are essential before listing instances in Google Cloud Platform: proper authentication for permissions and setting the default project to ensure the commands run in the correct project context.
+   upvoted 9 times
+ apb98 2 years ago
+D is not correct, as it’s optional to set the zone.
+   upvoted 1 times
+
+2. Anonymous: TanTran04 Highly Voted  1 year, 10 months ago
+Selected Answer: A
+I go with option A & E for basic actions
+   upvoted 6 times
+
+3. Anonymous: louisaok Most Recent  1 year, 3 months ago
+Selected Answer: E
+A & E is the right one
+   upvoted 2 times
+
+4. Anonymous: RKS_2021 1 year, 4 months ago
+Selected Answer: A
+AE correct options
+   upvoted 2 times
+
+5. Anonymous: Timfdklfajlksdjlakf 1 year, 4 months ago
+Selected Answer: E
+It's A + E. Also thanks you so much for everyone else verifying. It's a huge help
+   upvoted 3 times
+
+6. Anonymous: leoalvarezh 1 year, 11 months ago
+Selected Answer: E
+In my honest opinion A & E
+   upvoted 2 times
+ 1826c27 11 months, 2 weeks ago
+thank god you are so honest. it changes everything
+   upvoted 1 times
+
+7. Anonymous: Bagibo 2 years ago
+It can be E. So its A
+   upvoted 1 times
+
+8. Anonymous: SrinivasJasti 2 years ago
+AE, auth and set project
+   upvoted 3 times
+
+9. Anonymous: KelvinToo 2 years ago
+ChatGPT says the answer is A and E.
+   upvoted 4 times
+ KelvinToo 2 years ago
+Voting comment will only allow me to select one answer not both.
+   upvoted 1 times
+ 1826c27 11 months, 2 weeks ago
+my grandma says it's BC
+   upvoted 1 times
+ RLIII 1 year, 2 months ago
+DE
+   upvoted 1 times
+
+10. Anonymous: shiowbah 2 years ago
+A and E
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #266
+
+Pergunta:
+You are planning to migrate your on-premises data to Google Cloud. The data includes:
+
+• 200 TB of video files in SAN storage
+• Data warehouse data stored on Amazon Redshift
+• 20 GB of PNG files stored on an S3 bucket
+
+You need to load the video files into a Cloud Storage bucket, transfer the data warehouse data into BigQuery, and load the PNG files into a second Cloud Storage bucket. You want to follow Google-recommended practices and avoid writing any code for the migration. What should you do?
+
+Alternativas:
+- A. Use gcloud storage for the video files, Dataflow for the data warehouse data, and Storage Transfer Service for the PNG files.
+- B. Use Transfer Appliance for the videos, BigQuery Data Transfer Service for the data warehouse data, and Storage Transfer Service for the PNG files.
+- C. Use Storage Transfer Service for the video files, BigQuery Data Transfer Service for the data warehouse data, and Storage Transfer Service for the PNG files.
+- D. Use Cloud Data Fusion for the video files, Dataflow for the data warehouse data, and Storage Transfer Service for the PNG files.
+
+Resposta correta:
+B. Use Transfer Appliance for the videos, BigQuery Data Transfer Service for the data warehouse data, and Storage Transfer Service for the PNG files.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Cynthia2023 Highly Voted  2 years ago
+Selected Answer: B
+• Transfer Appliance for Video Files: Given the large size of the video files (200 TB) in SAN storage, using Google's Transfer Appliance is a practical solution. Transfer Appliance is a hardware solution provided by Google for transferring large amounts of data. It is well-suited for scenarios where uploading data over the internet is too slow or not feasible.
+• BigQuery Data Transfer Service for Data Warehouse Data: To migrate data from Amazon Redshift to BigQuery, the BigQuery Data Transfer Service is the appropriate tool. It automates the migration of data from several sources, including Amazon Redshift, into BigQuery.
+• Storage Transfer Service for PNG Files: The Storage Transfer Service is ideal for moving data from Amazon S3 to Google Cloud Storage. It simplifies the process of importing your PNG files from S3 to a Cloud Storage bucket.
+   upvoted 10 times
+
+2. Anonymous: denno22 Most Recent  1 year, 3 months ago
+Selected Answer: B
+We need the Transfer Appliance for the video.
+   upvoted 1 times
+
+3. Anonymous: ac3baff 1 year, 7 months ago
+I think the answer is B. The controversy is whether the answer is B or C, i.e. whether one should use the transfer appliance or storage transfer service. From my knowledge, storage transfer service is not applicable for SAN, so the answer should be B.
+   upvoted 2 times
+
+4. Anonymous: Stargazer11 1 year, 11 months ago
+Selected Answer: B
+If it is on-prem to cloud, transfer appliance.
+Storage transfer service is for transferring data between buckets.
+   upvoted 3 times
+ sanjay1606 1 year, 11 months ago
+Hi bro, I need to talk with you about GCP Associate Cloud Cngineer
+   upvoted 3 times
+
+5. Anonymous: apb98 2 years ago
+Selected Answer: C
+C. Explanation:
+- Storage Transfer Service: It provides a straightforward way to transfer large amounts of data from an on-premises data source or cloud storage provider to Cloud Storage without writing code. This service can efficiently handle the migration of video files and PNG files.
+- BigQuery Data Transfer Service: This service allows the transfer of data from various sources, including Amazon Redshift, directly into BigQuery. It simplifies and automates the migration of data warehouse data without coding requirements.
+   upvoted 2 times
+ apb98 2 years ago
+While options A and D involve using Dataflow and Cloud Data Fusion, respectively, these services may require additional configuration, development, or transformation logic, which is contrary to the requirement of avoiding code for migration.
+Option B suggests using Transfer Appliance for the videos, which might be applicable for large-scale physical data transfers, but it's not the most suitable option for this scenario involving Cloud migration without coding.
+   upvoted 1 times
+ blackBeard33 1 year, 11 months ago
+But it is said that the data of the videos is on a SAN storage, is it san storage supported by google cloud storage transfer service? I cant see it here on this documentation: https://cloud.google.com/storage-transfer/docs/sources-and-sinks
+It is not public accessible and I dont think it is a file system either. So option B should be the most suitable here. Dont you think ?
+   upvoted 1 times
+
+6. Anonymous: Bagibo 2 years ago
+Selected Answer: B
+C makes sense. Use transfer appliance for vid
+   upvoted 1 times
+
+7. Anonymous: SrinivasJasti 2 years ago
+C makes more sense
+   upvoted 1 times
+
+8. Anonymous: kaby1987 2 years ago
+Selected Answer: B
+B. Use Transfer Appliance for the videos, BigQuery Data Transfer Service for the data warehouse data, and Storage Transfer Service for the PNG files: Transfer Appliance is designed for moving large amounts of data (like 200 TB of videos) into Google Cloud Storage. The BigQuery Data Transfer Service automates data movement from several sources, including Amazon Redshift, into BigQuery. Storage Transfer Service is appropriate for moving data from Amazon S3 to Google Cloud Storage.
+   upvoted 1 times
+
+9. Anonymous: KelvinToo 2 years ago
+Selected Answer: C
+ChatGPT says the answer is C.
+   upvoted 2 times
+
+10. Anonymous: shiowbah 2 years ago
+B. Use Transfer Appliance for the videos, BigQuery Data Transfer Service for the data warehouse data, and Storage Transfer Service for the PNG files.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #267
+
+Pergunta:
+You want to deploy a new containerized application into Google Cloud by using a Kubernetes manifest. You want to have full control over the Kubernetes deployment, and at the same time, you want to minimize configuring infrastructure. What should you do?
+
+Alternativas:
+- A. Deploy the application on GKE Autopilot.
+- B. Deploy the application on Cloud Run.
+- C. Deploy the application on GKE Standard.
+- D. Deploy the application on Cloud Functions.
+
+Resposta correta:
+A. Deploy the application on GKE Autopilot.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Timfdklfajlksdjlakf Highly Voted  1 year, 4 months ago
+Selected Answer: A
+Despite the managed nature of the infrastructure of a GKE Autopilot Cluster, you still have full control over your Kubernetes workloads, configurations, and deployments. This allows you to use Kubernetes manifests and customize your deployment as needed.
+   upvoted 5 times
+
+2. Anonymous: aditi86 Most Recent  8 months ago
+Selected Answer: C
+A is incorect,Autopilot mode doesn't give you full control, as some configurations (like node management) are abstracted away.
+   upvoted 2 times
+
+3. Anonymous: iooj 1 year, 4 months ago
+Selected Answer: A
+Autopilot mode is designed for those who prefer a hands-off approach. It’s best suited for businesses that want to leverage the power of Kubernetes without diving deep into its intricacies. It offers a simplified, managed experience with Google taking care of the operational overhead.
+On the other hand, Standard mode is for those who want granular control over their Kubernetes environment. It’s ideal for businesses with specific requirements and those who have the expertise to manage and optimize their Kubernetes clusters.
+   upvoted 4 times
+
+4. Anonymous: caminosdk 1 year, 4 months ago
+Selected Answer: C
+C is the answer
+   upvoted 1 times
+ iooj 1 year, 4 months ago
+but not to this question
+   upvoted 1 times
+
+5. Anonymous: jhumpamp 1 year, 5 months ago
+Selected Answer: C
+Key requirements "full control" and "minimize configuring infrastructure" - GKE Standard Supports both
+   upvoted 1 times
+
+6. Anonymous: ashrafh 1 year, 5 months ago
+C is the answe
+   upvoted 1 times
+
+7. Anonymous: flummoxed_individual 1 year, 5 months ago
+Selected Answer: A
+Minimise effort. And GKE is a managed k8s service for deploying container-ised apps using k8s
+   upvoted 3 times
+
+8. Anonymous: BuenaCloudDE 1 year, 6 months ago
+Selected Answer: A
+A- minimize effort
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #268
+
+Pergunta:
+Your team is building a website that handles votes from a large user population. The incoming votes will arrive at various rates. You want to optimize the storage and processing of the votes. What should you do?
+
+Alternativas:
+- A. Save the incoming votes to Firestore. Use Cloud Scheduler to trigger a Cloud Functions instance to periodically process the votes.
+- B. Use a dedicated instance to process the incoming votes. Send the votes directly to this instance.
+- C. Save the incoming votes to a JSON file on Cloud Storage. Process the votes in a batch at the end of the day.
+- D. Save the incoming votes to Pub/Sub. Use the Pub/Sub topic to trigger a Cloud Functions instance to process the votes.
+
+Resposta correta:
+D. Save the incoming votes to Pub/Sub. Use the Pub/Sub topic to trigger a Cloud Functions instance to process the votes.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: BuenaCloudDE Highly Voted  1 year, 6 months ago
+Selected Answer: D
+Pub/Sub: Google Cloud Pub/Sub is a messaging service which directly uses for this purpose.
+Cloud Functions: By triggering a Cloud Function with a Pub/Sub topic, you can process the votes as they arrive, ensuring low-latency handling and efficient scaling based on demand. This approach provides real-time processing and can handle bursts of traffic effectively.
+   upvoted 5 times
+
+2. Anonymous: denno22 Most Recent  1 year, 3 months ago
+Selected Answer: D
+Use Pub/Sub.
+   upvoted 1 times
+
+3. Anonymous: Timfdklfajlksdjlakf 1 year, 4 months ago
+Selected Answer: D
+D. is the correct answer
+   upvoted 2 times
+
+4. Anonymous: flummoxed_individual 1 year, 5 months ago
+Selected Answer: D
+Pub/Sub (a messaging service) triggering a Cloud Function (the glue between services that are otherwise independent) to trigger something else to process the votes
+   upvoted 3 times
+==============================
+
+==============================
+Page X — Question #269
+
+Pergunta:
+You are deploying an application on Google Cloud that requires a relational database for storage. To satisfy your company’s security policies, your application must connect to your database through an encrypted and authenticated connection that requires minimal management and integrates with Identity and Access Management (IAM). What should you do?
+
+Alternativas:
+- A. Deploy a Cloud SQL database with the SSL mode set to encrypted only, configure SSL/TLS client certificates, and configure a database user and password.
+- B. Deploy a Cloud SQL database with the SSL mode set to encrypted only, configure SSL/TLS client certificates, and configure IAM database authentication.
+- C. Deploy a Cloud SQL database and configure IAM database authentication. Access the database through the Cloud SQL Auth Proxy.
+- D. Deploy a Cloud SQL database and configure a database user and password. Access the database through the Cloud SQL Auth Proxy.
+
+Resposta correta:
+C. Deploy a Cloud SQL database and configure IAM database authentication. Access the database through the Cloud SQL Auth Proxy.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: BuenaCloudDE Highly Voted  1 year, 6 months ago
+Selected Answer: C
+Cloud SQL Auth Proxy: This proxy ensures secure connections to your Cloud SQL database by automatically handling encryption (SSL/TLS) and IAM-based authentication. It simplifies the management of secure connections without needing to manage SSL/TLS certificates manually.
+IAM Database Authentication: This allows you to use IAM credentials to authenticate to the database, providing a unified and secure authentication mechanism that integrates seamlessly with Google Cloud IAM.
+   upvoted 7 times
+ BuenaCloudDE 1 year, 6 months ago
+A,B: You must managing SSL certification and database credentials.
+D: Relies on database-specific credentials rather than IAM, which doesn't fully leverage the benefits of IAM integration.
+   upvoted 1 times
+
+2. Anonymous: ashrafh Most Recent  1 year, 5 months ago
+As per Google Gemini answwer is B.
+   upvoted 1 times
+ NiveusSol 1 year, 3 months ago
+Google Gemini is not relaible
+   upvoted 2 times
+
+3. Anonymous: flummoxed_individual 1 year, 5 months ago
+Selected Answer: C
+Initially chose B but then read BuenaCloudDE's comment and agreed that managing SSL certs is more complicated than using Cloud SQL Auth Proxy
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #270
+
+Pergunta:
+You have two Google Cloud projects: project-a with VPC vpc-a (10.0.0.0/16) and project-b with VPC vpc-b (10.8.0.0/16). Your frontend application resides in vpc-a and the backend API services are deployed in vpc-b. You need to efficiently and cost-effectively enable communication between these Google Cloud projects. You also want to follow Google-recommended practices. What should you do?
+
+Alternativas:
+- A. Create an OpenVPN connection between vpc-a and vpc-b.
+- B. Create VPC Network Peering between vpc-a and vpc-b.
+- C. Configure a Cloud Router in vpc-a and another Cloud Router in vpc-b.
+- D. Configure a Cloud Interconnect connection between vpc-a and vpc-b.
+
+Resposta correta:
+B. Create VPC Network Peering between vpc-a and vpc-b.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: denno22 1 year, 3 months ago
+Selected Answer: B
+Google Cloud VPC Network Peering connects two Virtual Private Cloud (VPC) networks so that resources in each network can communicate with each other. Peered VPC networks can be in the same project, different projects of the same organization, or different projects of different organizations.
+https://cloud.google.com/vpc/docs/vpc-peering
+   upvoted 2 times
+
+2. Anonymous: flummoxed_individual 1 year, 5 months ago
+Selected Answer: B
+VPC Network Peering is the most efficient and cost-effective compared to the other options
+   upvoted 2 times
+
+3. Anonymous: BuenaCloudDE 1 year, 6 months ago
+Selected Answer: B
+VPC Network Peering: This allows private and secure communication between VPCs in different Google Cloud projects without using public IP addresses or VPN connections. It is cost-effective because it only incurs network egress charges within the same region and provides high-bandwidth, low-latency connectivity.
+   upvoted 4 times
+
+4. Anonymous: RuchiMishra 1 year, 6 months ago
+Selected Answer: B
+Why other options are not as suitable:
+A. OpenVPN connection: OpenVPN requires setting up and managing a VPN gateway, adding complexity and potential overhead.
+C. Cloud Routers: While Cloud Routers are powerful tools for managing dynamic routing, they are unnecessary for simple communication between two VPCs.
+D. Cloud Interconnect: Cloud Interconnect is a high-speed, dedicated connection for hybrid cloud environments. It's overkill for connecting two VPCs within GCP and would be much more expensive than VPC Network Peering.
+   upvoted 4 times
+==============================

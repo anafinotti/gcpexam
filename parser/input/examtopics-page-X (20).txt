@@ -1,0 +1,675 @@
+==============================
+Page X — Question #201
+
+Pergunta:
+Your company has multiple projects linked to a single billing account in Google Cloud. You need to visualize the costs with specific metrics that should be dynamically calculated based on company-specific criteria. You want to automate the process. What should you do?
+
+Alternativas:
+- A. In the Google Cloud console, visualize the costs related to the projects in the Reports section.
+- B. In the Google Cloud console, visualize the costs related to the projects in the Cost breakdown section.
+- C. In the Google Cloud console, use the export functionality of the Cost table. Create a Looker Studio dashboard on top of the CSV export.
+- D. Configure Cloud Billing data export to BigQuery for the billing account. Create a Looker Studio dashboard on top of the BigQuery export.
+
+Resposta correta:
+D. Configure Cloud Billing data export to BigQuery for the billing account. Create a Looker Studio dashboard on top of the BigQuery export.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: scanner2 Highly Voted  1 year, 10 months ago
+Selected Answer: D
+Cloud Billing export to BigQuery enables you to export detailed Google Cloud billing data (such as usage, cost estimates, and pricing data) automatically throughout the day to a BigQuery dataset that you specify. Then you can access your Cloud Billing data from BigQuery for detailed analysis, or use a tool like Looker Studio to visualize your data.
+   upvoted 7 times
+ scanner2 1 year, 10 months ago
+https://cloud.google.com/billing/docs/how-to/export-data-bigquery
+   upvoted 3 times
+
+2. Anonymous: MrJkr Highly Voted  2 years ago
+Selected Answer: D
+Option D closely aligns with the requirements mentioned in the question.
+By configuring Cloud Billing data export to BigQuery, you can automate the process of exporting billing data to a BigQuery dataset. You can then use Looker Studio, a data visualization and exploration platform, to create a dashboard on top of the BigQuery export. This allows you to visualize costs with specific metrics that can be dynamically calculated based on company-specific criteria.
+   upvoted 6 times
+
+3. Anonymous: PiperMe Most Recent  1 year, 4 months ago
+Selected Answer: D
+The key here is that the cost visualization goes beyond the standard metrics, implying a need to manipulate and aggregate the raw data which makes D the best solution
+   upvoted 2 times
+
+4. Anonymous: mzchelino 1 year, 10 months ago
+Selected Answer: D
+D!
+Keys here are "dynamically calculated" and "automate".
+   upvoted 3 times
+
+5. Anonymous: Shubha1 1 year, 11 months ago
+why not A? can someone pls explain
+   upvoted 1 times
+ Linhtinh603 1 year, 7 months ago
+Answer A is using default report with basic charts and trends, dose not customize as company-specific criteria. Therefore, answer D is correct.
+   upvoted 1 times
+
+6. Anonymous: Husni_adam 2 years ago
+Selected Answer: D
+D is the right answer because you can automate process with export billing data to bigquery and then using the bigquery export to create the Looker studio dashboard
+   upvoted 2 times
+ Husni_adam 2 years ago
+https://cloud.google.com/billing/docs/how-to/export-data-bigquery
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #202
+
+Pergunta:
+You have an application that runs on Compute Engine VM instances in a custom Virtual Private Cloud (VPC). Your company’s security policies only allow the use of internal IP addresses on VM instances and do not let VM instances connect to the internet. You need to ensure that the application can access a file hosted in a Cloud Storage bucket within your project. What should you do?
+
+Alternativas:
+- A. Enable Private Service Access on the Cloud Storage Bucket.
+- B. Add storage.googleapis.com to the list of restricted services in a VPC Service Controls perimeter and add your project to the list of protected projects.
+- C. Enable Private Google Access on the subnet within the custom VPC.
+- D. Deploy a Cloud NAT instance and route the traffic to the dedicated IP address of the Cloud Storage bucket.
+
+Resposta correta:
+C. Enable Private Google Access on the subnet within the custom VPC.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: scanner2 Highly Voted  1 year, 4 months ago
+Selected Answer: C
+Cloud Storage is not a supported service for Private Service Access. Hence, A cannot be the answer.
+https://cloud.google.com/vpc/docs/private-services-access#private-services-supported-services
+VM instances that only have internal IP addresses (no external IP addresses) can use Private Google Access. They can reach the external IP addresses of Google APIs and services. If you disable Private Google Access, the VM instances can no longer reach Google APIs and services; they can only send traffic within the VPC network.
+https://cloud.google.com/vpc/docs/private-google-access
+   upvoted 7 times
+
+2. Anonymous: juliorevk Highly Voted  1 year, 5 months ago
+Selected Answer: C
+Private Google Access lets you connect VM instances to GCP services without external IP addresses and only internal. A is wrong because even though Private Services Access lets you also access GCP and other services through internal IPs, it also allows the VMs to have external IPs.
+https://cloud.google.com/vpc/docs/private-google-access
+   upvoted 5 times
+
+3. Anonymous: Captain1212 Most Recent  1 year, 4 months ago
+Selected Answer: C
+C is the correct Answer as Private Google Access allows you to the connect on the internal networks, A is incorrect becuause Cloud Storage bucket dont have such services to connect to Private Acesss`
+   upvoted 5 times
+
+4. Anonymous: FJ82 1 year, 6 months ago
+Selected Answer: C
+Private Google Access is a VPC feature
+   upvoted 4 times
+
+5. Anonymous: TomFoot 1 year, 6 months ago
+Selected Answer: C
+C allows access to Google services & API's
+   upvoted 1 times
+
+6. Anonymous: georgesouzafarias 1 year, 7 months ago
+Selected Answer: C
+Right answer.
+   upvoted 3 times
+==============================
+
+==============================
+Page X — Question #203
+
+Pergunta:
+Your company completed the acquisition of a startup and is now merging the IT systems of both companies. The startup had a production Google Cloud project in their organization. You need to move this project into your organization and ensure that the project is billed to your organization. You want to accomplish this task with minimal effort. What should you do?
+
+Alternativas:
+- A. Use the projects.move method to move the project to your organization. Update the billing account of the project to that of your organization.
+- B. Ensure that you have an Organization Administrator Identity and Access Management (IAM) role assigned to you in both organizations. Navigate to the Resource Manager in the startup’s Google Cloud organization, and drag the project to your company's organization.
+- C. Create a Private Catalog for the Google Cloud Marketplace, and upload the resources of the startup's production project to the Catalog. Share the Catalog with your organization, and deploy the resources in your company’s project.
+- D. Create an infrastructure-as-code template for all resources in the project by using Terraform, and deploy that template to a new project in your organization. Delete the project from the startup’s Google Cloud organization.
+
+Resposta correta:
+A. Use the projects.move method to move the project to your organization. Update the billing account of the project to that of your organization.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: MrJkr Highly Voted  1 year, 6 months ago
+Selected Answer: A
+Option A is correct as it suggests using the "projects.move" method provided by Google Cloud to move the project from the startup's organization to your organization. This method allows you to transfer the ownership and control of a project to another organization. By moving the project, you can ensure that it is under your organization's management.
+While the other options contain elements that may be relevant in certain scenarios, they do not directly address the requirement of moving the project and ensuring billing to your organization.
+   upvoted 13 times
+
+2. Anonymous: Vismaya Most Recent  1 week, 4 days ago
+Selected Answer: A
+Option A
+   upvoted 1 times
+
+3. Anonymous: halifax 1 year, 1 month ago
+I vote for D. Why is that?
+Option A says project.move method - This is complicated, it requires you to have specific IAM permissions set up correctly in both organizations (like Project Mover role), and you must also ensure that any dependencies or policies are managed properly.
+The new command is much easier
+gcloud beta projects move PROJECT_ID --organization=ORGANIZATION_ID or --folder=FOLDER_ID
+but option A doesn't say to use
+gcloud beta project move
+So for me, the answer is D - IaC/Terraform can accomplish this task with minimal effort (compared to the "projects.move" method)
+   upvoted 1 times
+
+4. Anonymous: 0verK0alafied 1 year, 2 months ago
+Selected Answer: A
+gcloud beta project move is the command with the flag of --organization= or --folder= with the IDs.
+   upvoted 4 times
+
+5. Anonymous: VijKall 1 year, 2 months ago
+Selected Answer: A
+Option A.
+Here is the command - gcloud beta projects move
+   upvoted 1 times
+
+6. Anonymous: Captain1212 1 year, 4 months ago
+Selected Answer: A
+A is correct Answer you can use the project move method to move the project to your organization
+   upvoted 1 times
+
+7. Anonymous: scanner2 1 year, 4 months ago
+Selected Answer: A
+Here, A is the only choice because neither B nor C nor D be the answer.
+You can move a project within an organization. But you need to migrate a project across organizations.
+https://cloud.google.com/resource-manager/docs/project-migration
+https://medium.com/google-cloud/migrating-a-project-from-one-organization-to-another-gcp-4b37a86dd9e6
+   upvoted 2 times
+
+8. Anonymous: georgesouzafarias 1 year, 7 months ago
+Selected Answer: A
+Don't overthink it.
+https://cloud.google.com/resource-manager/docs/project-migration-checklist
+   upvoted 4 times
+==============================
+
+==============================
+Page X — Question #204
+
+Pergunta:
+All development (dev) teams in your organization are located in the United States. Each dev team has its own Google Cloud project. You want to restrict access so that each dev team can only create cloud resources in the United States (US). What should you do?
+
+Alternativas:
+- A. Create a folder to contain all the dev projects. Create an organization policy to limit resources in US locations.
+- B. Create an organization to contain all the dev projects. Create an Identity and Access Management (IAM) policy to limit the resources in US regions.
+- C. Create an Identity and Access Management (IAM) policy to restrict the resources locations in the US. Apply the policy to all dev projects.
+- D. Create an Identity and Access Management (IAM) policy to restrict the resources locations in all dev projects. Apply the policy to all dev roles.
+
+Resposta correta:
+A. Create a folder to contain all the dev projects. Create an organization policy to limit resources in US locations.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Vovtchick Highly Voted  2 years, 2 months ago
+Answer A
+An organization policy configures a single constraint that restricts one or more Google Cloud services. The organization policy is set on an organization, folder, or project resource to enforce the constraint on that resource and any child resources.
+https://cloud.google.com/resource-manager/docs/organization-policy/overview
+   upvoted 7 times
+
+2. Anonymous: ezzar Highly Voted  2 years, 2 months ago
+Selected Answer: A
+it's A : IAM is about WHO does WHAT
+Organization policy is only about WHAT
+   upvoted 5 times
+
+3. Anonymous: kamee15 Most Recent  1 year ago
+Selected Answer: A
+B. Create an organization and IAM policy: IAM policies control permissions but do not enforce resource location restrictions. Organization policies are required for location constraints.
+C. IAM policy to restrict resources in US regions: IAM policies cannot enforce location-based restrictions.
+D. IAM policy applied to dev roles: Similar to C, IAM policies control access permissions, not resource locations. so the answer is A
+   upvoted 2 times
+
+4. Anonymous: denno22 1 year, 3 months ago
+Selected Answer: A
+You can limit the physical location of a new resource with the Organization Policy Service resource locations constraint.
+https://cloud.google.com/resource-manager/docs/organization-policy/defining-locations
+   upvoted 1 times
+
+5. Anonymous: joao_01 2 years, 3 months ago
+Selected Answer: A
+Its A.
+"Organization Policy" does not indicate that it will be ONLY applied to a organization, it can be applied to any resource within a organization to restrict and add conditions. This policy focus on WHAT and not WHO (IAM). So, since in this case we want to restrict to VMs in US, its clearly the option A.
+Link: https://cloud.google.com/resource-manager/docs/organization-policy/overview
+"Identity and Access Management focuses on who, and lets the administrator authorize who can take action on specific resources based on permissions."
+"Organization Policy focuses on what, and lets the administrator set restrictions on specific resources to determine how they can be configured."
+   upvoted 4 times
+
+6. Anonymous: ExamsFR 2 years, 4 months ago
+Selected Answer: A
+https://cloud.google.com/resource-manager/docs/organization-policy/defining-locations?hl=fr#gcloud
+   upvoted 2 times
+
+7. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: A
+A is the correct answer as you can just add the projects to the same folder and just apply the Organization policy
+   upvoted 1 times
+
+8. Anonymous: DocOck 2 years, 4 months ago
+The organization policy is set on an organization, folder, or project resource to enforce the constraint on that resource and any child resources. An organization policy contains one or more rules that specify how, and whether, to enforce the constraint.
+A
+   upvoted 1 times
+
+9. Anonymous: scanner2 2 years, 4 months ago
+Selected Answer: A
+Restricting resources creation in specific locations can be achieved by Organization policy. The Organization Policy Service gives you centralized and programmatic control over your organization's cloud resources.
+You can use "Google Cloud Platform - Resource Location Restriction" Organization policy constraint for the solution asked in the question.
+https://cloud.google.com/resource-manager/docs/organization-policy/overview
+https://cloud.google.com/resource-manager/docs/organization-policy/org-policy-constraints
+   upvoted 3 times
+ scanner2 2 years, 4 months ago
+Option A is mentioning to create a folder that contains all dev projects.
+   upvoted 1 times
+
+10. Anonymous: LONGBOW_RA 2 years, 4 months ago
+Selected Answer: C
+https://cloud.google.com/resource-manager/docs/access-control-folders
+A is wrong, The documentation says it needs a folder admin role to apply folder's IAM policy to limit resources access. A said organization level policies.
+   upvoted 1 times
+ LONGBOW_RA 2 years, 4 months ago
+OK, I changed my mind. A folder contains projects. Then mange the folder's IAM policies maybe can be considered as "organization level" .
+WTF, I feel I am getting an English certification.
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #205
+
+Pergunta:
+You are configuring Cloud DNS. You want to create DNS records to point home.mydomain.com, mydomain.com, and www.mydomain.com to the IP address of your Google Cloud load balancer. What should you do?
+
+Alternativas:
+- A. Create one CNAME record to point mydomain.com to the load balancer, and create two A records to point WWW and HOME to mydomain.com respectively.
+- B. Create one CNAME record to point mydomain.com to the load balancer, and create two AAAA records to point WWW and HOME to mydomain.com respectively.
+- C. Create one A record to point mydomain.com to the load balancer, and create two CNAME records to point WWW and HOME to mydomain.com respectively.
+- D. Create one A record to point mydomain.com to the load balancer, and create two NS records to point WWW and HOME to mydomain.com respectively.
+
+Resposta correta:
+C. Create one A record to point mydomain.com to the load balancer, and create two CNAME records to point WWW and HOME to mydomain.com respectively.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: scanner2 Highly Voted  2 years, 4 months ago
+Selected Answer: C
+Record name | Type | Value
+mydomain.com | A | load balancer IP
+www.mydomain.com | CNAME | mydomain.com
+home.mydomain.com | CNAME | mydomain.com
+https://cloud.google.com/dns/docs/records-overview#supported_dns_record_types
+   upvoted 11 times
+
+2. Anonymous: MrJkr Highly Voted  2 years, 6 months ago
+Selected Answer: C
+Option A suggests creating one CNAME record to point mydomain.com to the load balancer, which is incorrect because CNAME records cannot coexist with other record types on the same domain/subdomain. In this case, you need to use an A record instead.
+Option B suggests creating two AAAA records, which are used for IPv6 addresses. Unless you specifically have an IPv6 address for your load balancer, using AAAA records would not be appropriate.
+Option D suggests creating two NS records, which are used for specifying the authoritative name servers for a domain. NS records are not used to point subdomains to IP addresses or load balancers.
+Therefore, option C is the correct answer, as it correctly suggests creating one A record to point mydomain.com to the load balancer, and two CNAME records to point WWW and HOME to mydomain.com respectively.
+   upvoted 5 times
+
+3. Anonymous: yehia2221 Most Recent  1 year, 5 months ago
+Selected Answer: C
+Simply, you can't create cname for thr root domain (mydomain.com). When you refe to other GCP services, it is a best practice to use cname/alais for the other records
+   upvoted 1 times
+
+4. Anonymous: PiperMe 1 year, 10 months ago
+Selected Answer: C
+Option C strikes the right balance between direct mapping with an A record for the root domain and using CNAME aliases for subdomains. This aligns with DNS best practices and simplifies management.
+   upvoted 1 times
+
+5. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: C
+C is the correct answer, as for this you need to create One A record and two CNAME records
+   upvoted 3 times
+
+6. Anonymous: 3arle 2 years, 5 months ago
+Selected Answer: C
+A record is always for load balancer IP, then CNAME
+   upvoted 1 times
+
+7. Anonymous: juliorevk 2 years, 5 months ago
+Selected Answer: C
+C because the A record which points a domain name to an IPv4 address is used for the main domain (mydomain.com), the other two for www and home are aliases (CNAME) that can be pointed to the main domain of mydomain.com.
+   upvoted 2 times
+
+8. Anonymous: georgesouzafarias 2 years, 7 months ago
+Selected Answer: C
+You can only associate A(IP) record to a domain.
+https://cloud.google.com/dns/docs/set-up-dns-records-domain-name#create_a_record_to_point_the_domain_to_an_external_ip_address
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #206
+
+Pergunta:
+You have two subnets (subnet-a and subnet-b) in the default VPC. Your database servers are running in subnet-a. Your application servers and web servers are running in subnet-b. You want to configure a firewall rule that only allows database traffic from the application servers to the database servers. What should you do?
+
+Alternativas:
+- A. • Create service accounts sa-app and sa-db.
+• Associate service account sa-app with the application servers and the service account sa-db with the database servers.
+• Create an ingress firewall rule to allow network traffic from source service account sa-app to target service account sa-db.
+- B. • Create network tags app-server and db-server.
+• Add the app-server tag to the application servers and the db-server tag to the database servers.
+• Create an egress firewall rule to allow network traffic from source network tag app-server to target network tag db-server.
+- C. • Create a service account sa-app and a network tag db-server.
+• Associate the service account sa-app with the application servers and the network tag db-server with the database servers.
+• Create an ingress firewall rule to allow network traffic from source VPC IP addresses and target the subnet-a IP addresses.
+- D. • Create a network tag app-server and service account sa-db.
+• Add the tag to the application servers and associate the service account with the database servers.
+• Create an egress firewall rule to allow network traffic from source network tag app-server to target service account sa-db.
+
+Resposta correta:
+A. • Create service accounts sa-app and sa-db.
+• Associate service account sa-app with the application servers and the service account sa-db with the database servers.
+• Create an ingress firewall rule to allow network traffic from source service account sa-app to target service account sa-db.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: scanner2 Highly Voted  2 years, 4 months ago
+Selected Answer: A
+Both service accounts and network tags can be used for creating a Cloud Firewall rule. The prime word is "to allow network traffic from app server to database server" which is achievable by inbound/ingress rule and not egress rule.
+https://cloud.google.com/firewall/docs/firewalls#rule_assignment
+   upvoted 7 times
+
+2. Anonymous: Captain1212 Highly Voted  2 years, 4 months ago
+Selected Answer: A
+Answer A is correct as question demands traffic to application to database which can be only be achieved by the ingreess rule
+   upvoted 5 times
+
+3. Anonymous: BRDA Most Recent  1 month, 1 week ago
+Selected Answer: A
+A is correct
+   upvoted 1 times
+
+4. Anonymous: peterwheat 7 months, 3 weeks ago
+Selected Answer: A
+why not B? Due to you are not able to specify network tags as source filter for egress rules.
+   upvoted 1 times
+
+5. Anonymous: Enamfrancis 1 year, 3 months ago
+Selected Answer: A
+A IS CORRECT
+   upvoted 1 times
+
+6. Anonymous: Ciupaz 1 year, 4 months ago
+Selected Answer: B
+By specifying the source and target tags in the firewall rule, you can ensure that only traffic from instances with the app-server tag can reach instances with the db-server tag.
+   upvoted 1 times
+
+7. Anonymous: MariaDoss 2 years, 1 month ago
+Selected Answer: A
+the answer is A
+   upvoted 2 times
+
+8. Anonymous: GP123123 2 years, 1 month ago
+for "allow" rules, restrict them to only allow specific virtual machines by specifying the virtual machine's service account
+Refer to https://cloud.google.com/firewall/docs/firewalls
+   upvoted 3 times
+ GP123123 2 years, 1 month ago
+Answer is A
+   upvoted 2 times
+
+9. Anonymous: carlalap 2 years, 2 months ago
+Answer is B.
+Network tags can be simpler to manage, especially if the access control is based on broader categories (like application servers and database servers) rather than individual instances.
+If you need fine-grained control and identity-based access, go with service accounts. If you prefer simplicity and broader categorization, network tags may be a suitable choice.
+   upvoted 2 times
+ carlalap 2 years, 2 months ago
+Although what was previously stated is correct, I must correct it. The correct answer would be option A. Creating an ingress firewall rule on the subnet where your database servers are located is the appropriate approach. This rule would control incoming traffic to the database servers, ensuring that only traffic from the specified application servers (identified by network tags or service accounts) is allowed.
+   upvoted 2 times
+
+10. Anonymous: tatyavinchu 2 years, 5 months ago
+Correct Answer is A
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #207
+
+Pergunta:
+Your team wants to deploy a specific content management system (CMS) solution to Google Cloud. You need a quick and easy way to deploy and install the solution. What should you do?
+
+Alternativas:
+- A. Search for the CMS solution in Google Cloud Marketplace. Use gcloud CLI to deploy the solution.
+- B. Search for the CMS solution in Google Cloud Marketplace. Deploy the solution directly from Cloud Marketplace.
+- C. Search for the CMS solution in Google Cloud Marketplace. Use Terraform and the Cloud Marketplace ID to deploy the solution with the appropriate parameters.
+- D. Use the installation guide of the CMS provider. Perform the installation through your configuration management system.
+
+Resposta correta:
+B. Search for the CMS solution in Google Cloud Marketplace. Deploy the solution directly from Cloud Marketplace.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: juliorevk Highly Voted  1 year, 5 months ago
+Selected Answer: B
+Fastest and easiest way to deploy a solution straight from the marketplace
+   upvoted 6 times
+
+2. Anonymous: kamee15 Most Recent  1 year ago
+Selected Answer: B
+Quick=Fast=Marketplace, so B is answer
+   upvoted 1 times
+
+3. Anonymous: VijKall 1 year, 2 months ago
+Selected Answer: B
+Option B, so says all and they are all correct.
+   upvoted 1 times
+
+4. Anonymous: on2it 1 year, 6 months ago
+Selected Answer: B
+Indeed directly from Cloud Marketplace
+   upvoted 2 times
+
+5. Anonymous: _F4LLEN_ 1 year, 6 months ago
+Selected Answer: B
+We can deploy it directly from Cloud Marketplace.
+   upvoted 1 times
+
+6. Anonymous: TomFoot 1 year, 6 months ago
+Selected Answer: B
+I think B would be simple and fast.
+   upvoted 1 times
+
+7. Anonymous: georgesouzafarias 1 year, 7 months ago
+Selected Answer: B
+Key Words: Quick and Easy
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #208
+
+Pergunta:
+You are working for a startup that was officially registered as a business 6 months ago. As your customer base grows, your use of Google Cloud increases. You want to allow all engineers to create new projects without asking them for their credit card information. What should you do?
+
+Alternativas:
+- A. Create a Billing account, associate a payment method with it, and provide all project creators with permission to associate that billing account with their projects.
+- B. Grant all engineers permission to create their own billing accounts for each new project.
+- C. Apply for monthly invoiced billing, and have a single invoice for the project paid by the finance team.
+- D. Create a billing account, associate it with a monthly purchase order (PO), and send the PO to Google Cloud.
+
+Resposta correta:
+A. Create a Billing account, associate a payment method with it, and provide all project creators with permission to associate that billing account with their projects.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: MrJkr Highly Voted  1 year, 6 months ago
+Selected Answer: A
+Option A is the better answer for the given scenario. It allows you to centralize billing and payment management while providing flexibility to project creators. By creating a billing account and associating a payment method with it, you establish a central source for billing and payment for all projects.
+Granting project creators permission to associate the billing account with their projects ensures that they can create projects without the need for their individual credit card information. This approach streamlines the process and avoids the hassle of collecting credit card details from each engineer.
+Additionally, this option allows for easy monitoring and management of project costs through a single billing account, making it simpler to track expenses and allocate resources effectively.
+   upvoted 5 times
+
+2. Anonymous: DevOps_ad Most Recent  7 months, 2 weeks ago
+Selected Answer: B
+without asking them for their credit card information
+Option B sounds better since consolidated billing is not asked for. Every project needs its own billing account.
+   upvoted 1 times
+
+3. Anonymous: scanner2 1 year, 4 months ago
+Selected Answer: A
+Cloud Billing accounts pay for Google Cloud projects and Google Maps Platform projects.
+You might be eligible to switch your account type to monthly invoiced billing if your business meets certain requirements. These requirements include, but aren't limited to the following:
+- You must be registered as a business for a minimum of one year.
+- You expect to spend a minimum of $40,000 a year on Google Cloud.
+- Invoiced billing must be available in your country.
+https://cloud.google.com/billing/docs/how-to/invoiced-billing
+So A is the correct answer here.
+   upvoted 3 times
+
+4. Anonymous: _F4LLEN_ 1 year, 6 months ago
+Selected Answer: A
+A seems the best among the rest.
+   upvoted 3 times
+
+5. Anonymous: gpais 1 year, 6 months ago
+Selected Answer: A
+It's option A
+   upvoted 1 times
+
+6. Anonymous: georgesouzafarias 1 year, 7 months ago
+Selected Answer: A
+Don't overthink.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #209
+
+Pergunta:
+Your continuous integration and delivery (CI/CD) server can’t execute Google Cloud actions in a specific project because of permission issues. You need to validate whether the used service account has the appropriate roles in the specific project.
+
+What should you do?
+
+Alternativas:
+- A. Open the Google Cloud console, and check the Identity and Access Management (IAM) roles assigned to the service account at the project or inherited from the folder or organization levels.
+- B. Open the Google Cloud console, and check the organization policies.
+- C. Open the Google Cloud console, and run a query to determine which resources this service account can access.
+- D. Open the Google Cloud console, and run a query of the audit logs to find permission denied errors for this service account.
+
+Resposta correta:
+A. Open the Google Cloud console, and check the Identity and Access Management (IAM) roles assigned to the service account at the project or inherited from the folder or organization levels.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: mufuuuu Highly Voted  2 years, 1 month ago
+Selected Answer: A
+Its not a rocket science. its straightforward question
+   upvoted 5 times
+
+2. Anonymous: 33d6a28 Most Recent  1 year, 2 months ago
+Selected Answer: D
+A seems right, but I want to know why D is not good?
+   upvoted 1 times
+
+3. Anonymous: Rectifoace23 2 years, 2 months ago
+Selected Answer: A
+A is the answer
+   upvoted 2 times
+
+4. Anonymous: joao_01 2 years, 4 months ago
+A it's really straightforward
+   upvoted 4 times
+
+5. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: A
+A is the correct Answer
+   upvoted 1 times
+
+6. Anonymous: happydays 2 years, 5 months ago
+Selected Answer: A
+It's A from GPT
+   upvoted 1 times
+
+7. Anonymous: TungTrinhSenacor 2 years, 5 months ago
+Selected Answer: A
+I go for A
+   upvoted 2 times
+
+8. Anonymous: ankitb4u 2 years, 5 months ago
+Selected Answer: C
+C should be the correct answer here
+   upvoted 1 times
+ TungTrinhSenacor 2 years, 5 months ago
+Why not A?
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #210
+
+Pergunta:
+Your team is using Linux instances on Google Cloud. You need to ensure that your team logs in to these instances in the most secure and cost efficient way. What should you do?
+
+Alternativas:
+- A. Attach a public IP to the instances and allow incoming connections from the internet on port 22 for SSH.
+- B. Use the gcloud compute ssh command with the --tunnel-through-iap flag. Allow ingress traffic from the IP range 35.235.240.0/20 on port 22.
+- C. Use a third party tool to provide remote access to the instances.
+- D. Create a bastion host with public internet access. Create the SSH tunnel to the instance through the bastion host.
+
+Resposta correta:
+B. Use the gcloud compute ssh command with the --tunnel-through-iap flag. Allow ingress traffic from the IP range 35.235.240.0/20 on port 22.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Captain1212 Highly Voted  2 years, 4 months ago
+Selected Answer: B
+Common sense B is the correct answer , must safer from using the third party apps or the public id addresses
+   upvoted 7 times
+
+2. Anonymous: LaCubanita Most Recent  1 year, 3 months ago
+According to Gemini: In Google Cloud Platform (GCP), Identity-Aware Proxy (IAP) is a more secure alternative to bastion hosts for accessing private resources. IAP encrypts SSH connections end-to-end, so it can't inspect the contents of the session. IAP also provides access controls to reduce the risk of unauthorized access and data breaches. https://cloud.google.com/compute/docs/connect/ssh-best-practices/network-access#use-a-bastion-host
+   upvoted 1 times
+
+3. Anonymous: Ciupaz 1 year, 4 months ago
+Selected Answer: B
+Why the others are not correct?
+Bastion Host: While a bastion host can provide remote access, it introduces additional complexity and potential security risks.
+Third-Party Tools: Using third-party tools may add costs and introduce dependencies.
+   upvoted 2 times
+
+4. Anonymous: Rajkumar21 1 year, 10 months ago
+One General Question: Most of the cases the Answer provided for each questions in Exam Topic Differs from the Answer comes as a result as part of discussion.
+Just worried, since appearing ACE exam-Should we go with Answers what the group of people says (with highest percentage opted answer)?
+   upvoted 1 times
+ 123kiki1626 1 year, 8 months ago
+Go with majority, the website might have the wrong answer but discussion and majority people mostly know the right answer.
+   upvoted 6 times
+
+5. Anonymous: mufuuuu 2 years, 1 month ago
+Selected Answer: B
+B is correct
+   upvoted 2 times
+ Rahul001 2 years, 1 month ago
+I will be appearing for Ace in the upcoming week is this 255 questions will be enough to pass the exam
+   upvoted 2 times
+ tlopsm 2 years, 1 month ago
+Please give us feedback when you are done
+   upvoted 4 times
+ Rahul001 2 years, 1 month ago
+Yes it is enough to clear, 6-7 questions may come from outside exam topics but you can expect atleast 40 to come out of 246 questions.
+   upvoted 9 times
+
+6. Anonymous: 3arle 2 years, 5 months ago
+Selected Answer: B
+You can use Bastion if
+"You have a specific use case, like session recording, and you can't use IAP."
+https://cloud.google.com/compute/docs/connect/ssh-internal-ip
+   upvoted 4 times
+ Ahmed_Y 2 years, 4 months ago
+Thanks for that link but I think it is C, Although totally agree that Bastion comes 2nd in that table, no way all the user would have IP within this range 35.235.240.0/20!
+   upvoted 1 times
+ itsimranmalik 2 years, 4 months ago
+"allows ingress traffic from the IP range `35.235.240.0/20`. This range contains all IP addresses that IAP uses for TCP forwarding"
+https://cloud.google.com/iap/docs/using-tcp-forwarding#create-firewall-rule
+   upvoted 2 times
+
+7. Anonymous: qannik 2 years, 5 months ago
+Selected Answer: D
+But the question states "You need to ensure that your team logs in to these instances in the most secure and cost efficient way"
+Bastion is more secure than IAP but I'm not sure is more cost effective...
+Hard to choose
+   upvoted 1 times
+
+8. Anonymous: juliorevk 2 years, 5 months ago
+Understood about IAP being a secure way to SSH but where did the "Allow ingress traffic from the IP range 35.235.240.0/20 on port 22." come from and how does that fit in? The question had no details about it and the IP range seemed to come out of nowhere.
+   upvoted 4 times
+ Linhtinh603 2 years, 1 month ago
+35.235.240.0/20 is IP range of Cloud IAP for TCP forwarding, we need to allow ingress as the guideline below:
+https://cloud.google.com/iap/docs/using-tcp-forwarding#preparing_your_project_for_tcp_forwarding
+   upvoted 3 times
+
+9. Anonymous: Husni_adam 2 years, 6 months ago
+Selected Answer: B
+https://cloud.google.com/compute/docs/connect/ssh-using-iap#gcloud
+according the documentation the correct answer is B
+   upvoted 3 times
+
+10. Anonymous: techsteph 2 years, 6 months ago
+Selected Answer: B
+https://cloud.google.com/compute/docs/connect/ssh-using-iap#gcloud
+   upvoted 2 times
+==============================

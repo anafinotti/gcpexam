@@ -1,0 +1,634 @@
+==============================
+Page X — Question #251
+
+Pergunta:
+You installed the Google Cloud CLI on your workstation and set the proxy configuration. However, you are worried that your proxy credentials will be recorded in the gcloud CLI logs. You want to prevent your proxy credential from being logged. What should you do?
+
+Alternativas:
+- A. Configure username and password by using gcloud config set proxy/username and gcloud config set proxy/password commands.
+- B. Encode username and password in sha256 encoding, and save in to a text file. Use filename as a value in the gcloud config set core/custom_ca_certs_file command.
+- C. Provide values for CLOUDSDK_PROXY_USERNAME and CLOUDSDK_PROXY_PASSWORD in the gcloud CLI tool configuration file.
+- D. Set the CLOUDSDK_PROXY_USERNAME and CLOUDSDK_PROXY_PASSWORD properties by using environment variables in your command line tool.
+
+Resposta correta:
+D. Set the CLOUDSDK_PROXY_USERNAME and CLOUDSDK_PROXY_PASSWORD properties by using environment variables in your command line tool.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ChemaKSado Highly Voted  1 year, 10 months ago
+Answer is D. See Google Docs: https://cloud.google.com/sdk/docs/proxy-settings
+Alternatively, to avoid having the proxy credentials recorded in any logs (such as shell history or gcloud CLI logs) or in the gcloud CLI configuration file, you can set the properties using environment variables.
+export CLOUDSDK_PROXY_USERNAME [USERNAME]
+export CLOUDSDK_PROXY_PASSWORD [PASSWORD]
+   upvoted 5 times
+
+2. Anonymous: denno22 Most Recent  1 year, 3 months ago
+Selected Answer: D
+Alternatively, to avoid having the proxy credentials recorded in any logs (such as shell history or gcloud CLI logs) or in the gcloud CLI configuration file, you can set the properties using environment variables
+https://cloud.google.com/sdk/docs/proxy-settings
+   upvoted 3 times
+ denno22 1 year, 3 months ago
+export CLOUDSDK_PROXY_USERNAME [USERNAME]
+export CLOUDSDK_PROXY_PASSWORD [PASSWORD]
+   upvoted 2 times
+
+3. Anonymous: PiperMe 1 year, 10 months ago
+Selected Answer: D
+Option D is the best answer.
+   upvoted 1 times
+
+4. Anonymous: leoalvarezh 1 year, 11 months ago
+Selected Answer: D
+To avoid shell CLI history, logs or conf. file. Google recommends to set it on env. variables related with no storing of those values. Option D.
+   upvoted 1 times
+
+5. Anonymous: sinh 2 years ago
+Selected Answer: D
+https://cloud.google.com/sdk/docs/proxy-settings
+   upvoted 1 times
+
+6. Anonymous: Cynthia2023 2 years ago
+Selected Answer: D
+- Using Environment Variables: By setting the proxy credentials as environment variables (CLOUDSDK_PROXY_USERNAME and CLOUDSDK_PROXY_PASSWORD), you avoid having to enter them directly into the CLI tool where they might be logged. Environment variables are a common way to securely pass sensitive information like credentials.
+- No Logging of Credentials: The gcloud CLI typically does not log environment variables, so your credentials should be safe from being recorded in the CLI logs.
+- Ease of Use: Setting environment variables is straightforward and does not require modifying configuration files or encoding credentials.
+   upvoted 4 times
+ Cynthia2023 2 years ago
+A. Using gcloud config set for Username and Password: This approach directly enters the credentials into the gcloud CLI configuration, which could potentially be logged or exposed in the configuration file.
+B. Encoding Credentials and Custom CA Certs File: This option suggests a method that isn't directly related to setting proxy credentials. The core/custom_ca_certs_file is used for specifying a custom CA (Certificate Authority) certificate file, not for proxy credentials.
+C. Using the Configuration File: Modifying the configuration file to include proxy credentials might expose them in plain text within the file, which could be a security risk. It's generally safer to use environment variables for this purpose.
+   upvoted 2 times
+
+7. Anonymous: kaby1987 2 years ago
+Selected Answer: D
+Ans is D
+   upvoted 1 times
+
+8. Anonymous: KelvinToo 2 years ago
+Selected Answer: C
+Per ChatGPT, Option C is the most appropriate choice for securely providing proxy credentials to the gcloud CLI tool without risking exposure in logs or other outputs.
+   upvoted 1 times
+ PiperMe 1 year, 10 months ago
+I think this test may have rocked you due to ChatGPT. Storing credentials in the config file increases the risk of exposure if the file is compromised. It's the same problem as A. The answer is D.
+   upvoted 1 times
+
+9. Anonymous: shiowbah 2 years ago
+D. Set the CLOUDSDK_PROXY_USERNAME and CLOUDSDK_PROXY_PASSWORD properties by using environment variables in your command line tool.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #252
+
+Pergunta:
+Your company developed an application to deploy on Google Kubernetes Engine. Certain parts of the application are not fault-tolerant and are allowed to have downtime. Other parts of the application are critical and must always be available. You need to configure a Google Kubernetes Engine cluster while optimizing for cost. What should you do?
+
+Alternativas:
+- A. Create a cluster with a single node-pool by using standard VMs. Label he fault-tolerant Deployments as spot_true.
+- B. Create a cluster with a single node-pool by using Spot VMs. Label the critical Deployments as spot_false.
+- C. Create a cluster with both a Spot VM node pool and a node pool by using standard VMs. Deploy the critical deployments on the Spot VM node pool and the fault-tolerant deployments on the node pool by using standard VMs.
+- D. Create a cluster with both a Spot VM node pool and a nods pool by using standard VMs. Deploy the critical deployments on the node pool by using standard VMs and the fault-tolerant deployments on the Spot VM node pool.
+
+Resposta correta:
+D. Create a cluster with both a Spot VM node pool and a nods pool by using standard VMs. Deploy the critical deployments on the node pool by using standard VMs and the fault-tolerant deployments on the Spot VM node pool.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: halifax 1 year ago
+Selected Answer: D
+Weird - why does it say:
+"Certain parts of the application are NOT fault-tolerant and are allowed to have downtime," I think the word "NOT" is a typo, if they are allowed to have downtime, they are fault-tolerant.
+D is correct but the word NOT is probably a typo.
+   upvoted 2 times
+
+2. Anonymous: JoseCloudEng1994 1 year ago
+Selected Answer: D
+Pretty obvious. Its just a struggle to read the whole thing
+   upvoted 2 times
+
+3. Anonymous: PiperMe 1 year, 4 months ago
+Selected Answer: D
+Correct answer is D.
+   upvoted 3 times
+
+4. Anonymous: blackBeard33 1 year, 5 months ago
+Selected Answer: D
+D is the right answer here. Spot Vms are fault-tolerant.
+   upvoted 3 times
+
+5. Anonymous: JB28 1 year, 6 months ago
+The correct answer is D. Create a cluster with both a Spot VM node pool and a node pool by using standard VMs. Deploy the critical deployments on the node pool by using standard VMs and the fault-tolerant deployments on the Spot VM node pool.
+Here’s why:
+Spot VMs are cost-effective but can be preempted at any time, making them suitable for fault-tolerant parts of the application that can afford downtime.
+Standard VMs, while more expensive, provide consistent availability and are ideal for critical parts of the application that must always be available.
+By creating a cluster with both types of node pools, you can optimize for cost while ensuring the availability of critical application components.
+   upvoted 2 times
+
+6. Anonymous: Cynthia2023 1 year, 6 months ago
+Selected Answer: D
+Spot VM Node Pool for Fault-Tolerant Parts: Spot VMs in GKE are cost-effective but can be preempted (terminated) by Google Cloud with little notice if their resources are needed elsewhere. They are suitable for workloads that can handle interruptions, like the fault-tolerant parts of your application.
+Standard VM Node Pool for Critical Parts: Standard VMs offer more reliability and are not subject to preemption like Spot VMs. Using a standard VM node pool for the critical parts of your application ensures they remain available and are not disrupted by potential preemptions.
+   upvoted 4 times
+
+7. Anonymous: kaby1987 1 year, 6 months ago
+Selected Answer: D
+Ans is D
+   upvoted 2 times
+
+8. Anonymous: KelvinToo 1 year, 6 months ago
+Selected Answer: C
+Per ChatGPT, Option C aligns with the requirements of optimizing cost, ensuring fault tolerance for certain parts of the application, and maintaining high availability for critical parts by using a combination of Spot VM node pools and standard VM node pools in the same GKE cluster.
+   upvoted 1 times
+ ashiqnazeem 1 year, 5 months ago
+@KelvinToo chatgpt answers are not always correct.
+   upvoted 2 times
+ dan12q 1 year, 6 months ago
+Critical deployments is not fault-tolerant. Spot VM can restart after 24 hours.
+   upvoted 1 times
+
+9. Anonymous: shiowbah 1 year, 6 months ago
+D. Create a cluster with both a Spot VM node pool and a nods pool by using standard VMs. Deploy the critical deployments on the node pool by using standard VMs and the fault-tolerant deployments on the Spot VM node pool.
+   upvoted 3 times
+==============================
+
+==============================
+Page X — Question #253
+
+Pergunta:
+You need to deploy an application in Google Cloud using serverless technology. You want to test a new version of the application with a small percentage of production traffic. What should you do?
+
+Alternativas:
+- A. Deploy the application to Cloud Run. Use gradual rollouts for traffic splitting.
+- B. Deploy the application to Google Kubernetes Engine. Use Anthos Service Mash for traffic splitting.
+- C. Deploy the application to Cloud Functions. Specify the version number in the functions name.
+- D. Deploy the application to App Engine. For each new version, create a new service.
+
+Resposta correta:
+A. Deploy the application to Cloud Run. Use gradual rollouts for traffic splitting.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: carpa_jo Highly Voted  1 year, 11 months ago
+Selected Answer: A
+I would go for A. Here is why:
+Core requirements:
+1. Serverless technology
+2. Gradual deployment
+A: Cloud Run is serverless and supports gradual deployments with the help of tags and gcloud run services update-traffic.
+B: GKE is not considered serverless. Anthos Service Mash does support gradual deployments.
+C: Cloud Functions is serverless but specifying the version number in the functions name doesn't help to achieve gradual deployments. Instead using revisions or tags in combination with gcloud run services update-traffic is required.
+D: App Engine is serverless. For gradual deployments, you should create a new version of your service and then use gcloud app services set-traffic to split your traffic. Don't create a new service for each new version.
+   upvoted 12 times
+
+2. Anonymous: 364db8d Most Recent  4 months ago
+Selected Answer: A
+Anthos Service Mashed Potatoes
+   upvoted 1 times
+
+3. Anonymous: yomi95 1 year, 3 months ago
+Selected Answer: A
+Answer A
+D. also comes close with App Engine (since serverless and can split traffic in versions), but here is says create new service for each version where it's not needed in App engine.
+   upvoted 1 times
+
+4. Anonymous: PiperMe 1 year, 10 months ago
+Selected Answer: A
+A is the correct answer.
+   upvoted 2 times
+
+5. Anonymous: JB28 2 years ago
+The correct answer is **A. Deploy the application to Cloud Run. Use gradual rollouts for traffic splitting**.
+Here's why:
+- **Cloud Run** is a serverless platform that allows you to deploy and run your applications without worrying about infrastructure management. It supports deploying new versions of an application and gradually rolling out updates using traffic splitting. This makes it ideal for testing a new version of an application with a small percentage of production traffic.
+- The other options do not provide the same level of support for serverless deployment and traffic splitting for testing new versions of an application.
+   upvoted 4 times
+
+6. Anonymous: KelvinToo 2 years ago
+Selected Answer: A
+Per ChatGPT, Option A, deploying the application to Cloud Run and using gradual rollouts for traffic splitting, is the best choice for testing a new version of the application with a small percentage of production traffic while leveraging serverless technology in Google Cloud.
+   upvoted 3 times
+
+7. Anonymous: shiowbah 2 years ago
+A. Deploy the application to Cloud Run. Use gradual rollouts for traffic splitting.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #254
+
+Pergunta:
+Your company's security vulnerability management policy wants a member of the security team to have visibility into vulnerabilities and other OS metadata for a specific Compute Engine instance. This Compute Engine instance hosts a critical application in your Google Cloud project. You need to implement your company's security vulnerability management policy. What should you do?
+
+Alternativas:
+- A. • Ensure that the Ops Agent is installed on the Compute Engine instance.
+• Create a custom metric in the Cloud Monitoring dashboard.
+• Provide the security team member with access to this dashboard.
+- B. • Ensure that the Ops Agent is installed on the Compute Engine instance.
+• Provide the security team member roles/osconfig.inventoryViewer permission.
+- C. • Ensure that the OS Config agent is installed on the Compute Engine instance.
+• Provide the security team member roles/osconfig.vulnerabilityReportViewer permission.
+- D. • Ensure that the OS Config agent is installed on the Compute Engine instance.
+• Create a log sink to BigQuery dataset.
+• Provide the security team member with access to this dataset.
+
+Resposta correta:
+C. • Ensure that the OS Config agent is installed on the Compute Engine instance.
+• Provide the security team member roles/osconfig.vulnerabilityReportViewer permission.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Cynthia2023 Highly Voted  1 year, 6 months ago
+Selected Answer: C
+Ops Agent: The Ops Agent is primarily used for collecting system and application metrics, as well as logs in Google Cloud. It is adept at monitoring the performance and health of applications and virtual machines but does not specialize in vulnerability assessment or OS-level inventory management.
+OS Config Agent: This agent is specifically designed for OS configuration, inventory management, and vulnerability reporting in Google Cloud. It can gather and report on system-level inventory information (like installed packages) and OS vulnerabilities.
+   upvoted 14 times
+ Cynthia2023 1 year, 6 months ago
+Visibility into Vulnerabilities and Other OS Metadata:
+To access vulnerability data specifically, the roles/osconfig.vulnerabilityReportViewer role is more appropriate. This role is designed to provide access to vulnerability reports generated by the OS Config agent.
+To access general OS metadata, the osconfig.inventoryViewer role is suitable, as it allows the user to view inventory information collected by the OS Config agent.
+   upvoted 4 times
+ Cynthia2023 1 year, 6 months ago
+In the context of the provided options, none of them specifically combines both the osconfig.inventoryViewer and roles/osconfig.vulnerabilityReportViewer roles with the OS Config agent. However, Option C (ensuring the OS Config agent is installed and providing the roles/osconfig.vulnerabilityReportViewer permission) comes closest to fulfilling the requirement, particularly for the critical aspect of vulnerability visibility.
+   upvoted 5 times
+
+2. Anonymous: PiperMe Most Recent  1 year, 4 months ago
+Selected Answer: C
+C is correct here. It leverages the OS Config agent and a well-defined IAM role.
+   upvoted 2 times
+
+3. Anonymous: KelvinToo 1 year, 6 months ago
+Selected Answer: C
+Per ChatGPT, Option C aligns with the requirement of providing visibility into vulnerabilities and other OS metadata for the specific Compute Engine instance while following the principle of least privilege by granting only the necessary permissions to the security team member.
+   upvoted 1 times
+
+4. Anonymous: shiowbah 1 year, 6 months ago
+C. • Ensure that the OS Config agent is installed on the Compute Engine instance.
+• Provide the security team member roles/osconfig.vulnerabilityReportViewer permission.
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #255
+
+Pergunta:
+You want to enable your development team to deploy new features to an existing Cloud Run service in production. To minimize the risk associated with a new revision, you want to reduce the number of customers who might be affected by an outage without introducing any development or operational costs to your customers. You want to follow Google-recommended practices for managing revisions to a service. What should you do?
+
+Alternativas:
+- A. Ask your customers to retry access to your service with exponential backoff to mitigate any potential problems after the new revision is deployed.
+- B. Gradually roll out the new revision and split customer traffic between the revisions to allow rollback in case a problem occurs.
+- C. Send all customer traffic to the new revision, and roll back to a previous revision if you witness any problems in production.
+- D. Deploy your application to a second Cloud Run service, and ask your customers to use the second Cloud Run service.
+
+Resposta correta:
+B. Gradually roll out the new revision and split customer traffic between the revisions to allow rollback in case a problem occurs.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: shiowbah Highly Voted  1 year, 6 months ago
+B. Gradually roll out the new revision and split customer traffic between the revisions to allow rollback in case a problem occurs.
+   upvoted 7 times
+
+2. Anonymous: carpa_jo Highly Voted  1 year, 5 months ago
+Selected Answer: B
+I would go with B. Here is why:
+Requirements:
+1. Reduce the number of customers who might be affected by an outage (caused by a new version release)
+2. Don't introduce any development or operational costs to the customers.
+(3. Follow Google-recommended practices)
+A: Might require the customer to setup exponential backoff on their end -> Requirement 2 not met.
+B: Fulfills all requirements.
+C: Does not meet requirement 1, as switching 100% traffic at once to the new version would affect all of the customers, if there would be any issue in this version.
+D: Does not meet requirements 1, 2 and 3, as an issue would affect all customers (once they have switched to the new service), switching to the second cloud run service causes dev/ops costs on the customer side and it doesn't follow Google-recommended practices, as a new version of an existing service should not be released as a new service.
+   upvoted 6 times
+
+3. Anonymous: PiperMe Most Recent  1 year, 4 months ago
+Selected Answer: B
+B for the win! Deploy new features = split traffic. Every time.
+   upvoted 2 times
+
+4. Anonymous: KelvinToo 1 year, 6 months ago
+Selected Answer: B
+Per ChatGPT, Option B aligns with the recommended practice of gradually rolling out new revisions, allowing for controlled monitoring and risk mitigation, without introducing any development or operational costs to customers.
+   upvoted 4 times
+==============================
+
+==============================
+Page X — Question #256
+
+Pergunta:
+You have deployed an application on a Compute Engine instance. An external consultant needs to access the Linux-based instance. The consultant is connected to your corporate network through a VPN connection, but the consultant has no Google account. What should you do?
+
+Alternativas:
+- A. Instruct the external consultant to use the gcloud compute ssh command line tool by using Identity-Aware Proxy to access the instance.
+- B. Instruct the external consultant to use the gcloud compute ssh command line tool by using the public IP address of the instance to access it.
+- C. Instruct the external consultant to generate an SSH key pair, and request the public key from the consultant. Add the public key to the instance yourself, and have the consultant access the instance through SSH with their private key.
+- D. Instruct the external consultant to generate an SSH key pair, and request the private key from the consultant. Add the private key to the instance yourself, and have the consultant access the instance through SSH with their public key.
+
+Resposta correta:
+C. Instruct the external consultant to generate an SSH key pair, and request the public key from the consultant. Add the public key to the instance yourself, and have the consultant access the instance through SSH with their private key.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Cynthia2023 Highly Voted  2 years ago
+Selected Answer: C
+A. Using Identity-Aware Proxy (IAP): While IAP is a secure method of accessing Compute Engine instances, it typically requires a Google account for authentication, which the consultant does not have.
+   upvoted 9 times
+
+2. Anonymous: JB28 Highly Voted  2 years ago
+The correct answer is **C**.
+To allow an external consultant to access a Linux-based Compute Engine instance, you should:
+- Instruct the external consultant to generate an **SSH key pair**. This will result in a public key and a private key.
+- Request the **public key** from the consultant. The public key can be shared without compromising security.
+- Add the public key to the instance yourself. This will allow the consultant to authenticate with the Compute Engine instance.
+- Have the consultant access the instance through SSH with their **private key**. The private key should be kept secret and not shared.
+The other options (A, B, and D) are not correct because they either require the consultant to have a Google account, expose the instance to the public internet, or involve sharing the private key, which is a security risk.
+   upvoted 8 times
+
+3. Anonymous: JoseCloudEng1994 Most Recent  1 year ago
+Selected Answer: A
+I would say A.
+https://cloud.google.com/iap/docs/external-identities
+IAP controls access to your applications and resources. It leverages user identity and the context of a request to determine if a user should be allowed access. IAP is a building block toward BeyondCorp, an enterprise security model that enables employees to work from untrusted networks without using a VPN.
+By default, IAP uses Google identities and IAM. By leveraging Identity Platform instead, you can authenticate users with a wide range of external identity providers, such as:
+Email/password
+OAuth (Google, Facebook, Twitter, GitHub, Microsoft, etc.)
+SAML
+OIDC
+Phone number
+Custom
+Anonymous
+This is useful if your application is already using an external authentication system, and migrating your users to Google accounts is impractical.
+   upvoted 1 times
+
+4. Anonymous: sahuprashant123 1 year, 1 month ago
+Selected Answer: C
+The most secure and recommended method for providing SSH access to a consultant who does not have a Google account is to have them generate an SSH key pair, provide you with the public key, and then add it to the instance so they can authenticate using their private key.
+   upvoted 1 times
+
+5. Anonymous: sahuprashant123 1 year, 1 month ago
+Selected Answer: C
+IAP can be used for secure SSH access but is only feasible if the consultant has or is provided with a Google account. If providing a Google account is not an option, the best alternative is to use the existing VPN connection with SSH key-based access.
+   upvoted 1 times
+
+6. Anonymous: NinjaCloud 1 year, 1 month ago
+Selected Answer: A
+Option A is a valid answer. IAP allows access using third-party identity providers (like SAML, OAuth 2.0), so the consultant doesn't need to have a Google account.
+   upvoted 1 times
+
+7. Anonymous: FormacionCloud314 1 year, 2 months ago
+The correct answer is C, why is option A discarded, being complementary with previous answers, see question number 152... It says it very clear, the auditor is connected through the VPN network, if we observe the documentation based on IAP, it is recommended for uses outside the VPN, (...IAP is a building block toward BeyondCorp, an enterprise security model that enables employees to work from untrusted networks without using a VPN....). My answer will be C
+https://cloud.google.com/iap/docs/external-identities
+   upvoted 1 times
+
+8. Anonymous: Chetantest07 1 year, 3 months ago
+Selected Answer: A
+A. IAP can work with no google account.https://cloud.google.com/iap/docs/external-identities
+   upvoted 3 times
+
+9. Anonymous: denno22 1 year, 3 months ago
+Selected Answer: A
+https://cloud.google.com/iap/docs/external-identities.
+   upvoted 1 times
+
+10. Anonymous: C0D3LK 1 year, 4 months ago
+Selected Answer: C
+Although its confusing and contradicting with Question 152, I would proceed to choose C for this. Question states no google account and the consultant is connected through VPN to the corporate network also its "an instant", not many..
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #257
+
+Pergunta:
+After a recent security incident, your startup company wants better insight into what is happening in the Google Cloud environment. You need to monitor unexpected firewall changes and instance creation. Your company prefers simple solutions. What should you do?
+
+Alternativas:
+- A. Create a log sink to forward Cloud Audit Logs filtered for firewalls and compute instances to Cloud Storage. Use BigQuery to periodically analyze log events in the storage bucket.
+- B. Use Cloud Logging filters to create log-based metrics for firewall and instance actions. Monitor the changes and set up reasonable alerts.
+- C. Install Kibana on a compute instance. Create a log sink to forward Cloud Audit Logs filtered for firewalls and compute instances to Pub/Sub. Target the Pub/Sub topic to push messages to the Kibana instance. Analyze the logs on Kibana in real time.
+- D. Turn on Google Cloud firewall rules logging, and set up alerts for any insert, update, or delete events.
+
+Resposta correta:
+B. Use Cloud Logging filters to create log-based metrics for firewall and instance actions. Monitor the changes and set up reasonable alerts.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Stargazer11 Highly Voted  1 year, 11 months ago
+Selected Answer: B
+log sink is advanced and it is used for routing logs to specific destinations.
+so answer B
+   upvoted 6 times
+
+2. Anonymous: BuenaCloudDE Most Recent  1 year, 6 months ago
+Selected Answer: B
+I think that key-words is "After a recent security incident", you need be notified if something happening with so important thing like secure.
+   upvoted 3 times
+
+3. Anonymous: blackBeard33 1 year, 11 months ago
+Selected Answer: B
+B is a simple solution.
+   upvoted 3 times
+
+4. Anonymous: interesting_owl 2 years ago
+Selected Answer: A
+this is simple.
+   upvoted 1 times
+
+5. Anonymous: KelvinToo 2 years ago
+Selected Answer: B
+Per ChatGPT, Option B provides a simple and effective solution using native Google Cloud services (Cloud Logging and log-based metrics) to monitor unexpected firewall changes and instance creation, while also allowing for the setup of reasonable alerts to ensure timely response to any security incidents.
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #258
+
+Pergunta:
+You are configuring service accounts for an application that spans multiple projects. Virtual machines (VMs) running in the web-applications project need access to BigQuery datasets in the crm-databases project. You want to follow Google-recommended practices to grant access to the service account in the web-applications project. What should you do?
+
+Alternativas:
+- A. Grant "project owner" for web-applications appropriate roles to crm-databases.
+- B. Grant "project owner" role to crm-databases and the web-applications project.
+- C. Grant "project owner" role to crm-databases and roles/bigquery.dataViewer role to web-applications.
+- D. Grant roles/bigquery.dataViewer role to crm-databases and appropriate roles to web-applications.
+
+Resposta correta:
+D. Grant roles/bigquery.dataViewer role to crm-databases and appropriate roles to web-applications.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Gocool28 Highly Voted  2 years ago
+Selected Answer: D
+D is the least privilege and Google's recommended practices.
+   upvoted 5 times
+
+2. Anonymous: 85c887f Most Recent  9 months, 3 weeks ago
+Selected Answer: C
+C option is not the best in part "project owner", but at least Project Owner will enable possibility to grant roles on this project. Option D is more confusion to me. Why in option D we "Grant roles/bigquery.dataViewer role to crm-databases"? Should not it be granted to the service account of the web-applications project as it supposed to need to access to datasets on crm-databases?
+   upvoted 1 times
+ AdelElagawany 3 months, 1 week ago
+The service account which will be assigned the roles:
+- The SA is created in the project "web-applications", therefore the SA should be granted the required access to do its job in that project + BigQuery Job User in the same project "web-applications" to be able to run BigQuery Jobs (Able to query) from there.
+- In the "crm-databases", that SA should be able to access the BigQuery database so it must have "Bigquery Data Viewer" role there.
+   upvoted 1 times
+
+3. Anonymous: yomi95 1 year, 3 months ago
+Selected Answer: D
+The question does not describe any project requiring "owner" role access, hence granting that role to any of the project would violate least privilege.
+Can argue that crm-databases should have full access hence need owner role, but question does not mention specifically, and we only assume that.
+   upvoted 1 times
+
+4. Anonymous: d52e44d 1 year, 9 months ago
+Selected Answer: A
+I had my exam today and select A. I did only because of these sentence "service accounts for an application that spans multiple projects ." not 100% sure if it's correct but service account for web apps needs permissions to span projects. Maybe I got it wrong but A makes sense.
+It's tricky cause you don't know if web-apps will also do some updates on BigQuery or not.
+   upvoted 1 times
+
+5. Anonymous: PiperMe 1 year, 10 months ago
+Selected Answer: D
+D is the best answer and, for me, it was a process of elimination. The Project Owner role grants far-reaching permissions beyond what's needed for reading BQ datasets, violating the principle of least privilege.
+   upvoted 2 times
+
+6. Anonymous: Cynthia2023 2 years ago
+Selected Answer: A
+Interpreting 'Project Owner' as the responsible entity, and not as the 'Project Owner' IAM role in Google Cloud: In this case, the instruction directs the person or entity managing the 'web-applications' project to grant appropriate roles for accessing the 'crm-databases' project. If this interpretation aligns with the intent of Option A, then it would indeed be a correct approach. Otherwise, none of the provided options would be correct.
+   upvoted 1 times
+ RKS_2021 1 year, 4 months ago
+We need to assign roles to the service account. It should have read access on the crm project.
+D is correct.
+   upvoted 1 times
+ LautaroBarone 1 year, 11 months ago
+You're managing the service accounts, why would you grant any role to 'web-applications' project owner? The most appropiate should be D, because you are granting a wrong role to the service accounts in 'crm-databases' project, but then the option says that appropiate roles will be granted to service accounts in 'web-applications' project.
+   upvoted 4 times
+
+7. Anonymous: dan12q 2 years ago
+It is 116 question. The answer is D.
+   upvoted 4 times
+
+8. Anonymous: KelvinToo 2 years ago
+Selected Answer: D
+Per ChatGPT, Option D aligns with the principle of least privilege, provides separation of concerns between projects, and allows for granular access control, making it the best choice for granting access to the service account in the web-applications project to access BigQuery datasets in the crm-databases project while following Google-recommended practices.
+   upvoted 1 times
+ Cynthia2023 2 years ago
+why give the role to the project crm-databases, it makes no sense.
+   upvoted 2 times
+
+9. Anonymous: shiowbah 2 years ago
+D. Grant roles/bigquery.dataViewer role to crm-databases and appropriate roles to web-applications.
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #259
+
+Pergunta:
+Your Dataproc cluster runs in a single Virtual Private Cloud (VPC) network in a single subnetwork with range 172.16.20.128/25. There are no private IP addresses available in the subnetwork. You want to add new VMs to communicate with your cluster using the minimum number of steps. What should you do?
+
+Alternativas:
+- A. Modify the existing subnet range to 172.16.20.0/24.
+- B. Create a new Secondary IP Range in the VPC and configure the VMs to use that range.
+- C. Create a new VPC network for the VMs. Enable VPC Peering between the VMs'VPC network and the Dataproc cluster VPC network.
+- D. Create a new VPC network for the VMs with a subnet of 172.32.0.0/16. Enable VPC network Peering between the Dataproc VPC network and the VMs VPC network. Configure a custom Route exchange.
+
+Resposta correta:
+A. Modify the existing subnet range to 172.16.20.0/24.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: apb98 Highly Voted  2 years ago
+Selected Answer: A
+A. Same as question 129. Option A involves modifying the subnet range of the existing VPC network to increase the number of available IP addresses. By changing the subnet range to 172.16.20.0/24, you will have a larger IP address range to allocate to new VMs, allowing them to communicate with the Dataproc cluster.
+To expand the IP range of a Compute Engine subnetwork, you can use:
+gcloud compute networks subnets expand-ip-range NAME
+   upvoted 9 times
+ Arjun727 1 year, 11 months ago
+Modify is not equals to Expanding
+   upvoted 1 times
+ ashiqnazeem 1 year, 11 months ago
+not the same question.
+Question #: 259 : "There are no private IP addresses available in the subnetwork"
+Question #: 129 : "There are no private IP addresses available in the VPC network."
+   upvoted 4 times
+
+2. Anonymous: srjulio1987 Most Recent  4 months, 1 week ago
+Selected Answer: B
+You cannot simply change/expand the primary IP range of an existing subnet to another block.
+   upvoted 1 times
+
+3. Anonymous: Jordarlu 9 months, 3 weeks ago
+Selected Answer: A
+pls refer to https://cloud.google.com/blog/products/gcp/subnetwork-expansion-adds-even-more-flexibility-to-your-google-cloud-platform-private-networks
+   upvoted 1 times
+
+4. Anonymous: longph8 10 months ago
+Selected Answer: B
+although “modifying” (expanding) the primary range might be an option in some cases, the recommended solution in this scenario is Option B, as it is simpler, safer, and minimizes any potential disruptions to your existing resources.
+   upvoted 2 times
+
+5. Anonymous: Esteban08 10 months, 3 weeks ago
+Selected Answer: B
+B. Create a new Secondary IP Range in the VPC and configure the VMs to use that range.
+   upvoted 2 times
+
+6. Anonymous: 1826c27 11 months, 2 weeks ago
+Selected Answer: C
+A is incorrect because: "You can expand the primary IPv4 range of an existing subnet by modifying its subnet mask, setting the prefix length to a smaller number". PREFIX!
+   upvoted 1 times
+
+7. Anonymous: denno22 1 year, 3 months ago
+Selected Answer: A
+gcloud compute networks subnets expand-ip-range - expand the IP range of a Compute Engine subnetwork
+   upvoted 1 times
+
+8. Anonymous: omunoz 1 year, 8 months ago
+The question state "using the minimum number of steps" , then it should be A.
+   upvoted 2 times
+
+9. Anonymous: kuracpalac 1 year, 10 months ago
+I would say A is the answer, but I have no idea what the Q means when specifying "You want to add new VMs to communicate with your cluster using the minimum number of steps."
+Does it mean that you want to add VMs and use the same subnet or add new VMs and use another subnet and then want those VMs communicating with the VMs in the other subnet?
+   upvoted 1 times
+
+10. Anonymous: STEVE_PEGLEG 1 year, 11 months ago
+Selected Answer: C
+The reason A isn't correct is because you can only expand a subnet by "setting the prefix length to a smaller number"
+See: https://cloud.google.com/vpc/docs/create-modify-vpc-networks#expand-subnet
+The reason B isn't correct is because you can only use a secondary (aka 'alias') IP address when there is a primary already in place. In this scenario this isn't possible to do for the new VMs because there are no primary IP addresses available.
+Therefore C seems like a feasible approach, with fewer steps than D (even if D is possible, which I don't know).
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #260
+
+Pergunta:
+You are building a backend service for an ecommerce platform that will persist transaction data from mobile and web clients. After the platform is launched, you expect a large volume of global transactions. Your business team wants to run SQL queries to analyze the data. You need to build a highly available and scalable data store for the platform. What should you do?
+
+Alternativas:
+- A. Create a multi-region Cloud Spanner instance with an optimized schema.
+- B. Create a multi-region Firestore database with aggregation query enabled.
+- C. Create a multi-region Cloud SQL for PostgreSQL database with optimized indexes.
+- D. Create a multi-region BigQuery dataset with optimized tables.
+
+Resposta correta:
+A. Create a multi-region Cloud Spanner instance with an optimized schema.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: apb98 Highly Voted  2 years ago
+Selected Answer: A
+A. Key is “large volume of global transactions”, so Cloud Spanner would be a good choice.
+   upvoted 7 times
+
+2. Anonymous: Timfdklfajlksdjlakf Most Recent  1 year, 4 months ago
+Selected Answer: A
+PiperMe perfectly summed it up. Rember: Global + SQL = Cloud Spanner
+   upvoted 4 times
+
+3. Anonymous: PiperMe 1 year, 10 months ago
+Selected Answer: A
+A. Global + SQL = Cloud Spanner
+   upvoted 4 times
+
+4. Anonymous: KelvinToo 2 years ago
+Selected Answer: A
+Per ChatGPT, Option A, creating a multi-region Cloud Spanner instance with an optimized schema, is the best choice for building a highly available and scalable data store that can efficiently handle global transactions and support SQL queries for analysis.
+   upvoted 4 times
+ 364db8d 4 months ago
+You are so smart
+   upvoted 1 times
+
+5. Anonymous: shiowbah 2 years ago
+A. Create a multi-region Cloud Spanner instance with an optimized schema.
+   upvoted 4 times
+==============================

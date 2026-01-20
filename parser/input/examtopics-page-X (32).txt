@@ -1,0 +1,244 @@
+==============================
+Page X — Question #321
+
+Pergunta:
+Your company runs a variety of applications and workloads on Google Cloud, and you are responsible for managing cloud costs. You need to identify a solution that enables you to perform detailed cost analysis. You also must be able to visualize the cost data in multiple ways on the same dashboard. What should you do?
+
+Alternativas:
+- A. Use the cost breakdown report with the available filters from Cloud Billing to visualize the data.
+- B. Enable the Cloud Billing export to BigQuery, and use Looker Studio to visualize the data.
+- C. Run queries in Cloud Monitoring. Create dashboards to visualize the billing metrics.
+- D. Enable Cloud Monitoring metrics export to BigQuery, and use Looker to visualize the data.
+
+Resposta correta:
+B. Enable the Cloud Billing export to BigQuery, and use Looker Studio to visualize the data.
+
+Top 10 Discussões (sem replies):
+Nenhuma discussão
+==============================
+
+==============================
+Page X — Question #322
+
+Pergunta:
+Your digital media company stores a large number of video files on-premises. Each video file ranges from 100 MB to 100 GB. You are currently storing 150 TB of video data in your on-premises network, with no room for expansion. You need to migrate all infrequently accessed video files older than one year to Cloud Storage to ensure that on-premises storage remains available for new files. You must also minimize costs and control bandwidth usage. What should you do?
+
+Alternativas:
+- A. Use Storage Transfer Service to move the data from the selected on-premises file storage systems to a Cloud Storage bucket.
+- B. Use Transfer Appliance to request an appliance. Load the data locally, and ship the appliance back to Google for ingestion into Cloud Storage.
+- C. Set up a Cloud Interconnect connection between the on-premises network and Google Cloud. Establish a private endpoint for Filestore access. Transfer the data from the existing Network File System (NFS) to Filestore.
+- D. Create a Cloud Storage bucket. Establish an Identity and Access Management (IAM) role with write permissions to the bucket. Use the gsutil tool to directly copy files over the network to Cloud Storage.
+
+Resposta correta:
+A. Use Storage Transfer Service to move the data from the selected on-premises file storage systems to a Cloud Storage bucket.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Gius3 1 day, 10 hours ago
+Selected Answer: B
+Actually the question does not provide information about the size of data to be transferred, so it is not possible to make a choice between A and B. I choose B as since even 20% of overall basket justifies Transfer Appliance
+   upvoted 1 times
+
+2. Anonymous: 763609c 1 month, 3 weeks ago
+Selected Answer: B
+Choose Transfer Appliance for large on-premises data transfers (over 10 TB)
+   upvoted 1 times
+
+3. Anonymous: AdelElagawany 3 months ago
+Selected Answer: A
+The most accurate answer is [A] since Storage Transfer Service allow you to control the bandwidth.
+Storage options:
+1. Data Size < 1TB ==> gcloud storage
+2. Data Size > 1 TB And enough bandwidth ==> STS
+3. Data Size > 1TB and between buckets in GCP ==> STS
+From other Cloud Providers => STS
+The only recommended way to use the storage appliance when (Date Size > 1TB) and (Not enough bandwidth to meet your project deadline)
+- Control Bandwidth: https://cloud.google.com/storage-transfer/docs/obtaining-bandwidth-on-prem
+- Data transfer options: https://cloud.google.com/storage-transfer/docs/transfer-options
+- Data transfer options:https://cloud.google.com/architecture/migration-to-google-cloud-transferring-your-large-datasets#transfer-options
+   upvoted 1 times
+
+4. Anonymous: Isfaten7 3 months, 1 week ago
+Selected Answer: B
+150 TB is very large — transferring that amount of data over the internet (even with Storage Transfer Service or gsutil) would take weeks and use a lot of bandwidth
+   upvoted 2 times
+
+5. Anonymous: reiga 4 months, 1 week ago
+Selected Answer: A
+Storage Transfer Service is a managed service designed specifically for use cases like this (large-scale online data migration). It automatically manages data transfers from on-premises file systems or other cloud storage to Cloud Storage, including scheduling, bandwidth throttling, and retry handling.
+   upvoted 3 times
+==============================
+
+==============================
+Page X — Question #323
+
+Pergunta:
+You are implementing a company-wide standard to control SSH access for your Google Cloud projects. You want to simplify SSH access management to your Compute Engine instances while maintaining audit compliance and eliminating as many manual steps as possible. What should you do?
+
+Alternativas:
+- A. Configure a service account to add SSH keys for all VMs.
+- B. Configure metadata SSH keys to manage sudo access to instances.
+- C. Enable OS Login by using an organization policy for each Google Cloud project.
+- D. Enable OS Login with two-factor authentication for the domain.
+
+Resposta correta:
+C. Enable OS Login by using an organization policy for each Google Cloud project.
+
+Top 10 Discussões (sem replies):
+Nenhuma discussão
+==============================
+
+==============================
+Page X — Question #324
+
+Pergunta:
+You are developing an internet of things (IoT) application that captures sensor data from multiple devices that have already been set up. You need to identify the global data storage product your company should use to store this data. You must ensure that the storage solution you choose meets your requirements of sub-millisecond latency. What should you do?
+
+Alternativas:
+- A. Store the IoT data in Spanner. Use caches to speed up the process and avoid latencies.
+- B. Store the IoT data in Bigtable.
+- C. Capture IoT data in BigQuery datasets.
+- D. Store the IoT data in Cloud Storage. Implement caching by using Cloud CDN.
+
+Resposta correta:
+B. Store the IoT data in Bigtable.
+
+Top 10 Discussões (sem replies):
+Nenhuma discussão
+==============================
+
+==============================
+Page X — Question #325
+
+Pergunta:
+Your company uses Pub/Sub for event-driven workloads. You have a subscription named email-updates attached to the new-orders topic. You need to fetch and acknowledge waiting messages from this subscription. What should you do?
+
+Alternativas:
+- A. Use the gcloud pubsub subscriptions seek email-updates command.
+- B. Use the gcloud pubsub topics describe new-orders command.
+- C. Use the gcloud pubsub subscriptions pull email-updates --auto-ack command.
+- D. Use the gcloud pubsub topics list-subscriptions new-orders --filter="email-updates" command.
+
+Resposta correta:
+C. Use the gcloud pubsub subscriptions pull email-updates --auto-ack command.
+
+Top 10 Discussões (sem replies):
+Nenhuma discussão
+==============================
+
+==============================
+Page X — Question #326
+
+Pergunta:
+You need to create and manage service accounts for your workloads running on Google Cloud. You want to follow Google-recommended practices. What should you do? (Choose two.)
+
+Alternativas:
+- A. Create as few service accounts as possible.
+- B. Delete any unused service accounts immediately.
+- C. Create single-purpose service accounts.
+- D. Manage service accounts as resources.
+- E. Use random names for the service accounts.
+
+Resposta correta:
+D. Manage service accounts as resources.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: AdelElagawany 3 months ago
+Selected Answer: CD
+As per the public documentation [1], below are the 5 best practices of using the SA:
+Best practices:
+- Manage service accounts as resources.
+- Create single-purpose service accounts.
+- Follow a naming and documentation convention.
+- Identify and disable unused service accounts.
+- Disable unused service accounts before deleting them.
+https://cloud.google.com/iam/docs/best-practices-service-accounts#manage-service-accounts
+   upvoted 1 times
+
+2. Anonymous: ladyerina 3 months, 1 week ago
+Selected Answer: BC
+Following Google-recommended practices:
+Delete unused service accounts immediately to reduce security risks.
+Create single-purpose service accounts to limit permissions to specific tasks, improving security and maintainability.
+   upvoted 1 times
+
+3. Anonymous: gs23mi 5 months ago
+Selected Answer: CD
+see https://cloud.google.com/iam/docs/best-practices-service-accounts
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #327
+
+Pergunta:
+Your company wants to migrate your data from an on-premises relational database to Google Cloud. Your current database can no longer scale with respect to the growth of your users, and you expect the number of users to rapidly grow. You need to choose a relational database that allows you to globally scale while minimizing your management and administration efforts. You also want to follow Google-recommended practices. What should you do?
+
+Alternativas:
+- A. Use Cloud SQL.
+- B. Use Spanner.
+- C. Use Firestore.
+- D. Use BigQuery.
+
+Resposta correta:
+B. Use Spanner.
+
+Top 10 Discussões (sem replies):
+Nenhuma discussão
+==============================
+
+==============================
+Page X — Question #328
+
+Pergunta:
+You are the Google Cloud systems administrator for your organization. User A reports that they received an error when attempting to access the Cloud SQL database in their Google Cloud project, while User B can access the database. You need to troubleshoot the issue for User A, while following Google-recommended practices. What should you do first?
+
+Alternativas:
+- A. Confirm that network firewall rules are not blocking traffic for User A.
+- B. Verify that User A has the Identity and Access Management (IAM) Project Owner role assigned.
+- C. Review recent configuration changes that may have caused unintended modifications to permissions.
+- D. Review the error message that User A received.
+
+Resposta correta:
+D. Review the error message that User A received.
+
+Top 10 Discussões (sem replies):
+Nenhuma discussão
+==============================
+
+==============================
+Page X — Question #329
+
+Pergunta:
+You manage a VPC network in Google Cloud with a subnet that is rapidly approaching its private IP address capacity. You expect the number of Compute Engine VM instances in the same region to double within a week. You need to implement a Google-recommended solution that minimizes operational costs and does not require downtime. What should you do?
+
+Alternativas:
+- A. Create a second VPC with the same subnet IP range, and connect this VPC to the existing VPC by using VPC Network Peering.
+- B. Delete the existing subnet, and create a new subnet with double the IP range available.
+- C. Permit additional traffic from the expected range of private IP addresses to reach your VMs by configuring firewall rules.
+- D. Use the Google Cloud CLI tool to expand the primary IP range of your subnet.
+
+Resposta correta:
+D. Use the Google Cloud CLI tool to expand the primary IP range of your subnet.
+
+Top 10 Discussões (sem replies):
+Nenhuma discussão
+==============================
+
+==============================
+Page X — Question #330
+
+Pergunta:
+You have developed a web application that serves traffic for a local event and are expecting unpredictable traffic. You have containerized the application, and you now want to deploy the application on Google Cloud. You also want to minimize costs. What should you do?
+
+Alternativas:
+- A. Deploy the web application as a Cloud Run job.
+- B. Deploy the web application on Google Kubernetes Engine in Standard mode.
+- C. Deploy the web application as a Cloud Run service.
+- D. Deploy the web application on Google Kubernetes Engine in Autopilot mode.
+
+Resposta correta:
+C. Deploy the web application as a Cloud Run service.
+
+Top 10 Discussões (sem replies):
+Nenhuma discussão
+==============================

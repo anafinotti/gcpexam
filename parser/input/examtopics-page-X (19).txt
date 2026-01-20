@@ -1,0 +1,711 @@
+==============================
+Page X — Question #191
+
+Pergunta:
+You have deployed multiple Linux instances on Compute Engine. You plan on adding more instances in the coming weeks. You want to be able to access all of these instances through your SSH client over the internet without having to configure specific access on the existing and new instances. You do not want the
+Compute Engine instances to have a public IP. What should you do?
+
+Alternativas:
+- A. Configure Cloud Identity-Aware Proxy for HTTPS resources.
+- B. Configure Cloud Identity-Aware Proxy for SSH and TCP resources
+- C. Create an SSH keypair and store the public key as a project-wide SSH Key.
+- D. Create an SSH keypair and store the private key as a project-wide SSH Key.
+
+Resposta correta:
+B. Configure Cloud Identity-Aware Proxy for SSH and TCP resources
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Akash7 Highly Voted  2 years, 8 months ago
+B is correct as question say no public IP on the instance.
+   upvoted 15 times
+ Akash7 2 years, 8 months ago
+Use IAP TCP to enable access to VM instances that do not have external IP addresses or do not permit direct access over the internet.
+https://cloud.google.com/iap/docs/using-tcp-forwarding
+   upvoted 16 times
+
+2. Anonymous: Untamables Highly Voted  2 years, 2 months ago
+Selected Answer: B
+Absolutely B
+https://cloud.google.com/iap/docs/using-tcp-forwarding#tunneling_ssh_connections
+   upvoted 5 times
+
+3. Anonymous: Vovtchick Most Recent  1 year, 2 months ago
+Answer B
+https://cloud.google.com/blog/products/identity-security/cloud-iap-enables-context-aware-access-to-vms-via-ssh-and-rdp-without-bastion-hosts
+   upvoted 2 times
+
+4. Anonymous: jimmydice 1 year, 2 months ago
+B - Cloud Identity-Aware Proxy (IAP) allows you to set up secure access to your VM instances without the need to expose them to the public internet. By using IAP for SSH and TCP resources, you can manage access to the instances through a central point (IAP), which serves as a secure way to access your resources without the need for public IP addresses.
+IAP allows you to set up access controls based on user identities and their permissions, rather than relying on specific IP addresses or public keys configured on individual instances. This streamlines access management and enhances security, providing centralized control over SSH access to your Compute Engine instances.
+   upvoted 3 times
+
+5. Anonymous: sabrinakloud 1 year, 9 months ago
+Selected Answer: B
+B is correct
+   upvoted 1 times
+
+6. Anonymous: Gautam_Thampy 2 years, 4 months ago
+Selected Answer: B
+b is right
+   upvoted 1 times
+
+7. Anonymous: snkhatri 2 years, 4 months ago
+Selected Answer: B
+B looks right
+   upvoted 1 times
+
+8. Anonymous: AzureDP900 2 years, 7 months ago
+B is correct, With TCP forwarding, IAP can protect SSH and RDP access to your VMs hosted on Google Cloud. Your VM instances don't even need public IP addresses.
+   upvoted 4 times
+
+9. Anonymous: Rutu_98 2 years, 8 months ago
+Selected Answer: B
+B is correct
+   upvoted 2 times
+
+10. Anonymous: lixamec 2 years, 8 months ago
+Selected Answer: B
+I think it is B
+https://medium.com/google-cloud/how-to-ssh-into-your-gce-machine-without-a-public-ip-4d78bd23309e
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #192
+
+Pergunta:
+You have created an application that is packaged into a Docker image. You want to deploy the Docker image as a workload on Google Kubernetes Engine. What should you do?
+
+Alternativas:
+- A. Upload the image to Cloud Storage and create a Kubernetes Service referencing the image.
+- B. Upload the image to Cloud Storage and create a Kubernetes Deployment referencing the image.
+- C. Upload the image to Container Registry and create a Kubernetes Service referencing the image.
+- D. Upload the image to Container Registry and create a Kubernetes Deployment referencing the image.
+
+Resposta correta:
+D. Upload the image to Container Registry and create a Kubernetes Deployment referencing the image.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Aninina Highly Voted  2 years, 2 months ago
+Selected Answer: D
+A deployment is responsible for keeping a set of pods running. A service is responsible for enabling network access to a set of pods.
+   upvoted 22 times
+
+2. Anonymous: kaes Highly Voted  1 year, 7 months ago
+Selected Answer: D
+Keep in mind, in the new exam, it would be rather "Artifact Registry"
+   upvoted 18 times
+
+3. Anonymous: Priyanka109 Most Recent  2 years, 3 months ago
+Upload your docker image on container registry then give a ref while creating deployment. So D!
+   upvoted 3 times
+
+4. Anonymous: rimjhim09 2 years, 4 months ago
+Selected Answer: D
+I also vote for D. I passed my exam today and this question was there.
+   upvoted 7 times
+ nurai 2 years, 1 month ago
+You said passed the exam, How do I know which answer to take? Voting and the actual answer never match. You passed the exam using this question? Should I use community answer or most voted? Pls, help. I have an exam in 3 days.Thanks
+   upvoted 1 times
+ nanakn 2 years, 1 month ago
+how was your exam? what's your answer to this question that you asked, now that you have given it.
+   upvoted 1 times
+
+5. Anonymous: Gautam_Thampy 2 years, 4 months ago
+its D , A and B are obviously incorrect
+   upvoted 2 times
+
+6. Anonymous: pkmdb66 2 years, 4 months ago
+Selected Answer: D
+It’s D
+   upvoted 1 times
+
+7. Anonymous: snkhatri 2 years, 4 months ago
+Selected Answer: D
+D is right
+   upvoted 1 times
+
+8. Anonymous: Sakhi1234 2 years, 4 months ago
+Selected Answer: D
+I have hands on expereince to answer this question.
+   upvoted 1 times
+
+9. Anonymous: learn_GCP 2 years, 4 months ago
+Selected Answer: D
+D is the Answer
+   upvoted 1 times
+
+10. Anonymous: Bootshale 2 years, 7 months ago
+Selected Answer: D
+D - not even a debate!
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #193
+
+Pergunta:
+You are using Data Studio to visualize a table from your data warehouse that is built on top of BigQuery. Data is appended to the data warehouse during the day.
+At night, the daily summary is recalculated by overwriting the table. You just noticed that the charts in Data Studio are broken, and you want to analyze the problem. What should you do?
+
+Alternativas:
+- A. Review the Error Reporting page in the Cloud Console to find any errors.
+- B. Use the BigQuery interface to review the nightly job and look for any errors.
+- C. Use Cloud Debugger to find out why the data was not refreshed correctly.
+- D. In Cloud Logging, create a filter for your Data Studio report.
+
+Resposta correta:
+B. Use the BigQuery interface to review the nightly job and look for any errors.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: JoniMONI Highly Voted  2 years, 12 months ago
+Selected Answer: B
+B. Use the BigQuery interface to review the nightly job and look for any errors.
+Since the problem is related to the data in the data warehouse, it would be useful to check the status of the nightly job that recalculates the data and overwrites the table. By reviewing the job in the BigQuery interface, you can see if it completed successfully and if there were any errors that may have caused the charts in Data Studio to break. Reviewing the Error Reporting page in the Cloud Console, using Cloud Debugger and creating a filter in Cloud Logging may not be directly related to the problem with the data.
+   upvoted 16 times
+
+2. Anonymous: hylee Highly Voted  2 years, 1 month ago
+for those who says 'C' is the answer :
+Cloud Debugger was deprecated on May 16, 2022 and the service was shut down on May 31, 2023. You can continue to use the open source Snapshot Debugger. Snapshot Debugger was archived on September 7, 2023, so it is not receiving bug fixes or security patches. Snapshot Debugger remains available for use. You can also fork the repository and maintain your own version.
+Cloud Debugger was deprecated on May 16, 2022 and the service was shut down on May 31, 2023. You can continue to use the open source Snapshot Debugger. Snapshot Debugger was archived on September 7, 2023, so it is not receiving bug fixes or security patches. Snapshot Debugger remains available for use. You can also fork the repository and maintain your own version.
+https://cloud.google.com/stackdriver/docs/deprecations/debugger-deprecation
+   upvoted 6 times
+
+3. Anonymous: Enamfrancis Most Recent  1 year, 4 months ago
+So which on is the correct answer?
+   upvoted 1 times
+
+4. Anonymous: master9 1 year, 4 months ago
+Selected Answer: B
+Since the issue involves a table in BigQuery, which is overwritten nightly with recalculated data, it's most likely that something went wrong during this nightly job. Reviewing the job in the BigQuery interface allows you to check for errors, job failures, or any issues during the table overwrite process, which could be causing the charts in Data Studio to break.
+   upvoted 2 times
+
+5. Anonymous: carlalap 2 years, 1 month ago
+Answer: C
+Cloud Debugger provides targeted debugging capabilities for Data Studio, allowing you to focus on the specific report or charts that are experiencing issues.
+   upvoted 1 times
+
+6. Anonymous: thanab 2 years, 2 months ago
+Selected Answer: B
+You should use the BigQuery interface to review the nightly job and look for any errors.
+The reason for this is that the nightly job is responsible for recalculating the daily summary by overwriting the table. If there are any errors in the nightly job, it could cause the charts in Data Studio to be broken. By reviewing the nightly job, you can identify and fix any errors that may be causing the problem.
+The other options are not as likely to be helpful in this situation. The Error Reporting page in the Cloud Console is not likely to be helpful because it will only show errors that have been reported by other users. The Cloud Debugger is not likely to be helpful because it is used to debug code, not to troubleshoot problems with data. The Cloud Logging filter is not likely to be helpful because it is used to filter logs, not to troubleshoot problems with data.
+   upvoted 1 times
+
+7. Anonymous: __rajan__ 2 years, 2 months ago
+Selected Answer: B
+B. Use the BigQuery interface to review the nightly job and look for any errors.
+Since the charts in Data Studio are broken, and the data is being appended to the data warehouse during the day and the daily summary is being recalculated at night by overwriting the table, the most likely cause of the problem is an error in the nightly job.
+   upvoted 1 times
+
+8. Anonymous: ovokpus 2 years, 3 months ago
+Selected Answer: B
+The other options are less likely to provide the information you need for this specific situation:
+A. "Review the Error Reporting page in the Cloud Console" is more about application errors in code, rather than issues with BigQuery job executions.
+C. "Use Cloud Debugger" is not applicable here as it's used for debugging applications written in languages like Java, Python, etc., and doesn't work with BigQuery SQL or data processing tasks.
+D. "In Cloud Logging, create a filter for your Data Studio report" might not be helpful because, while Cloud Logging does capture a wide variety of logs, it doesn't provide the direct, detailed job execution information that the BigQuery interface does. Furthermore, Data Studio reporting errors may not be related to the underlying data processing job.
+   upvoted 2 times
+
+9. Anonymous: ovokpus 2 years, 3 months ago
+Selected Answer: B
+B. Use the BigQuery interface to review the nightly job and look for any errors.
+Here’s why this approach is appropriate:
+Job Information: BigQuery logs information about every job executed, including data loads or query jobs. If the nightly job that refreshes your data warehouse table encountered an error, this would be captured and could be viewed in the job's information in the BigQuery console.
+Error Details: If the job failed or encountered issues, the BigQuery interface would provide details about the error, which can help you understand if there were problems with the query syntax, the data, or any other aspect of the operation.
+Immediate Feedback: Reviewing the job's execution details can give you immediate insights without needing to wait for logs or errors to propagate through other systems, which can be time-consuming and might not provide the direct feedback you need.
+   upvoted 2 times
+
+10. Anonymous: on2it 2 years, 6 months ago
+Selected Answer: B
+It needs to be B because it is the only way to proper investigate the issue.
+   upvoted 4 times
+==============================
+
+==============================
+Page X — Question #194
+
+Pergunta:
+You have been asked to set up the billing configuration for a new Google Cloud customer. Your customer wants to group resources that share common IAM policies. What should you do?
+
+Alternativas:
+- A. Use labels to group resources that share common IAM policies.
+- B. Use folders to group resources that share common IAM policies.
+- C. Set up a proper billing account structure to group IAM policies.
+- D. Set up a proper project naming structure to group IAM policies.
+
+Resposta correta:
+B. Use folders to group resources that share common IAM policies.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: thimai Highly Voted  2 years, 4 months ago
+Selected Answer: B
+B for me
+"Folders are used to group resources that share common IAM policies"
+https://cloud.google.com/resource-manager/docs/creating-managing-folders
+   upvoted 14 times
+
+2. Anonymous: Charumathi Highly Voted  2 years, 3 months ago
+Selected Answer: B
+B is correct Answer,
+Folders are nodes in the Cloud Platform Resource Hierarchy. A folder can contain projects, other folders, or a combination of both. Organizations can use folders to group projects under the organization node in a hierarchy. For example, your organization might contain multiple departments, each with its own set of Google Cloud resources. Folders allow you to group these resources on a per-department basis. Folders are used to group resources that share common IAM policies. While a folder can contain multiple folders or resources, a given folder or resource can have exactly one parent.
+https://cloud.google.com/resource-manager/docs/creating-managing-folders
+   upvoted 7 times
+
+3. Anonymous: jimmydice Most Recent  1 year, 2 months ago
+B: Folders in Google Cloud provide a way to organize resources hierarchically and apply common IAM (Identity and Access Management) policies at the folder level. This structure allows you to group resources together based on organizational needs, such as by department, teams, environments, or projects, and apply IAM policies to the entire group of resources within that folder.
+By utilizing folders, you can effectively manage and enforce consistent access controls, policies, and permissions across multiple resources within the same folder, thereby fulfilling the customer's requirement of grouping resources with common IAM policies.
+   upvoted 2 times
+
+4. Anonymous: ExamsFR 1 year, 4 months ago
+Selected Answer: B
+B is correct Answer,
+   upvoted 1 times
+
+5. Anonymous: diasporabro 2 years, 3 months ago
+Selected Answer: B
+"Folders are used to group resources that share common IAM policies."
+   upvoted 4 times
+
+6. Anonymous: zellck 2 years, 4 months ago
+Selected Answer: B
+B is the answer.
+https://cloud.google.com/resource-manager/docs/access-control-folders#best-practices-folders-iam
+   upvoted 3 times
+
+7. Anonymous: RockingRohit6 2 years, 4 months ago
+Folders are used to group resources that share common IAM policies
+   upvoted 2 times
+
+8. Anonymous: snkhatri 2 years, 4 months ago
+Selected Answer: B
+B seems right to me
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #195
+
+Pergunta:
+You have been asked to create robust Virtual Private Network (VPN) connectivity between a new Virtual Private Cloud (VPC) and a remote site. Key requirements include dynamic routing, a shared address space of 10.19.0.1/22, and no overprovisioning of tunnels during a failover event. You want to follow Google- recommended practices to set up a high availability Cloud VPN. What should you do?
+
+Alternativas:
+- A. Use a custom mode VPC network, configure static routes, and use active/passive routing.
+- B. Use an automatic mode VPC network, configure static routes, and use active/active routing.
+- C. Use a custom mode VPC network, use Cloud Router border gateway protocol (BGP) routes, and use active/passive routing.
+- D. Use an automatic mode VPC network, use Cloud Router border gateway protocol (BGP) routes, and configure policy-based routing.
+
+Resposta correta:
+C. Use a custom mode VPC network, use Cloud Router border gateway protocol (BGP) routes, and use active/passive routing.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: theBestStudent Highly Voted  2 years, 3 months ago
+Selected Answer: C
+we need custom mode vpc so subnets are not created automatically (the ip range is mentioned in the question) also we will need active/passive HA VPN (as it is not mentioned we will have to use more than one HA VPN gateway).
+Links : https://cloud.google.com/network-connectivity/docs/vpn/concepts/best-practices
+https://cloud.google.com/network-connectivity/docs/vpn/concepts/overview#active
+https://cloud.google.com/vpc/docs/vpc#subnet-ranges
+   upvoted 13 times
+ theBestStudent 2 years, 3 months ago
+Also for dynamic routing we need HA VPN
+Link: https://cloud.google.com/network-connectivity/docs/vpn/concepts/choosing-networks-routing#dynamic-routing
+   upvoted 5 times
+
+2. Anonymous: Charumathi Highly Voted  2 years, 3 months ago
+Selected Answer: C
+C . Choose a Cloud VPN gateway that uses dynamic routing and the Border Gateway Protocol (BGP). Google recommends using HA VPN and deploying on-premises devices that support BGP.
+Choose the appropriate tunnel configuration
+Choose the appropriate tunnel configuration based on the number of HA VPN gateways:
+If you have a single HA VPN gateway, use an active/passive tunnel configuration.
+If you have more than one HA VPN gateway, use an active/active tunnel configuration.
+https://cloud.google.com/network-connectivity/docs/vpn/concepts/best-practices
+   upvoted 5 times
+
+3. Anonymous: kamee15 Most Recent  1 year ago
+Selected Answer: C
+The best option is:C.
+Use a custom mode VPC network, use Cloud Router border gateway protocol (BGP) routes, and use active/passive routing.
+Reason:
+• Custom mode VPC network: Provides granular control over IP address ranges and subnets, essential for handling the shared address space of 10.19.0.1/22.
+• Cloud Router with BGP: Enables dynamic routing, ensuring efficient route updates and avoiding manual intervention when changes occur.
+• Active/passive routing: Ensures no overprovisioning of tunnels during failover events, meeting the key requirement of robust connectivity.
+   upvoted 1 times
+
+4. Anonymous: __rajan__ 1 year, 2 months ago
+Selected Answer: C
+C is correct.
+   upvoted 2 times
+
+5. Anonymous: Captain1212 1 year, 4 months ago
+Selected Answer: C
+C is the correct answer as we need to make sure that the subnets are not being created automatically
+   upvoted 1 times
+
+6. Anonymous: ale_brd_111 2 years, 3 months ago
+Selected Answer: C
+c is the correct one
+   upvoted 2 times
+
+7. Anonymous: Arulkumar 2 years, 3 months ago
+Selected Answer: C
+Google Cloud Router
+On Google Cloud, dynamic routing can be established using Cloud Router. It exchanges network topology information through Border Gateway Protocol (BGP). Cloud Router advertises subnets from its VPC network to another router or gateway via BGP. This is great for setting up VPN between the cloud and on-prem, as topology changes automatically propagate with no manual intervention and higher redundancy for your systems.
+You now have:
+Discovery of remote networks
+Maintaining up-to-date routing information
+Choosing the best path to destination networks
+Ability to find a new best path if the current path is no longer available
+And a great side effect can be lower latency because Cloud Router learns routes through BGP which allows for optimal data paths to reach its destination, whether that be another network or a VPN gateway to on-premise. Cloud Router is also how Dedicated Interconnect can give you 10 gbp/s bandwidth between your cloud VPC and your peered on-premise data center.
+   upvoted 4 times
+
+8. Anonymous: manjtrade2 2 years, 4 months ago
+Selected Answer: C
+C might be right
+   upvoted 1 times
+
+9. Anonymous: snkhatri 2 years, 4 months ago
+Selected Answer: C
+I think it should be C as there is too much customisation.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #196
+
+Pergunta:
+You are running multiple microservices in a Kubernetes Engine cluster. One microservice is rendering images. The microservice responsible for the image rendering requires a large amount of CPU time compared to the memory it requires. The other microservices are workloads that are optimized for n1-standard machine types. You need to optimize your cluster so that all workloads are using resources as efficiently as possible. What should you do?
+
+Alternativas:
+- A. Assign the pods of the image rendering microservice a higher pod priority than the other microservices.
+- B. Create a node pool with compute-optimized machine type nodes for the image rendering microservice. Use the node pool with general-purpose machine type nodes for the other microservices.
+- C. Use the node pool with general-purpose machine type nodes for the image rendering microservice. Create a node pool with compute-optimized machine type nodes for the other microservices.
+- D. Configure the required amount of CPU and memory in the resource requests specification of the image rendering microservice deployment. Keep the resource requests for the other microservices at the default.
+
+Resposta correta:
+B. Create a node pool with compute-optimized machine type nodes for the image rendering microservice. Use the node pool with general-purpose machine type nodes for the other microservices.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Gautam_Thampy Highly Voted  1 year, 4 months ago
+Selected Answer: B
+C is not correct coz general purpose machine types will not suffice for image rendering.
+B is the most suitable answer.
+   upvoted 5 times
+
+2. Anonymous: calm_fox Most Recent  1 year, 1 month ago
+Selected Answer: B
+B is right
+   upvoted 3 times
+
+3. Anonymous: diasporabro 1 year, 3 months ago
+Selected Answer: B
+B looks like the right choice here
+   upvoted 1 times
+
+4. Anonymous: learn_GCP 1 year, 3 months ago
+Selected Answer: B
+B. is the Answer
+   upvoted 1 times
+
+5. Anonymous: adarsh4503 1 year, 3 months ago
+I agree B is the answer.
+   upvoted 3 times
+
+6. Anonymous: zellck 1 year, 4 months ago
+Selected Answer: B
+B is the answer.
+   upvoted 1 times
+
+7. Anonymous: osanchez 1 year, 4 months ago
+B is correct
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #197
+
+Pergunta:
+Your organization has three existing Google Cloud projects. You need to bill the Marketing department for only their Google Cloud services for a new initiative within their group. What should you do?
+
+Alternativas:
+- A. 1. Verify that you are assigned the Billing Administrator IAM role for your organization's Google Cloud Project for the Marketing department. 2. Link the new project to a Marketing Billing Account.
+- B. 1. Verify that you are assigned the Billing Administrator IAM role for your organization's Google Cloud account. 2. Create a new Google Cloud Project for the Marketing department. 3. Set the default key-value project labels to department:marketing for all services in this project.
+- C. 1. Verify that you are assigned the Organization Administrator IAM role for your organization's Google Cloud account. 2. Create a new Google Cloud Project for the Marketing department. 3. Link the new project to a Marketing Billing Account.
+- D. 1. Verify that you are assigned the Organization Administrator IAM role for your organization's Google Cloud account. 2. Create a new Google Cloud Project for the Marketing department. 3. Set the default key-value project labels to department:marketing for all services in this project.
+
+Resposta correta:
+A. 1. Verify that you are assigned the Billing Administrator IAM role for your organization's Google Cloud Project for the Marketing department. 2. Link the new project to a Marketing Billing Account.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: gcpreviewer Highly Voted  3 years, 3 months ago
+Selected Answer: A
+I understand that the question implies the creation of a new project, however neither of the roles listed have that functionality. If you chose B you are choosing an answer that has a direct contradiction because the Billing Account Admin does not have the permissions to create a new project. Thus, I think it is better to assume the new initiative/project is already created or being created by someone else and your job is simply to link the project to the account which you do have the appropriate permissions to perform.
+A is my choice.
+   upvoted 22 times
+ sukouto 1 year, 11 months ago
+Worth noting that an Organization Administrator doesn't have permissions to deal with billing, so I think C/D are no good:
+https://cloud.google.com/iam/docs/understanding-roles#resourcemanager.organizationAdmin
+   upvoted 5 times
+
+2. Anonymous: moitsu Highly Voted  3 years, 4 months ago
+Selected Answer: B
+Between A& B, Billing Administrator IAM role is either at the organisation level not project level. Hence A is out. C & D doesn't make sense.
+   upvoted 8 times
+ Bajeerao 1 year, 1 month ago
+You can control viewing permissions at different levels for different users or roles by setting access permissions at the Cloud Billing account or project level.
+hence i feel its B
+   upvoted 1 times
+ Gautam_Thampy 3 years, 4 months ago
+The billing account administrator role can also be given at the project level. A is correct. Refer to this doc: https://cloud.google.com/billing/docs/how-to/billing-access
+   upvoted 2 times
+ Gautam_Thampy 3 years, 3 months ago
+Correction I meant the billing account admin role can be given at the organisation or the billing account level.
+   upvoted 2 times
+ AdelElagawany 2 years, 2 months ago
+Option A is incorrect because the billing account admin scope is either the "Organization level" or the "Billing account level"
+   upvoted 1 times
+ AdelElagawany 2 years, 2 months ago
+Option A is incorrect because the billing account admin scope is either the "Organization level" or the "Billing account level" NOT the project level
+   upvoted 1 times
+
+3. Anonymous: peddyua Most Recent  11 months, 3 weeks ago
+Selected Answer: C
+A. is incorrect because the Billing Administrator role is not tied to a specific project but rather to the billing account or organization. Additionally, it does not mention creating a new project, which is necessary for isolating the Marketing department's resources.
+C. To create a new project and link it to a billing account, you need the Organization Administrator role or the Billing Administrator role. The Organization Administrator role ensures you have the necessary permissions to manage projects and billing at the organizational level.
+Create a new Google Cloud project specifically for the Marketing department. This ensures that resources and services used for their initiative are isolated and can be billed separately.
+Link the new project to a dedicated Marketing Billing Account. This ensures that all costs associated with the Marketing department's initiative are billed accurately and separately from other departments.
+   upvoted 1 times
+
+4. Anonymous: kamee15 1 year ago
+Selected Answer: A
+I believe the answer is A
+Step No.1: Verify that you are assigned the Billing Administrator IAM role for your organization's Google Cloud Project for the Marketing Department.
+Step No.2: Link the new project to the Marketing Billing Account.
+REASON NO.1: Billing Administrator role: This role is sufficient to manage billing settings and accounts, which is all that is required for this scenario.
+REASON NO. 2: • Linking the project to a Marketing Billing Account: Ensures that the costs for the Marketing department’s new initiative are tracked and billed separately without impacting other projects.
+   upvoted 1 times
+
+5. Anonymous: har508206 1 year, 11 months ago
+According to gcp docs - https://cloud.google.com/iam/docs/understanding-roles#resourcemanager.organizationAdmin. Org Admin does not have this permission -> resourcemanager.projects.create, necessary to create project. So C and D are out
+   upvoted 1 times
+
+6. Anonymous: sivakarthick16 1 year, 12 months ago
+Selected Answer: C
+By assigning the Organization Administrator IAM role, you will have the necessary permissions to manage the organization's Google Cloud resources.
+Creating a new project for the Marketing department ensures that their services are isolated and billed separately.
+Linking the new project to a Marketing Billing Account allows you to track and manage the billing specifically for the Marketing department's initiatives.
+Setting default key-value project labels to department:marketing for all services in this project (as mentioned in option D) is not necessary for billing purposes, but it can be helpful for organizing and categorizing resources within the project.
+   upvoted 1 times
+
+7. Anonymous: sinh 2 years ago
+Selected Answer: C
+it's C.
+   upvoted 2 times
+
+8. Anonymous: nudiiiir 2 years ago
+Selected Answer: C
+it's C
+   upvoted 2 times
+
+9. Anonymous: ogerber 2 years, 1 month ago
+Selected Answer: C
+Its C.
+   upvoted 2 times
+
+10. Anonymous: carlalap 2 years, 1 month ago
+Answer is C.
+Billing Administrator IAM: https://cloud.google.com/iam/docs/job-functions/billing
+Organization Administrator IAM: https://cloud.google.com/iam/docs/understanding-roles
+Billing Administrator IAM
+The Billing Administrator IAM role allows users to manage billing-related tasks for a specific project. These tasks include:
+-Viewing and managing billing accounts
+-Setting billing alerts
+-Configuring payment methods
+-Monitoring billing activity
+-Organization Administrator IAM
+The Organization Administrator IAM role allows users to manage overall Google Cloud usage and resources within an organization. These tasks include:
+-Creating and deleting projects
+-Managing users and groups
+-Setting up IAM policies
+-Enabling and configuring Cloud services
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #198
+
+Pergunta:
+You deployed an application on a managed instance group in Compute Engine. The application accepts Transmission Control Protocol (TCP) traffic on port 389 and requires you to preserve the IP address of the client who is making a request. You want to expose the application to the internet by using a load balancer. What should you do?
+
+Alternativas:
+- A. Expose the application by using an external TCP Network Load Balancer.
+- B. Expose the application by using a TCP Proxy Load Balancer.
+- C. Expose the application by using an SSL Proxy Load Balancer.
+- D. Expose the application by using an internal TCP Network Load Balancer.
+
+Resposta correta:
+A. Expose the application by using an external TCP Network Load Balancer.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: PiperMe Highly Voted  1 year, 4 months ago
+Selected Answer: A
+Those saying B are incorrect:
+- External TCP Network Load Balancers DO preserve the client's IP address. This is a core feature of this type of load balancer in Google Cloud.
+- While TCP Proxy Load Balancers also support client IP preservation, their primary strength lies in additional Layer 7 capabilities.
+- In the absence of requirements for advanced traffic manipulation at the application layer, the External TCP Network Load Balancer remains the best choice.
+   upvoted 6 times
+
+2. Anonymous: Cynthia2023 Highly Voted  1 year, 6 months ago
+Selected Answer: A
+TCP Network Load Balancer: This type of load balancer operates at the network layer (Layer 4 of the OSI model). It is designed for routing TCP traffic and is well-suited for scenarios where you need to maintain the original source IP address of the client. This is crucial in your case since the application requires the preservation of the client's IP address.
+   upvoted 5 times
+
+3. Anonymous: yodaforce Most Recent  10 months ago
+Selected Answer: A
+The external TCP Network Load Balancer is the best option when you need to preserve the client’s original IP address, as it operates at Layer 4 (TCP/UDP) and does not proxy traffic.
+Since the application is running on port 389 (LDAP over TCP) and requires direct client IP visibility, a Layer 4 load balancer is required.
+   upvoted 1 times
+
+4. Anonymous: c2e9cb4 1 year, 6 months ago
+Selected Answer: A
+How to preserve client IP in a Network Load Balancer TCP :
+https://cloud.google.com/load-balancing/docs/tcp/setting-up-tcp#proxy-protocol
+   upvoted 3 times
+
+5. Anonymous: nudiiiir 1 year, 6 months ago
+Selected Answer: B
+A. External TCP Network Load Balancer: While it handles TCP traffic, it doesn't inherently preserve client IP addresses.
+C. SSL Proxy Load Balancer: This is primarily intended for encrypted SSL traffic, not general TCP traffic.
+D. Internal TCP Network Load Balancer: This is for internal traffic within a VPC, not for exposing applications to the internet.
+   upvoted 1 times
+ PiperMe 1 year, 4 months ago
+Incorrect. External TCP Network Load Balancers DO preserve the client's IP address.
+   upvoted 2 times
+
+6. Anonymous: ogerber 1 year, 7 months ago
+It is A,
+Note: Proxy-based load balancers send connections to the backends from different GFE or Envoy IP addresses. If you're using a form of authentication that relies on keeping track of the IP address that opened the first connection, and expects that same IP address to open the second connection, you might not want to use a proxy load balancer. Proxy load balancers don't preserve client IP addresses by default. This type of authentication is more compatible with the passthrough load balancers. For proxy load balancers such as the internal and external Application Load Balancers, we recommend that you use Identity-Aware Proxy (IAP) as your authentication method instead.
+https://cloud.google.com/load-balancing/docs/choosing-load-balancer#:~:text=Proxy%20load%20balancers%20do%20not%20preserve%20client%20IP
+   upvoted 2 times
+
+7. Anonymous: carlalap 1 year, 7 months ago
+Answer is: A
+External proxy Network Load Balancers let you use a single IP address for all users worldwide.
+https://cloud.google.com/load-balancing/docs/tcp
+   upvoted 1 times
+
+8. Anonymous: joao_01 1 year, 10 months ago
+Its A, for sure
+   upvoted 2 times
+
+9. Anonymous: shreykul 1 year, 12 months ago
+Selected Answer: A
+https://cloud.google.com/load-balancing/docs/choosing-load-balancer#:~:text=Proxy%20load%20balancers%20do%20not%20preserve%20client%20IP
+   upvoted 2 times
+
+10. Anonymous: geeroylenkins 2 years ago
+Selected Answer: A
+I am going with A as the client IP needs to be preserved. Not sure with on2it votes once for A and once for B with the same comment especially because you need a *pass-through* load balancer to preserve the client IP as stated here: https://cloud.google.com/load-balancing/docs/choosing-load-balancer#proxy-pass-through
+"You'd choose a passthrough Network Load Balancer to preserve client source IP addresses"
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #199
+
+Pergunta:
+You are building a multi-player gaming application that will store game information in a database. As the popularity of the application increases, you are concerned about delivering consistent performance. You need to ensure an optimal gaming performance for global users, without increasing the management complexity. What should you do?
+
+Alternativas:
+- A. Use Cloud SQL database with cross-region replication to store game statistics in the EU, US, and APAC regions.
+- B. Use Cloud Spanner to store user data mapped to the game statistics.
+- C. Use BigQuery to store game statistics with a Redis on Memorystore instance in the front to provide global consistency.
+- D. Store game statistics in a Bigtable database partitioned by username.
+
+Resposta correta:
+B. Use Cloud Spanner to store user data mapped to the game statistics.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: gpais Highly Voted  1 year, 11 months ago
+Selected Answer: B
+https://cloud.google.com/solutions/databases/games
+   upvoted 7 times
+
+2. Anonymous: tatyavinchu Highly Voted  1 year, 11 months ago
+global users = Cloud Spanner
+Correct Answer is B
+   upvoted 6 times
+
+3. Anonymous: PiperMe Most Recent  1 year, 4 months ago
+Selected Answer: B
+Option B, leveraging Cloud Spanner, provides a powerful solution specifically designed for globally distributed, consistently performant applications while keeping operational complexity low – making it the ideal choice for the multi-player gaming scenario.
+Bigtable is well-suited for massive scale, but its NoSQL nature might require more data modeling effort compared to Cloud Spanner for gaming-related data.
+   upvoted 4 times
+
+4. Anonymous: DanBar 1 year, 5 months ago
+Selected Answer: D
+Bigtable
+   upvoted 2 times
+
+5. Anonymous: nudiiiir 1 year, 6 months ago
+Selected Answer: D
+it's D because in this specific case cause Bigtable scales seamlessly to handle massive amounts of data and high read/write throughput,
+ideal for multiplayer gaming applications
+   upvoted 3 times
+
+6. Anonymous: 3arle 1 year, 11 months ago
+Selected Answer: B
+Spanner should meet expectation
+   upvoted 2 times
+
+7. Anonymous: MrJkr 2 years ago
+Selected Answer: B
+Among the options provided, the better answer for ensuring optimal gaming performance for global users without increasing management complexity would be option B
+Cloud Spanner is a globally distributed, horizontally scalable database service provided by Google Cloud Platform. It offers strong consistency guarantees, high availability, and automatic scaling.
+It offers the necessary features to ensure optimal gaming performance, global scalability, strong consistency, and automatic scaling, making it a suitable choice for storing user data mapped to game statistics.
+   upvoted 4 times
+==============================
+
+==============================
+Page X — Question #200
+
+Pergunta:
+You are building an application that stores relational data from users. Users across the globe will use this application. Your CTO is concerned about the scaling requirements because the size of the user base is unknown. You need to implement a database solution that can scale with your user growth with minimum configuration changes. Which storage solution should you use?
+
+Alternativas:
+- A. Cloud SQL
+- B. Firestore
+- C. Cloud Spanner
+- D. Bigtable
+
+Resposta correta:
+C. Cloud Spanner
+
+Top 10 Discussões (sem replies):
+1. Anonymous: mapcio123 Highly Voted  2 years, 6 months ago
+Selected Answer: C
+spanner- relational and global
+   upvoted 5 times
+
+2. Anonymous: Ciupaz Most Recent  1 year, 4 months ago
+Selected Answer: C
+The key phrase is "with minimum configurations changes". Cloud Spanner is the best choice.
+   upvoted 2 times
+
+3. Anonymous: 3arle 2 years, 5 months ago
+Selected Answer: C
+and scales horizontally
+   upvoted 4 times
+
+4. Anonymous: Husni_adam 2 years, 6 months ago
+Selected Answer: C
+Cloud Spanner because Relational database, scale across regions for workloads that have more stringent availability requirements, Handles large amounts of data and for high transactional consistency
+https://cloud.google.com/blog/topics/developers-practitioners/databases-google-cloud-part-2-options-glance/
+   upvoted 4 times
+
+5. Anonymous: _F4LLEN_ 2 years, 6 months ago
+Spanner
+   upvoted 1 times
+
+6. Anonymous: gpais 2 years, 6 months ago
+I vote option C
+   upvoted 1 times
+==============================

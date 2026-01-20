@@ -1,0 +1,123 @@
+==============================
+Page X — Question #331
+
+Pergunta:
+You host your website on Compute Engine. The number of global users visiting your website is rapidly expanding. You need to minimize latency and support user growth in multiple geographical regions. You also want to follow Google-recommended practices and minimize operational costs. Which two actions should you take? (Choose two.)
+
+Alternativas:
+- A. Use an external Application Load Balancer in Regional mode.
+- B. Deploy your VMs in multiple Google Cloud regions closest to your user’s geographical locations.
+- C. Use a Network Load Balancer.
+- D. Use an external Application Load Balancer in Global mode.
+- E. Deploy all of your VMs in a single Google Cloud region with the largest available CIDR range.
+
+Resposta correta:
+D. Use an external Application Load Balancer in Global mode.
+
+Top 10 Discussões (sem replies):
+Nenhuma discussão
+==============================
+
+==============================
+Page X — Question #332
+
+Pergunta:
+You are writing a shell script that includes a few gcloud CLI commands to access some Google Cloud resources. You want to test the script in your local development environment with a service account in the most secure way. What should you do?
+
+Alternativas:
+- A. Generate an ID token for the service account. Use the token with the gcloud CLI commands.
+- B. Enable service account impersonation, and use the gcloud config set command to use it by default.
+- C. Download the service account key file and save it in a secure location. Set the GOOGLE_APPLICATION_CREDENTIALS environment variable to the key file.
+- D. Download the service account key file, and use it to generate an access token. Use the token with the gcloud CLI commands.
+
+Resposta correta:
+B. Enable service account impersonation, and use the gcloud config set command to use it by default.
+
+Top 10 Discussões (sem replies):
+Nenhuma discussão
+==============================
+
+==============================
+Page X — Question #333
+
+Pergunta:
+Your company is active in the European Economic Area (EEA), and will adopt Google Cloud for its workloads. Projects are currently structured within different folders. You need to ensure any resources that will be deployed are using Google Cloud locations within the EEA by using the Organization Policy Service resource locations constraint. What should you do?
+
+Alternativas:
+- A. Configure the policy at the folder level, and add all allowed locations to the policy.
+- B. Configure the policy at the organization level, and add all allowed locations to the policy.
+- C. Configure the policy at the folder level, and add all disallowed locations to the policy.
+- D. Configure the policy at the organization level, and add all disallowed locations to the policy.
+
+Resposta correta:
+B. Configure the policy at the organization level, and add all allowed locations to the policy.
+
+Top 10 Discussões (sem replies):
+Nenhuma discussão
+==============================
+
+==============================
+Page X — Question #334
+
+Pergunta:
+You are deploying a large, multi-tiered application with more than 1,000 IP addresses in a Google Cloud project that needs to be securely isolated. The application includes the:
+
+1. web tier with frontend servers for public traffic,
+2. application tier with servers running core application logic that only need access from the web tier, and
+3. database tier with database servers that only need access from the application tier.
+
+You want to minimize cost, complexity, and administrative overhead in the network architecture. What should you do?
+
+Alternativas:
+- A. Create a /24 Shared VPC with separate subnets for each tier. Use firewall rules that reference network tags to control traffic.
+- B. Create one custom mode /16 VPC with three subnets. Place each tier in its own subnet and use firewall rules that reference IP subnets to control traffic.
+- C. Deploy each tier into a separate custom mode /16 VPUse VPC Network Peering to securely connect each custom mode VPManage firewall rules individually in each VPC.
+- D. Deploy each tier in a /24 VPC by using network tags to identify instances. Implement firewall rules for fine-grained network segmentation.
+
+Resposta correta:
+B. Create one custom mode /16 VPC with three subnets. Place each tier in its own subnet and use firewall rules that reference IP subnets to control traffic.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: chukwud3b3 2 weeks, 6 days ago
+Selected Answer: B
+B is right
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #335
+
+Pergunta:
+Your company is closely monitoring their cloud spend. You need to allow different teams to monitor their Google Cloud costs. You must ensure that team members receive notifications when their cloud spend reaches certain thresholds and give team members the ability to create dashboards for additional insights with detailed billing data. You want to follow Google-recommended practices and minimize engineering costs. What should you do?
+
+Alternativas:
+- A. Deploy Grafana to Compute Engine. Create a dashboard for each team that uses the data from the Cloud Billing API. Ask each team to create their own alerts in Cloud Monitoring.
+- B. Set up alerts for each team based on required thresholds. Create a shell script to read data from the Cloud Billing API, and push the results to BigQuery. Grant team members access to BigQuery.
+- C. Deploy Grafana to Compute Engine. Create a dashboard for each team that uses the data from the Cloud Billing Budget API. Ask each team to create their own alerts in Grafana.
+- D. Set up alerts for each team based on required thresholds. Set up billing exports to BigQuery. Grant team members access to BigQuery.
+
+Resposta correta:
+D. Set up alerts for each team based on required thresholds. Set up billing exports to BigQuery. Grant team members access to BigQuery.
+
+Top 10 Discussões (sem replies):
+Nenhuma discussão
+==============================
+
+==============================
+Page X — Question #336
+
+Pergunta:
+Your company plans to migrate its on-premises PostgreSQL database to Google Cloud. The workloads are demanding, requiring fast transactional and analytical performance. You need to select a fully managed database service on Google Cloud. Your solution must also be able to synchronously replicate and optimize the storage layer. What should you do?
+
+Alternativas:
+- A. Migrate the database to Cloud SQL for PostgreSQL by using Database Migration Service.
+- B. Use the psql client installed on a Compute Engine instance. Connect to the Cloud SQL instance to perform the database migration.
+- C. Migrate the database to AlloyDB for PostgreSQL by using Database Migration Service.
+- D. Create a Compute Engine instance. Install and configure PostgreSQL on the instance, and migrate the database.
+
+Resposta correta:
+C. Migrate the database to AlloyDB for PostgreSQL by using Database Migration Service.
+
+Top 10 Discussões (sem replies):
+Nenhuma discussão
+==============================

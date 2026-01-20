@@ -1,0 +1,767 @@
+==============================
+Page X — Question #41
+
+Pergunta:
+You have 32 GB of data in a single file that you need to upload to a Nearline Storage bucket. The WAN connection you are using is rated at 1 Gbps, and you are the only one on the connection. You want to use as much of the rated 1 Gbps as possible to transfer the file rapidly. How should you upload the file?
+
+Alternativas:
+- A. Use the GCP Console to transfer the file instead of gsutil.
+- B. Enable parallel composite uploads using gsutil on the file transfer.
+- C. Decrease the TCP window size on the machine initiating the transfer.
+- D. Change the storage class of the bucket from Nearline to Multi-Regional.
+
+Resposta correta:
+B. Enable parallel composite uploads using gsutil on the file transfer.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: leba Highly Voted  5 years, 8 months ago
+Correct answer is B as the bandwidth is good and its a single file, gsutil parallel composite uploads can be used to split the large file and upload in parallel.Refer GCP documentation - Transferring Data to GCP &amp
+   upvoted 47 times
+
+2. Anonymous: berezinsn Highly Voted  5 years, 7 months ago
+Truly B is absolutely correct
+   upvoted 18 times
+
+3. Anonymous: sh00001 Most Recent  1 year, 6 months ago
+B- Enable parallel composite uploads using gsutil on the file transfer.
+This option is correct because parallel composite uploads can break down a large file into smaller components, upload them in parallel, and recombine them into a single object in the cloud. This method takes advantage of the available bandwidth more efficiently than serial uploads, as it can simultaneously transmit multiple parts of the file over the network. The gsutil tool has a -o option that allows enabling of parallel composite uploads.
+   upvoted 3 times
+
+4. Anonymous: subha.elumalai 1 year, 8 months ago
+Correct Answer: B
+   upvoted 1 times
+
+5. Anonymous: kenjaixv 2 years, 4 months ago
+The best option to upload the file is B. Enable parallel composite uploads using gsutil on the file transfer. This is because parallel composite uploads can speed up the upload of large files by dividing them into chue upload time.
+The other options are not as effective or feasible as option B:
+Option A. Use the GCP Console to transfer the file instead of gsutil is not a good choice because the GCP Console has a limit of 5 GB per file upload.
+Option C. Decrease the TCP window size on the machine initiating the transfer is not advisable because it would reduce the amount of data that can be sent before receiving an acknowledgment, which could lead to lower throughput and higher latency.
+Option D. Change the storage class of the bucket from Nearline to Multi-Regional is not relevant to the upload speed, as it only affects the availability and cost of storing and accessing the data.
+   upvoted 6 times
+
+6. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: B
+b is legit correct as it helps you more to increase the speed.
+   upvoted 1 times
+
+7. Anonymous: sthapit 2 years, 5 months ago
+Parallel composite is the right ans
+   upvoted 1 times
+
+8. Anonymous: Partha117 2 years, 10 months ago
+Selected Answer: B
+B is correct
+   upvoted 1 times
+
+9. Anonymous: Buruguduystunstugudunstuy 2 years, 11 months ago
+Selected Answer: B
+Answer B is correct. Enable parallel composite uploads using gsutil on the file transfer.
+The most efficient way to upload the large file to Nearline Storage bucket using a single WAN connection rated at 1 Gbps is to enable parallel composite uploads using gsutil. By default, gsutil uses a single thread to upload a single object. But with parallel composite uploads, gsutil will split the file into smaller chunks and upload these chunks in parallel using multiple threads. This will allow the file to be uploaded faster and more efficiently.
+https://cloud.google.com/storage/docs/parallel-composite-uploads
+   upvoted 11 times
+
+10. Anonymous: Neo29 2 years, 11 months ago
+Selected Answer: B
+B is correct Answer
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #42
+
+Pergunta:
+You've deployed a microservice called myapp1 to a Google Kubernetes Engine cluster using the YAML file specified below:
+
+You need to refactor this configuration so that the database password is not stored in plain text. You want to follow Google-recommended practices. What should you do?
+
+Alternativas:
+- A. Store the database password inside the Docker image of the container, not in the YAML file.
+- B. Store the database password inside a Secret object. Modify the YAML file to populate the DB_PASSWORD environment variable from the Secret.
+- C. Store the database password inside a ConfigMap object. Modify the YAML file to populate the DB_PASSWORD environment variable from the ConfigMap.
+- D. Store the database password in a file inside a Kubernetes persistent volume, and use a persistent volume claim to mount the volume to the container.
+
+Resposta correta:
+B. Store the database password inside a Secret object. Modify the YAML file to populate the DB_PASSWORD environment variable from the Secret.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: rramani7 Highly Voted  5 years, 1 month ago
+it is good practice to use Secrets for confidential data (like API keys) and ConfigMaps for non-confidential data (like port numbers). B is correct.
+   upvoted 75 times
+
+2. Anonymous: saurabh1805 Highly Voted  5 years, 1 month ago
+B is correct answer
+https://cloud.google.com/kubernetes-engine/docs/concepts/secret
+   upvoted 41 times
+ hjyhf 3 years, 11 months ago
+"Storing sensitive data in Secrets is more secure than in plaintext ConfigMaps or in Pod specifications"
+   upvoted 10 times
+
+3. Anonymous: 68f26bd Most Recent  10 months, 1 week ago
+Selected Answer: C
+I think c is correct.
+   upvoted 1 times
+
+4. Anonymous: 559b96d 1 year, 1 month ago
+How could this possibly be C over B?
+"ConfigMap is similar to Secret except that you use a Secret for sensitive information and you use a ConfigMap to store non-sensitive data such as connection strings, public credentials, hostnames, and URLs."
+   upvoted 3 times
+
+5. Anonymous: subha.elumalai 1 year, 1 month ago
+Correct Answer: C
+   upvoted 1 times
+
+6. Anonymous: Sandy8 1 year, 6 months ago
+In my opinion also B is correct answer as secret manager will keep secret of all credentials and confidentiality.
+   upvoted 1 times
+
+7. Anonymous: Mohit__ 1 year, 6 months ago
+why most answer by examtopics are wrong
+   upvoted 3 times
+
+8. Anonymous: gsmasad 1 year, 8 months ago
+Selected Answer: B
+B is correct because storing passwords in secrets is the GKE best practice
+   upvoted 1 times
+
+9. Anonymous: bearfromoso 1 year, 10 months ago
+Storing database passwords, or any sensitive credentials, inside a ConfigMap is not recommended from a security standpoint. "B" it is!
+   upvoted 1 times
+
+10. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: B
+b is correct as it good pracits to use secrrets for the passwords
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #43
+
+Pergunta:
+You are running an application on multiple virtual machines within a managed instance group and have autoscaling enabled. The autoscaling policy is configured so that additional instances are added to the group if the CPU utilization of instances goes above 80%. VMs are added until the instance group reaches its maximum limit of five VMs or until CPU utilization of instances lowers to 80%. The initial delay for HTTP health checks against the instances is set to 30 seconds.
+The virtual machine instances take around three minutes to become available for users. You observe that when the instance group autoscales, it adds more instances then necessary to support the levels of end-user traffic. You want to properly maintain instance group sizes when autoscaling. What should you do?
+
+Alternativas:
+- A. Set the maximum number of instances to 1.
+- B. Decrease the maximum number of instances to 3.
+- C. Use a TCP health check instead of an HTTP health check.
+- D. Increase the initial delay of the HTTP health check to 200 seconds.
+
+Resposta correta:
+D. Increase the initial delay of the HTTP health check to 200 seconds.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ac89l Highly Voted  2 years, 2 months ago
+I think exam will be ended by the time you finish reading the question
+   upvoted 51 times
+ glitterunicorn 1 year, 2 months ago
+yes more like a story than a question
+   upvoted 2 times
+
+2. Anonymous: berezinsn Highly Voted  5 years, 7 months ago
+D is correct answer.
+   upvoted 25 times
+
+3. Anonymous: wota Most Recent  1 year, 1 month ago
+Selected Answer: D
+Gemini says "In GCP's MIG auto-scaling, HTTP health checks generally take priority over CPU utilization"
+So D is right
+   upvoted 1 times
+
+4. Anonymous: Yinkus 1 year, 1 month ago
+Selected Answer: D
+If is going to be taking 180 seconds for additional vm to be avaliable then health check of 30second interval would not be ideal.
+Over provisioning will occur.
+   upvoted 2 times
+
+5. Anonymous: subha.elumalai 1 year, 8 months ago
+Correct Answer: D
+   upvoted 1 times
+
+6. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: D
+D is more correct because it gives you time to check the available instace
+   upvoted 1 times
+
+7. Anonymous: Ashish_Tayal 2 years, 9 months ago
+Selected Answer: D
+First Health check must be done after proper boot of VM.
+   upvoted 4 times
+
+8. Anonymous: Partha117 2 years, 10 months ago
+Selected Answer: D
+Increase delay to check all instances are available
+   upvoted 2 times
+
+9. Anonymous: Buruguduystunstugudunstuy 2 years, 11 months ago
+Selected Answer: D
+Answer D is the correct solution to maintain instance group sizes when autoscaling.
+When autoscaling is enabled, new instances are added based on a metric or metrics (such as CPU utilization) when certain thresholds are met. When adding new instances, it is important to ensure that only the necessary number of instances are added to the instance group and that the group size is properly maintained to prevent overprovisioning and unnecessary costs.
+In this scenario, the instance group is adding more instances than necessary when autoscaling due to the initial delay of HTTP health checks. Increasing the initial delay to 200 seconds will ensure that the health check properly reflects the actual availability of the instances and prevent overprovisioning.
+Answers A and B limit the maximum number of instances, which could cause issues when scaling to support higher levels of end-user traffic.
+Answer C suggests using a TCP health check instead of an HTTP health check, but it does not address the issue of overprovisioning when autoscaling.
+   upvoted 10 times
+
+10. Anonymous: leogor 3 years, 2 months ago
+Selected Answer: D
+Increase the initial delay
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #44
+
+Pergunta:
+You need to select and configure compute resources for a set of batch processing jobs. These jobs take around 2 hours to complete and are run nightly. You want to minimize service costs. What should you do?
+
+Alternativas:
+- A. Select Google Kubernetes Engine. Use a single-node cluster with a small instance type.
+- B. Select Google Kubernetes Engine. Use a three-node cluster with micro instance types.
+- C. Select Compute Engine. Use preemptible VM instances of the appropriate standard machine type.
+- D. Select Compute Engine. Use VM instance types that support micro bursting.
+
+Resposta correta:
+C. Select Compute Engine. Use preemptible VM instances of the appropriate standard machine type.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: gcper Highly Voted  4 years, 9 months ago
+As everyone has said the answer is C but here is the source for the information. "For example, batch processing jobs can run on preemptible instances. If some of those instances stop during processing, the job slows but does not completely stop. Preemptible instances complete your batch processing tasks without placing additional workload on your existing instances and without requiring you to pay full price for additional normal instances."
+srouce: https://cloud.google.com/compute/docs/instances/preemptible
+   upvoted 66 times
+
+2. Anonymous: vnxt Highly Voted  5 years, 2 months ago
+I woud say C is the correct answer
+   upvoted 30 times
+
+3. Anonymous: subha.elumalai Most Recent  1 year, 1 month ago
+Correct Answer: C
+   upvoted 1 times
+
+4. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: C
+c is the correct answer, use preemptible for the compute engine
+   upvoted 1 times
+
+5. Anonymous: Buruguduystunstugudunstuy 2 years, 5 months ago
+Selected Answer: C
+ANSWER C. Select Compute Engine. Use preemptible VM instances of the appropriate standard machine type.
+Preemptible VM instances offer the lowest cost for batch processing jobs in the Google Cloud Platform. Preemptible VM instances are computed instances that can run for a maximum of 24 hours and provide no availability guarantees. Preemptible VM instances are up to 80% cheaper than standard compute instances, making them an excellent choice for batch-processing workloads that can be interrupted.
+The small instance type in a single-node cluster (ANSWER A) would not provide enough resources for batch processing jobs, and the micro instance types in a three-node cluster (ANSWER B) may not provide enough resources for the batch processing jobs to complete within the allotted time. VM instance types that support micro-bursting (ANSWER D) may not provide enough sustained CPU performance to complete batch processing jobs within the desired time frame.
+   upvoted 8 times
+
+6. Anonymous: RAVI321 2 years, 10 months ago
+batch processing jobs can run on preemptible instances. if some of those instances stop during processing, the job slows but does not completely stop. preemptible instances camplete your batch processing tasks without placing additional worklods on your existing instances and without requring you to pay full price for additional normal instances"
+   upvoted 3 times
+
+7. Anonymous: RAVI321 2 years, 11 months ago
+hey guys tell me one important thing i am learning GCP but did not get anything i mean whatever you guys are discussing in this forum
+   upvoted 3 times
+ shykot 2 years, 7 months ago
+as you said you are learning, it takes time to master
+   upvoted 2 times
+
+8. Anonymous: AzureDP900 3 years ago
+C is right .
+If your apps are fault-tolerant and can withstand possible instance preemptions, then preemptible instances can reduce your Compute Engine costs significantly. For example, batch processing jobs can run on preemptible instances. If some of those instances stop during processing, the job slows but does not completely stop. Preemptible instances complete your batch processing tasks without placing additional workload on your existing instances and without requiring you to pay full price for additional normal instances.
+   upvoted 3 times
+
+9. Anonymous: sedado77 3 years, 1 month ago
+Selected Answer: C
+Yup, C for batch and cost
+   upvoted 3 times
+
+10. Anonymous: haroldbenites 3 years, 1 month ago
+Go for C
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #45
+
+Pergunta:
+You recently deployed a new version of an application to App Engine and then discovered a bug in the release. You need to immediately revert to the prior version of the application. What should you do?
+
+Alternativas:
+- A. Run gcloud app restore.
+- B. On the App Engine page of the GCP Console, select the application that needs to be reverted and click Revert.
+- C. On the App Engine Versions page of the GCP Console, route 100% of the traffic to the previous version.
+- D. Deploy the original version as a separate application. Then go to App Engine settings and split traffic between applications so that the original version serves 100% of the requests.
+
+Resposta correta:
+C. On the App Engine Versions page of the GCP Console, route 100% of the traffic to the previous version.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: coldpar Highly Voted  5 years, 10 months ago
+correct is C NOT D.
+Option A is wrong as gcloud app restore was used for backup and restore and has been deprecated.Option B is wrong as there is no application revert functionality available.Option D is wrong as App Engine maintains version and need not be redeployed.
+   upvoted 78 times
+
+2. Anonymous: Bharathy Highly Voted  5 years, 10 months ago
+App engine maintains versions and to revert back to previous version, traffic can be set to 100% for the prior version.. hence correct answer is C
+   upvoted 30 times
+
+3. Anonymous: Enamfrancis Most Recent  1 year, 3 months ago
+Selected Answer: C
+C is the correct answer
+   upvoted 2 times
+
+4. Anonymous: gsmasad 2 years, 2 months ago
+Selected Answer: C
+C is correct because app engine maintains version
+   upvoted 2 times
+
+5. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: C
+c is the correct answer
+   upvoted 1 times
+
+6. Anonymous: YomanB 2 years, 4 months ago
+Correct option is C.
+   upvoted 1 times
+
+7. Anonymous: RobAlt 2 years, 4 months ago
+Selected Answer: C
+App Engine Version page and route 100% to the previous version
+   upvoted 2 times
+
+8. Anonymous: sthapit 2 years, 5 months ago
+C is faster. Stick with C
+   upvoted 1 times
+
+9. Anonymous: Partha117 2 years, 10 months ago
+Selected Answer: C
+App engine allows versioning
+   upvoted 1 times
+
+10. Anonymous: Buruguduystunstugudunstuy 2 years, 11 months ago
+Selected Answer: C
+ANSWER C. On the App Engine Versions page of the GCP Console, route 100% of the traffic to the previous version.
+To immediately revert to the prior version of an application in App Engine, you can route 100% of the traffic to the previous version. This can be done through the App Engine Versions page of the GCP Console by selecting the desired version and selecting "Migrate traffic" and moving the slider to 100%. This will ensure that all traffic is directed to the prior version until the bug is fixed and the new version can be safely redeployed.
+https://cloud.google.com/appengine/docs/flexible/migrating-traffic
+ANSWER A (Run gcloud app restore) and ANSWER B (Click Revert on GCP Console) are not valid actions to revert to the prior version of the application. ANSWER D (Deploy the original version as a separate application) is not necessary and would complicate the environment by requiring a split traffic configuration.
+   upvoted 7 times
+==============================
+
+==============================
+Page X — Question #46
+
+Pergunta:
+You deployed an App Engine application using gcloud app deploy, but it did not deploy to the intended project. You want to find out why this happened and where the application deployed. What should you do?
+
+Alternativas:
+- A. Check the app.yaml file for your application and check project settings.
+- B. Check the web-application.xml file for your application and check project settings.
+- C. Go to Deployment Manager and review settings for deployment of applications.
+- D. Go to Cloud Shell and run gcloud config list to review the Google Cloud configuration used for deployment.
+
+Resposta correta:
+D. Go to Cloud Shell and run gcloud config list to review the Google Cloud configuration used for deployment.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Bharathy Highly Voted  5 years, 10 months ago
+I would opt option D : as it would help to check the config details and Option A is not correct, as app.yaml would have only the runtime and script to run parameters and not the Project details
+   upvoted 58 times
+ alejandrombc 4 years, 3 months ago
+Why would you choose Cloud Shell if its not even mention on the question? (what if the person did the command on its own computer?, this would not work)
+   upvoted 2 times
+ zaxxon 4 years, 3 months ago
+gcloud app deploy means sdk
+   upvoted 13 times
+ csrazdan 3 years, 6 months ago
+Regardless if you use your computer or cloud shell, you have to use SDK for gcloud command-line interface. gcloud uses a configuration file which contains default project, region and zone details so that command line can omit these parameters and use default.
+   upvoted 1 times
+ Seleth 1 year, 5 months ago
+The first line of the question says: "You deployed an App Engine application using gcloud app deploy"
+   upvoted 2 times
+
+2. Anonymous: ahmed812 Highly Voted  5 years, 9 months ago
+Option D - The config list will give the name of the project
+C:\GCP\appeng>gcloud config list
+[core]
+account = xxx@gmail.com
+disable_usage_reporting = False
+project = my-first-demo-xxxx
+   upvoted 41 times
+
+3. Anonymous: Enamfrancis Most Recent  1 year, 3 months ago
+Selected Answer: D
+D is the correct answer.
+   upvoted 1 times
+
+4. Anonymous: thewalker 2 years, 1 month ago
+Selected Answer: A
+A
+app.yaml will have the project details.
+   upvoted 1 times
+ JackSkeletonCoder 1 year, 4 months ago
+nope, app.yaml has only runtime and script to run the parameters
+   upvoted 1 times
+
+5. Anonymous: gsmasad 2 years, 2 months ago
+Selected Answer: D
+D is correct because gcloud config list will give you the current project name & rest all options talks about examining the yaml file which is not a best practice
+   upvoted 1 times
+
+6. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: D
+option d as it will give you full information why it dont get deployed to the intended project
+   upvoted 2 times
+
+7. Anonymous: Nxt_007 2 years, 5 months ago
+Selected Answer: D
+Option D is the appropriate choice for diagnosing why the App Engine application did not deploy to the intended project. By running gcloud config list in Cloud Shell, you can view the current configuration settings, including the project ID, region, and other relevant settings used for deployment.
+Options A and B involve checking the configuration files for the application (app.yaml and web-application.xml), but they may not directly provide information about where the application deployed or why it didn't deploy to the intended project.
+Option C involves Deployment Manager, which is a tool for creating, deploying, and managing resources in Google Cloud Platform, but it's not specifically related to App Engine deployments and may not provide the necessary insights in this context.
+   upvoted 7 times
+
+8. Anonymous: Vamshi_Krishna 2 years, 8 months ago
+Selected Answer: D
+D is CORRECT
+   upvoted 1 times
+
+9. Anonymous: Zahir1004 2 years, 10 months ago
+Selected Answer: D
+I VOTE FOR D
+   upvoted 1 times
+
+10. Anonymous: Buruguduystunstugudunstuy 2 years, 11 months ago
+Selected Answer: D
+ANSWER D. CORRECT. Go to Cloud Shell and run gcloud config list to review the Google Cloud configuration used for deployment.
+Running gcloud config list in the Cloud Shell will show the currently active configuration that was used for the deployment. This can help identify if the wrong project was selected or if the configuration was set up incorrectly.
+https://cloud.google.com/sdk/gcloud/reference/config/list
+ANSWER A may be helpful to ensure that the project and deployment settings are correctly specified, but it does not provide information on where the application was actually deployed.
+ANSWER B is not relevant for App Engine deployments as this is an XML configuration file typically used in Java web applications deployed to servlet containers.
+ANSWER C is also not relevant for App Engine deployments, as Deployment Manager is typically used to create and manage deployments of cloud infrastructure resources such as virtual machines, load balancers, and databases.
+   upvoted 10 times
+==============================
+
+==============================
+Page X — Question #47
+
+Pergunta:
+You want to configure 10 Compute Engine instances for availability when maintenance occurs. Your requirements state that these instances should attempt to automatically restart if they crash. Also, the instances should be highly available including during system maintenance. What should you do?
+
+Alternativas:
+- A. Create an instance template for the instances. Set the 'Automatic Restart' to on. Set the 'On-host maintenance' to Migrate VM instance. Add the instance template to an instance group.
+- B. Create an instance template for the instances. Set 'Automatic Restart' to off. Set 'On-host maintenance' to Terminate VM instances. Add the instance template to an instance group.
+- C. Create an instance group for the instances. Set the 'Autohealing' health check to healthy (HTTP).
+- D. Create an instance group for the instance. Verify that the 'Advanced creation options' setting for 'do not retry machine creation' is set to off.
+
+Resposta correta:
+A. Create an instance template for the instances. Set the 'Automatic Restart' to on. Set the 'On-host maintenance' to Migrate VM instance. Add the instance template to an instance group.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: lio123 Highly Voted  4 years, 10 months ago
+A
+https://cloud.google.com/compute/docs/instances/setting-instance-scheduling-options
+onHostMaintenance: Determines the behavior when a maintenance event occurs that might cause your instance to reboot.
+[Default] MIGRATE, which causes Compute Engine to live migrate an instance when there is a maintenance event.
+TERMINATE, which stops an instance instead of migrating it.
+automaticRestart: Determines the behavior when an instance crashes or is stopped by the system.
+[Default] true, so Compute Engine restarts an instance if the instance crashes or is stopped.
+false, so Compute Engine does not restart an instance if the instance crashes or is stopped.
+   upvoted 46 times
+
+2. Anonymous: Imdeepak12 Highly Voted  4 years, 3 months ago
+Seems like it was a very obvious option i.e. A...Who selected B, I want to know his/her location?
+   upvoted 28 times
+ Kickbuttowski_ 4 years, 2 months ago
+Nikki singh.
+   upvoted 4 times
+ aldrinzee 3 years, 1 month ago
+lol, yeah i want to examine their brain as well
+   upvoted 4 times
+
+3. Anonymous: iooj Most Recent  1 year, 4 months ago
+Selected Answer: A
+You don't even need to set anything because 'Automatic Restart' = 'On' and 'On-host maintenance' = 'Migrate' will be set BY DEFAULT!
+   upvoted 1 times
+
+4. Anonymous: DavMllt 1 year, 5 months ago
+B IS correct since if you set automatic restart to on , then your instance would be shut down during maintenance event, which Cancels the migrate on maintenance event setting that IS required for availibility purpose.
+   upvoted 1 times
+
+5. Anonymous: VJ26 1 year, 6 months ago
+Selected Answer: A
+A looks obvious. B doesnt sound correct
+   upvoted 1 times
+
+6. Anonymous: pythonigger 2 years ago
+simple...
+Automatic Restart ON vs OFF (obvious ON),
+On Host Maintainence MIGRATE vs TERMINATE (really??!)
+   upvoted 4 times
+
+7. Anonymous: junkyaard 2 years ago
+A is correct because automatic restart will restart the instance if it crashes and setting on host maintenance to migrate the instance will not let the application go down during maintenance. It fulfills the requirements of automatically restarting the instances if they crash and ensuring that they are not lost during system maintenance activity. By setting the 'Automatic Restart' to on, the instances will attempt to automatically restart if they crash. By setting the 'On-host maintenance' to Migrate VM instance, the instances will be migrated to another host during system maintenance, preventing any downtime.
+   upvoted 2 times
+
+8. Anonymous: gsmasad 2 years, 2 months ago
+Selected Answer: A
+A is correct because you need HA of VMs during mainetence
+   upvoted 1 times
+
+9. Anonymous: nik005 2 years, 3 months ago
+Selected Answer: A
+1
+The best answer is A. Create an instance template for the instances. Set the 'Automatic Restart' to on. Set the 'On-host maintenance' to Migrate VM instance. Add the instance template to an instance group.
+This will ensure that your instances are automatically restarted if they crash and that they are migrated during system maintenance, which will keep them highly available.
+The other options are not as effective:
+Option B is not as effective because it will prevent your instances from being automatically restarted if they crash.
+Option C is not as effective because it will not migrate your instances during system maintenance, which could lead to downtime.
+Option D is not as effective because it does not guarantee that your instances will be automatically migrated during system maintenance.
+   upvoted 4 times
+
+10. Anonymous: nnecode 2 years, 4 months ago
+Selected Answer: A
+I choose A
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #48
+
+Pergunta:
+You host a static website on Cloud Storage. Recently, you began to include links to PDF files on this site. Currently, when users click on the links to these PDF files, their browsers prompt them to save the file onto their local system. Instead, you want the clicked PDF files to be displayed within the browser window directly, without prompting the user to save the file locally. What should you do?
+
+Alternativas:
+- A. Enable Cloud CDN on the website frontend.
+- B. Enable 'Share publicly' on the PDF file objects.
+- C. Set Content-Type metadata to application/pdf on the PDF file objects.
+- D. Add a label to the storage bucket with a key of Content-Type and value of application/pdf.
+
+Resposta correta:
+C. Set Content-Type metadata to application/pdf on the PDF file objects.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Buruguduystunstugudunstuy Highly Voted  2 years, 5 months ago
+Selected Answer: C
+ANSWER A, enabling Cloud CDN on the website frontend, is not relevant to displaying PDF files in the browser. Cloud CDN is a content delivery network that caches content at edge locations around the world to reduce latency and improve website performance.
+ANSWER B, enabling "Share publicly" on the PDF file objects, only controls whether or not the files are accessible to users without authentication. It does not affect how the files are displayed in the browser.
+ANSWER D, adding a label to the storage bucket with a key of Content-Type and value of application/pdf, is not the correct way to set the Content-Type metadata for individual objects. Labels are used for organizing resources, while metadata is used to provide information about the data itself.
+Therefore, ANSWER C, setting Content-Type metadata to application/pdf on the PDF file objects, is the correct answer.
+   upvoted 42 times
+ dnur 2 years, 4 months ago
+Many thanks for clear explanations! :)
+   upvoted 2 times
+
+2. Anonymous: berezinsn Highly Voted  5 years, 1 month ago
+C is correct
+   upvoted 25 times
+
+3. Anonymous: Dinya_jui Most Recent  1 year, 6 months ago
+C makes much sense out of the remaining
+   upvoted 1 times
+
+4. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: C
+answer is c , as other are not relevant
+   upvoted 1 times
+
+5. Anonymous: YomanB 1 year, 10 months ago
+C. Set Content-Type metadata to application/pdf on the PDF file objects.
+Explanation: The Content-Type metadata indicates the media type of the content and helps the browser understand how to handle the file. In this case, by setting the Content-Type metadata of the PDF files to "application/pdf," you're informing the browser that the files are in PDF format, and the browser will attempt to display them directly within the browser window, rather than prompting the user to download them.
+   upvoted 7 times
+
+6. Anonymous: Nxt_007 1 year, 11 months ago
+Selected Answer: C
+C is correct
+Setting the Content-Type metadata to application/pdf on the PDF file objects instructs the web browser to treat these files as PDF documents and display them inline, rather than prompting the user to download them.
+   upvoted 1 times
+
+7. Anonymous: Paulo_Jorge 2 years, 7 months ago
+Option C:
+To display PDF files directly within the browser window on a website hosted on Cloud Storage, you can follow these steps:
+In the Google Cloud Console, navigate to the Cloud Storage section and select the "Buckets" page.
+Select the bucket that contains the static website and the PDF files.
+From the "Actions" menu, select "Edit bucket" and then go to the "Website" tab.
+In the "Website Configuration" section, select the "Serve objects with this content type" option and enter "application/pdf" in the text field. This will cause PDF files to be served with the correct content type.
+Save the changes to the bucket configuration.
+After completing these steps, the PDF files on your website will be served with the correct content type and will be displayed directly within the browser window when clicked, without prompting the user to save the file locally.
+   upvoted 13 times
+
+8. Anonymous: leogor 2 years, 9 months ago
+Selected Answer: C
+C. Set Content-Type metadata to application/pdf
+   upvoted 1 times
+
+9. Anonymous: Untamables 2 years, 9 months ago
+Selected Answer: C
+FYI
+Importance of setting the correct MIME type
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_Types#importance_of_setting_the_correct_mime_type
+   upvoted 1 times
+
+10. Anonymous: AzureDP900 3 years ago
+C is correct. Edit the PDF objects in Cloud Storage and reconfigure their Content-Type metadata into application/pdf.
+   upvoted 3 times
+==============================
+
+==============================
+Page X — Question #49
+
+Pergunta:
+You have a virtual machine that is currently configured with 2 vCPUs and 4 GB of memory. It is running out of memory. You want to upgrade the virtual machine to have 8 GB of memory. What should you do?
+
+Alternativas:
+- A. Rely on live migration to move the workload to a machine with more memory.
+- B. Use gcloud to add metadata to the VM. Set the key to required-memory-size and the value to 8 GB.
+- C. Stop the VM, change the machine type to n1-standard-8, and start the VM.
+- D. Stop the VM, increase the memory to 8 GB, and start the VM.
+
+Resposta correta:
+D. Stop the VM, increase the memory to 8 GB, and start the VM.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: cesar7816 Highly Voted  5 years, 10 months ago
+coldpar, why are you getting the people confused? you need to stop teh VM and modify the RAM, that's all
+   upvoted 65 times
+ iambatmanadarkknight 4 years, 3 months ago
+who is coldpar
+   upvoted 7 times
+ spatidar2711 3 years, 6 months ago
+He deleted his comment
+   upvoted 1 times
+ chikorita 2 years, 9 months ago
+i dont think we can delete our comments
+   upvoted 2 times
+
+2. Anonymous: CarlS Highly Voted  5 years, 9 months ago
+D is correct. If you pay attention to the question, option C mentions n1-standard-8. That instance type has 8vCPUs and 30 GB RAM, and we only need 8GB. On top of that, it is possible to use custom machine type to adjust current VM RAM to the value we need. Got the answer from this course I did to prepare the exam: https://www.udemy.com/course/google-cloud-associate-engineer-exam-practice-tests/?couponCode=21CDE6A4C2B95F79BD97
+good luck!
+   upvoted 45 times
+ Veera_Venkata_Satyanarayana 3 years, 6 months ago
+How to use coupon code carls
+   upvoted 2 times
+
+3. Anonymous: josecouva Most Recent  1 month, 1 week ago
+Selected Answer: C
+The question doesn't specify whether the instance type is predefined or custom. If it's predefined, the answer is C, and if it's custom, the answer is D. In my opinion, since it's not specified, the answer is C because Google Cloud creates instances linked to a machine type. This type specifies the CPUs and memory.
+   upvoted 1 times
+
+4. Anonymous: warbon 12 months ago
+Selected Answer: C
+In Google Cloud, you cannot directly modify the memory allocation for an existing VM. Instead, you must change the VM's machine type to one with the desired memory and vCPU configuration (e.g., n1-standard-8, which has 8 GB of memory). The VM needs to be stopped before making this change, and then it can be restarted.
+Why not other options?
+A (Live migration): Live migration moves workloads during maintenance but does not change the VM's memory allocation.
+B (Metadata change): Adding metadata does not affect memory allocation.
+D (Directly increasing memory): You cannot manually increase only the memory of a VM; you must select a predefined machine type.
+   upvoted 1 times
+
+5. Anonymous: martin2099 1 year, 2 months ago
+C. Esto implica detener la máquina virtual, cambiar el tipo de máquina a uno que tenga 8 GB de memoria (como n1-standard-8), y luego reiniciarla.
+   upvoted 1 times
+
+6. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: D
+D is the correct answer
+   upvoted 1 times
+
+7. Anonymous: gpais 2 years, 5 months ago
+You can add extended memory only to custom machine types. Predefined machine types are not supported.
+   upvoted 2 times
+
+8. Anonymous: samrat46 2 years, 9 months ago
+D is correct.
+C.n1 standard8 has 30GB RAM.
+A&B- No vm instance stop, Hence can't be updated.
+   upvoted 2 times
+
+9. Anonymous: Buruguduystunstugudunstuy 2 years, 11 months ago
+Selected Answer: D
+ANSWER D is correct because it is the correct process to follow to increase the memory of a virtual machine in the Google Cloud Platform.
+To increase the memory of a virtual machine, you need to first stop the VM, since it is not possible to modify the memory of a running VM. Then, you can increase the memory of the VM by editing the machine type and selecting a machine type with more memory. Once you have made the change, you can start the VM again.
+ANSWER A is not the best approach as it relies on live migration which can be a risky operation.
+ANSWER B is incorrect because adding metadata to the VM will not change the amount of memory allocated to the VM.
+ANSWER C is incorrect because changing the machine type to n1-standard-8 would also increase the number of vCPUs to 8, which may not be necessary and could result in overprovisioning of resources. In addition, changing the machine type would also affect the cost of the VM instance, which may not be desired. Since the primary concern in this scenario is to increase memory.
+   upvoted 16 times
+
+10. Anonymous: cslince 3 years, 1 month ago
+Selected Answer: D
+Option D
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #50
+
+Pergunta:
+You have production and test workloads that you want to deploy on Compute Engine. Production VMs need to be in a different subnet than the test VMs. All the
+VMs must be able to reach each other over Internal IP without creating additional routes. You need to set up VPC and the 2 subnets. Which configuration meets these requirements?
+
+Alternativas:
+- A. Create a single custom VPC with 2 subnets. Create each subnet in a different region and with a different CIDR range.
+- B. Create a single custom VPC with 2 subnets. Create each subnet in the same region and with the same CIDR range.
+- C. Create 2 custom VPCs, each with a single subnet. Create each subnet in a different region and with a different CIDR range.
+- D. Create 2 custom VPCs, each with a single subnet. Create each subnet in the same region and with the same CIDR range.
+
+Resposta correta:
+A. Create a single custom VPC with 2 subnets. Create each subnet in a different region and with a different CIDR range.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: JamesBond Highly Voted  5 years, 10 months ago
+A is correct
+   upvoted 36 times
+
+2. Anonymous: nwk Highly Voted  5 years, 2 months ago
+Vote A
+https://cloud.google.com/vpc/docs/using-vpc#subnet-rules
+Primary and secondary ranges for subnets cannot overlap with any allocated range, any primary or secondary range of another subnet in the same network, or any IP ranges of subnets in peered networks.
+   upvoted 23 times
+
+3. Anonymous: Ciupaz Most Recent  1 year, 2 months ago
+Selected Answer: A
+B is wrong because is not possible to have two subnets with the same CIDR range within a VPC, as it would cause an IP conflict.
+   upvoted 3 times
+
+4. Anonymous: jayflesher 1 year, 2 months ago
+This question and answer doesn't add up to me.
+Why would you need to have a different CIDR range and a different region?
+For example, if I had 10.0.1.0/24 in us-central1 region, why can't i just use 10.0.2.0/24? in the same region and "/24" is the same CIDR range. The correct answer does not make logical
+sense to me.
+   upvoted 1 times
+ sh4dw4rri0r 11 months, 4 weeks ago
+Good perspective. Theoretically it should be possible.
+But CIDR Range includes both IP Address and Subnet Mask.
+You are saying that "/24" is the same CIDR range. (but you are referring to subnet mask)
+But 10.0.1.0/24 and 10.0.2.0/24 are different CIDR Range if compared.
+Hence option A is relevant, Different CIDR
+   upvoted 1 times
+ nsabir 1 year ago
+You can do this. But this option isn't available. The correct option just happens to create the subnets in different regions. That's all.
+   upvoted 1 times
+
+5. Anonymous: fighter001 1 year, 8 months ago
+Wrong question with wrong answer
+   upvoted 3 times
+
+6. Anonymous: ranjitsinhgutte 2 years, 3 months ago
+A is correct
+If you create more than one subnet in a VPC, the CIDR blocks of the subnets cannot overlap. For example, if you create a VPC with CIDR block 10.0. 0.0/24 , it supports 256 IP addresses. You can break this CIDR block into two subnets, each supporting 128 IP addresses.
+   upvoted 4 times
+
+7. Anonymous: certboss 2 years, 4 months ago
+For anyone new to the business, prod and test networks should never talk to each other.... The requirement in this question (that both envs can reach each other) is completely against best practice and common sense... There should always be complete network isolation between prod and non-prod environments.
+   upvoted 8 times
+ iooj 1 year, 4 months ago
+in reality, business leads will push you to make such a connection, for example, because the test environment doesn't have enough data for testing...
+   upvoted 1 times
+
+8. Anonymous: fraiacca 2 years, 4 months ago
+Selected Answer: A
+I tried to create a VPC with 2 subnets in same regione and same CIDR
+I got the following error
+Operation type [insert] failed with message "Invalid IPCidrRange: 10.0.0.0/28 conflicts with existing subnetwork 'subnet-1' in region 'asia-east1'."
+   upvoted 3 times
+ Seleth 1 year, 5 months ago
+"same CIDR" means the same range of addresses. You cannot have two networks overlapping anywhere because the IPs will conflict.
+   upvoted 1 times
+
+9. Anonymous: Captain1212 2 years, 4 months ago
+A is correct as it help to make sure they have a diffenret subnets
+   upvoted 1 times
+
+10. Anonymous: raselsys 2 years, 10 months ago
+Selected Answer: A
+A is the correct Answer. People voting for B need to improve their networking knowledge.
+   upvoted 5 times
+==============================

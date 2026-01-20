@@ -1,0 +1,880 @@
+==============================
+Page X — Question #21
+
+Pergunta:
+You have one GCP account running in your default region and zone and another account running in a non-default region and zone. You want to start a new
+Compute Engine instance in these two Google Cloud Platform accounts using the command line interface. What should you do?
+
+Alternativas:
+- A. Create two configurations using gcloud config configurations create [NAME]. Run gcloud config configurations activate [NAME] to switch between accounts when running the commands to start the Compute Engine instances.
+- B. Create two configurations using gcloud config configurations create [NAME]. Run gcloud configurations list to start the Compute Engine instances.
+- C. Activate two configurations using gcloud configurations activate [NAME]. Run gcloud config list to start the Compute Engine instances.
+- D. Activate two configurations using gcloud configurations activate [NAME]. Run gcloud configurations list to start the Compute Engine instances.
+
+Resposta correta:
+A. Create two configurations using gcloud config configurations create [NAME]. Run gcloud config configurations activate [NAME] to switch between accounts when running the commands to start the Compute Engine instances.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: leba Highly Voted  5 years, 8 months ago
+Correct answer is A as you can create different configurations for each account and create compute instances in each account by activating the respective account.Refer GCP documentation - Configurations Create &amp; Activate Options B, C &amp; D are wrong as gcloud config configurations list does not help create instances. It would only lists existing named configurations.
+   upvoted 38 times
+
+2. Anonymous: coldpar Highly Voted  5 years, 10 months ago
+A is the correct option
+   upvoted 28 times
+
+3. Anonymous: Urticas Most Recent  1 day, 23 hours ago
+Selected Answer: A
+When you need to manage multiple Google Cloud accounts, regions, or zones using the gcloud CLI, the recommended approach is to use named configurations.
+Each configuration can store:
+Account credentials Project ID Default region Default zone
+This allows you to easily switch contexts without re‑specifying flags every time.
+   upvoted 1 times
+
+4. Anonymous: svij87 1 month ago
+Selected Answer: A
+A is correct option
+   upvoted 1 times
+
+5. Anonymous: Deepthi12 5 months, 3 weeks ago
+Selected Answer: A
+A is correct
+   upvoted 1 times
+
+6. Anonymous: Shybi 6 months, 3 weeks ago
+Selected Answer: A
+Option A. Keywords - Activate and list.
+   upvoted 1 times
+
+7. Anonymous: 4ad26ef 1 year, 4 months ago
+Selected Answer: A
+A is correct
+   upvoted 1 times
+
+8. Anonymous: BAofBK 2 years, 2 months ago
+The correct answer is A
+   upvoted 1 times
+
+9. Anonymous: YourCloudGuru 2 years, 3 months ago
+Selected Answer: A
+The correct answer is A
+This option allows you to create and activate different configurations for your GCP accounts. This way, you can easily switch between accounts and run commands without having to re-enter your credentials.
+The other options are not as good:
+* Option B does not specify how to switch between accounts when running the commands to start the Compute Engine instances.
+* Option C does not specify how to create configurations for your GCP accounts.
+* Option D does not specify how to start the Compute Engine instances.
+   upvoted 4 times
+
+10. Anonymous: Captain1212 2 years, 4 months ago
+Yes A seems to be more correct
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #22
+
+Pergunta:
+You significantly changed a complex Deployment Manager template and want to confirm that the dependencies of all defined resources are properly met before committing it to the project. You want the most rapid feedback on your changes. What should you do?
+
+Alternativas:
+- A. Use granular logging statements within a Deployment Manager template authored in Python.
+- B. Monitor activity of the Deployment Manager execution on the Stackdriver Logging page of the GCP Console.
+- C. Execute the Deployment Manager template against a separate project with the same configuration, and monitor for failures.
+- D. Execute the Deployment Manager template using the ג€"-preview option in the same project, and observe the state of interdependent resources.
+
+Resposta correta:
+D. Execute the Deployment Manager template using the ג€"-preview option in the same project, and observe the state of interdependent resources.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: YashBindlish Highly Voted  4 years, 8 months ago
+Correct answer is D as Deployment Manager provides the preview feature to check on what resources would be created
+   upvoted 47 times
+
+2. Anonymous: Buruguduystunstugudunstuy Highly Voted  1 year, 11 months ago
+Selected Answer: D
+Answer D is the most appropriate choice for getting rapid feedback on changes to a Deployment Manager template.
+The preview command in Deployment Manager creates a preview deployment of the resources defined in the configuration, without actually creating or modifying any resources. This allows you to quickly test and validate changes to the template before committing them to the project. During the preview, you can observe the state of interdependent resources and ensure that their dependencies are properly met. This provides rapid feedback on your changes, without actually creating any resources or incurring any costs.
+   upvoted 14 times
+ jogoldberg 4 months, 2 weeks ago
+What is the "ג€"-preview option" mentioned in the question?
+   upvoted 1 times
+
+3. Anonymous: svij87 Most Recent  1 month ago
+Selected Answer: D
+Answer is D as Deployment Manager provides the preview feature to review without creating/modifying the resources.
+   upvoted 1 times
+
+4. Anonymous: Shybi 6 months, 3 weeks ago
+Selected Answer: D
+Option D. Rapid feedback is the keywords
+   upvoted 1 times
+
+5. Anonymous: tmpcs 1 year, 1 month ago
+D is right based on this part of doc: https://cloud.google.com/deployment-manager/docs/deployments/updating-deployments#optional_preview_an_updated_configuration
+   upvoted 3 times
+
+6. Anonymous: BAofBK 1 year, 2 months ago
+The correct answer is D.
+   upvoted 2 times
+
+7. Anonymous: YourCloudGuru 1 year, 3 months ago
+Selected Answer: D
+The correct option is D
+The `--preview` option will preview the changes that will be made to the deployment without actually making them. This allows you to see how the changes will affect the deployment and to identify any potential problems.
+The other options are not as good:
+* Option A is not as good, because it requires you to add logging statements to your Deployment Manager template. This can be time-consuming and error-prone.
+* Option B is not as good, because it requires you to monitor the Stackdriver Logging page of the GCP Console. This can be difficult to do, especially for complex deployments.
+* Option C is not as good, because it requires you to create a separate project with the same configuration. This can be time-consuming and expensive.
+   upvoted 2 times
+
+8. Anonymous: Captain1212 1 year, 4 months ago
+D is the right answer aas deployment manager provides the preview option to check the templates
+   upvoted 1 times
+
+9. Anonymous: ExamsFR 1 year, 6 months ago
+Selected Answer: D
+D is right
+   upvoted 1 times
+
+10. Anonymous: Neha_Pallavi 1 year, 6 months ago
+D is correct. Execute the Deployment Manager template using the ג€"-preview option in the same project, and observe the state of interdependent resources.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #23
+
+Pergunta:
+You are building a pipeline to process time-series data. Which Google Cloud Platform services should you put in boxes 1,2,3, and 4?
+
+Alternativas:
+- A. Cloud Pub/Sub, Cloud Dataflow, Cloud Datastore, BigQuery
+- B. Firebase Messages, Cloud Pub/Sub, Cloud Spanner, BigQuery
+- C. Cloud Pub/Sub, Cloud Storage, BigQuery, Cloud Bigtable
+- D. Cloud Pub/Sub, Cloud Dataflow, Cloud Bigtable, BigQuery
+
+Resposta correta:
+D. Cloud Pub/Sub, Cloud Dataflow, Cloud Bigtable, BigQuery
+
+Top 10 Discussões (sem replies):
+1. Anonymous: cloudenthu01 Highly Voted  4 years, 6 months ago
+Without a doubt D.
+Whenever we want to process timeseries data look for BigTable.
+Also you want to perform analystics in Box 4 ..look for BigQuery
+Only D provides this option.
+   upvoted 71 times
+ vlodia 4 years, 6 months ago
+Speaker also looks like an IoT device so D not A
+   upvoted 3 times
+ adedj99 4 years, 1 month ago
+are we considering bigtable as storage in here , since they expecting some storage
+   upvoted 2 times
+
+2. Anonymous: Buruguduystunstugudunstuy Highly Voted  1 year, 11 months ago
+Selected Answer: D
+The correct process for building a pipeline to process time-series data. Here's how each of the components is used:
+1. Cloud Pub/Sub: receives and distributes time-series data from different sources.
+2. Cloud Dataflow: processes the data by applying transformations and analytics.
+3. Cloud Bigtable: stores and manages the processed data as a NoSQL database.
+4. BigQuery: provides a SQL-like interface to analyze the data and extract insights.
+By combining these components, you can create a scalable and reliable pipeline to process and analyze time-series data in real time.
+   upvoted 55 times
+ kenrichy 1 year, 10 months ago
+Many thanks Buruguduy.. for the extensive explanation you always give to your choice of answers. It's really helpful to understand the concept.
+   upvoted 6 times
+
+3. Anonymous: kewgard Most Recent  7 months, 3 weeks ago
+Selected Answer: D
+D. Datastore is an old name - new name is firestore in datastore mode. Processing time series data is best done in BigTable which supports timeseries small data in realtime and particulalry for IoT
+(non relational)
+   upvoted 1 times
+
+4. Anonymous: BAofBK 1 year, 2 months ago
+Correct answer D
+   upvoted 2 times
+
+5. Anonymous: YourCloudGuru 1 year, 3 months ago
+Selected Answer: D
+The correct answer is D
+This diagram shows a typical pipeline for processing time-series data:
+1. **Cloud Pub/Sub:** A messaging service that allows you to send and receive messages between independent applications.
+2. **Cloud Dataflow:** A fully-managed service for transforming and processing data streams.
+3. **Cloud Bigtable:** A wide-column, distributed NoSQL database that is optimized for storing and analyzing large amounts of data.
+4. **BigQuery:** A fully-managed, petabyte-scale analytics data warehouse that enables businesses to analyze all their data very quickly.
+In this pipeline, the following happens:
+1. Time-series data is sent to Cloud Pub/Sub.
+2. Cloud Dataflow reads the data from Cloud Pub/Sub and performs any necessary transformations or processing.
+3. Cloud Dataflow writes the transformed data to Cloud Bigtable.
+4. BigQuery queries the data in Cloud Bigtable to generate insights.
+   upvoted 4 times
+
+6. Anonymous: Captain1212 1 year, 4 months ago
+big table for 3 , so d is the correct answer
+   upvoted 1 times
+
+7. Anonymous: Neha_Pallavi 1 year, 6 months ago
+D. Cloud Pub/Sub, Cloud Dataflow, Cloud Bigtable, BigQuery
+   upvoted 1 times
+
+8. Anonymous: Partha117 1 year, 10 months ago
+Selected Answer: D
+Cloud Bigtable for time series data storage and BigQuery for analysis
+   upvoted 1 times
+
+9. Anonymous: cslince 2 years, 1 month ago
+Selected Answer: D
+Option D
+   upvoted 1 times
+
+10. Anonymous: dennydream 2 years, 2 months ago
+I know the answer is D, but it's misleading. "Storage" would suggest cloud storage, not BigTable.
+   upvoted 2 times
+ akshaydoifode88 2 years, 2 months ago
+You can't store timeseries data in cloud storage. Even if you store it how you are gonna access it?
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #24
+
+Pergunta:
+You have a project for your App Engine application that serves a development environment. The required testing has succeeded and you want to create a new project to serve as your production environment. What should you do?
+
+Alternativas:
+- A. Use gcloud to create the new project, and then deploy your application to the new project.
+- B. Use gcloud to create the new project and to copy the deployed application to the new project.
+- C. Create a Deployment Manager configuration file that copies the current App Engine deployment into a new project.
+- D. Deploy your application again using gcloud and specify the project parameter with the new project name to create the new project.
+
+Resposta correta:
+A. Use gcloud to create the new project, and then deploy your application to the new project.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: coldpar Highly Voted  4 years, 10 months ago
+Correct is A.
+Option B is wrong as the option to use gcloud app cp does not exist.
+Option C is wrong as Deployment Manager does not copy the application, but allows you to specify all the resources needed for your application in a declarative format using yaml
+Option D is wrong as gcloud app deploy would not create a new project. The project should be created before usage
+   upvoted 82 times
+ manu202020 4 years, 6 months ago
+you're missing one thing. D isn't about using deployment manager to copy the configuration, instead, using the configuration file to copy the configuration from test project.
+   upvoted 6 times
+ AdelElagawany 1 year, 3 months ago
+A is correct since the documentation here explicitly mentioned the roles of external editors https://cloud.google.com/iam/docs/job-functions/auditing#scenario_external_auditors
+   upvoted 2 times
+
+2. Anonymous: leba Highly Voted  4 years, 8 months ago
+Correct answer is A as gcloud can be used to create a new project and the gcloud app deploy can point to the new project.Refer GCP documentation - GCloud App Deploy.
+Option B is wrong as the option to use gcloud app cp does not exist
+.Option C is wrong as Deployment Manager does not copy the application, but allows you to specify all the resources needed for your application in a declarative format using yaml
+Option D is wrong as gcloud app deploy would not create a new project. The project should be created before usage.
+   upvoted 15 times
+
+3. Anonymous: Urticas Most Recent  1 day, 23 hours ago
+Selected Answer: A
+When you want to promote an App Engine application from a development environment to a production environment, the recommended and correct approach is to treat the production setup as a separate project and deploy the app again.
+   upvoted 1 times
+
+4. Anonymous: kewgard 7 months, 3 weeks ago
+Selected Answer: A
+A. You cannot copy app engine applications. You need to create the new prod project and then will need to gcloud app deploy --project <new proj name> with all the source to create a fesh instal of the same app.
+   upvoted 1 times
+
+5. Anonymous: kewgard 7 months, 3 weeks ago
+Selected Answer: A
+A: Use gcloud to create the new project, and then deploy your application to the new project. You need to CREATE a new project. You cant copy an app using gcloud.
+   upvoted 1 times
+
+6. Anonymous: kdvn 9 months ago
+Selected Answer: A
+The correct answer is: A. Use gcloud to create the new project, and then deploy your application to the new project.
+Explanation:
+To move from a development environment to a production environment in Google App Engine, you can’t directly copy deployments between projects.
+   upvoted 2 times
+
+7. Anonymous: Trundul 1 year, 1 month ago
+Selected Answer: C
+the correct answer is C
+   upvoted 1 times
+
+8. Anonymous: YourCloudGuru 1 year, 3 months ago
+Selected Answer: A
+The correct answer is A.
+This is the simplest and most straightforward way to create a new production environment. It is also the most efficient way, because it does not require you to copy the deployed application to the new project.
+The other options are not as good:
+* Option B is not as good, because it requires you to copy the deployed application to the new project. This can be time-consuming and error-prone.
+* Option C is not as good, because it requires you to create a Deployment Manager configuration file. This can be complex and time-consuming.
+* Option D is not as good, because it does not allow you to create a new project.
+   upvoted 3 times
+
+9. Anonymous: Captain1212 1 year, 4 months ago
+Selected Answer: A
+option A seems more correct as in B copy command don't exist
+   upvoted 1 times
+
+10. Anonymous: Bb_master 1 year, 9 months ago
+Selected Answer: C
+As this is test on cloud infra then definitely the question is about creating instance with all the configuration which was present in the development environment. I think C is correct because we can copy the existing configuration from deployment manager to the new project.
+   upvoted 3 times
+==============================
+
+==============================
+Page X — Question #25
+
+Pergunta:
+You need to configure IAM access audit logging in BigQuery for external auditors. You want to follow Google-recommended practices. What should you do?
+
+Alternativas:
+- A. Add the auditors group to the 'logging.viewer' and 'bigQuery.dataViewer' predefined IAM roles.
+- B. Add the auditors group to two new custom IAM roles.
+- C. Add the auditor user accounts to the 'logging.viewer' and 'bigQuery.dataViewer' predefined IAM roles.
+- D. Add the auditor user accounts to two new custom IAM roles.
+
+Resposta correta:
+A. Add the auditors group to the 'logging.viewer' and 'bigQuery.dataViewer' predefined IAM roles.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: coldpar Highly Voted  5 years, 10 months ago
+Correct is A.
+As per google best practices it is recommended to use predefined roles and create groups to control access to multiple users with same responsibility
+   upvoted 83 times
+ droogie 5 years, 6 months ago
+You assume Auditors Group = External Auditors only. Auditors Group may contain both Internal and External Auditors.
+   upvoted 5 times
+ robor97 5 years, 1 month ago
+The question literally says - External Auditors
+   upvoted 14 times
+ adeice 4 years, 10 months ago
+I can create External group and Internal group Auditors
+   upvoted 2 times
+
+2. Anonymous: JavierCorrea Highly Voted  5 years, 5 months ago
+Correct answer is A as per:
+https://cloud.google.com/iam/docs/job-functions/auditing#scenario_external_auditors
+   upvoted 48 times
+ ArtistS 2 years, 3 months ago
+very useful
+The organization creates a Google group for these external auditors and adds the current auditor to the group. This group is monitored and is typically granted access to the dashboard application
+   upvoted 1 times
+
+3. Anonymous: Urticas Most Recent  1 day, 23 hours ago
+Selected Answer: A
+A follows Google’s recommended approach: groups + predefined roles + least privilege
+   upvoted 1 times
+
+4. Anonymous: svij87 1 month ago
+Selected Answer: A
+A is the answer
+   upvoted 1 times
+
+5. Anonymous: tabnaz 10 months, 3 weeks ago
+Selected Answer: A
+Correct is A.
+   upvoted 1 times
+
+6. Anonymous: Cloudmoh 11 months, 1 week ago
+Selected Answer: A
+Based on best practices, A group should be created, and both auditors should be added and predefined 'logging.viewer' and 'bigQuery.dataViewer roles will be granted.
+   upvoted 1 times
+
+7. Anonymous: Enamfrancis 1 year, 3 months ago
+Selected Answer: A
+I will go A
+   upvoted 1 times
+
+8. Anonymous: Seleth 1 year, 5 months ago
+Selected Answer: A
+The organization creates a Google group for these external auditors and adds the current auditor to the group. This group is monitored and is typically granted access to the dashboard application.
+https://cloud.google.com/iam/docs/job-functions/auditing#scenario_external_auditors
+   upvoted 1 times
+
+9. Anonymous: garg.vnay 1 year, 5 months ago
+Correct Answer is A. you should add a role to the group of users instead of adding particular users in IAM
+   upvoted 1 times
+
+10. Anonymous: andreiboaghe95 1 year, 7 months ago
+Selected Answer: A
+correct answer is A
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #26
+
+Pergunta:
+You need to set up permissions for a set of Compute Engine instances to enable them to write data into a particular Cloud Storage bucket. You want to follow
+Google-recommended practices. What should you do?
+
+Alternativas:
+- A. Create a service account with an access scope. Use the access scope 'https://www.googleapis.com/auth/devstorage.write_only'.
+- B. Create a service account with an access scope. Use the access scope 'https://www.googleapis.com/auth/cloud-platform'.
+- C. Create a service account and add it to the IAM role 'storage.objectCreator' for that bucket.
+- D. Create a service account and add it to the IAM role 'storage.objectAdmin' for that bucket.
+
+Resposta correta:
+C. Create a service account and add it to the IAM role 'storage.objectCreator' for that bucket.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: coldpar Highly Voted  5 years, 10 months ago
+As per as the least privileage recommended by google, C is the correct Option, A is incorrect because the scope doesnt exist. B incorrect because it will give him full of control
+   upvoted 60 times
+ johnconnor 3 years, 6 months ago
+Check here, it is A-> https://cloud.google.com/storage/docs/authentication
+https://cloud.google.com/storage/docs/authentication
+   upvoted 1 times
+ Bedmed 3 years ago
+In the Document, it includes https://www.googleapis.com/auth/devstorage.read_write scope
+   upvoted 1 times
+ CVGCP 2 years, 7 months ago
+There is no scope called write-only, as per the reference document.
+   upvoted 1 times
+ karim1321 2 years, 7 months ago
+In the Document, 'write -only' does not exist. Just read-only
+   upvoted 2 times
+ robor97 5 years, 1 month ago
+The scope does exist - https://download.huihoo.com/google/gdgdevkit/DVD1/developers.google.com/compute/docs/api/how-tos/authorization.html
+   upvoted 2 times
+ gielda211 3 years, 9 months ago
+it doesn't exist. show us this on official google website
+   upvoted 2 times
+ peter77 4 years, 4 months ago
+No it doesn't. You have read-only, read-write, full-control and others... but "write-only" is not a thing.
+https://cloud.google.com/storage/docs/authentication
+   upvoted 4 times
+
+2. Anonymous: XRiddlerX Highly Voted  5 years, 6 months ago
+In reviewing this, it looks to be a multiple answer question. According to Best Practices in this Google Doc (https://cloud.google.com/compute/docs/access/create-enable-service-accounts-for-instances#best_practices) you grant the instance the scope and the permissions are determined by the IAM roles of the service account. In this case, you would grant the instance the scope and the role (storage.objectCreator) to the service account.
+Ans B and C
+Role from GCP Console:
+ID = roles/storage.objectCreator
+Role launch stage = General Availability
+Description = Access to create objects in GCS.
+3 assigned permissions
+resourcemanager.projects.get
+resourcemanager.projects.list
+storage.objects.create
+   upvoted 18 times
+ nickyshil 3 years, 5 months ago
+There are many access scopes available to choose from, but a best practice is to set the cloud-platform access scope, which is an OAuth scope for most Google Cloud services, and then control the service account's access by granting it IAM roles..you have an app that reads and writes files on Cloud Storage, it must first authenticate to the Cloud Storage API. You can create an instance with the cloud-platform scope and attach a service account to the instance
+https://cloud.google.com/compute/docs/access/service-accounts
+   upvoted 1 times
+ ryumada 3 years, 5 months ago
+Reading the second point of the best practice. You should grant your VM the https://www.googleapis.com/auth/cloud-platform scope to allow access to most of Google Cloud APIs.
+So, that the IAM permissions are completely determined by the IAM roles you granted to the service account.
+The conclusion is you should not mess up with the VM scopes to grant access to Google Services, instead you should grant the access via IAM roles of the service account you attached to the VM.
+https://cloud.google.com/compute/docs/access/create-enable-service-accounts-for-instances#best_practices
+   upvoted 2 times
+
+3. Anonymous: svij87 Most Recent  1 month ago
+Selected Answer: C
+C is correct answer as we don't want user to have admin access only creator access so that they can't perform admin action on storage.
+   upvoted 1 times
+
+4. Anonymous: kewgard 7 months, 3 weeks ago
+Selected Answer: C
+C. As you want to use predefined roles. and Admin give more permissions than asked for. ie just need to write permissions so storage.objectCreator only is needed.
+   upvoted 1 times
+
+5. Anonymous: Hanu17 1 year ago
+Selected Answer: B
+The reason why A is not an answer.
+The Activity log in the GCP Console is part of the Cloud Audit Logs but focuses on high-level admin activities, not specific data access or detailed operations like viewing files or adding metadata labels
+   upvoted 1 times
+ Hanu17 1 year ago
+You have sensitive data stored in three Cloud Storage buckets and have enabled data access logging. You want to verify activities for a particular user for these buckets, using the fewest possible steps. You need to verify the addition of metadata labels and which files have been viewed from those buckets. What should you do?
+   upvoted 1 times
+
+6. Anonymous: Enamfrancis 1 year, 3 months ago
+C because of 'storage.objectCreator'
+   upvoted 2 times
+
+7. Anonymous: andreiboaghe95 1 year, 7 months ago
+Selected Answer: C
+Correct answer is C
+   upvoted 2 times
+
+8. Anonymous: BAofBK 2 years, 2 months ago
+Correct answer is D
+   upvoted 1 times
+
+9. Anonymous: gsmasad 2 years, 2 months ago
+Selected Answer: C
+storage.objectCreator contains sufficient privileges to do the job & so admin is not required
+   upvoted 1 times
+
+10. Anonymous: YourCloudGuru 2 years, 3 months ago
+Selected Answer: C
+The correct answer is C.
+The other options are not accurate and go against the principle of giving least required access.
+A is incorrect as there is no role as write_only
+B is not a good option as it gives full control of google cloud services where as we are looking for write data into a particular cloud storage bucket
+D. is not a good option as it gives full control over objects
+Sources:
+https://cloud.google.com/storage/docs/authentication
+https://cloud.google.com/storage/docs/access-control/iam-roles
+   upvoted 4 times
+==============================
+
+==============================
+Page X — Question #27
+
+Pergunta:
+You have sensitive data stored in three Cloud Storage buckets and have enabled data access logging. You want to verify activities for a particular user for these buckets, using the fewest possible steps. You need to verify the addition of metadata labels and which files have been viewed from those buckets. What should you do?
+
+Alternativas:
+- A. Using the GCP Console, filter the Activity log to view the information.
+- B. Using the GCP Console, filter the Stackdriver log to view the information.
+- C. View the bucket in the Storage section of the GCP Console.
+- D. Create a trace in Stackdriver to view the information.
+
+Resposta correta:
+B. Using the GCP Console, filter the Stackdriver log to view the information.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: iamgcp Highly Voted  5 years, 8 months ago
+A is correct. As mentioned in the question, data access logging is enabled. I tried to download a file from a bucket and was able to view this information in Activity tab in console
+   upvoted 53 times
+ RegisFTM 4 years, 1 month ago
+I did all the configuration enabling data access logging but I still not able to see the logs when uploading or downloading a file. Does someone here has done it with a different result?
+   upvoted 1 times
+ ryumada 3 years, 5 months ago
+I agree with liyux21 and vito9630. In this reference link below says:
+In the Activity page, where the identity performing logged actions is redacted from the audit log entry, User (anonymized) is displayed.
+Beacause of this, I think you can't verify the addition of metadata labels through Activity Logs.
+https://cloud.google.com/logging/docs/audit#view-activity
+   upvoted 1 times
+ MEHDIGRB 3 years, 3 months ago
+activity log is deprecated:
+https://cloud.google.com/compute/docs/logging/activity-logs
+   upvoted 4 times
+ barathgdkrish 3 years, 1 month ago
+You need to see here, https://cloud.google.com/compute/docs/logging/audit-logging. Admin activity audit logs.
+   upvoted 1 times
+ Rog_4444 2 years, 10 months ago
+Yes, it is deprecated. However, it became the audit log which is exactly what this question is referring to. Option A is correct in my opinion.
+   upvoted 2 times
+ vito9630 5 years, 7 months ago
+data access logging don't provide information about addition of metada, so B is correct
+   upvoted 25 times
+
+2. Anonymous: eliteone11 Highly Voted  5 years, 1 month ago
+Answer is A. Activity log does indeed show information about metadata.
+I agree with Eshkrkrkr based on https://cloud.google.com/storage/docs/audit-logs Admin Activity logs: Entries for operations that modify the configuration or metadata of a project, bucket, or object.
+   upvoted 15 times
+ injarapu 3 years, 10 months ago
+'Admin activity logs' capture metadata modification, but its different from 'Data Access logging', right ?
+   upvoted 2 times
+
+3. Anonymous: Urticas Most Recent  1 day, 23 hours ago
+Selected Answer: B
+Cloud Logging (formerly Stackdriver Logging) is the single centralized place where Cloud Audit Logs—including Data Access logs—are stored and queried.
+   upvoted 1 times
+
+4. Anonymous: Vismaya 2 weeks, 6 days ago
+Selected Answer: A
+A is correct
+   upvoted 1 times
+
+5. Anonymous: SKSINDIAN 3 weeks, 1 day ago
+Selected Answer: B
+"Stackdriver" is the legacy name for what is now called Google Cloud Observability (which includes Cloud Logging and Cloud Monitoring). Stackdriver contains the both the activity and data logs.
+   upvoted 1 times
+
+6. Anonymous: Naveen00001 4 months, 1 week ago
+Selected Answer: A
+B & D not going to br the answer beacuse the stackdriver does not exist.
+C you can not see the metadata & logs .
+so , remaining A is the correct ANswer.
+   upvoted 1 times
+
+7. Anonymous: vdh_06 8 months, 3 weeks ago
+Selected Answer: A
+The correct answer is A. The Activity Log is the place where Data Access Logs (including file views) and Admin Activity Logs (like metadata label changes) are stored.
+Explanation:
+The Activity Log captures both Admin Activity (e.g., adding metadata labels) and Data Access Logs (e.g., file viewing activity in Cloud Storage).
+The Activity Log is where you find Cloud Storage Data Access Logs, which is exactly what you need to track who viewed files and modified labels in your buckets.
+You can filter by user, resource (bucket), and activity type to find both the metadata changes and file viewing activities.
+Conclusion: Correct Answer — The Activity Log is the correct place for both administrative actions and data access, so you can query the detailed information directly.
+   upvoted 1 times
+
+8. Anonymous: jeyam1990 11 months, 2 weeks ago
+Selected Answer: B
+The correct answer is:
+B. Using the GCP Console, filter the Stackdriver log to view the information.
+Explanation:
+The Activity log in the GCP Console is limited to Admin Activity Logs, which show administrative actions like adding metadata labels. It does not include Data Access Logs, which are required to verify file viewing activity.
+The Stackdriver log (now referred to as Cloud Logging) provides access to both Admin Activity Logs and Data Access Logs, allowing you to view both types of actions (adding metadata labels and viewing files). By filtering the logs in Cloud Logging, you can get the required information for the user efficiently.
+Answers provided by ChatGPT
+   upvoted 1 times
+ 1826c27 11 months, 1 week ago
+mr chatgtp - stackdriver is no longer in GCP
+   upvoted 2 times
+
+9. Anonymous: speksy 1 year ago
+Selected Answer: B
+Stackdriver Logging (now called Google Cloud Logging) captures detailed logs for activities within Google Cloud, including bucket metadata changes and file access activities for Cloud Storage bucket
+   upvoted 2 times
+
+10. Anonymous: Hanu17 1 year ago
+Selected Answer: B
+The reason why A is not an answer. The Activity log in the GCP Console is part of the Cloud Audit Logs but focuses on high-level admin activities, not specific data access or detailed operations like viewing files or adding metadata labels
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #28
+
+Pergunta:
+You are the project owner of a GCP project and want to delegate control to colleagues to manage buckets and files in Cloud Storage. You want to follow Google- recommended practices. Which IAM roles should you grant your colleagues?
+
+Alternativas:
+- A. Project Editor
+- B. Storage Admin
+- C. Storage Object Admin
+- D. Storage Object Creator
+
+Resposta correta:
+B. Storage Admin
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ESP_SAP Highly Voted  4 years, 4 months ago
+Correct Answer is (B):
+Storage Admin (roles/storage.admin) Grants full control of buckets and objects.
+When applied to an individual bucket, control applies only to the specified bucket and objects within the bucket.
+firebase.projects.get
+resourcemanager.projects.get
+resourcemanager.projects.list
+storage.buckets.*
+storage.objects.*
+   upvoted 55 times
+ iambatmanadarkknight 3 years, 3 months ago
+why not storage object admin?
+   upvoted 3 times
+ TenshiD 3 years, 2 months ago
+Because the objet admin don't have control over buckets and you need it
+   upvoted 27 times
+ Raz0r 3 years ago
+Exactly, you want to give someone right to edit storages not just objects. Google does this kind of answers to confuse us.
+   upvoted 6 times
+ dang1986 2 years, 11 months ago
+Question states "Buckets and Objects"
+   upvoted 4 times
+
+2. Anonymous: Agents89 Highly Voted  4 years, 9 months ago
+B is correct
+   upvoted 14 times
+
+3. Anonymous: svij87 Most Recent  1 month ago
+Selected Answer: B
+Admin role for full access of storage.
+   upvoted 1 times
+
+4. Anonymous: YourCloudGuru 1 year, 3 months ago
+Selected Answer: B
+The correct answer is B
+This role allows users to create, manage, and delete buckets and files in Cloud Storage. It also allows users to set permissions on buckets and files.
+The other options are not as good:
+A gives users too much power, as it allows them to manage all resources in a project, including Cloud Storage buckets and files
+C gives users too much power, as it allows them to manage all objects in a bucket, including the permissions on those objects
+D does not give users enough power, as it does not allow them to manage buckets or set permissions on buckets and objects
+Steps to grant Storage Admin IAM role:
+1 Go to the Google Cloud Console
+2 Click on the IAM & Admin menu
+3 Click on the Roles tab
+4 Click on the Storage Admin role
+5 Click on the Add members button
+6 Type the email addresses of your colleagues in the Members field
+7 Click on the Add button
+   upvoted 6 times
+
+5. Anonymous: Captain1212 1 year, 4 months ago
+B is more correct, as it give you the both access
+   upvoted 1 times
+
+6. Anonymous: Neha_Pallavi 1 year, 5 months ago
+B.
+Storage Admin (roles/storage.admin) - Grants full control of buckets and objects.
+https://cloud.google.com/storage/docs/access-control/iam-roles
+   upvoted 1 times
+
+7. Anonymous: Partha117 1 year, 10 months ago
+Selected Answer: B
+Correct option B
+   upvoted 1 times
+
+8. Anonymous: Buruguduystunstugudunstuy 1 year, 11 months ago
+Selected Answer: B
+Answer B, "Storage Admin," is the correct answer because it grants permissions to manage Cloud Storage resources at the project level, including creating and deleting buckets, changing bucket settings, and assigning permissions to buckets and their contents. This role also includes the permissions of the "Storage Object Admin" and "Storage Object Creator" roles, which allow managing objects and uploading new ones.
+Answer A, "Project Editor," is a higher-level role that includes permissions to manage not only Cloud Storage but also other GCP services in the project. Granting this role may not be appropriate if the colleagues only need to manage Cloud Storage resources.
+Answers C and D may not be sufficient if the colleagues need to create or delete buckets or change their settings.
+   upvoted 5 times
+
+9. Anonymous: kkozlow2 2 years, 1 month ago
+Selected Answer: B
+Storage Admin (roles/storage.admin)
+Grants full control of buckets and objects.
+When applied to an individual bucket, control applies only to the specified bucket and objects within the bucket.
+While
+Storage Object Admin (roles/storage.objectAdmin)
+Grants full control over objects, including listing, creating, viewing, and deleting objects.
+   upvoted 2 times
+
+10. Anonymous: leogor 2 years, 2 months ago
+B. Storage Admin
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #29
+
+Pergunta:
+You have an object in a Cloud Storage bucket that you want to share with an external company. The object contains sensitive data. You want access to the content to be removed after four hours. The external company does not have a Google account to which you can grant specific user-based access privileges. You want to use the most secure method that requires the fewest steps. What should you do?
+
+Alternativas:
+- A. Create a signed URL with a four-hour expiration and share the URL with the company.
+- B. Set object access to 'public' and use object lifecycle management to remove the object after four hours.
+- C. Configure the storage bucket as a static website and furnish the object's URL to the company. Delete the object from the storage bucket after four hours.
+- D. Create a new Cloud Storage bucket specifically for the external company to access. Copy the object to that bucket. Delete the bucket after four hours have passed.
+
+Resposta correta:
+A. Create a signed URL with a four-hour expiration and share the URL with the company.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: JJ_ME Highly Voted  4 years, 9 months ago
+A.
+Signed URLs are used to give time-limited resource access to anyone in possession of the URL, regardless of whether they have a Google account.
+https://cloud.google.com/storage/docs/access-control/signed-urls
+   upvoted 45 times
+
+2. Anonymous: Agents89 Highly Voted  5 years, 3 months ago
+A is correct
+   upvoted 9 times
+
+3. Anonymous: svij87 Most Recent  1 month ago
+Selected Answer: A
+A is correct answer
+   upvoted 1 times
+
+4. Anonymous: kewgard 7 months, 3 weeks ago
+Selected Answer: A
+A. Signed URL. this creates credentials to access the file for a time period. You are then completely responsible to distribute the URL to whom needs its. Not advisable for most usecases. Howerver it is the correct answer to this question. This will fail most corporate security assessments.
+   upvoted 1 times
+
+5. Anonymous: Cloudmoh 11 months, 1 week ago
+Selected Answer: A
+Based on Google best practice and Doc, Signed URLs give time-limited access to a specific Cloud Storage resource. Anyone in possession of the signed URL can use it while it's active, regardless of whether they have a Google account or not.
+   upvoted 1 times
+
+6. Anonymous: SteveXs 1 year ago
+Selected Answer: A
+Signed URLs give time-limited access to a specific Cloud Storage resource. Anyone in possession of the signed URL can use it while it's active, regardless of whether they have a Google account.
+   upvoted 1 times
+
+7. Anonymous: JB28 1 year, 7 months ago
+Option A
+   upvoted 1 times
+
+8. Anonymous: nmnm22 1 year, 8 months ago
+signed URL for timed access
+   upvoted 1 times
+
+9. Anonymous: YourCloudGuru 1 year, 9 months ago
+Selected Answer: A
+The correct answer is A
+To do this, follow these steps:
+1 Go to the Google Cloud Console
+2 Click on the Storage menu
+3 Click on the Browser tab
+4 Click on the name of the bucket containing the object that you want to share
+5 Click on the name of the object that you want to share
+6 Click on the Create signed URL button
+7 In the Expires field, enter 4
+8 Click on the Create button
+The company will be able to access the object using the signed URL for four hours. After four hours, the signed URL will expire and the company will no longer be able to access the object.
+The other options are not as secure or efficient:
+B not as secure because it makes the object accessible to anyone who has the URL of the object
+C requires you to configure the storage bucket as a static website and to delete the object after four hours
+D requires you to create a new Cloud Storage bucket and to copy the object to that bucket
+https://cloud.google.com/storage/docs/access-control/signed-urls
+   upvoted 6 times
+
+10. Anonymous: Captain1212 1 year, 10 months ago
+A seems more legit
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #30
+
+Pergunta:
+You are creating a Google Kubernetes Engine (GKE) cluster with a cluster autoscaler feature enabled. You need to make sure that each node of the cluster will run a monitoring pod that sends container metrics to a third-party monitoring solution. What should you do?
+
+Alternativas:
+- A. Deploy the monitoring pod in a StatefulSet object.
+- B. Deploy the monitoring pod in a DaemonSet object.
+- C. Reference the monitoring pod in a Deployment object.
+- D. Reference the monitoring pod in a cluster initializer at the GKE cluster creation time.
+
+Resposta correta:
+B. Deploy the monitoring pod in a DaemonSet object.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: JackGlemins Highly Voted  4 years, 10 months ago
+B is right: https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
+Some typical uses of a DaemonSet are:
+running a cluster storage daemon on every node
+running a logs collection daemon on every node
+running a node monitoring daemon on every node
+   upvoted 48 times
+
+2. Anonymous: Agents89 Highly Voted  5 years, 9 months ago
+B is correct
+   upvoted 25 times
+
+3. Anonymous: kewgard Most Recent  7 months, 3 weeks ago
+Selected Answer: B
+Definately Daemon set. forces every node to setup an object. Stateful is about persistent file storage, referencing object will not create it at every node.
+   upvoted 1 times
+
+4. Anonymous: Cloudmoh 11 months, 1 week ago
+Selected Answer: B
+in K8S, Deploying and monitoring the pod in a DaemonSet object.
+   upvoted 1 times
+
+5. Anonymous: ACEqa 1 year, 4 months ago
+The correct answer is B
+   upvoted 2 times
+
+6. Anonymous: JB28 2 years, 1 month ago
+Option B
+   upvoted 1 times
+
+7. Anonymous: YourCloudGuru 2 years, 3 months ago
+Selected Answer: B
+The correct answer is B
+DaemonSets ensure that one running instance of the pod is scheduled on every node in the cluster. This means that even if the cluster autoscaler scales the cluster up or down, the monitoring pod will continue to run on each node.
+The other options are not as good:
+A This is not necessary for the monitoring pod, and it can make it more difficult to scale the cluster
+C This is not necessary for the monitoring pod, and it can make it more difficult to scale the cluster
+D This is not the best way to deploy the monitoring pod, because it makes it difficult to update the monitoring pod and it does not ensure that the monitoring pod is running on every node in the cluster.
+https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
+   upvoted 7 times
+
+8. Anonymous: Captain1212 2 years, 4 months ago
+B seems more correcnt
+   upvoted 1 times
+
+9. Anonymous: senatori 2 years, 10 months ago
+Selected Answer: B
+daemonset- makes sure that a fixed number of pods is running in every moment in every node of the cluster
+   upvoted 4 times
+
+10. Anonymous: Buruguduystunstugudunstuy 2 years, 11 months ago
+Selected Answer: B
+Answer B, Deploy the monitoring pod in a DaemonSet object, is the correct answer.
+A DaemonSet ensures that all (or some) nodes in a cluster run a copy of a specific Pod. By deploying the monitoring pod in a DaemonSet object, a copy of the pod will run on each node of the cluster. This ensures that the metrics for all containers running on each node will be sent to the third-party monitoring solution.
+A. StatefulSet is used for stateful applications that require unique network identifiers, stable storage, and ordered deployment and scaling.
+C. A Deployment object is used to manage a set of replica Pods in a declarative way.
+D. Cluster initializers are deprecated and no longer recommended for use in Kubernetes.
+   upvoted 14 times
+==============================

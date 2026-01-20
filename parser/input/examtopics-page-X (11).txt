@@ -1,0 +1,822 @@
+==============================
+Page X — Question #111
+
+Pergunta:
+Your management has asked an external auditor to review all the resources in a specific project. The security team has enabled the Organization Policy called
+Domain Restricted Sharing on the organization node by specifying only your Cloud Identity domain. You want the auditor to only be able to view, but not modify, the resources in that project. What should you do?
+
+Alternativas:
+- A. Ask the auditor for their Google account, and give them the Viewer role on the project.
+- B. Ask the auditor for their Google account, and give them the Security Reviewer role on the project.
+- C. Create a temporary account for the auditor in Cloud Identity, and give that account the Viewer role on the project.
+- D. Create a temporary account for the auditor in Cloud Identity, and give that account the Security Reviewer role on the project.
+
+Resposta correta:
+C. Create a temporary account for the auditor in Cloud Identity, and give that account the Viewer role on the project.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: dan80 Highly Voted  5 years, 7 months ago
+C - https://cloud.google.com/iam/docs/roles-audit-logging#scenario_external_auditors
+   upvoted 52 times
+ spudleymcdudley 5 years, 6 months ago
+This guy is right!
+   upvoted 7 times
+
+2. Anonymous: ESP_SAP Highly Voted  5 years, 5 months ago
+Correct Answer is (C):
+roles/viewer Read access to all resources. Get and list access for all resources.
+Using primitive roles
+The following table lists the primitive roles that you can grant to access a project, the description of what the role does, and the permissions bundled within that role. Avoid using primitive roles except when absolutely necessary. These roles are very powerful, and include a large number of permissions across all Google Cloud services. For more details on when you should use primitive roles, see the Identity and Access Management FAQ.
+IAM predefined roles are much more granular, and allow you to carefully manage the set of permissions that your users have access to. See Understanding Roles for a list of roles that can be granted at the project level. Creating custom roles can further increase the control you have over user permissions.
+https://cloud.google.com/resource-manager/docs/access-control-proj#using_primitive_roles
+   upvoted 21 times
+
+3. Anonymous: kayceeec Most Recent  1 year, 7 months ago
+Selected Answer: C
+the key word is "organisation Policy called Domain Restricted sharing." his external google account wont work
+   upvoted 2 times
+
+4. Anonymous: Ankit_EC_ran 1 year, 10 months ago
+Selected Answer: C
+CORRECT ANSWER IS C
+   upvoted 1 times
+
+5. Anonymous: ogerber 2 years, 1 month ago
+Selected Answer: C
+Domain Restricted Sharing: Since your organization has the Domain Restricted Sharing policy enabled, sharing resources with accounts outside your Cloud Identity domain isn't allowed. Therefore, options A and B, which involve using the auditor's Google account, aren't feasible.
+   upvoted 3 times
+
+6. Anonymous: kelliot 2 years, 1 month ago
+C, without doubt
+   upvoted 1 times
+
+7. Anonymous: thewalker 2 years, 1 month ago
+Selected Answer: D
+D
+As per the documentation, Security Reviewer is more narrow role than the basic Viewer role:
+https://cloud.google.com/iam/docs/understanding-roles#iam.securityReviewer
+https://cloud.google.com/iam/docs/understanding-roles#viewer
+   upvoted 2 times
+
+8. Anonymous: Rahaf99 2 years, 2 months ago
+Selected Answer: C
+It could be A, But C is more practical and you don't have to give the auditor extra 3 seconds of work, and yourself for deleting him after he finishes
+   upvoted 3 times
+
+9. Anonymous: BAofBK 2 years, 2 months ago
+The correct answer is C
+   upvoted 1 times
+
+10. Anonymous: scanner2 2 years, 4 months ago
+Selected Answer: C
+The Resource Manager provides a domain restriction constraint that can be used in organization policies to limit resource sharing based on domain or organization resource. This constraint allows you to restrict the set of identities that are allowed to be used in Identity and Access Management policies.
+Organization policies can use this constraint to limit resource sharing to identities that belong to a particular organization resource.
+https://cloud.google.com/resource-manager/docs/organization-policy/restricting-domains
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #112
+
+Pergunta:
+You have a workload running on Compute Engine that is critical to your business. You want to ensure that the data on the boot disk of this workload is backed up regularly. You need to be able to restore a backup as quickly as possible in case of disaster. You also want older backups to be cleaned automatically to save on cost. You want to follow Google-recommended practices. What should you do?
+
+Alternativas:
+- A. Create a Cloud Function to create an instance template.
+- B. Create a snapshot schedule for the disk using the desired interval.
+- C. Create a cron job to create a new disk from the disk using gcloud.
+- D. Create a Cloud Task to create an image and export it to Cloud Storage.
+
+Resposta correta:
+B. Create a snapshot schedule for the disk using the desired interval.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ESP_SAP Highly Voted  4 years, 11 months ago
+Correct Answer (B):
+Best practices for persistent disk snapshots
+You can create persistent disk snapshots at any time, but you can create snapshots more quickly and with greater reliability if you use the following best practices.
+Creating frequent snapshots efficiently
+Use snapshots to manage your data efficiently.
+Create a snapshot of your data on a regular schedule to minimize data loss due to unexpected failure.
+Improve performance by eliminating excessive snapshot downloads and by creating an image and reusing it.
+Set your snapshot schedule to off-peak hours to reduce snapshot time.
+Snapshot frequency limits
+Creating snapshots from persistent disks
+You can snapshot your disks at most once every 10 minutes. If you want to issue a burst of requests to snapshot your disks, you can issue at most 6 requests in 60 minutes.
+If the limit is exceeded, the operation fails and returns the following error:
+https://cloud.google.com/compute/docs/disks/snapshot-best-practices
+   upvoted 26 times
+
+2. Anonymous: DarioFama23 Highly Voted  5 years ago
+B is correct for this question
+   upvoted 21 times
+ stepkurniawan 4 years, 10 months ago
+Question: One cannot delete the old disk when using snapshot, right?
+   upvoted 3 times
+ Ale1973 4 years, 10 months ago
+Snapshots and disks are independent objects con GCP, you could create a snapshot form disk and then delete the disk, the snapshot will stay in place. Actually, you could use this snapshot to create a new disk, assign to another VM, mount it, and use it (all the information that the original disk had at the time of the snapshot will still be there).
+   upvoted 6 times
+ Ridhanya 3 years, 7 months ago
+In snapshot schedule, there is autodelete and you can specify the days after which auto delete can happen
+   upvoted 6 times
+
+3. Anonymous: ccpmad Most Recent  1 year, 1 month ago
+2020 is B. Now, 2024, better solution es backup&dr
+   upvoted 3 times
+
+4. Anonymous: Ankit_EC_ran 1 year, 4 months ago
+Selected Answer: B
+The correct answer is B. Automatic snapshot and deletion as per the need.
+   upvoted 2 times
+
+5. Anonymous: kelliot 1 year, 7 months ago
+Selected Answer: B
+B
+the others make no sense at all
+   upvoted 2 times
+
+6. Anonymous: BAofBK 1 year, 8 months ago
+The correct answer is B
+   upvoted 1 times
+
+7. Anonymous: scanner2 1 year, 10 months ago
+Selected Answer: B
+create a snapshot schedule to regularly and automatically back up your zonal and regional persistent disks. Use snapshot schedules as a best practice to back up your Compute Engine workloads.
+A snapshot retention policy defines how long you want to keep your snapshots.
+https://cloud.google.com/compute/docs/disks/scheduled-snapshots
+https://cloud.google.com/compute/docs/disks/scheduled-snapshots#retention_policy
+   upvoted 1 times
+
+8. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: B
+B is the correct Answer, as you can create the snapshot as per your requirment
+   upvoted 1 times
+
+9. Anonymous: abirroy 2 years, 11 months ago
+Selected Answer: B
+Create a snapshot schedule for the disk using the desired interval.
+   upvoted 2 times
+
+10. Anonymous: csrazdan 3 years ago
+Selected Answer: B
+Snapshot is a better option because they are incremental and you can configure them to consolidate and delete snapshots that are not required for recovery. Image can also provide this functionality but the image is full backup which is inefficient in cases where the content of the file system is changing frequently.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #113
+
+Pergunta:
+You need to assign a Cloud Identity and Access Management (Cloud IAM) role to an external auditor. The auditor needs to have permissions to review your
+Google Cloud Platform (GCP) Audit Logs and also to review your Data Access logs. What should you do?
+
+Alternativas:
+- A. Assign the auditor the IAM role roles/logging.privateLogViewer. Perform the export of logs to Cloud Storage.
+- B. Assign the auditor the IAM role roles/logging.privateLogViewer. Direct the auditor to also review the logs for changes to Cloud IAM policy.
+- C. Assign the auditor's IAM user to a custom role that has logging.privateLogEntries.list permission. Perform the export of logs to Cloud Storage.
+- D. Assign the auditor's IAM user to a custom role that has logging.privateLogEntries.list permission. Direct the auditor to also review the logs for changes to Cloud IAM policy.
+
+Resposta correta:
+B. Assign the auditor the IAM role roles/logging.privateLogViewer. Direct the auditor to also review the logs for changes to Cloud IAM policy.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ESP_SAP Highly Voted  4 years, 10 months ago
+Correct Answer is (B):
+Background
+Google Cloud provides Cloud Audit Logs, which is an integral part of Cloud Logging. It consists of two log streams for each project: Admin Activity and Data Access.
+Admin Activity logs contain log entries for API calls or other administrative actions that modify the configuration or metadata of resources. Admin Activity logs are always enabled. There is no charge for your Admin Activity audit logs.
+Data Access logs record API calls that create, modify, or read user-provided data. Data Access audit logs are disabled by default because they can be large.
+logging.viewer: The logging.viewer role gives the security admin team the ability to view the Admin Activity logs.
+logging.privateLogViewer : The logging.privateLogViewer role gives the ability to view the Data Access logs.
+   upvoted 67 times
+ ESP_SAP 4 years, 10 months ago
+Correct Answer is (B): (Continuation).
+Scenario: External auditors
+In this scenario, audit logs for an organization are aggregated and exported to a central sink location. A third-party auditor is granted access several
+times a year to review the organization's audit logs. The auditor is not authorized to view PII data in the Admin Activity logs.
+During normal access, the auditors' Google group is only granted access to view the historic logs stored in BigQuery. If any anomalies are discovered,
+the group is granted permission to view the actual Cloud Logging Admin Activity logs via the dashboard's elevated access mode. At the end of each audit period,
+the group's access is then revoked.
+Data is redacted using Cloud DLP before being made accessible for viewing via the dashboard application.
+   upvoted 25 times
+ ESP_SAP 4 years, 10 months ago
+Correct Answer is (B): (Continuation).
+The table below explains IAM logging roles that an Organization Administrator can grant to the service account used by the dashboard,
+as well as the resource level at which the role is granted:
+logging.viewer Organization Dashboard service account The logging.viewer role permits the service account to read the Admin Activity logs in Cloud Logging.
+bigquery.dataViewer BigQuery dataset Dashboard service account The bigquery.dataViewer role permits the service account used by the dashboard application
+to read the exported Admin Activity logs.
+   upvoted 22 times
+
+2. Anonymous: DarioFama23 Highly Voted  5 years ago
+for me B is the correct answer..
+   upvoted 17 times
+ Eshkrkrkr 4 years, 8 months ago
+Yes, B is correct because:
+1) Question doesn't ask us to export and store logs for any long period of time.
+2) Custom role with only logging.privateLogEntries.list permission won't let the auditor to access Log Exporer at all (https://cloud.google.com/logging/docs/access-control#console_permissions - Minimal read-only access: logging.logEntries.list)
+   upvoted 8 times
+
+3. Anonymous: MANGANDA Most Recent  1 year ago
+Selected Answer: D
+n this scenario, virtual machines in the web-applications project need access to BigQuery datasets in the crm-databases-proj project.
+   upvoted 1 times
+
+4. Anonymous: Cynthia2023 1 year, 6 months ago
+Selected Answer: B
+There is no need to export logs to Cloud Storage for the auditor to review them unless there's a specific requirement or preference for reviewing them outside the GCP environment. The Logging service provides the necessary tools for log viewing and querying within the console.
+Directing the auditor to review logs for changes to Cloud IAM policy is part of their duties to ensure that the IAM policies have been correctly managed and modified. This does not require a separate permission as the privateLogViewer role already provides the necessary access.
+   upvoted 2 times
+
+5. Anonymous: BAofBK 1 year, 8 months ago
+The correct answer is B
+   upvoted 2 times
+
+6. Anonymous: ziomek666 1 year, 9 months ago
+No logs in cloud storage since reviewer won't have access to it
+   upvoted 1 times
+
+7. Anonymous: scanner2 1 year, 10 months ago
+Selected Answer: B
+- The Logs Viewer role (roles/logging.viewer) gives you read-only access to Admin Activity, Policy Denied, and System Event audit logs. If you have just this role, you cannot view Data Access audit logs that are in the _Default bucket.
+- The Private Logs Viewer role(roles/logging.privateLogViewer) includes the permissions contained in roles/logging.viewer, plus the ability to read Data Access audit logs in the _Default bucket.
+Therefore, no need to export logs to Cloud storage explicitly, the _Default bucket sink access is already provided from the above role.
+https://cloud.google.com/iam/docs/audit-logging#audit_log_permissions
+   upvoted 1 times
+
+8. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: B
+b is the correect answer
+   upvoted 1 times
+
+9. Anonymous: Neha_Pallavi 1 year, 10 months ago
+B. Assign the auditor the IAM role roles/logging.privateLogViewer. Direct the auditor to also review the logs for changes to Cloud IAM policy.
+   upvoted 1 times
+
+10. Anonymous: MilanRajGupta 1 year, 11 months ago
+This answer is similar to answer choice B, but it suggests creating a custom role for the auditor that includes the "logging.privateLogEntries.list" permission. While this would provide the auditor with access to the necessary logs, directing them to also review Cloud IAM policy logs is not relevant to their request. Therefore, this answer is also not correct.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #114
+
+Pergunta:
+You are managing several Google Cloud Platform (GCP) projects and need access to all logs for the past 60 days. You want to be able to explore and quickly analyze the log contents. You want to follow Google-recommended practices to obtain the combined logs for all projects. What should you do?
+
+Alternativas:
+- A. Navigate to Stackdriver Logging and select resource.labels.project_id="*"
+- B. Create a Stackdriver Logging Export with a Sink destination to a BigQuery dataset. Configure the table expiration to 60 days.
+- C. Create a Stackdriver Logging Export with a Sink destination to Cloud Storage. Create a lifecycle rule to delete objects after 60 days.
+- D. Configure a Cloud Scheduler job to read from Stackdriver and store the logs in BigQuery. Configure the table expiration to 60 days.
+
+Resposta correta:
+B. Create a Stackdriver Logging Export with a Sink destination to a BigQuery dataset. Configure the table expiration to 60 days.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Verve Highly Voted  4 years, 11 months ago
+Its B.
+   upvoted 26 times
+
+2. Anonymous: dttncl Highly Voted  3 years, 9 months ago
+I believe B is the answer.
+All that matters in this scenario is the logs for the past 60 days.
+We can use BigQuery to analyze contents so C is incorrect. We need to configure a BQ as the sink for the logs export so we can query and analyze log data in the future. Therefore D is incorrect.
+https://cloud.google.com/logging/docs/audit/best-practices#export-best-practices
+Since we only care about the logs within 60 days, we can set the expiration time to 60 to retain only the logs within that time frame. Once data is beyond 60 days old, it wouldn't be included in future analyzations.
+https://cloud.google.com/bigquery/docs/managing-tables#updating_a_tables_expiration_time
+   upvoted 6 times
+ ryzior 3 years, 4 months ago
+I think here we have the case described in details:
+https://cloud.google.com/architecture/exporting-stackdriver-logging-for-security-and-access-analytics
+   upvoted 1 times
+
+3. Anonymous: ccpmad Most Recent  1 year, 1 month ago
+2024, there is not "Stackdriver Logging Export, but for 2020 it is B
+   upvoted 3 times
+
+4. Anonymous: IshwarChandra 1 year, 3 months ago
+resource.labels.project_id="*" is not a correct query because "*" returns 0 records so option A is not a correct answer
+   upvoted 1 times
+
+5. Anonymous: Cynthia2023 1 year, 6 months ago
+Selected Answer: B
+When it comes to log data, you're typically dealing with high-volume time-series data that is partitioned by time (e.g., by day). In such cases, setting a partition expiration is often more appropriate because it ensures that you're continuously retaining a rolling window of log data (for example, the last 60 days' worth) and automatically purging older data, rather than deleting the entire table at once after a certain period.
+   upvoted 3 times
+ Cynthia2023 1 year, 6 months ago
+In BigQuery, setting an expiration time for tables can be applied in two contexts:
+Table Expiration:
+When you set a table expiration time at the table level, it applies to the entire table. This means that the entire table will be deleted once the specified expiration time has elapsed since the table's creation time.
+Partition Expiration:
+For partitioned tables, you can set a partition expiration time, which applies to individual partitions within the table. Each partition's data will be deleted once the specified expiration time has elapsed since the creation of that specific partition.
+This is particularly useful for time-series data, like logs, where you might want to only keep recent data and allow older data to be automatically purged.
+   upvoted 2 times
+
+6. Anonymous: Romio2023 1 year, 7 months ago
+I dont get the options
+   upvoted 2 times
+
+7. Anonymous: kelliot 1 year, 7 months ago
+Selected Answer: B
+I guess it's B
+   upvoted 2 times
+
+8. Anonymous: BAofBK 1 year, 8 months ago
+The correct answer is B
+   upvoted 1 times
+
+9. Anonymous: scanner2 1 year, 10 months ago
+Selected Answer: B
+Provides storage of log entries in BigQuery datasets. You can use big data analysis capabilities on the stored logs. Logging sinks stream logging data into BigQuery in small batches, which lets you query data without running a load job.
+You can set a default table expiration time at the dataset level, or you can set a table's expiration time when the table is created. A table's expiration time is often referred to as "time to live" or TTL. When a table expires, it is deleted along with all of the data it contains.
+https://cloud.google.com/logging/docs/export/configure_export_v2#overview
+https://cloud.google.com/bigquery/docs/managing-tables#updating_a_tables_expiration_time
+   upvoted 2 times
+
+10. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: B
+B is thecorrect answer, we can use bq to get 60 days logs and analyse
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #115
+
+Pergunta:
+You need to reduce GCP service costs for a division of your company using the fewest possible steps. You need to turn off all configured services in an existing
+GCP project. What should you do?
+
+Alternativas:
+- A. 1. Verify that you are assigned the Project Owners IAM role for this project. 2. Locate the project in the GCP console, click Shut down and then enter the project ID.
+- B. 1. Verify that you are assigned the Project Owners IAM role for this project. 2. Switch to the project in the GCP console, locate the resources and delete them.
+- C. 1. Verify that you are assigned the Organizational Administrator IAM role for this project. 2. Locate the project in the GCP console, enter the project ID and then click Shut down.
+- D. 1. Verify that you are assigned the Organizational Administrators IAM role for this project. 2. Switch to the project in the GCP console, locate the resources and delete them.
+
+Resposta correta:
+A. 1. Verify that you are assigned the Project Owners IAM role for this project. 2. Locate the project in the GCP console, click Shut down and then enter the project ID.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: DarioFama23 Highly Voted  4 years, 6 months ago
+for me is A the correct answer
+   upvoted 43 times
+
+2. Anonymous: shafiqeee1 Highly Voted  4 years, 6 months ago
+A - I reproduced in my project
+   upvoted 19 times
+
+3. Anonymous: BAofBK Most Recent  1 year, 2 months ago
+The correct answer is A
+   upvoted 1 times
+
+4. Anonymous: scanner2 1 year, 4 months ago
+Selected Answer: A
+https://cloud.google.com/resource-manager/docs/access-control-proj#permissions
+https://cloud.google.com/resource-manager/docs/creating-managing-projects#shutting_down_projects
+   upvoted 4 times
+
+5. Anonymous: Captain1212 1 year, 4 months ago
+Selected Answer: A
+a is the correct answer
+   upvoted 1 times
+
+6. Anonymous: Neha_Pallavi 1 year, 4 months ago
+Verify that you are assigned the Project Owners IAM role for this project. 2. Locate the project in the GCP console, click Shut down and then enter the project ID.
+   upvoted 1 times
+
+7. Anonymous: vinodthakur49 1 year, 6 months ago
+Selected Answer: A
+A is the correct answer
+   upvoted 1 times
+
+8. Anonymous: Shenannigan 1 year, 8 months ago
+Selected Answer: A
+Answer is A
+https://support.google.com/googleapi/answer/6251787?hl=en#zippy=%2Cshut-down-a-project
+   upvoted 2 times
+
+9. Anonymous: sabrinakloud 1 year, 9 months ago
+Selected Answer: A
+option A
+   upvoted 1 times
+
+10. Anonymous: sabrinakloud 1 year, 9 months ago
+i believe it's option A.
+roles/owner Owner All Editor permissions and permissions for the following actions:
+Manage roles and permissions for a project and all resources within the project.
+Set up billing for a project.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #116
+
+Pergunta:
+You are configuring service accounts for an application that spans multiple projects. Virtual machines (VMs) running in the web-applications project need access to BigQuery datasets in crm-databases-proj. You want to follow Google-recommended practices to give access to the service account in the web-applications project. What should you do?
+
+Alternativas:
+- A. Give ג€project ownerג€ for web-applications appropriate roles to crm-databases-proj.
+- B. Give ג€project ownerג€ role to crm-databases-proj and the web-applications project.
+- C. Give ג€project ownerג€ role to crm-databases-proj and bigquery.dataViewer role to web-applications.
+- D. Give bigquery.dataViewer role to crm-databases-proj and appropriate roles to web-applications.
+
+Resposta correta:
+D. Give bigquery.dataViewer role to crm-databases-proj and appropriate roles to web-applications.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ezat Highly Voted  5 years, 6 months ago
+D cuz u just need read for DB at the other project
+   upvoted 31 times
+ DarioFama23 5 years, 6 months ago
+U re right, D is the correct answee
+   upvoted 4 times
+ tavva_prudhvi 4 years, 9 months ago
+See the option correctly, as the web app needs access to the big query datasets we have to give access to the web app the data viewer role to only read the datasets! Hence, C
+   upvoted 6 times
+
+2. Anonymous: DarioFama23 Highly Voted  5 years, 6 months ago
+C is correct..
+   upvoted 11 times
+ BigQuery 3 years, 10 months ago
+THAT SO DUM
+   upvoted 5 times
+ Romio2023 2 years, 1 month ago
+I meet BigQuery the first time ever personly
+   upvoted 2 times
+ GCPACE2020 4 years, 6 months ago
+But why giving project owner role to crm-databases-proj ?
+   upvoted 3 times
+
+3. Anonymous: jlocke Most Recent  11 months, 1 week ago
+Selected Answer: D
+Here’s how to interpret the wording:
+"Give bigquery.dataViewer role to crm-databases-proj" means that you update the IAM policy for the crm-databases-proj project (or specifically the BigQuery datasets within that project) so that the service account (which is part of the web-applications project) gets the BigQuery Data Viewer role.
+   upvoted 1 times
+
+4. Anonymous: Izzy55555 11 months, 1 week ago
+Selected Answer: C
+I find this question confusing, in Google Cloud IAM, roles are granted to members, not directly to projects. Why are all the options to give roles to projects?
+   upvoted 1 times
+
+5. Anonymous: guidbem 1 year, 3 months ago
+It is D. Tested and approved that you do not need BigQuery permissions on the web-app project to access data on the bq tables stored in the crm-dbs project. You do need bq permissions for the SA on the crm project and compute permissions for the same SA on the web-app project. Then, using this SA on a VM on the web-app server, you can access data from bq on the crm-dbs project
+   upvoted 2 times
+
+6. Anonymous: Namik 1 year, 5 months ago
+Selected Answer: C
+Explanation:
+Least Privilege Principle: This approach adheres to the principle of least privilege by granting the minimum necessary permissions.
+Project Owner: The crm-databases-proj project needs full control to manage its resources.
+bigquery.dataViewer: The web-applications project only needs read access to BigQuery datasets in the crm-databases-proj project.
+Why other options are less suitable:
+A: Giving project owner to web-applications provides unnecessary permissions.
+B: Giving project owner to both projects grants excessive permissions.
+D: Giving bigquery.dataViewer to crm-databases-proj is incorrect as this project needs full control over its resources.
+By following option C, you ensure that the web-applications project has the required access to BigQuery datasets without compromising security.
+   upvoted 2 times
+
+7. Anonymous: nish2288 1 year, 6 months ago
+Selected Answer: D
+Let's analyze the options:
+A & B: Granting "project owner" gives excessive permissions, violating the least privilege principle.
+C: Granting "project owner" to crm-databases-proj is unnecessary.
+D: Granting "bigquery.dataViewer" to crm-databases-proj allows the VM access to datasets and aligns with least privilege. Granting appropriate roles to web-applications secures the web application itself (not shown in this scenario).
+Therefore, option D is the recommended approach.
+   upvoted 1 times
+
+8. Anonymous: abhi2704 1 year, 10 months ago
+Project owner role is not required here, so that leaves us with only Option D
+   upvoted 2 times
+
+9. Anonymous: Bagibo 2 years ago
+Selected Answer: D
+A, b & c is wrong. Keywords is configuring aervice account. A,b & c concerns user account. Correct answer is D
+   upvoted 1 times
+
+10. Anonymous: Cynthia2023 2 years ago
+None of the options is correct. As for D:
+This option is unclear and potentially misleading. The bigquery.dataViewer role should be assigned specifically to the service account in the web-applications project, not to the crm-databases-proj project.
+   upvoted 3 times
+ Cynthia2023 2 years ago
+The ideal approach (not listed in the options) would be:
+Create a service account in the web-applications project specifically for accessing the BigQuery datasets.
+Grant this service account the bigquery.dataViewer role (or another more specific role if different access is needed) on the crm-databases-proj project's BigQuery datasets.
+Use this service account in your VMs in the web-applications project.
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #117
+
+Pergunta:
+An employee was terminated, but their access to Google Cloud was not removed until 2 weeks later. You need to find out if this employee accessed any sensitive customer information after their termination. What should you do?
+
+Alternativas:
+- A. View System Event Logs in Cloud Logging. Search for the user's email as the principal.
+- B. View System Event Logs in Cloud Logging. Search for the service account associated with the user.
+- C. View Data Access audit logs in Cloud Logging. Search for the user's email as the principal.
+- D. View the Admin Activity log in Cloud Logging. Search for the service account associated with the user.
+
+Resposta correta:
+C. View Data Access audit logs in Cloud Logging. Search for the user's email as the principal.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: shubhi_1 1 year, 9 months ago
+Option C is more correct
+   upvoted 1 times
+
+2. Anonymous: idk_4 2 years ago
+Guys, do you know which answers are the correct answers on this website? The website's answers or the most voted ones? I'm preparing for the exam and I need a quick and certain response. Thank you
+   upvoted 4 times
+ BuenaCloudDE 1 year, 6 months ago
+Should use discussion to find out correct answer. Also usually you can find fine explain for question
+   upvoted 2 times
+
+3. Anonymous: BAofBK 2 years, 2 months ago
+The correct answer is C
+   upvoted 2 times
+
+4. Anonymous: cooldude26 2 years, 2 months ago
+C. View Data Access audit logs in Cloud Logging. Search for the user's email as the principal.
+Data Access audit logs provide detailed information about accesses to your Google Cloud resources. By searching for the terminated employee's email address as the principal in the Data Access audit logs, you can track their access to sensitive customer information after their termination. This approach allows you to specifically focus on data access, which is crucial for identifying any unauthorized or suspicious activities related to customer data.
+   upvoted 2 times
+
+5. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: C
+Option C is more correct , as data access logs contain API , from this you can check for it
+   upvoted 2 times
+
+6. Anonymous: sabrinakloud 2 years, 9 months ago
+Selected Answer: C
+I think option C is correct :
+Data Access audit logs contain API calls that read the configuration or metadata of resources, as well as user-driven API calls that create, modify, or read user-provided resource data.
+   upvoted 3 times
+
+7. Anonymous: Bobbybash 2 years, 11 months ago
+Selected Answer: C
+C. View Data Access audit logs in Cloud Logging. Search for the user's email as the principal.
+Data Access audit logs record all activity related to accessing or modifying data, including reading, writing, and deleting operations. By searching for the terminated employee's email as the principal, you can see if they accessed any sensitive customer information after their termination. System Event Logs and Admin Activity logs may not have the details of the data accessed, so Data Access audit logs are the most appropriate option in this scenario.
+   upvoted 1 times
+
+8. Anonymous: mrvergara 3 years ago
+Selected Answer: A
+https://cloud.google.com/logging/docs/audit.
+Data Access audit logs are disabled by default
+   upvoted 1 times
+
+9. Anonymous: Cornholio_LMC 3 years, 3 months ago
+had this question today
+   upvoted 3 times
+
+10. Anonymous: abirroy 3 years, 5 months ago
+Selected Answer: C
+View Data Access audit logs in Cloud Logging. Search for the user's email as the principal
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #118
+
+Pergunta:
+You need to create a custom IAM role for use with a GCP service. All permissions in the role must be suitable for production use. You also want to clearly share with your organization the status of the custom role. This will be the first version of the custom role. What should you do?
+
+Alternativas:
+- A. Use permissions in your role that use the 'supported' support level for role permissions. Set the role stage to ALPHA while testing the role permissions.
+- B. Use permissions in your role that use the 'supported' support level for role permissions. Set the role stage to BETA while testing the role permissions.
+- C. Use permissions in your role that use the 'testing' support level for role permissions. Set the role stage to ALPHA while testing the role permissions.
+- D. Use permissions in your role that use the 'testing' support level for role permissions. Set the role stage to BETA while testing the role permissions.
+
+Resposta correta:
+A. Use permissions in your role that use the 'supported' support level for role permissions. Set the role stage to ALPHA while testing the role permissions.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: raksteer Highly Voted  5 years, 6 months ago
+You need a custom role with permissions supported in prod and you want to publish the status of the role.
+https://cloud.google.com/iam/docs/custom-roles-permissions-support
+SUPPORTED The permission is fully supported in custom roles.
+TESTING The permission is being tested to check its compatibility with custom roles. You can include the permission in custom roles, but you might see unexpected behavior. Not recommended for production use.
+NOT_SUPPORTED The permission is not supported in custom roles.
+You can't use TESTING as it is not good for prod. And you need first version which should be ALPHA. Answer should be A.
+   upvoted 100 times
+ passmepls 5 years, 5 months ago
+good job
+   upvoted 2 times
+ BigQuery 3 years, 10 months ago
+WAY TO GO. VERY CLEAR EXP INDEED
+   upvoted 1 times
+
+2. Anonymous: ESP_SAP Highly Voted  5 years, 4 months ago
+Correct Answer is (A):
+Testing and deploying
+Custom roles include a launch stage, which is stored in the stage property for the role. The launch stage is informational; it helps you keep track of whether each role is ready for widespread use.
+Each custom role can have one of the following launch stages:
+Launch stages
+ALPHA The role is still being developed or tested, or it includes permissions for Google Cloud services or features that are not yet public. It is not ready for widespread use.
+BETA The role has been tested on a limited basis, or it includes permissions for Google Cloud services or features that are not generally available.
+GA The role has been widely tested, and all of its permissions are for Google Cloud services or features that are generally available.
+   upvoted 35 times
+ ESP_SAP 5 years, 4 months ago
+Correct Answer is (A): Continuation
+Support levels for permissions in custom roles
+You can include many, but not all, Identity and Access Management (IAM) permissions in custom roles. Each permission has one of the following support levels:
+Support level Description
+SUPPORTED The permission is fully supported in custom roles.
+TESTING The permission is being tested to check its compatibility with custom roles. You can include the permission in custom roles, but you might see unexpected behavior. Not recommended for production use.
+NOT_SUPPORTED The permission is not supported in custom roles.
+The first version of the Custom Role is ALPHA then suitable to productions all permissions in "Supported"...
+   upvoted 13 times
+ GCP_Student1 4 years, 10 months ago
+ESP_SAP
+There is a discrepancy between your first post and the second post. Compare these two sentences;
+1st POST - ALPHA The role is still being developed or tested, or it includes permissions for Google Cloud services or features that are not yet public. It is not ready for widespread use.
+2nd POST - SUPPORTED The permission is fully supported in custom roles.
+Are you still going to go with A ?
+   upvoted 2 times
+ learn_GCP 3 years, 3 months ago
+Here ALPHA is for Google cloud feature, only informational. given to identify whether the feature is fully available as a service.
+and SUPPORTED -- is for a custom role which is supported by Google cloud, meaning any support is provided by Google cloud
+   upvoted 2 times
+
+3. Anonymous: nish2288 Most Recent  1 year, 6 months ago
+Selected Answer: A
+Let's break down the options:
+A & B: "supported" is the ideal choice for production roles as they are well-tested and documented. BETA is for pre-release features, not initial testing.
+C: "testing" permissions are unstable and not suited for production. ALPHA stage is for internal testing before even BETA.
+D: Same issue as option C - "testing" permissions are not for production, and ALPHA is an earlier stage than BETA.
+Therefore, the most suitable approach is:
+A. Use permissions in your role that use the 'supported' support level for role permissions. Set the role stage to ALPHA while testing the role permissions.
+   upvoted 1 times
+
+4. Anonymous: Rayuga1 2 years, 1 month ago
+Its A cause in first place it need to be supported not in testing phase because the question is asking it to be in ready phase secondly then needed to be shared in testing phase
+   upvoted 2 times
+
+5. Anonymous: BAofBK 2 years, 2 months ago
+I will go with A
+   upvoted 1 times
+
+6. Anonymous: scanner2 2 years, 4 months ago
+Selected Answer: A
+A is correct answer.
+https://cloud.google.com/iam/docs/roles-overview#custom-role-supported-permissions
+https://cloud.google.com/iam/docs/roles-overview#custom-role-testing-deploying
+   upvoted 1 times
+
+7. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: A
+Answer is A, as you need for production and you dont neeed testing for it and you need first version , so it will be ALPHA , not beta
+   upvoted 1 times
+
+8. Anonymous: Neha_Pallavi 2 years, 4 months ago
+You need a custom role with permissions supported in prod and you want to publish the status of the role.
+https://cloud.google.com/iam/docs/custom-roles-permissions-support
+SUPPORTED The permission is fully supported in custom roles.
+   upvoted 1 times
+
+9. Anonymous: Tofer2022 3 years, 2 months ago
+why not B?
+   upvoted 1 times
+ temple1305 2 years, 10 months ago
+Because ...FIRST VERSION... is ALPHA.
+   upvoted 1 times
+
+10. Anonymous: theBestStudent 3 years, 5 months ago
+Selected Answer: A
+It must be suitable for production so Supported permissions only. Plus, it is your first version of the custom role, so you need to check if all is good, then ALPHA.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #119
+
+Pergunta:
+Your company has a large quantity of unstructured data in different file formats. You want to perform ETL transformations on the data. You need to make the data accessible on Google Cloud so it can be processed by a Dataflow job. What should you do?
+
+Alternativas:
+- A. Upload the data to BigQuery using the bq command line tool.
+- B. Upload the data to Cloud Storage using the gsutil command line tool.
+- C. Upload the data into Cloud SQL using the import function in the console.
+- D. Upload the data into Cloud Spanner using the import function in the console.
+
+Resposta correta:
+B. Upload the data to Cloud Storage using the gsutil command line tool.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: DarioFama23 Highly Voted  5 years ago
+B looks correct. Key work unstructured data
+   upvoted 26 times
+ obeythefist 3 years, 4 months ago
+Also "different" file formats, this further supports B as the correct choice.
+   upvoted 4 times
+
+2. Anonymous: cooldude26 Highly Voted  1 year, 8 months ago
+Selected Answer: B
+Google Cloud Storage (GCS) is the recommended service for storing unstructured data like files, images, and backups. If you have large quantities of unstructured data in different file formats that need to be processed with ETL (Extract, Transform, Load) transformations and then processed by a Dataflow job, the typical workflow is to store the raw data in Cloud Storage.
+Once the data is in Cloud Storage, you can easily access it and perform ETL transformations using Google
+   upvoted 7 times
+ idk_4 1 year, 6 months ago
+Guys, do you know which answers are the correct answers on this website? The website's answers or the most voted ones? I'm preparing for the exam and I need a quick and certain response. Thank you
+   upvoted 1 times
+
+3. Anonymous: idk_4 Most Recent  1 year, 6 months ago
+Guys, do you know which answers are the correct answers on this website? The website's answers or the most voted ones? I'm preparing for the exam and I need a quick and certain response. Thank you
+   upvoted 2 times
+
+4. Anonymous: BAofBK 1 year, 8 months ago
+The correct answer is B
+   upvoted 1 times
+
+5. Anonymous: scanner2 1 year, 10 months ago
+Selected Answer: B
+Key term is "unstructured data in different file formats". Except B, remaining options are suitable for structured data. So, correct answer is B.
+   upvoted 1 times
+
+6. Anonymous: Captain1212 1 year, 10 months ago
+B is correct for Unstructurd DAta its Cloud storage
+   upvoted 2 times
+
+7. Anonymous: shivampriya11 1 year, 11 months ago
+why this page ask for contributer access.. i can not access whole questions
+   upvoted 1 times
+
+8. Anonymous: Nxt_007 1 year, 11 months ago
+Selected Answer: B
+Option B is correct
+Cloud Storage is a scalable and cost-effective object storage service that can hold unstructured data of various file formats. Before performing ETL (Extract, Transform, Load) transformations, it's often beneficial to store the raw data in a centralized location, like Cloud Storage.
+   upvoted 2 times
+
+9. Anonymous: sabrinakloud 2 years, 3 months ago
+Selected Answer: B
+Answer B
+   upvoted 1 times
+
+10. Anonymous: Untamables 2 years, 9 months ago
+Selected Answer: B
+Cloud Storage as a datalake
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #120
+
+Pergunta:
+You need to manage multiple Google Cloud projects in the fewest steps possible. You want to configure the Google Cloud SDK command line interface (CLI) so that you can easily manage multiple projects. What should you do?
+
+Alternativas:
+- A. 1. Create a configuration for each project you need to manage. 2. Activate the appropriate configuration when you work with each of your assigned Google Cloud projects.
+- B. 1. Create a configuration for each project you need to manage. 2. Use gcloud init to update the configuration values when you need to work with a non-default project
+- C. 1. Use the default configuration for one project you need to manage. 2. Activate the appropriate configuration when you work with each of your assigned Google Cloud projects.
+- D. 1. Use the default configuration for one project you need to manage. 2. Use gcloud init to update the configuration values when you need to work with a non-default project.
+
+Resposta correta:
+A. 1. Create a configuration for each project you need to manage. 2. Activate the appropriate configuration when you work with each of your assigned Google Cloud projects.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: SSunny Highly Voted  3 years, 10 months ago
+A
+Cloud SDK comes with a default configuration. To create multiple configurations, use gcloud config configurations create, and gcloud config configurations activate to switch between them.
+https://cloud.google.com/sdk/gcloud/reference/config/set
+   upvoted 34 times
+
+2. Anonymous: GCP_Student1 Highly Voted  3 years, 10 months ago
+A. 1. Create a configuration for each project you need to manage. 2. Activate the appropriate configuration when you work with each of your assigned Google Cloud projects.
+   upvoted 8 times
+
+3. Anonymous: aalllkk Most Recent  1 year, 1 month ago
+The correct answer is A
+   upvoted 2 times
+
+4. Anonymous: BAofBK 1 year, 2 months ago
+The correct answer is A
+   upvoted 1 times
+
+5. Anonymous: scanner2 1 year, 4 months ago
+Selected Answer: A
+The gcloud config command group lets you set, view and unset properties used by Google Cloud CLI. A configuration is a set of properties that govern the behavior of gcloud and other Google Cloud CLI tools. The initial default configuration is set when gcloud init is run. You can create additional named configurations using gcloud init or gcloud config configurations create. To switch between configurations, use gcloud config configurations activate.
+https://cloud.google.com/sdk/gcloud/reference/config
+https://cloud.google.com/sdk/gcloud/reference/config/configurations/activate
+   upvoted 2 times
+
+6. Anonymous: Captain1212 1 year, 4 months ago
+Selected Answer: A
+A is the correct answer, as it comes with the default cofiguration and you dont need to update it
+   upvoted 1 times
+
+7. Anonymous: Neha_Pallavi 1 year, 4 months ago
+A. 1. Create a configuration for each project you need to manage. 2. Activate the appropriate configuration when you work with each of your assigned Google Cloud projects. kINDLY SHARE COMPLETE QUESTION
+   upvoted 1 times
+
+8. Anonymous: xaqanik 1 year, 11 months ago
+Selected Answer: A
+Google Cloud SDK allows you to create multiple configurations for different projects, and you can easily switch between these configurations as needed. To manage multiple projects efficiently, you can create a separate configuration for each project and activate the appropriate configuration when you work with each assigned project. The gcloud config configurations create and gcloud config configurations activate commands allow you to create and activate different configurations. By using different configurations, you can ensure that your CLI commands are always executed in the correct context and against the correct project, without the need to manually change the configuration each time you switch projects.
+   upvoted 7 times
+
+9. Anonymous: VietmanOfficiel 2 years, 4 months ago
+Selected Answer: A
+1. Generate your configurations with "gcloud config configurations create <config_id> ..." then activate the one you need according to the project you are working on with "gcloud config activate <config_id>"
+   upvoted 2 times
+
+10. Anonymous: abirroy 2 years, 5 months ago
+Selected Answer: A
+Create a configuration for each project you need to manage. 2. Activate the appropriate configuration when you work with each of your assigned Google Cloud projects.
+   upvoted 1 times
+==============================

@@ -1,0 +1,252 @@
+==============================
+Page X — Question #311
+
+Pergunta:
+You need to migrate multiple PostgreSQL databases from your on-premises data center to Google Cloud. You want to significantly improve the performance of your databases while minimizing changes to your data schema and application code. You expect to exceed 150 TB of data per geographical region. You want to follow Google-recommended practices and minimize your operational costs. What should you do?
+
+Alternativas:
+- A. Migrate your data to AlloyDB.
+- B. Migrate your data to Spanner.
+- C. Migrate your data to Firebase.
+- D. Migrate your data to Bigtable.
+
+Resposta correta:
+A. Migrate your data to AlloyDB.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: psou7 2 weeks ago
+Selected Answer: A
+ecause you want PostgreSQL compatibility with minimal schema/app changes and a significant performance improvement while keeping ops costs low, AlloyDB for PostgreSQL is Google’s managed, PostgreSQL-compatible option designed for exactly that.
+Spanner would require some schema/app changes
+   upvoted 1 times
+
+2. Anonymous: SajadAhm 3 weeks ago
+Selected Answer: A
+While a single AlloyDB cluster currently has a storage limit (often cited around 128 TiB per cluster), your requirement is for multiple databases exceeding 150 TB per region. By deploying multiple AlloyDB clusters, you can easily exceed the 150 TB regional requirement while maintaining full PostgreSQL compatibility for each individual database.
+   upvoted 1 times
+
+3. Anonymous: SajadAhm 1 month, 2 weeks ago
+Selected Answer: A
+AlloyDB is a fully managed, PostgreSQL-compatible database from Google Cloud that delivers very high performance, automatic scaling, and enterprise reliability, while still behaving like PostgreSQL for developers.
+   upvoted 1 times
+
+4. Anonymous: Bobaka 1 month, 3 weeks ago
+Selected Answer: B
+B. Migrate your data to Spanner.
+   upvoted 3 times
+
+5. Anonymous: AdelElagawany 3 months, 1 week ago
+Selected Answer: B
+The default value for Resource quotas on storage for Alloydb is 16 TiB per cluster. The maximum supported value is 128 TiB per cluster: https://cloud.google.com/alloydb/quotas#cluster-storage-quotas
+Additionally, Cloud SQL has also a limit of 64TiB. The Doc explicitly outlines Creating that "increasing storage capacity to 64 TB might increase latency of common operations, such as backups, dependent on your workload": https://cloud.google.com/sql/docs/quotas#storage_limits
+With 150 GB TiB requirement in mind, so I will go for Spanner
+   upvoted 3 times
+
+6. Anonymous: toasty 6 months, 2 weeks ago
+Selected Answer: A
+Significant performance improvement: AlloyDB delivers this for PostgreSQL workloads.
+Minimizing changes to data schema and application code: AlloyDB is PostgreSQL-compatible, making this the best option. Spanner, Firebase, and Bigtable would all require substantial changes.
+Exceed 150 TB of data per geographical region: AlloyDB is designed for large-scale enterprise workloads and can scale. While Spanner and Bigtable can handle this more easily, they fail on the schema/code change requirement.
+Google-recommended practices: AlloyDB is Google's flagship PostgreSQL-compatible service.
+Minimize operational costs: As a fully managed service, AlloyDB reduces operational overhead.
+   upvoted 3 times
+==============================
+
+==============================
+Page X — Question #312
+
+Pergunta:
+Your company's machine learning team requires a scalable and flexible platform to fine-tune large language models utilizing a large volume of proprietary data on Google Cloud. You are tasked with building a solution for this team. What should you do?
+
+Alternativas:
+- A. Use Dataflow as a platform to run the fine-tuning jobs
+- B. Use a Compute Engine managed instance group as a platform to deploy Jupyter Notebooks and run fine-tuning jobs.
+- C. Use Cloud Run and GPU as a platform to run the fine-tuning jobs.
+- D. Use Google Kubernetes Engine (GKE) and hardware accelerators as a platform to run the fine-tuning jobs.
+
+Resposta correta:
+D. Use Google Kubernetes Engine (GKE) and hardware accelerators as a platform to run the fine-tuning jobs.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: toasty 6 months, 1 week ago
+Selected Answer: D
+GKE with hardware accelerators provides the robust, scalable, and flexible platform required by a machine learning team for fine-tuning large language models. It is the industry-standard for orchestrating containerized machine learning workloads at scale, offering the necessary control and automation for complex, distributed training jobs. The other options are either not designed for this purpose (Dataflow) or lack the comprehensive orchestration and scalability features of GKE for this specific use case (Compute Engine MIGs and Cloud Run).
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #313
+
+Pergunta:
+You recently discovered an issue with your rolling update in Google Kubernetes Engine (GKE). You now need to roll back a rolling update. What should you do?
+
+Alternativas:
+- A. Delete the deployment.
+- B. Use the kubectl rollout restart command to revert the deployment.
+- C. Use the kubectl rollout undo command.
+- D. Manually scale down the new Pods and scale up the old Pods.
+
+Resposta correta:
+C. Use the kubectl rollout undo command.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: SajadAhm 1 month, 2 weeks ago
+Selected Answer: C
+kubectl rollout undo is the Kubernetes-native way to roll back a deployment to a previous revision after a faulty update.
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #314
+
+Pergunta:
+You are deploying an application to Google Kubernetes Engine (GKE) that needs to call an external third-party API. You need to provide the external API vendor with a list of IP addresses for their firewall to allow traffic from your application. You want to follow Google-recommended practices and avoid any risk of interrupting traffic to the API due to IP address changes. What should you do?
+
+Alternativas:
+- A. Configure your GKE cluster with one node, and set the node to have a static external IP address. Ensure that the GKE cluster autoscaler is off. Send the external IP address of the node to the vendor to be added to the allowlist.
+- B. Configure your GKE cluster with private nodes. Configure a Cloud NAT instance with static IP addresses. Provide these IP addresses to the vendor to be added to the allowlist.
+- C. Configure your GKE cluster with private nodes. Configure a Cloud NAT instance with dynamic IP addresses. Provide these IP addresses to the vendor to be added to the allowlist.
+- D. Configure your GKE cluster with public nodes. Write a Cloud Function that pulls the public IP addresses of each node in the cluster, Trigger the function to run every day with Cloud Scheduler. Send the list to the vendor by email every day.
+
+Resposta correta:
+B. Configure your GKE cluster with private nodes. Configure a Cloud NAT instance with static IP addresses. Provide these IP addresses to the vendor to be added to the allowlist.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: SajadAhm 1 month, 2 weeks ago
+Selected Answer: B
+cloudnat is a managed service in gcp that enables resources to have an static egress (outgoing) ip address.
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #315
+
+Pergunta:
+You are planning to move your company's website and a specific asynchronous background job to Google Cloud. Your website contains only static HTML content. The background job is started through an HTTP endpoint and generates monthly invoices for your customers. Your website needs to be available in multiple geographic locations and requires autoscaling. You want to have no costs when your workloads are not in use and follow recommended practices. What should you do?
+
+Alternativas:
+- A. Move your website to Google Kubernetes Engine (GKE), and move your background job to Cloud Functions.
+- B. Move both your website and background job to Compute Engine.
+- C. Move both your website and background job to Cloud Run.
+- D. Move your website to Google Kubernetes Engine (GKE), and move your background job to Compute Engine.
+
+Resposta correta:
+C. Move both your website and background job to Cloud Run.
+
+Top 10 Discussões (sem replies):
+Nenhuma discussão
+==============================
+
+==============================
+Page X — Question #316
+
+Pergunta:
+Your company wants to provide engineers with access to explore Google Cloud freely in a sandbox environment. The total budget for testing across your organization is $1,000. You need to ensure that engineers are notified when the budget is about to be reached. You want to automate your solution as much as possible. What should you do?
+
+Alternativas:
+- A. Create a separate Cloud Billing account for all sandbox projects. Link a credit card with a limit of $1,000 to this billing account. Ensure all sandbox projects are linked to this new Cloud Billing account.
+- B. Create a Google Cloud Folder and ensure that all sandbox projects are located under that Folder. Create a Budget Alert for $1,000 and scope it to the Folder. Configure an email alert to billing administrators and users once the budget is 90% reached.
+- C. Create an email template reminding people to regularly check their Google Cloud spend. Create a Cloud Function that sends the email to all the project owners. Create a daily job in Cloud Scheduler that triggers the Cloud Function. Deploy this solution for each sandbox.
+- D. Configure a billing data export to a BigQuery dataset on the Cloud Billing account. Create a dashboard for all costs related to the sandbox experiments. Share the dashboard with all engineers.
+
+Resposta correta:
+B. Create a Google Cloud Folder and ensure that all sandbox projects are located under that Folder. Create a Budget Alert for $1,000 and scope it to the Folder. Configure an email alert to billing administrators and users once the budget is 90% reached.
+
+Top 10 Discussões (sem replies):
+Nenhuma discussão
+==============================
+
+==============================
+Page X — Question #317
+
+Pergunta:
+You are planning to migrate your on-premises VMs to Google Cloud. You need to set up a landing zone in Google Cloud before migrating the VMs. You must ensure that all VM in your production environment can communicate with each other through private IP addresses. You need to allow all VMs in your Google Cloud organization to accept connections on specific TCP ports. You want to follow Google-recommended practices, and you need to minimize your operational costs. What should you do?
+
+Alternativas:
+- A. Create individual VPCs per Google Cloud project. Peer all he VPC together. Apply organization policies on the organization level.
+- B. Create individual VPCs for each Google Cloud project. Peer ail ne VPCs together. Apply hierarchical firewall policies on the organization level.
+- C. Create a host VPC project with each production project as its service project. Apply organization policies on the organization level.
+- D. Create a host VPC project with each production project as its service project. Apply hierarchical firewall policies on the organization level.
+
+Resposta correta:
+D. Create a host VPC project with each production project as its service project. Apply hierarchical firewall policies on the organization level.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: SajadAhm 1 month, 2 weeks ago
+Selected Answer: D
+Org policies cannot define firewall port rules.
+   upvoted 1 times
+
+2. Anonymous: epuser4791 1 month, 4 weeks ago
+Selected Answer: C
+I think C because of the organization policy, and in shared VPC the VM-s can see each other.
+   upvoted 1 times
+
+3. Anonymous: toasty 6 months, 1 week ago
+Selected Answer: D
+the combination that meets all the requirements is the use of a Shared VPC (Create a host VPC project with each production project as its service project) and Hierarchical Firewall Policies (Apply hierarchical firewall policies on the organization level). This approach aligns perfectly with Google Cloud's best practices for enterprise-level landing zones, providing the necessary network connectivity, centralized security control, and operational simplicity.
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #318
+
+Pergunta:
+You assist different engineering teams in deploying their infrastructure on Google Cloud. Your company has defined certain practices required for all workloads. You need to provide the engineering teams with a solution that enables teams to deploy their infrastructure independently without having to know all implementation details of the company’s required practices. What should you do?
+
+Alternativas:
+- A. Configure organization policies to enforce your company's required practices. Ask the teams to provision their infrastructure by using the Google Cloud console.
+- B. Create a service account per team, and grant the service account the Project Editor role. Ask the teams to provision their infrastructure through the Google Cloud CLI (gcloud CL), while impersonating their dedicated service account.
+- C. Write Terraform modules for each component that are compliant with the company's required practices, and ask teams to implement their infrastructure through these modules.
+- D. Provide training for all engineering teams you work with to understand the company’s required practices. Allow the engineering teams to provision the infrastructure to best meet their needs.
+
+Resposta correta:
+C. Write Terraform modules for each component that are compliant with the company's required practices, and ask teams to implement their infrastructure through these modules.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: SajadAhm 1 month, 2 weeks ago
+Selected Answer: C
+Terraform modules can include all policies, like blueprints, and you can reuse them
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #319
+
+Pergunta:
+You ate managing an application deployed on Cloud Run. The development team has released a new version of the application. You want to deploy and redirect traffic to this new version of the application. To ensure traffic to the new version of the application is served with no startup time, you want to ensure that there are two idle instances available for incoming traffic before adjusting the traffic flow. You also want to minimize administrative overhead. What should you do?
+
+Alternativas:
+- A. Ensure the checkbox “Serve this revision immediately” is unchecked when deploying the new revision. Before changing the traffic rules, use a traffic simulation tool to send load to the new revision.
+- B. Configure service autoscaling and set the minimum number of instances to 2.
+- C. Configure revision autoscaling for the new revision and set the minimum number of instances to 2.
+- D. Configure revision autoscaling for the existing revision and set the minimum number of instances to 2.
+
+Resposta correta:
+C. Configure revision autoscaling for the new revision and set the minimum number of instances to 2.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: SajadAhm 1 month, 2 weeks ago
+Selected Answer: C
+In Cloud Run, autoscaling settings (including minimum instances) are configured per revision, not at the service level
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #320
+
+Pergunta:
+You are managing a stateful application deployed on Google Kubernetes Engine (GKE) that can only have one replica. You recently discovered that the application becomes unstable at peak times. You have identified that the application needs more CPU than what has been configured in the manifest at these peak times. You want Kubernetes to allocate the application sufficient CPU resources during these peak times, while ensuring cost efficiency during off-peak periods. What should you do?
+
+Alternativas:
+- A. Enable node auto-provisioning on the GKE cluster.
+- B. Configure a Vertical Pod Autoscaler on the Deployment.
+- C. Configure a Horizontal Pod Autoscaler on the Deployment.
+- D. Enable cluster autoscaling on the GKE cluster.
+
+Resposta correta:
+B. Configure a Vertical Pod Autoscaler on the Deployment.
+
+Top 10 Discussões (sem replies):
+Nenhuma discussão
+==============================

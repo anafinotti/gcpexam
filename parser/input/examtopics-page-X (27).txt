@@ -1,0 +1,439 @@
+==============================
+Page X — Question #271
+
+Pergunta:
+Your company is running a critical workload on a single Compute Engine VM instance. Your company's disaster recovery policies require you to back up the entire instance’s disk data every day. The backups must be retained for 7 days. You must configure a backup solution that complies with your company’s security policies and requires minimal setup and configuration. What should you do?
+
+Alternativas:
+- A. Configure the instance to use persistent disk asynchronous replication.
+- B. Configure daily scheduled persistent disk snapshots with a retention period of 7 days.
+- C. Configure Cloud Scheduler to trigger a Cloud Function each day that creates a new machine image and deletes machine images that are older than 7 days.
+- D. Configure a bash script using gsutil to run daily through a cron job. Copy the disk’s files to a Cloud Storage bucket with archive storage class and an object lifecycle rule to delete the objects after 7 days.
+
+Resposta correta:
+B. Configure daily scheduled persistent disk snapshots with a retention period of 7 days.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Ciupaz 1 year, 2 months ago
+Selected Answer: B
+This is a native GCP feature that requires minimal configuration and is fully managed.
+   upvoted 1 times
+
+2. Anonymous: 33d6a28 1 year, 2 months ago
+Selected Answer: B
+The key word is 'disk'
+   upvoted 2 times
+
+3. Anonymous: denno22 1 year, 3 months ago
+Selected Answer: B
+B is the answer.
+   upvoted 1 times
+
+4. Anonymous: flummoxed_individual 1 year, 5 months ago
+Selected Answer: B
+You can create snapshots from persistent disks. B is the simplest option
+   upvoted 2 times
+
+5. Anonymous: BuenaCloudDE 1 year, 6 months ago
+Selected Answer: B
+B is answer.
+   upvoted 3 times
+
+6. Anonymous: RuchiMishra 1 year, 6 months ago
+Selected Answer: B
+Compute Engine snapshots provide a fast and efficient way to back up the entire disk of a VM instance, including the operating system, applications, and data. They are incremental backups, meaning they only store the changes made since the last snapshot, which helps save storage costs.
+   upvoted 4 times
+==============================
+
+==============================
+Page X — Question #272
+
+Pergunta:
+Your company requires that Google Cloud products are created with a specific configuration to comply with your company’s security policies. You need to implement a mechanism that will allow software engineers at your company to deploy and update Google Cloud products in a preconfigured and approved manner. What should you do?
+
+Alternativas:
+- A. Create Java packages that utilize the Google Cloud Client Libraries for Java to configure Google Cloud products. Store and share the packages in a source code repository.
+- B. Create bash scripts that utilize the Google Cloud CLI to configure Google Cloud products. Store and share the bash scripts in a source code repository.
+- C. Use the Google Cloud APIs by using curl to configure Google Cloud products. Store and share the curl commands in a source code repository.
+- D. Create Terraform modules that utilize the Google Cloud Terraform Provider to configure Google Cloud products. Store and share the modules in a source code repository.
+
+Resposta correta:
+D. Create Terraform modules that utilize the Google Cloud Terraform Provider to configure Google Cloud products. Store and share the modules in a source code repository.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: RuchiMishra Highly Voted  1 year, 6 months ago
+Selected Answer: D
+Here's why this is the most suitable solution:
+Infrastructure as Code (IaC): Terraform is an IaC tool that allows you to define and provision infrastructure resources using declarative configuration files. This approach ensures consistency in resource configuration across different deployments, making it easier to enforce security policies and compliance requirements.
+Modularity: Terraform modules promote reusability and maintainability. You can create modules for specific GCP products or configurations and share them within your organization. This reduces duplication of effort and ensures that all deployments adhere to the same standards.
+   upvoted 8 times
+
+2. Anonymous: denno22 Most Recent  1 year, 3 months ago
+Selected Answer: D
+Terraform is the most commonly used tool to provision and automate Google Cloud infrastructure.
+https://cloud.google.com/docs/terraform/terraform-overview
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #273
+
+Pergunta:
+You are a Google Cloud organization administrator. You need to configure organization policies and log sinks on Google Cloud projects that cannot be removed by project users to comply with your company's security policies. The security policies are different for each company department. Each company department has a user with the Project Owner role assigned to their projects. What should you do?
+
+Alternativas:
+- A. Use a standard naming convention for projects that includes the department name. Configure organization policies on the organization and log sinks on the projects.
+- B. Use a standard naming convention for projects that includes the department name. Configure both organization policies and log sinks on the projects.
+- C. Organize projects under folders for each department. Configure both organization policies and log sinks on the folders.
+- D. Organize projects under folders for each department. Configure organization policies on the organization and log sinks on the folders.
+
+Resposta correta:
+C. Organize projects under folders for each department. Configure both organization policies and log sinks on the folders.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: RuchiMishra Highly Voted  1 year, 6 months ago
+Selected Answer: C
+As per question, the security policies are different for each company department. Hence, organizing each department in folders, Organizational Policies on Folders, and Log Sinks on Folders will work. Project owners cannot modify or remove organization policies applied at the folder or organization level.
+   upvoted 12 times
+
+2. Anonymous: helloitsme123 Most Recent  1 month ago
+Selected Answer: D
+Organizing at folder level will address the need to separate different departments and log sinking. If organizational policies are needed, you should apply at organization level which will be inherited by folders and projects.
+   upvoted 1 times
+
+3. Anonymous: BuenaCloudDE 1 year, 6 months ago
+Selected Answer: C
+RuchiMishra is right.
+   upvoted 3 times
+==============================
+
+==============================
+Page X — Question #274
+
+Pergunta:
+You are deploying a web application using Compute Engine. You created a managed instance group (MIG) to host the application. You want to follow Google-recommended practices to implement a secure and highly available solution. What should you do?
+
+Alternativas:
+- A. Use SSL proxy load balancing for the MIG and an A record in your DNS private zone with the load balancer's IP address.
+- B. Use SSL proxy load balancing for the MIG and a CNAME record in your DNS public zone with the load balancer’s IP address.
+- C. Use HTTP(S) load balancing for the MIG and a CNAME record in your DNS private zone with the load balancer’s IP address.
+- D. Use HTTP(S) load balancing for the MIG and an A record in your DNS public zone with the load balancer’s IP address.
+
+Resposta correta:
+D. Use HTTP(S) load balancing for the MIG and an A record in your DNS public zone with the load balancer’s IP address.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: kairosfc 1 year, 5 months ago
+Selected Answer: D
+D IS CORRECT
+   upvoted 2 times
+
+2. Anonymous: flummoxed_individual 1 year, 5 months ago
+Selected Answer: D
+D is correct - web application would use HTTP/S and you would need an A record which is public to access it
+   upvoted 3 times
+
+3. Anonymous: BuenaCloudDE 1 year, 6 months ago
+Selected Answer: D
+D is correct!
+   upvoted 4 times
+
+4. Anonymous: BuenaCloudDE 1 year, 6 months ago
+Compliance question was already two times before. And I stay with HTTP(S) load balancer because it recommend practices in Associate Cloud Engineer Path.
+HTTP(S) Load Balancing: This is a globally distributed, managed service for HTTP and HTTPS traffic that provides high availability, automatic scaling, and support for SSL termination. It ensures your web application is secure and can handle varying traffic loads efficiently.
+A Record in DNS Public Zone: An A record maps your domain name to the IP address of the load balancer, making your application accessible to users over the internet. Using a public DNS zone ensures that your application is reachable globally.
+   upvoted 3 times
+ BuenaCloudDE 1 year, 6 months ago
+SSL Proxy Load Balancing with DNS Private Zone and A record: SSL Proxy Load Balancing is suitable for non-HTTP(S) traffic and not recommended for web applications serving HTTP/HTTPS content. Using a private DNS zone would restrict access to internal networks, not the internet.
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #275
+
+Pergunta:
+You have several hundred microservice applications running in a Google Kubernetes Engine (GKE) cluster. Each microservice is a deployment with resource limits configured for each container in the deployment. You've observed that the resource limits for memory and CPU are not appropriately set for many of the microservices. You want to ensure that each microservice has right sized limits for memory and CPU. What should you do?
+
+Alternativas:
+- A. Configure a Vertical Pod Autoscaler for each microservice.
+- B. Modify the cluster's node pool machine type and choose a machine type with more memory and CPU.
+- C. Configure a Horizontal Pod Autoscaler for each microservice.
+- D. Configure GKE cluster autoscaling.
+
+Resposta correta:
+A. Configure a Vertical Pod Autoscaler for each microservice.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: RuchiMishra Highly Voted  1 year, 6 months ago
+Selected Answer: A
+Here's why a Vertical Pod Autoscaler (VPA) is the most suitable solution for this scenario:
+Right-Sizing Resources: VPA is designed to automatically adjust the resource requests and limits (CPU and memory) for pods based on their actual usage. This ensures that pods have enough resources to run efficiently without being over-provisioned, which can lead to wasted resources and higher costs.
+Automated Optimization: VPA continuously monitors the resource usage of your pods and recommends optimal settings. You can choose to apply these recommendations automatically or manually, giving you flexibility and control over the process.
+Microservice-Specific Tuning: By configuring a VPA for each microservice, you can fine-tune the resource allocation for each individual service based on its specific needs and usage patterns. This is more efficient than making blanket changes to the entire cluster or node pool.
+   upvoted 6 times
+
+2. Anonymous: RLIII Most Recent  1 year, 2 months ago
+It is A
+Option A: Configure a Vertical Pod Autoscaler for each microservice is the best solution because the VPA automatically adjusts the resource requests and limits for each microservice, ensuring that memory and CPU resources are correctly sized according to their actual usage patterns. This will address your issue of inappropriate resource limits for many of the microservices in your GKE cluster.
+   upvoted 1 times
+
+3. Anonymous: jhumpamp 1 year, 5 months ago
+Selected Answer: C
+As mentioned "resource limits configured for each container in the deployment", so can not vertically increase resources/memory
+Cluster scale out is not relevant here.
+With Horizontal scaling, adding more pods ultimately makes sure each service have "right sized memory and CPU"
+   upvoted 2 times
+
+4. Anonymous: flummoxed_individual 1 year, 5 months ago
+Selected Answer: A
+Vertical is for more specific resources of the individual pods. Horizontal is for creating more copies of the instances (adding more pods).
+   upvoted 2 times
+
+5. Anonymous: user636 1 year, 6 months ago
+Selected Answer: A
+A seems better
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #276
+
+Pergunta:
+Your company uses BigQuery to store and analyze data. Upon submitting your query in BigQuery, the query fails with a quotaExceeded error. You need to diagnose the issue causing the error. What should you do? (Choose two.)
+
+Alternativas:
+- A. Use BigQuery BI Engine to analyze the issue.
+- B. Use the INFORMATION_SCHEMA views to analyze the underlying issue.
+- C. Configure Cloud Trace to analyze the issue.
+- D. Search errors in Cloud Audit Logs to analyze the issue.
+- E. View errors in Cloud Monitoring to analyze the issue.
+
+Resposta correta:
+D. Search errors in Cloud Audit Logs to analyze the issue.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: RuchiMishra Highly Voted  1 year, 6 months ago
+Selected Answer: BD
+B & D.
+Here's why these two methods are crucial for diagnosing quotaExceeded errors in BigQuery:
+B. INFORMATION_SCHEMA Views: BigQuery's INFORMATION_SCHEMA provides metadata about datasets, tables, and jobs. Relevant views like JOBS_BY_PROJECT and JOBS_BY_USER can help you analyze recent queries, their resource consumption (bytes processed, slots used), and any errors encountered. This can reveal which queries are exceeding quotas and what type of quota (e.g., query size, daily limit) is being exceeded.
+D. Cloud Audit Logs: Audit logs record all API calls and administrative actions within your GCP projects. By searching for quotaExceeded errors in the audit logs, you can see the exact error messages, timestamps, and potentially the queries that triggered the error. This helps pinpoint the specific resources and actions causing the issue.
+   upvoted 8 times
+
+2. Anonymous: denno22 Most Recent  1 year, 3 months ago
+Selected Answer: BD
+https://cloud.google.com/bigquery/docs/troubleshoot-quotas#diagnosis
+   upvoted 1 times
+
+3. Anonymous: Chetantest07 1 year, 3 months ago
+Selected Answer: BD
+https://cloud.google.com/bigquery/docs/troubleshoot-quotas
+   upvoted 1 times
+
+4. Anonymous: user636 1 year, 6 months ago
+Selected Answer: BD
+BD is correct
+   upvoted 1 times
+
+5. Anonymous: BuenaCloudDE 1 year, 6 months ago
+Selected Answer: BD
+a. Query INFORMATION_SCHEMA to identify requests that exceed quotas.
+b. See the Cloud Audit Logs for more details on 'quotaExceeded' errors and the context in which they occur.
+   upvoted 4 times
+==============================
+
+==============================
+Page X — Question #277
+
+Pergunta:
+Your team has developed a stateless application which requires it to be run directly on virtual machines. The application is expected to receive a fluctuating amount of traffic and needs to scale automatically. You need to deploy the application. What should you do?
+
+Alternativas:
+- A. Deploy the application on a managed instance group and configure autoscaling.
+- B. Deploy the application on a Kubernetes Engine cluster and configure node pool autoscaling.
+- C. Deploy the application on Cloud Functions and configure the maximum number instances.
+- D. Deploy the application on Cloud Run and configure autoscaling.
+
+Resposta correta:
+A. Deploy the application on a managed instance group and configure autoscaling.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: RuchiMishra Highly Voted  1 year, 6 months ago
+Selected Answer: A
+Here's why A is the most suitable solution:
+Managed Instance Groups (MIGs): MIGs are designed to manage groups of identical VMs, making them ideal for running stateless applications. They provide features like auto-scaling, auto-healing, and load balancing, which are crucial for handling fluctuating traffic.
+Autoscaling: You can configure autoscaling policies to automatically add or remove VM instances based on metrics like CPU utilization, HTTP load balancing traffic, or Stackdriver Monitoring metrics. This ensures that your application can scale up to handle peak traffic and scale down during periods of low demand.
+   upvoted 5 times
+
+2. Anonymous: JoseCloudEng1994 Most Recent  1 year ago
+Selected Answer: A
+Key word "virtual instances". Otherwise I would have picked Cloud Run
+   upvoted 3 times
+
+3. Anonymous: flummoxed_individual 1 year, 5 months ago
+Selected Answer: A
+If the application did not have to be run on VMs I would have chosen D as Cloud Run would be easier and can scale to zero which reduces idle-time cost. But the app does, so MIGs is the choice.
+   upvoted 3 times
+
+4. Anonymous: user636 1 year, 6 months ago
+Selected Answer: A
+MIG supports stateless applications.
+   upvoted 2 times
+
+5. Anonymous: BuenaCloudDE 1 year, 6 months ago
+Selected Answer: A
+Vote for A
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #278
+
+Pergunta:
+Your web application is hosted on Cloud Run and needs to query a Cloud SQL database. Every morning during a traffic spike, you notice API quota errors in Cloud SQL logs. The project has already reached the maximum API quota. You want to make a configuration change to mitigate the issue. What should you do?
+
+Alternativas:
+- A. Modify the minimum number of Cloud Run instances.
+- B. Use traffic splitting.
+- C. Modify the maximum number of Cloud Run instances.
+- D. Set a minimum concurrent requests environment variable for the application.
+
+Resposta correta:
+A. Modify the minimum number of Cloud Run instances.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: RuchiMishra Highly Voted  1 year, 6 months ago
+Selected Answer: A
+Here's why A is the most effective solution to mitigate API quota errors during traffic spikes:
+Cold Starts and API Calls: Cloud Run services scale to zero when not in use. When a new request arrives, a new instance is spun up, leading to a cold start. During this cold start, multiple API calls might be made to initialize the application and connect to the Cloud SQL database. If there's a sudden spike in traffic, a large number of cold starts can occur simultaneously, exceeding the Cloud SQL API quota.
+Minimum Instances: By setting a minimum number of Cloud Run instances, you can ensure that a few instances are always running, even during periods of low traffic. This eliminates cold starts during traffic spikes and reduces the number of concurrent API calls made to Cloud SQL, helping you stay within the quota limits.
+   upvoted 17 times
+
+2. Anonymous: flummoxed_individual Highly Voted  1 year, 5 months ago
+Selected Answer: A
+There has been a previous question relating to this issue which is caused by Cold Starts (RuchiMishra explains this). Solving the issue would be by configuring a minimum number of instances always running
+   upvoted 6 times
+
+3. Anonymous: Lutech Most Recent  9 months, 4 weeks ago
+Selected Answer: C
+Setting a minimum number of Cloud Run instances ensures that there are always a few instances running, even when there is no traffic.
+While this would prevent cold starts, it doesn't directly address the traffic spike issue, where the number of active instances needs to scale to accommodate the load.
+During a traffic spike, if the maximum number of Cloud Run instances is not capped, Cloud Run will still spin up new instances to handle the increased load. This can cause more database connections than Cloud SQL can handle, leading to API quota errors.
+   upvoted 5 times
+
+4. Anonymous: Esteban08 10 months, 3 weeks ago
+Selected Answer: D
+Cloud Run allows you to configure a concurrency setting (using the --concurrency flag when deploying the service). In this context, “set a minimum concurrent requests environment variable” refers to configuring your service so that each instance handles a higher number of concurrent requests. Therefore, don't reach the API quota errors due too many cloud run instances created and doing requests at the same time.
+   upvoted 2 times
+
+5. Anonymous: jlocke 11 months, 1 week ago
+A minimum number of running instances helps reduce cold start delays, but it does not prevent new instances from scaling up rapidly during a traffic spike.
+The API quota issue occurs when too many Cloud Run instances spawn too quickly, each establishing new connections to Cloud SQL.
+   upvoted 1 times
+
+6. Anonymous: meh_33 1 year, 5 months ago
+Selected Answer: A
+A Make sense
+   upvoted 2 times
+
+7. Anonymous: user636 1 year, 6 months ago
+Selected Answer: A
+As explained by RuchiMishra, we need to keep a minimum number of instances always running.
+   upvoted 5 times
+ 1826c27 11 months, 2 weeks ago
+As explained by user636, we need read explanation of RuchiMishra to keep a minimum number of instances always running.
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #279
+
+Pergunta:
+You need to deploy a single stateless web application with a web interface and multiple endpoints. For security reasons, the web application must be reachable from an internal IP address from your company's private VPC and on-premises network. You also need to update the web application multiple times per day with minimal effort and want to manage a minimal amount of cloud infrastructure. What should you do?
+
+Alternativas:
+- A. Deploy the web application on Google Kubernetes Engine standard edition with an internal ingress.
+- B. Deploy the web application on Cloud Run with Private Google Access configured.
+- C. Deploy the web application on Cloud Run with Private Service Connect configured.
+- D. Deploy the web application to GKE Autopilot with Private Google Access configured.
+
+Resposta correta:
+C. Deploy the web application on Cloud Run with Private Service Connect configured.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Timfdklfajlksdjlakf Highly Voted  1 year, 4 months ago
+Selected Answer: C
+Option B: Private Google Access allows internal Google Cloud resource access but does not make Cloud Run services accessible from on-premises networks.
+Option C: Private Service Connect creates private endpoints that are accessible from your VPC, and with the proper network configuration (e.g., VPN or Interconnect), allows access from on-premises networks.
+   upvoted 6 times
+
+2. Anonymous: bad5fad Highly Voted  1 year, 4 months ago
+Selected Answer: C
+We need to connect to the on-premise network. Private google connect can enable that
+   upvoted 5 times
+
+3. Anonymous: rohitgeeked Most Recent  1 year ago
+The correct answer is C.
+Here's the documentation:
+https://cloud.google.com/run/docs/securing/private-networking#from-on-prem
+   upvoted 3 times
+
+4. Anonymous: Davyies 1 year, 5 months ago
+Selected Answer: C
+We need to connect to the on-premise network. Private google access does not enable this.
+   upvoted 4 times
+
+5. Anonymous: flummoxed_individual 1 year, 5 months ago
+Selected Answer: B
+The sentence "you also need to update the web application multiple times per day with minimal effort and want to manage a minimal amount of cloud infrastructure" makes Cloud Run favourable over GKE.
+   upvoted 3 times
+
+6. Anonymous: BuenaCloudDE 1 year, 6 months ago
+Selected Answer: B
+The most important thing that told me to choose B is the easier upgrade that Cloud Run provides.
+   upvoted 1 times
+
+7. Anonymous: RuchiMishra 1 year, 6 months ago
+Selected Answer: B
+Here's why B is the most suitable for the given requirements:
+Cloud Run: Cloud Run is a fully managed serverless platform for containerized applications. It eliminates the need to manage infrastructure, making it easy to deploy and update your web application multiple times a day with minimal effort. It also scales automatically based on traffic.
+Private Google Access (PGA): PGA allows resources in a private VPC network (without public IP addresses) to access Google APIs and services, including Cloud Run. This enables you to keep your web application private while still making it accessible from your internal network and on-premises environment.
+   upvoted 4 times
+ Timfdklfajlksdjlakf 1 year, 4 months ago
+It doesn't create private endpoints
+   upvoted 3 times
+==============================
+
+==============================
+Page X — Question #280
+
+Pergunta:
+You use Cloud Logging to capture application logs. You now need to use SQL to analyze the application logs in Cloud Logging, and you want to follow Google-recommended practices. What should you do?
+
+Alternativas:
+- A. Develop SQL queries by using Gemini for Google Cloud.
+- B. Enable Log Analytics for the log bucket and create a linked dataset in BigQuery.
+- C. Create a schema for the storage bucket and run SQL queries for the data in the bucket.
+- D. Export logs to a storage bucket and create an external view in BigQuery.
+
+Resposta correta:
+B. Enable Log Analytics for the log bucket and create a linked dataset in BigQuery.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Phat 10 months, 1 week ago
+Selected Answer: B
+It's B
+   upvoted 1 times
+
+2. Anonymous: peddyua 11 months, 3 weeks ago
+Selected Answer: B
+Recommended practice: Google recommends enabling Log Analytics for log buckets, which seamlessly integrates Cloud Logging with BigQuery.
+Efficiency: It provides a native, real-time integration for querying logs using SQL without the need for additional exports or complex configurations.
+Automation: Log Analytics automatically creates a linked dataset in BigQuery, simplifying setup and maintenance.
+   upvoted 1 times
+
+3. Anonymous: 26b39bb 1 year, 1 month ago
+Selected Answer: B
+B is the correct answer
+   upvoted 2 times
+==============================

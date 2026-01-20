@@ -1,0 +1,816 @@
+==============================
+Page X — Question #91
+
+Pergunta:
+Your company's infrastructure is on-premises, but all machines are running at maximum capacity. You want to burst to Google Cloud. The workloads on Google
+Cloud must be able to directly communicate to the workloads on-premises using a private IP range. What should you do?
+
+Alternativas:
+- A. In Google Cloud, configure the VPC as a host for Shared VPC.
+- B. In Google Cloud, configure the VPC for VPC Network Peering.
+- C. Create bastion hosts both in your on-premises environment and on Google Cloud. Configure both as proxy servers using their public IP addresses.
+- D. Set up Cloud VPN between the infrastructure on-premises and Google Cloud.
+
+Resposta correta:
+D. Set up Cloud VPN between the infrastructure on-premises and Google Cloud.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: SIX Highly Voted  4 years, 7 months ago
+I believe D is the right answer
+   upvoted 57 times
+ dan80 4 years, 7 months ago
+B is correct - https://cloud.google.com/solutions/best-practices-vpc-design . this answer also on all machines are running at maximum capacity.
+   upvoted 2 times
+ JustLearning 4 years, 7 months ago
+vpc network peering does not connect to on-prem. Cloud VPN is the correct solution. https://cloud.google.com/vpn/docs/concepts/overview
+   upvoted 27 times
+ mlantonis 4 years, 7 months ago
+You need VPN, so D is the correct. VPC network peering is between VPCs.
+   upvoted 15 times
+ xharf 2 years, 5 months ago
+"Google Cloud VPC Network Peering allows internal IP address connectivity across two Virtual Private Cloud (VPC) networks regardless of whether they belong to the same project or the same organization."
+https://cloud.google.com/vpc/docs/vpc-peering
+while
+"Cloud Interconnect provides low latency, high availability connections that enable you to reliably transfer data between your on-premises and Google Cloud Virtual Private Cloud (VPC) networks."
+https://cloud.google.com/network-connectivity/docs/interconnect/concepts/overview
+and
+"HA VPN is a high-availability (HA) Cloud VPN solution that lets you securely connect your on-premises network to your VPC network through an IPsec VPN connection in a single region."
+https://cloud.google.com/network-connectivity/docs/vpn/concepts/overview
+so, cloud vpn is the best answer for the question requirement
+   upvoted 7 times
+
+2. Anonymous: ESP_SAP Highly Voted  4 years, 5 months ago
+Correct Answer is (D):
+Access internal IPs directly
+Your VPC network's internal (RFC 1918) IP addresses are directly accessible from your on-premises network with peering, no NAT device or VPN tunnel required.
+Hybrid made easy
+Today’s business climate demands flexibility. Connecting your on-premises resources to your cloud resources seamlessly, with minimum latency or interruption, is a business-critical requirement. The speed and reliability of Cloud Interconnect lets you extend your organization’s data center network into Google Cloud, simply and easily, while options such as Cloud VPN provide flexibility for all your workloads. This unlocks the potential of hybrid app development and all the benefits the cloud has to offer.
+In the graphic below: What GCP Connection is right for you? shows clearly what is the method for extend your on premise network (IP Private communication).
+What GCP Connection is right for you?
+https://cloud.google.com/hybrid-connectivity
+   upvoted 35 times
+
+3. Anonymous: BAofBK Most Recent  1 year, 2 months ago
+The correct answer is D
+   upvoted 1 times
+
+4. Anonymous: Captain1212 1 year, 4 months ago
+Selected Answer: D
+D is the right answer as they need the private range and the machine are also on high working load
+   upvoted 4 times
+
+5. Anonymous: rosapersiani 1 year, 7 months ago
+Selected Answer: D
+d is right
+   upvoted 1 times
+
+6. Anonymous: sabrinakloud 1 year, 9 months ago
+Selected Answer: D
+VPN to connect your on-premise network to the cloud
+   upvoted 2 times
+
+7. Anonymous: Partha117 1 year, 10 months ago
+Selected Answer: D
+VPN for on premise connection to GCP
+   upvoted 2 times
+
+8. Anonymous: Buruguduystunstugudunstuy 1 year, 11 months ago
+Selected Answer: D
+Answer D. Set up Cloud VPN between the infrastructure on-premises and Google Cloud.
+To burst into Google Cloud from the on-premises infrastructure, a VPN connection can be established between the on-premises network and Google Cloud. VPN provides a secure, private tunnel to transfer data between on-premises infrastructure and Google Cloud. Cloud VPN would allow workloads on Google Cloud to communicate with workloads on-premises over private IP addresses, making it a suitable option for this scenario.
+Answer A (Shared VPC) and Answer B (VPC Network Peering) do not address the requirement of communicating over a private IP range between on-premises and Google Cloud.
+Answer C (bastion hosts) involves the use of public IP addresses, which may not be suitable for a private, secure connection.
+   upvoted 8 times
+
+9. Anonymous: cslince 2 years, 1 month ago
+Selected Answer: D
+D is the right answer
+   upvoted 1 times
+
+10. Anonymous: leogor 2 years, 2 months ago
+Selected Answer: D
+Cloud VPN
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #92
+
+Pergunta:
+You want to select and configure a solution for storing and archiving data on Google Cloud Platform. You need to support compliance objectives for data from one geographic location. This data is archived after 30 days and needs to be accessed annually. What should you do?
+
+Alternativas:
+- A. Select Multi-Regional Storage. Add a bucket lifecycle rule that archives data after 30 days to Coldline Storage.
+- B. Select Multi-Regional Storage. Add a bucket lifecycle rule that archives data after 30 days to Nearline Storage.
+- C. Select Regional Storage. Add a bucket lifecycle rule that archives data after 30 days to Nearline Storage.
+- D. Select Regional Storage. Add a bucket lifecycle rule that archives data after 30 days to Coldline Storage.
+
+Resposta correta:
+D. Select Regional Storage. Add a bucket lifecycle rule that archives data after 30 days to Coldline Storage.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: SIX Highly Voted  4 years, 7 months ago
+D
+Google Cloud Coldline is a new cold-tier storage for archival data with access frequency of less than once per year. Unlike other cold storage options, Nearline has no delays prior to data access, so now it is the leading solution among competitors.
+   upvoted 46 times
+ JustLearning 4 years, 7 months ago
+D is correct. Coldline is a better choice.
+   upvoted 9 times
+ dan80 4 years, 7 months ago
+C is correct - This data is archived after 30 days - Nearline Storage 30 days , Coldline Storage 90 days https://cloud.google.com/storage/docs/storage-classes
+   upvoted 12 times
+ mlantonis 4 years, 7 months ago
+dan80 is right
+   upvoted 1 times
+ y2kniel 4 years, 3 months ago
+D, It is saying AFTER 30 days. We should use coldline storage
+   upvoted 5 times
+ Phat 9 months, 4 weeks ago
+not really, the key word is: annual access
+   upvoted 1 times
+ gh999l 4 years, 2 months ago
+you have misunderstood minimum storage period here, nearline storage class minimum you have to plan for 30 days
+   upvoted 4 times
+Load full discussion...
+
+2. Anonymous: ESP_SAP Highly Voted  4 years, 5 months ago
+Correct Answer is (D):
+https://cloud.google.com/storage/docs/storage-classes
+Nearline Storage
+Nearline Storage is a low-cost, highly durable storage service for storing infrequently accessed data. Nearline Storage is a better choice than Standard Storage in scenarios where slightly lower availability, a 30-day minimum storage duration, and costs for data access are acceptable trade-offs for lowered at-rest storage costs.
+Nearline Storage is ideal for data you plan to read or modify on average once per month or less. For example, if you want to continuously add files to Cloud Storage and plan to access those files once a month for analysis, Nearline Storage is a great choice.
+Nearline Storage is also appropriate for data backup, long-tail multimedia content, and data archiving. Note, however, that for data accessed less frequently than once a quarter, Coldline Storage or Archive Storage are more cost-effective, as they offer lower storage costs.
+https://cloud.google.com/storage/docs/storage-classes#nearline
+   upvoted 16 times
+ ESP_SAP 4 years, 4 months ago
+CORRECTION.
+Correct Answer is (D):
+The Real description is about Coldline storage Class:
+Coldline Storage
+Coldline Storage is a very-low-cost, highly durable storage service for storing infrequently accessed data. Coldline Storage is a better choice than Standard Storage or Nearline Storage in scenarios where slightly lower availability, a 90-day minimum storage duration, and higher costs for data access are acceptable trade-offs for lowered at-rest storage costs.
+Coldline Storage is ideal for data you plan to read or modify at most once a quarter. Note, however, that for data being kept entirely for backup or archiving purposes, Archive Storage is more cost-effective, as it offers the lowest storage costs.
+https://cloud.google.com/storage/docs/storage-classes#coldline
+   upvoted 13 times
+
+3. Anonymous: kelliot Most Recent  1 year, 1 month ago
+D is correct.
+"from one geographic location" clues the answer
+   upvoted 2 times
+
+4. Anonymous: BAofBK 1 year, 2 months ago
+The correct answer is D
+   upvoted 1 times
+
+5. Anonymous: Captain1212 1 year, 4 months ago
+Selected Answer: D
+D is the correrct answer, as the data in access only once a year
+   upvoted 2 times
+
+6. Anonymous: sabrinakloud 1 year, 9 months ago
+Selected Answer: D
+"This data is archived after 30 days and needs to be accessed annually"
+ideally archive; coldine is the closest.
+   upvoted 1 times
+
+7. Anonymous: Elya 1 year, 9 months ago
+The best option would be to select Regional Storage and add a bucket lifecycle rule that archives data after 30 days to Nearline Storage. Nearline Storage is designed for data that is accessed less frequently, but still needs to be readily available when accessed. It has a lower storage cost than Regional Storage, and retrieval costs are lower than those of Coldline Storage.
+   upvoted 1 times
+
+8. Anonymous: inbalinbal 1 year, 9 months ago
+Selected Answer: D
+D is correct
+   upvoted 2 times
+
+9. Anonymous: Buruguduystunstugudunstuy 1 year, 11 months ago
+Selected Answer: D
+Answer D is the CORRECT answer. The scenario mentioned in the question requires archiving data after 30 days and accessing it annually. As per the Cloud Storage documentation, Coldline storage is ideal for data that is accessed at most once a quarter. Hence, selecting regional storage and adding a bucket lifecycle rule that archives data after 30 days to Coldline Storage is the best solution to meet the compliance objectives and cost-effectiveness requirements.
+   upvoted 4 times
+ Buruguduystunstugudunstuy 1 year, 11 months ago
+INCORRECT:
+Answer A, selecting Multi-Regional Storage and adding a bucket lifecycle rule that archives data after 30 days to Coldline Storage, is not a good fit for this scenario because Multi-Regional Storage is more expensive than Regional Storage and it does not provide a clear advantage for this use case.
+Answer B, selecting Multi-Regional Storage and adding a bucket lifecycle rule that archives data after 30 days to Nearline Storage, is also not the best option because Nearline Storage is more appropriate for data that is accessed less than once a month, while in this scenario, the data needs to be accessed at least once a year.
+Answer C, selecting Regional Storage and adding a bucket lifecycle rule that archives data after 30 days to Nearline Storage, is not ideal because Nearline Storage is more suitable for data that is accessed less than once a month. If the data is accessed only once a year, it might be more cost-effective to choose Coldline Storage instead.
+   upvoted 1 times
+
+10. Anonymous: cslince 2 years, 1 month ago
+Selected Answer: D
+The answer is D.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #93
+
+Pergunta:
+Your company uses BigQuery for data warehousing. Over time, many different business units in your company have created 1000+ datasets across hundreds of projects. Your CIO wants you to examine all datasets to find tables that contain an employee_ssn column. You want to minimize effort in performing this task.
+What should you do?
+
+Alternativas:
+- A. Go to Data Catalog and search for employee_ssn in the search box.
+- B. Write a shell script that uses the bq command line tool to loop through all the projects in your organization.
+- C. Write a script that loops through all the projects in your organization and runs a query on INFORMATION_SCHEMA.COLUMNS view to find the employee_ssn column.
+- D. Write a Cloud Dataflow job that loops through all the projects in your organization and runs a query on INFORMATION_SCHEMA.COLUMNS view to find employee_ssn column.
+
+Resposta correta:
+A. Go to Data Catalog and search for employee_ssn in the search box.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: poogcp Highly Voted  5 years, 1 month ago
+Its A.
+   upvoted 40 times
+
+2. Anonymous: filco72 Highly Voted  4 years, 12 months ago
+Correct is A.
+I tested on my account following this procedure: https://cloud.google.com/bigquery/docs/quickstarts/quickstart-web-ui?authuser=4
+I created a data set and through Data Catalog I easily and effortlessly searched for the column name "gender"
+   upvoted 32 times
+
+3. Anonymous: JB28 Most Recent  1 year, 6 months ago
+The best option to minimize effort in performing this task is A. Go to Data Catalog and search for employee_ssn in the search box.
+Google Cloud’s Data Catalog is a fully managed and scalable metadata management service that empowers organizations to quickly discover, manage, and understand all their data in Google Cloud. It offers a simple and easy-to-use search interface for data discovery. By searching for “employee_ssn” in the Data Catalog, you can quickly find all tables across all datasets and projects that contain this column. This approach is more efficient and requires less effort compared to writing and maintaining scripts or jobs.
+Please note that access to Data Catalog and the visibility of datasets, tables, and columns are subject to permissions and roles in IAM policy. Make sure you have the necessary permissions to view the metadata.
+   upvoted 3 times
+
+4. Anonymous: ogerber 1 year, 7 months ago
+Selected Answer: A
+Data Catalog lets you search and tag entries such as BigQuery tables with metadata. Some examples of metadata that you can use for tagging include public and private tags, data stewards, and rich text overview.
+https://cloud.google.com/data-catalog/docs/tag-bigquery-dataset
+   upvoted 4 times
+
+5. Anonymous: Vik96 1 year, 8 months ago
+I am preparing for the GCP-ACE exam, I was able to access 96 questions only, if anyone has the entire questions please share them with my vittoriaprovenza@tiscali.it address. I have exam on next week,pls share Thanks in advance. I would be forever grateful.
+   upvoted 2 times
+
+6. Anonymous: BAofBK 1 year, 8 months ago
+I will go for A
+   upvoted 1 times
+
+7. Anonymous: BAofBK 1 year, 8 months ago
+The correct answer is A
+   upvoted 1 times
+
+8. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: A
+Answer is A, as it requires the less effort and other options are more time consuming and error prone
+   upvoted 1 times
+
+9. Anonymous: deadsong 2 years, 2 months ago
+The most efficient approach to identify tables that contain an employee_ssn column in BigQuery would be to query the INFORMATION_SCHEMA.COLUMNS view, which provides metadata about all columns in all tables in a given dataset. Therefore, options C and D are both possible solutions.
+Option A, searching for the column name in Data Catalog, may not be efficient if there are too many datasets to search through manually.
+Option B, writing a shell script to loop through all the projects in your organization, may work, but it would require more effort and time than options C and D. Also, it would be more error-prone since the script would need to handle authentication and authorization, handle exceptions and errors, and collect the results.
+Therefore, options C and D are better choices, but option D, using Cloud Dataflow, might be overkill for this specific task. Option C, looping through all projects and querying INFORMATION_SCHEMA.COLUMNS view, is the simplest and most effective solution to minimize effort.
+   upvoted 1 times
+
+10. Anonymous: Neeyo 2 years, 2 months ago
+Hi All, I have my GCP ACE exam scheduled for tomorrow. However, I am only being able to access 96 questions. Can anyone kindly share the entire list of questions as I have hardly anytime left before my exam. oniyi6@yahoo.com. Thank you all so much
+   upvoted 1 times
+ arnika98 2 years, 2 months ago
+Did you pass the exam? If so any questions from here came? Please let us know so that it will be helpful
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #94
+
+Pergunta:
+You create a Deployment with 2 replicas in a Google Kubernetes Engine cluster that has a single preemptible node pool. After a few minutes, you use kubectl to examine the status of your Pod and observe that one of them is still in Pending status:
+
+What is the most likely cause?
+
+Alternativas:
+- A. The pending Pod's resource requests are too large to fit on a single node of the cluster.
+- B. Too many Pods are already running in the cluster, and there are not enough resources left to schedule the pending Pod.
+- C. The node pool is configured with a service account that does not have permission to pull the container image used by the pending Pod.
+- D. The pending Pod was originally scheduled on a node that has been preempted between the creation of the Deployment and your verification of the Pods' status. It is currently being rescheduled on a new node.
+
+Resposta correta:
+B. Too many Pods are already running in the cluster, and there are not enough resources left to schedule the pending Pod.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: ESP_SAP Highly Voted  5 years, 5 months ago
+Correct Answer is (B):
+Reasons for a Pod Status Pending:
+Troubleshooting Reason #1: Not enough CPU
+Troubleshooting Reason #2: Not enough memory
+Troubleshooting Reason #3: Not enough CPU and memory
+https://managedkube.com/kubernetes/k8sbot/troubleshooting/pending/pod/2019/02/22/pending-pod.html
+   upvoted 59 times
+ SSPC 5 years, 5 months ago
+I agree with you. The correct answer is B
+   upvoted 5 times
+ Linus11 4 years, 8 months ago
+The real crux of this question is the mention about "Pre-emptible Node pool". That need to take into consider while determining the answer. If we choose B, then the importance of "Pre-emptible node pool" is not there. Whether the node pool is pre-emptible or not, resource scarcity can lead to pending pods.
+When we consider the mention of "Pre-emptible Node Poll" , then the answer is obviously D. if a pre-meptible Node get pre-empted there will be a delay in cluster to sync it.
+Answer is D.
+   upvoted 28 times
+ alexgrig 4 years, 3 months ago
+Questions says "Single Node" at that case the second pod can't be in running state.
+   upvoted 4 times
+ brvinod 3 years, 11 months ago
+A node can have multiple pods. So that is not a problem.
+   upvoted 2 times
+ MidhunJose 3 years, 12 months ago
+It says a single node pool, not a single node. Meaning there can be multiple nodes, right?
+   upvoted 11 times
+ brvinod 3 years, 11 months ago
+Pre-emptible would have been an issue if the cluster had more than one node. The question clearly states that it is a single node cluster. That means if that single VM was pre-empted, neither of the pods should have been running. Since one pod is running, that means that (the only) VM is running. So, the reason the second pod is still pending because the VM is not having enough resources to run both the pods. Hence B.
+   upvoted 9 times
+ mplibunao 3 years, 7 months ago
+Actually the question stated "single preemptible node pool" and not "single node" so it's possible that there are multiple nodes and one of the node on which the pod was scheduled on was preempted
+   upvoted 4 times
+ Finger41 4 years, 7 months ago
+This is to throw you off, when there is insufficient resources for a Pod to stand up, then the status will equal pending : https://kubernetes.io/docs/tasks/debug-application-cluster/debug-application/#:~:text=If%20a%20Pod%20is%20stuck,be%20scheduled%20onto%20a%20node.&text=You%20don't%20have%20enough,new%20nodes%20to%20your%20cluster.
+   upvoted 3 times
+Load full discussion...
+
+2. Anonymous: cloudenthu01 Highly Voted  5 years, 6 months ago
+D is correct as the node on which pod was scheduled to run was preempted & now this pod is scheduled to run on different preemtible node from the node-pool
+   upvoted 21 times
+ myuniquename 4 years, 3 months ago
+Incorrect. There is a single preemtible instance, if it was preempted then both pods would show as 'Pending'. B is correct.
+   upvoted 6 times
+ ashtonez 2 years, 10 months ago
+No, because one of the pods may run on another node that its still up
+   upvoted 2 times
+ obeythefist 3 years, 10 months ago
+> There is a single preemtible instance
+Where does it say that? It doesn't. Don't make things up. There's a single pre-emptible node pool. A single pool is not the same as a single node.
+   upvoted 11 times
+
+3. Anonymous: guaose Most Recent  2 months, 2 weeks ago
+Selected Answer: D
+You’re using a single preemptible node pool. Preemptible VMs in GKE can be terminated at any time (usually after 24 hours or earlier if Google needs the resources).
+If the node running a Pod is preempted, the Pod becomes Pending while Kubernetes tries to reschedule it.
+Since there’s only one node pool, and it’s preemptible, there may be no available node at the moment to reschedule the Pod, hence it stays in Pending.
+   upvoted 1 times
+
+4. Anonymous: 85c887f 9 months, 4 weeks ago
+Selected Answer: B
+Correct Answer is B. As one of the indicators of incorrect D option is 0 in Restart section. If D was correct answer we would see in Restart number > 0.
+   upvoted 1 times
+
+5. Anonymous: navel 10 months, 3 weeks ago
+Selected Answer: B
+B is correct as 0 restarts of the pod
+   upvoted 2 times
+
+6. Anonymous: swktopic 10 months, 3 weeks ago
+Selected Answer: B
+restart is 0, so B is correct
+   upvoted 2 times
+
+7. Anonymous: peddyua 12 months ago
+Selected Answer: D
+Preemptible nodes can be terminated at any time, and if there are not enough available preemptible nodes at the moment to accommodate the pod, it will stay in Pending.
+   upvoted 1 times
+
+8. Anonymous: 1e62a4f 1 year, 1 month ago
+Selected Answer: B
+preemptible node can be stopped anytime. It can be not available as long as long resources are not available.
+   upvoted 1 times
+
+9. Anonymous: denno22 1 year, 3 months ago
+Selected Answer: D
+The most likely cause is given in the question. We have a single preemptible node pool.
+   upvoted 1 times
+
+10. Anonymous: iooj 1 year, 4 months ago
+Selected Answer: B
+100% - not enough CPU / memory.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #95
+
+Pergunta:
+You want to find out when users were added to Cloud Spanner Identity Access Management (IAM) roles on your Google Cloud Platform (GCP) project. What should you do in the GCP Console?
+
+Alternativas:
+- A. Open the Cloud Spanner console to review configurations.
+- B. Open the IAM & admin console to review IAM policies for Cloud Spanner roles.
+- C. Go to the Stackdriver Monitoring console and review information for Cloud Spanner.
+- D. Go to the Stackdriver Logging console, review admin activity logs, and filter them for Cloud Spanner IAM roles.
+
+Resposta correta:
+D. Go to the Stackdriver Logging console, review admin activity logs, and filter them for Cloud Spanner IAM roles.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: samvegas Highly Voted  5 years, 6 months ago
+Answer = D, I have simple rule; if metrics then Monitoring, if Auditing then Logging.
+   upvoted 85 times
+
+2. Anonymous: Meix Highly Voted  5 years, 7 months ago
+I think the answer is D
+   upvoted 44 times
+ Anand2608 5 years, 2 months ago
+As per the Cloud Audit logs documentation.
+   upvoted 3 times
+
+3. Anonymous: ccpmad Most Recent  1 year, 7 months ago
+D, but in 2024 there is not stackdriver Logging...
+   upvoted 2 times
+ yomi95 1 year, 2 months ago
+stackdriver logging = cloud logging
+stackdriver monitoring = cloud monitoring
+   upvoted 2 times
+
+4. Anonymous: Vik96 2 years, 2 months ago
+I am preparing for the GCP-ACE exam, I was able to access 96 questions only, if anyone has the entire questions please share them with my vittoriaprovenza@tiscali.it address. I have exam on next week,pls share Thanks in advance. I would be forever grateful.
+   upvoted 2 times
+
+5. Anonymous: BAofBK 2 years, 2 months ago
+I will go with D
+   upvoted 1 times
+
+6. Anonymous: gsmasad 2 years, 2 months ago
+Selected Answer: D
+D is the only option that talks about the admin activity
+   upvoted 1 times
+
+7. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: D
+D , seems more correct as it shows you the history also
+   upvoted 2 times
+
+8. Anonymous: sana_sree 2 years, 7 months ago
+option D is correct
+refer:
+https://www.exam-answer.com/google/ace/question95
+   upvoted 1 times
+
+9. Anonymous: sonia_mola 2 years, 9 months ago
+Selected Answer: D
+Answer is D
+   upvoted 1 times
+
+10. Anonymous: Buruguduystunstugudunstuy 2 years, 10 months ago
+Selected Answer: D
+Answer A is incorrect because the Cloud Spanner console only shows configurations related to Cloud Spanner instances and databases, but not IAM roles.
+Answer B is partially correct in that the IAM & admin console is where IAM policies can be viewed and edited. However, it does not show a history of when users were added to Cloud Spanner IAM roles.
+Answer C is incorrect because Stackdriver Monitoring is used to monitor the performance of Google Cloud resources and applications, and does not provide information about IAM role changes.
+Overall, the best answer is D, as Stackdriver Logging provides a comprehensive history of all administrative activity logs, including when users were added to Cloud Spanner IAM roles.
+   upvoted 6 times
+==============================
+
+==============================
+Page X — Question #96
+
+Pergunta:
+Your company implemented BigQuery as an enterprise data warehouse. Users from multiple business units run queries on this data warehouse. However, you notice that query costs for BigQuery are very high, and you need to control costs. Which two methods should you use? (Choose two.)
+
+Alternativas:
+- A. Split the users from business units to multiple projects.
+- B. Apply a user- or project-level custom query quota for BigQuery data warehouse.
+- C. Create separate copies of your BigQuery data warehouse for each business unit.
+- D. Split your BigQuery data warehouse into multiple data warehouses for each business unit.
+- E. Change your BigQuery query model from on-demand to flat rate. Apply the appropriate number of slots to each Project.
+
+Resposta correta:
+E. Change your BigQuery query model from on-demand to flat rate. Apply the appropriate number of slots to each Project.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: CPBach Highly Voted  5 years ago
+I'd say B and E. So either you do B or E to reduce costs.
+   upvoted 46 times
+ KC_go_reply 2 years, 3 months ago
+The question says 'which two methods should you use', implying that you want to use *both*. Using quotas together with the flat-rate pricing doesn´t make any sense.
+Besides that, E is wrong imo. Why? Because flat-rate pricing is very expensive, you pay a fixed high price for something that likely won´t be used enough by the average business unit. You need to allocate different 'slots' which is inflexible and complex. It would make more sense to rely on quotas, which means you have an upper limit for costs, but don´t necessarily pay the maximum.
+   upvoted 1 times
+
+2. Anonymous: Jignesh_Gamdha Highly Voted  4 years, 8 months ago
+B & E
+Refer below link - first of all you can define quotas on project or user level and 2nd one is you can change from on demand to flat rate model
+and define the parameters based on your requirement ---
+https://cloud.google.com/bigquery/docs/custom-quotas
+https://cloud.google.com/bigquery/pricing#flat_rate_pricing
+   upvoted 25 times
+
+3. Anonymous: 85c887f Most Recent  9 months, 4 weeks ago
+Selected Answer: AB
+We need to "control costs", not to reduce. So A and B will work together better than B and E. We have "multiple business units run queries on this data warehouse", so to better access control and more granular cost management, we should start with "split users into projects". This step will make easier to manage quotas in next step "applying quotas". E option would be a good option if we can predict a high usage per project, without A option it is difficult to predict this.
+   upvoted 1 times
+
+4. Anonymous: Jayz1992 1 year ago
+Selected Answer: BE
+Flat-rate pricing
+Note: The BigQuery flat-rate pricing model is no longer offered as of July 5, 2023. It is described here for customers who have existing flat-rate commitments.
+this is from official Google cloud documentation page
+   upvoted 1 times
+
+5. Anonymous: dgmon174 1 year, 6 months ago
+What happens if you only choose one here? Do you get half the points of 0 points?
+   upvoted 1 times
+
+6. Anonymous: BAofBK 1 year, 8 months ago
+The correct answer is BE
+   upvoted 1 times
+
+7. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: BE
+BE seems more legit
+   upvoted 1 times
+
+8. Anonymous: Neha_Pallavi 1 year, 10 months ago
+BE is correct Answer
+   upvoted 1 times
+
+9. Anonymous: FCADAM 1 year, 11 months ago
+B, after reading the specs of BigQuery pricing. C and E doesn't meet the cost requirements. E, Google is no longer offering the flat-rate anymore. E, doesn't meet the criteria and B offers the option to set User-level and project-level custom cost controls.
+   upvoted 3 times
+
+10. Anonymous: danieeerll 1 year, 11 months ago
+Flat rate is no longer available for Big Query.
+   upvoted 5 times
+==============================
+
+==============================
+Page X — Question #97
+
+Pergunta:
+You are building a product on top of Google Kubernetes Engine (GKE). You have a single GKE cluster. For each of your customers, a Pod is running in that cluster, and your customers can run arbitrary code inside their Pod. You want to maximize the isolation between your customers' Pods. What should you do?
+
+Alternativas:
+- A. Use Binary Authorization and whitelist only the container images used by your customers' Pods.
+- B. Use the Container Analysis API to detect vulnerabilities in the containers used by your customers' Pods.
+- C. Create a GKE node pool with a sandbox type configured to gvisor. Add the parameter runtimeClassName: gvisor to the specification of your customers' Pods.
+- D. Use the cos_containerd image for your GKE nodes. Add a nodeSelector with the value cloud.google.com/gke-os-distribution: cos_containerd to the specification of your customers' Pods.
+
+Resposta correta:
+C. Create a GKE node pool with a sandbox type configured to gvisor. Add the parameter runtimeClassName: gvisor to the specification of your customers' Pods.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: akshaychavan7 Highly Voted  3 years, 1 month ago
+Let me be honest, I did not have any clue to answer this question. However, I spotted the keyword, 'isolation', from the question and a keyword, 'sandbox' from the answers and guessed the answer which turned out to be correct.
+So, yes it is C!
+   upvoted 24 times
+
+2. Anonymous: Sac3433 Highly Voted  3 years, 2 months ago
+Correct answer is C: You can enable GKE Sandbox on your cluster to isolate untrusted workloads in sandboxes on the node. GKE Sandbox is built using gVisor, an open source project: https://cloud.google.com/kubernetes-engine/docs/concepts/security-overview?hl=en#protecting_nodes_from_untrusted_workloads
+   upvoted 11 times
+
+3. Anonymous: Cynthia2023 Most Recent  1 year, 6 months ago
+Selected Answer: C
+gVisor is a sandboxing technology that provides an additional layer of isolation between running containers. It's particularly useful in scenarios where containers might be running untrusted or arbitrary code, as it helps in mitigating the risk of kernel exploits.
+By configuring a node pool with gVisor and specifying runtimeClassName: gvisor in the Pod specifications, each Pod is run within this sandboxed environment, thereby enhancing isolation between the Pods.
+   upvoted 6 times
+ Cynthia2023 1 year, 6 months ago
+A. Binary Authorization: While Binary Authorization is a security control that ensures only trusted container images are deployed on GKE, it doesn't provide isolation between running Pods. It's more about image integrity and compliance.
+B. Container Analysis API: This API is used for scanning container images for vulnerabilities. While important for security, it doesn't directly contribute to runtime isolation between Pods.
+D. Using cos_containerd Image: The Container-Optimized OS with containerd (cos_containerd) is a secure choice for the node image in GKE. However, it doesn't provide the same level of isolation for arbitrary code execution in Pods as gVisor. The nodeSelector parameter is used to schedule Pods on specific nodes but doesn't enhance inter-Pod isolation.
+   upvoted 2 times
+ Cynthia2023 1 year, 6 months ago
+• Implementing gVisor can impact the performance of the containers due to the additional layer of abstraction. However, for scenarios requiring high security and isolation, particularly when running arbitrary code, the trade-off can be justified.
+   upvoted 2 times
+
+4. Anonymous: BAofBK 1 year, 8 months ago
+The correct answer is C
+   upvoted 2 times
+
+5. Anonymous: lov75 2 years, 7 months ago
+Selected Answer: C
+C is correct
+   upvoted 1 times
+
+6. Anonymous: mattcl 2 years, 8 months ago
+GKE Sandbox https://cloud.google.com/kubernetes-engine/docs/concepts/sandbox-pods
+   upvoted 3 times
+
+7. Anonymous: theBestStudent 2 years, 11 months ago
+Selected Answer: C
+As it has been mentioned already: https://cloud.google.com/kubernetes-engine/docs/how-to/sandbox-pods?hl=en
+https://cloud.google.com/kubernetes-engine/docs/how-to/sandbox-pods?hl=en#working_with
+   upvoted 2 times
+
+8. Anonymous: AzureDP900 3 years ago
+gVisor is the way to isolate. Those who already preparing for CKS can answer this question without even thinking further. C is right
+   upvoted 3 times
+
+9. Anonymous: haroldbenites 3 years, 1 month ago
+Go for C
+   upvoted 1 times
+
+10. Anonymous: PAUGURU 3 years, 2 months ago
+Selected Answer: C
+https://cloud.google.com/kubernetes-engine/docs/concepts/security-overview?hl=en#protecting_nodes_from_untrusted_workloads
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #98
+
+Pergunta:
+Your customer has implemented a solution that uses Cloud Spanner and notices some read latency-related performance issues on one table. This table is accessed only by their users using a primary key. The table schema is shown below.
+
+You want to resolve the issue. What should you do?
+
+Alternativas:
+- A. Remove the profile_picture field from the table.
+- B. Add a secondary index on the person_id column.
+- C. Change the primary key to not have monotonically increasing values.
+- D. Create a secondary index using the following Data Definition Language (DDL):
+
+Resposta correta:
+C. Change the primary key to not have monotonically increasing values.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: BenKenGo6 Highly Voted  3 years, 4 months ago
+Selected Answer: D
+Create a secondary index using the following Data Definition.
+If we watch the next video, he talks about a change to monotonically when we insert rows.
+Finally when we talk about read and we have a perdormance issues, we must create a index.
+https://www.youtube.com/watch?v=r6uj0HMNQNQ
+   upvoted 10 times
+ SilNilanjan 2 years, 11 months ago
+Adding index for faster retrieval is a basic DBMS concept but why do we need the index on firstname and lastname as per D?
+   upvoted 3 times
+ iooj 1 year, 4 months ago
+right, it says: This table is accessed only by a primary key. So B should be the answer
+   upvoted 1 times
+
+2. Anonymous: Cynthia2023 Highly Voted  2 years ago
+Selected Answer: C
+• Hotspotting Issue: Cloud Spanner, like many distributed databases, can experience issues with what is known as "hotspotting." This happens when a large portion of read or write operations are concentrated on a specific part of the database. In this case, the sequential nature of the person_id as a primary key can lead to hotspotting because new records are continually added at the "end" of the key space, creating a hot node which can cause performance bottlenecks.
+• Monotonically Increasing Values: Monotonically increasing values as primary keys can exacerbate the hotspotting effect because each new entry is placed after the last, creating a write hotspot on the last node that handles the upper bound of the key range. Over time, this can lead to unbalanced read/write loads across the nodes.
+   upvoted 8 times
+ Cynthia2023 2 years ago
+• Alternatives to Monotonic Keys: To mitigate this, you can use a primary key that distributes writes more evenly across the key space. This could be achieved by using a UUID (Universally Unique Identifier) or sharding the monotonically increasing identifier by combining it with another value that has a more random distribution.
+   upvoted 4 times
+
+3. Anonymous: Roman1988 Most Recent  1 year ago
+Selected Answer: C
+If the primary key is monotonically increasing (e.g., an incrementing sequence), all new rows are written to the same split. This causes the split to become a hotspot, leading to increased read and write latency because all operations are concentrated on a single node.
+   upvoted 1 times
+
+4. Anonymous: iooj 1 year, 4 months ago
+Selected Answer: B
+Why B: To improve read performance, we should add a secondary index on the primary key. Since we know that this table is accessed only by the primary key, this would optimize read operations.
+Why not C: Monotonically increasing values might create a hotspot, but this would primarily affect write operations. In fact, lookups would be easier with sequential values compared to a UUID. Additionally, it is not mentioned that users are only reading the last inserted data, which would create a read hotspot.
+Why not D: This approach could work, but since the table is accessed only by the primary key, there's no need to add additional fields to the index.
+Why not A: The profile_picture field should not significantly affect read performance.
+   upvoted 2 times
+ iooj 1 year, 4 months ago
+oh, just found that primary key is automatically indexed by default... so I would vote for A then, hahaha
+   upvoted 2 times
+
+5. Anonymous: pzacariasf7 1 year, 10 months ago
+Selected Answer: D
+D is correct for me
+   upvoted 1 times
+
+6. Anonymous: BAofBK 2 years, 2 months ago
+The correct answer is C
+   upvoted 1 times
+
+7. Anonymous: ziomek666 2 years, 3 months ago
+D makes no sense. It's C
+   upvoted 2 times
+
+8. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: C
+C seems more correct
+   upvoted 2 times
+
+9. Anonymous: dasgcp 2 years, 9 months ago
+How is this a GCP question?
+   upvoted 4 times
+ Mariuselul 2 years, 9 months ago
+Spanner and distribution of primary key
+   upvoted 1 times
+
+10. Anonymous: temple1305 2 years, 10 months ago
+Selected Answer: C
+PK already has index by default, so not B. D - index by 3 fields. but users use person_id for acces, so D is wrong.
+So C - because monotonically increasing fields is not good candidate for PK(because index degradetion)
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #99
+
+Pergunta:
+Your finance team wants to view the billing report for your projects. You want to make sure that the finance team does not get additional permissions to the project. What should you do?
+
+Alternativas:
+- A. Add the group for the finance team to roles/billing user role.
+- B. Add the group for the finance team to roles/billing admin role.
+- C. Add the group for the finance team to roles/billing viewer role.
+- D. Add the group for the finance team to roles/billing project/Manager role.
+
+Resposta correta:
+C. Add the group for the finance team to roles/billing viewer role.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: miniso8153 Highly Voted  4 years, 7 months ago
+c
+"Billing Account Viewer access would usually be granted to finance teams, it provides access to spend information, but does not confer the right to link or unlink projects or otherwise manage the properties of the billing account."
+https://cloud.google.com/billing/docs/how-to/billing-access
+   upvoted 52 times
+
+2. Anonymous: dan80 Highly Voted  4 years, 7 months ago
+Answer is C - Billing Account Viewer access would usually be granted to finance teams, it provides access to spend information, but does not confer the right to link or unlink projects or otherwise manage the properties of the billing account.
+   upvoted 21 times
+ krsourav 3 years, 11 months ago
+Hey, look at this ......:)
+   upvoted 4 times
+
+3. Anonymous: Jayz1992 Most Recent  1 year ago
+Selected Answer: C
+Billing Account Viewer
+(roles/billing.viewer) View billing account cost information and transactions. Organization or billing account. Billing Account Viewer access is usually granted to finance teams, it provides access to spend information, but doesn't confer the right to link or unlink projects or otherwise manage the properties of the billing account.
+   upvoted 1 times
+
+4. Anonymous: BAofBK 1 year, 2 months ago
+The correct answer is C
+   upvoted 1 times
+
+5. Anonymous: Captain1212 1 year, 4 months ago
+Selected Answer: C
+C is the correct answer
+   upvoted 2 times
+
+6. Anonymous: anujithn 1 year, 5 months ago
+Selected Answer: C
+all other will give additional permission
+   upvoted 1 times
+
+7. Anonymous: AzureDP900 2 years, 7 months ago
+It is no brainer question, C is right
+   upvoted 1 times
+
+8. Anonymous: haroldbenites 2 years, 7 months ago
+Go for C
+   upvoted 1 times
+
+9. Anonymous: ElenaL 3 years ago
+Selected Answer: C
+C - the only role appropriate answer to view and not change anything in the project is the billing viewer role.
+   upvoted 2 times
+
+10. Anonymous: Vidyaji 3 years, 1 month ago
+C is perfect
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #100
+
+Pergunta:
+Your organization has strict requirements to control access to Google Cloud projects. You need to enable your Site Reliability Engineers (SREs) to approve requests from the Google Cloud support team when an SRE opens a support case. You want to follow Google-recommended practices. What should you do?
+
+Alternativas:
+- A. Add your SREs to roles/iam.roleAdmin role.
+- B. Add your SREs to roles/accessapproval.approver role.
+- C. Add your SREs to a group and then add this group to roles/iam.roleAdmin.role.
+- D. Add your SREs to a group and then add this group to roles/accessapproval.approver role.
+
+Resposta correta:
+D. Add your SREs to a group and then add this group to roles/accessapproval.approver role.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: reinocd21 Highly Voted  5 years, 7 months ago
+D. Add your SREs to a group and then add this group to roles/accessapproval approver role.
+-Google recommendation.
+   upvoted 60 times
+
+2. Anonymous: ErenYeager Highly Voted  3 years, 9 months ago
+Passed my exams today. Not because just because of the questions I practiced here, but because of you guys, your knowledge and experience and breakdown of questions. Too bad this site can't go legit. It such an wholesome resource.
+Some final words... KEEP MOVING FORWARD UNTIL ALL THE QUESTIONS ARE DESTROYED TATAKAE!!!!!!
+   upvoted 16 times
+
+3. Anonymous: denno22 Most Recent  1 year, 3 months ago
+Selected Answer: D
+Grant the Access Approval Approver (roles/accessapproval.approver) IAM role on the project, folder, or organization to the principal who you want to be able to perform approvals. You can grant the Access Approval Approver IAM role to either an individual user, a service account, or a Google group.
+https://cloud.google.com/assured-workloads/access-approval/docs/approve-requests
+   upvoted 1 times
+
+4. Anonymous: BAofBK 2 years, 2 months ago
+D is the correct answer
+   upvoted 1 times
+
+5. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: D
+D seems more correct
+   upvoted 2 times
+
+6. Anonymous: SanjeevKumar1983 2 years, 4 months ago
+D is correct
+   upvoted 1 times
+
+7. Anonymous: AzureDP900 3 years, 7 months ago
+D is right ..
+   upvoted 2 times
+
+8. Anonymous: haroldbenites 3 years, 7 months ago
+Go for D
+   upvoted 1 times
+
+9. Anonymous: hiranfilho 3 years, 8 months ago
+Selected Answer: D
+Answers C and D are correct, but it doesn't say if the SRE already has a group and as it is Google's recommendation to make a group to add users and privileges to the group, the right one is D
+   upvoted 3 times
+
+10. Anonymous: WTY 3 years, 8 months ago
+It mentioned more than one SRE, so adding the user to group is most suitable approach, Answer is D.
+   upvoted 2 times
+==============================

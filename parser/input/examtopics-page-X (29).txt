@@ -1,0 +1,301 @@
+==============================
+Page X — Question #291
+
+Pergunta:
+You are planning to migrate your containerized workloads to Google Kubernetes Engine (GKE). You need to determine which GKE option to use. Your solution must have high availability, minimal downtime, and the ability to promptly apply security updates to your nodes. You also want to pay only for the compute resources that your workloads use without managing nodes. You want to follow Google-recommended practices and minimize operational costs. What should you do?
+
+Alternativas:
+- A. Configure a Standard regional GKE duster.
+- B. Configure a Standard zonal GKE duster.
+- C. Configure a Standard multi-zonal GKE cluster.
+- D. Configure an Autopilot GKE cluster.
+
+Resposta correta:
+D. Configure an Autopilot GKE cluster.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Gius3 4 days, 8 hours ago
+Selected Answer: D
+Answer is D --> You also want to pay only for the compute resources that your workloads use without managing nodes
+   upvoted 1 times
+
+2. Anonymous: MohannadSamir 8 months ago
+Selected Answer: D
+Google-recommended practices --> Autopilot
+   upvoted 4 times
+==============================
+
+==============================
+Page X — Question #292
+
+Pergunta:
+Your company stores data from multiple sources that have different data storage requirements. These data include:
+1. Customer data that is structured and read with complex queries
+2. Historical log data that is large in volume and accessed infrequently
+3. Real-time sensor data with high-velocity writes, which needs to be available for analysis but can tolerate some data loss
+
+You need to design the most cost-effective storage solution that fulfills all data storage requirements. What should you do?
+
+Alternativas:
+- A. Use Firestore for customer data, Cloud Storage (Nearline) for historical logs, and Bigtable for sensor data.
+- B. Use Cloud SQL for customer data. Cloud Storage (Coldline) for historical logs, and BigQuery for sensor data.
+- C. Use Cloud SQL for customer data. Cloud Storage (Archive) for historical logs, and Bigtable for sensor data.
+- D. Use Spanner for all data.
+
+Resposta correta:
+C. Use Cloud SQL for customer data. Cloud Storage (Archive) for historical logs, and Bigtable for sensor data.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: psou7 2 weeks, 1 day ago
+Selected Answer: C
+Bigtable ✅ for sensor data (high-velocity writes).
+   upvoted 1 times
+
+2. Anonymous: gummybearcik 1 month, 3 weeks ago
+Selected Answer: C
+Cloud SQL for customer data. Cloud Storage (Archive) for historical logs, and Bigtable for sensor data.
+- Customer data: Complex queries and relational structure are best served by Cloud SQL rather than Firestore; Spanner is overkill and costlier unless you need global consistency and horizontal scale.
+- Historical logs: “Accessed infrequently” points to Archive as the most cost‑effective storage. If you anticipate more frequent reads (e.g., monthly), Coldline could be chosen instead, but Archive minimizes cost when reads are rare.
+- Sensor data: Bigtable excels at high‑throughput, time‑series ingestion and can handle eventual analyses with tolerance for some data loss; BigQuery is not ideal for sustained, ultra‑high write rates.
+   upvoted 2 times
+
+3. Anonymous: 763609c 1 month, 3 weeks ago
+Selected Answer: A
+if I consider it infrequent more than once a year
+   upvoted 1 times
+
+4. Anonymous: AdelElagawany 3 months, 1 week ago
+Selected Answer: C
+- Structured Transactional data (Cloud SQL)
+- Logs + Infrequent access (Cloud Storage Archive Class)
+- Sensor Data (Big Table)
+   upvoted 1 times
+
+5. Anonymous: NJBC 3 months, 2 weeks ago
+Selected Answer: C
+Structured - CloudSQL , Firestore is no-SQL (So not A)
+Large Volume and Infrequent - Coldline/Archive - It doesn't say how infrequent, but safe bet for 'historical logs' is Coldline at least or Archive (So not A)
+Also: Coldline Storage
+Use Case: Suitable for data that is infrequently accessed, like historical records, compliance archives, and disaster recovery data
+Real-time and write high velocity - BigTable is for high-performance, scalable db for real-time operations applications and massive amounts of data that require fast reads and writes. BigQuery's strength is NOT real-time transactional processing or frequent individual record updates/deletions. (So not B)
+C is the only viable answer left. (D doesn't make sense from the needs of the question).
+   upvoted 3 times
+
+6. Anonymous: MohannadSamir 8 months ago
+Selected Answer: A
+Structured and complex queries --> Firestore can handle it
+Large volume and infrequent --> Cloud storage Nearline
+Real-time and write high velocity --> Bigtable
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #293
+
+Pergunta:
+You work for a financial services company that operates as a stock market broker. Your company is planning to migrate to Google Cloud. You need to plan the network design in Google Cloud. Your design must:
+• Minimize the latency between all production systems.
+• Minimize costs related to your development environment.
+
+What should you do?
+
+Alternativas:
+- A. Create a VPC in the Standard Tier and one in the Premium Tier. Deploy production workloads in the Standard Tier and development workloads in the Premium Tier.
+- B. Create a VPC in the Standard Tier and one in the Premium Tier. Deploy development workloads in the Standard Tier and production workloads in the Premium Tier.
+- C. Create a VPC in the Premium Tier, and deploy both production and development workloads on this VPC.
+- D. Create a VPC in the Standard Tier, and deploy both production and development workloads on this VPC.
+
+Resposta correta:
+B. Create a VPC in the Standard Tier and one in the Premium Tier. Deploy development workloads in the Standard Tier and production workloads in the Premium Tier.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: psou7 2 weeks, 1 day ago
+Selected Answer: B
+Premium Tier uses Google’s global, high-performance backbone, which is the typical choice for latency-sensitive financial workloads.
+Standard Tier is cheaper for internet egress and is usually acceptable for dev/test environments where ultra-low latency isn’t critical.
+   upvoted 1 times
+
+2. Anonymous: MohannadSamir 8 months ago
+Selected Answer: B
+Itsss B
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #294
+
+Pergunta:
+You are managing a fleet of Compute Engine Linux instances in a Google Cloud project. Your company's engineering team requires SSH access to all instances to perform routine maintenance tasks. You need to manage the SSH access for the engineering team, and you want to minimize operational overhead when engineers join or leave the team. What should you do?
+
+Alternativas:
+- A. Create a single SSH key pair to be shared by all engineering team members. Add the public SSH key to project metadata.
+- B. Create an SSH key pair for each engineer on the team, and add the public SSH key to the metadata of the relevant instances.
+- C. Create a Google Group for all engineering team members, and grant them the Compute Viewer IAM role. Manage group membership when engineers join or leave the team.
+- D. Create a Google Group for all engineering team members, and set up OS Login for this group on the project. Manage group membership when engineers join or leave the team.
+
+Resposta correta:
+D. Create a Google Group for all engineering team members, and set up OS Login for this group on the project. Manage group membership when engineers join or leave the team.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: AdelElagawany 3 months, 1 week ago
+Selected Answer: D
+Google Cloud Identity Group + OsLogin enabled
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #295
+
+Pergunta:
+Your company was recently impacted by a service disruption that caused multiple Dataflow jobs to get stuck, resulting in significant downtime in downstream applications and revenue loss. You were able to resolve the issue by identifying and fixing an error you found in the code. You need to design a solution with minimal management effort to identify when jobs are stuck in the future to ensure that this issue does not occur again. What should you do?
+
+Alternativas:
+- A. Update the Dataflow job configurations to send messages to a Pub/Sub topic when there are delays. Configure a backup Dataflow job to process jobs that are delayed. Use Cloud Tasks to trigger an alert when messages are pushed to the Pub/Sub topic.
+- B. Set up Cloud Monitoring alerts on the data freshness metric for the Dataflow jobs to receive a notification when a certain threshold is reached.
+- C. Set up Error Reporting to identify stack traces that indicate slowdowns in Dataflow jobs. Set up alerts based on these log entries.
+- D. Use the Personalized Service Health dashboard to identify issues with Dataflow jobs across regions.
+
+Resposta correta:
+B. Set up Cloud Monitoring alerts on the data freshness metric for the Dataflow jobs to receive a notification when a certain threshold is reached.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: SajadAhm 1 month, 2 weeks ago
+Selected Answer: B
+Data freshness metric: This is a built-in Dataflow metric that measures how current/recent the data being processed is. If a job gets stuck, data freshness increases (data becomes stale)
+Cloud Monitoring alerts: Native integration with Dataflow metrics - no custom code required
+   upvoted 1 times
+
+2. Anonymous: MohannadSamir 8 months ago
+Selected Answer: B
+Data freshness is a key indicator of whether a job is processing data in a timely manner or getting stuck
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #296
+
+Pergunta:
+Your company is modernizing its applications and refactoring them to containerized microservices. You need to deploy the infrastructure on Google Cloud so that teams can deploy their applications. The applications cannot be exposed publicly. You want to minimize management and operational overhead. What should you do?
+
+Alternativas:
+- A. Provision a Google Kubernetes Engine (GKE) Autopilot cluster.
+- B. Provision a fleet of Compute Engine instances and install Kubernetes.
+- C. Provision a Standard regional Google Kubernetes Engine (GKE) cluster.
+- D. Provision a Standard zonal Google Kubernetes Engine (GKE) cluster.
+
+Resposta correta:
+A. Provision a Google Kubernetes Engine (GKE) Autopilot cluster.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: AdelElagawany 3 months, 1 week ago
+Selected Answer: A
+IMHO A is correct:
+Minimize management and operational overhead => Autopilot Cluster
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #297
+
+Pergunta:
+You have an application running inside a Compute Engine instance. You want to provide the application with secure access to a BigQuery dataset. You must ensure that credentials are only valid for a short period of time, and your application will only have access to the intended BigQuery dataset. You want to follow Google-recommended practices and minimize your operational costs. What should you do?
+
+Alternativas:
+- A. Attach a new service account to the instance every hour, and grant the service account the BigQuery Data Viewer IAM role on the project.
+- B. Attach a custom service account to the instance, and grant the service account the BigQuery Data Viewer IAM role on the dataset.
+- C. Attach a new service account to the instance every hour, and grant the service account the BigQuery Data Viewer IAM role on the dataset.
+- D. Attach a custom service account to the instance, and grant the service account the BigQuery Data Viewer IAM role on the project.
+
+Resposta correta:
+B. Attach a custom service account to the instance, and grant the service account the BigQuery Data Viewer IAM role on the dataset.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: b02d5eb 5 months, 3 weeks ago
+Selected Answer: B
+Correct answear is B.
+A&D - BigQuery Data Viewer IAM role on the project (user will have access to all datasets)
+C - Constantly rotating service accounts is impractical, introduces risk, and doesn't actually reduce credential lifetime
+   upvoted 1 times
+
+2. Anonymous: ahannora 6 months ago
+Selected Answer: B
+B: Least privilege, secure access, and minimal effort.
+   upvoted 1 times
+
+3. Anonymous: MohannadSamir 8 months ago
+Selected Answer: B
+Temp credentials --> Service account
+Least privilege --> on dataset
+   upvoted 3 times
+==============================
+
+==============================
+Page X — Question #298
+
+Pergunta:
+You have an application that is currently processing transactions by using a group of managed VM instances. You need to migrate the application so that it is serverless and scalable. You want to implement an asynchronous transaction processing system, while minimizing management overhead. What should you do?
+
+Alternativas:
+- A. Install Kafka on VM instances to acknowledge incoming transactions. Use Cloud Run to process transactions.
+- B. Use Pub/Sub to acknowledge incoming transactions. Use VM instances to process transactions.
+- C. Use Pub/Sub to acknowledge incoming transactions. Use Cloud Run to process transactions.
+- D. Install Kafka on VM instances to acknowledge incoming transactions. Use VM instances to process transactions.
+
+Resposta correta:
+C. Use Pub/Sub to acknowledge incoming transactions. Use Cloud Run to process transactions.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: BRDA 1 month, 1 week ago
+Selected Answer: C
+serverless -> cloudrun
+   upvoted 1 times
+
+2. Anonymous: SajadAhm 1 month, 2 weeks ago
+Selected Answer: C
+cloudrun is serverless.
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #299
+
+Pergunta:
+Your company has many legacy third-party applications that rely on a shared NFS server for file sharing between these workloads. You want to modernize the NFS server by using a Google Cloud managed service. You need to select the solution that requires the least amount of change to the application. What should you do?
+
+Alternativas:
+- A. Create a Compute Engine instance and configure an NFS server on the instance. Point all NFS mounts to the Compute Engine instance.
+- B. Deploy a Filestore instance. Replace all NFS mounts with a Filestore mount.
+- C. Configure Firestore. Configure all applications to use Firestore instead of the NFS server.
+- D. Create a Cloud Storage bucket. Configure all applications to use Cloud Storage client libraries instead of the NFS server.
+
+Resposta correta:
+B. Deploy a Filestore instance. Replace all NFS mounts with a Filestore mount.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: SajadAhm 3 weeks ago
+Selected Answer: B
+Filestore is the shared file server provided by google.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #300
+
+Pergunta:
+Your company is seeking a scalable solution to retain and explore application logs hosted on Compute Engine. You must be able to analyze your logs with SQL queries, and you want to be able to create charts to identify patterns and trends in your logs over time. You want to follow Google-recommended practices and minimize your operational costs. What should you do?
+
+Alternativas:
+- A. Use a custom script to push your application logs to BigQuery for exploration.
+- B. Ingest your application logs to Cloud Logging by using Ops Agent, and explore your logs in Logs Explorer.
+- C. Ingest your application logs to Cloud Logging by using Ops Agent, and explore your logs with Log Analytics.
+- D. Use a custom script to push your application logs to Cloud SQL for exploration.
+
+Resposta correta:
+C. Ingest your application logs to Cloud Logging by using Ops Agent, and explore your logs with Log Analytics.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: MohannadSamir 8 months ago
+Selected Answer: C
+SQL Queries --> Log Analytics
+   upvoted 3 times
+==============================

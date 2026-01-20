@@ -1,0 +1,680 @@
+==============================
+Page X — Question #231
+
+Pergunta:
+You have deployed an application on a single Compute Engine instance. The application writes logs to disk. Users start reporting errors with the application. You want to diagnose the problem. What should you do?
+
+Alternativas:
+- A. Navigate to Cloud Logging and view the application logs.
+- B. Configure a health check on the instance and set a “consecutive successes” Healthy threshold value of 1.
+- C. Connect to the instance’s serial console and read the application logs.
+- D. Install and configure the Ops agent and view the logs from Cloud Logging.
+
+Resposta correta:
+D. Install and configure the Ops agent and view the logs from Cloud Logging.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: qannik Highly Voted  1 year, 11 months ago
+Selected Answer: D
+I would go with D.
+By default there is no logs agent installed on a compute instance.
+So first you will have to install the Ops Agent and after a few minutes the logs will be visible in Cloud logging
+   upvoted 6 times
+
+2. Anonymous: 3arle Highly Voted  1 year, 11 months ago
+Selected Answer: D
+https://cloud.google.com/logging/docs/logging-gce-quickstart
+   upvoted 5 times
+
+3. Anonymous: AdelElagawany Most Recent  3 months, 1 week ago
+Selected Answer: D
+As in [1], it is walking us through how to collect and view syslog logs collected from an Apache web server installed on a Compute Engine virtual machine instance (An application running on VM as this question says) by using the Ops Agent. You can use a process similar to the one in this quickstart to monitor other third-party applications.
+In this quickstart, you do the following:
+1. Create a Compute Engine VM instance and install the Ops Agent.
+2. Install an Apache web server.
+3. Configure the Ops Agent for the Apache web server.
+4. View your logs in the Logs Explorer.
+5. Create a log-based alert.
+6. Test your alert.
+With that in mind, I will go for D
+   upvoted 1 times
+
+4. Anonymous: ccpmad 1 year, 2 months ago
+Telemetry is not application logs. Even if you install ops agent, you will not be able to consult the logs that the application writes to the instance disk. You have to enter the instance to inspect those logs, because those logs are not saved by the ops agent in gcp
+   upvoted 1 times
+ ccpmad 1 year, 2 months ago
+The question is tricky, since the application starts to work poorly, that does not mean that we find the reason in the application logs, we have to look at the logs (telemetry) of the instance to determine if it is a problem of the GCP infrastructure, so first have the operations agent installed and sending metrics
+   upvoted 2 times
+
+5. Anonymous: joao_01 1 year, 10 months ago
+Selected Answer: D
+We need to install the agent. Its D
+   upvoted 5 times
+
+6. Anonymous: scanner2 1 year, 10 months ago
+The Ops Agent is the primary agent for collecting telemetry from your Compute Engine instances.
+Answer is D
+https://cloud.google.com/logging/docs/agent/ops-agent
+https://cloud.google.com/logging/docs/agent/ops-agent/configuration
+   upvoted 5 times
+
+7. Anonymous: happydays 1 year, 11 months ago
+Selected Answer: A
+Chat Gpt says it's A
+   upvoted 2 times
+ Cynthia2023 1 year, 6 months ago
+after 5 months, Chat GPT chooses D. it evolves. lol.
+   upvoted 9 times
+ VijKall 1 year, 8 months ago
+Chat GPT need to get Google certified before qualifying to answer :-)
+   upvoted 21 times
+==============================
+
+==============================
+Page X — Question #232
+
+Pergunta:
+You recently received a new Google Cloud project with an attached billing account where you will work. You need to create instances, set firewalls, and store data in Cloud Storage. You want to follow Google-recommended practices. What should you do?
+
+Alternativas:
+- A. Use the gcloud CLI services enable cloudresourcemanager.googleapis.com command to enable all resources.
+- B. Use the gcloud services enable compute.googleapis.com command to enable Compute Engine and the gcloud services enable storage-api.googleapis.com command to enable the Cloud Storage APIs.
+- C. Open the Google Cloud console and enable all Google Cloud APIs from the API dashboard.
+- D. Open the Google Cloud console and run gcloud init --project in a Cloud Shell.
+
+Resposta correta:
+B. Use the gcloud services enable compute.googleapis.com command to enable Compute Engine and the gcloud services enable storage-api.googleapis.com command to enable the Cloud Storage APIs.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: VijKall Highly Voted  2 years, 2 months ago
+Selected Answer: B
+B is correct, need to enable API first thing before you can use any services.
+Can be done using Google Console or using CLI.
+   upvoted 5 times
+
+2. Anonymous: yomi95 Most Recent  1 year, 3 months ago
+Answer B.
+As for Firewall, after enabling the compute engine api, firewall can be setup in CLI. The Compute Engine API encompasses the functionality for configuring network resources, including firewalls.
+   upvoted 2 times
+
+3. Anonymous: BuenaCloudDE 1 year, 6 months ago
+But gcloud services enable storage-api.googleapis.com enabled by default. Maybe it another answer than B?
+   upvoted 1 times
+
+4. Anonymous: joao_01 2 years, 4 months ago
+Selected Answer: B
+Enable correspondent APIs. Its B
+   upvoted 4 times
+
+5. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: B
+B is the correct answer
+   upvoted 3 times
+
+6. Anonymous: 3arle 2 years, 5 months ago
+Selected Answer: B
+At first you need to enable API
+   upvoted 4 times
+==============================
+
+==============================
+Page X — Question #233
+
+Pergunta:
+Your application development team has created Docker images for an application that will be deployed on Google Cloud. Your team does not want to manage the infrastructure associated with this application. You need to ensure that the application can scale automatically as it gains popularity. What should you do?
+
+Alternativas:
+- A. Create an instance template with the container image, and deploy a Managed Instance Group with Autoscaling.
+- B. Upload Docker images to Artifact Registry, and deploy the application on Google Kubernetes Engine using Standard mode.
+- C. Upload Docker images to the Cloud Storage, and deploy the application on Google Kubernetes Engine using Standard mode.
+- D. Upload Docker images to Artifact Registry, and deploy the application on Cloud Run.
+
+Resposta correta:
+D. Upload Docker images to Artifact Registry, and deploy the application on Cloud Run.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Captain1212 Highly Voted  1 year, 4 months ago
+Selected Answer: D
+D is the correct answer , as question says your team dont want to manage the infrastrucutre associated withthe application this is offered by the cloudrun
+   upvoted 7 times
+
+2. Anonymous: joao_01 Highly Voted  1 year, 4 months ago
+Selected Answer: D
+Its D. GKE standard the nodes are managed by user. So D is correct.
+   upvoted 5 times
+
+3. Anonymous: peddyua Most Recent  11 months, 3 weeks ago
+Selected Answer: D
+But don't forget..Cloud Run SLA Monthly Uptime Percentage to Customer of at least 99.95%, which results in 22min downtime per month lol
+   upvoted 1 times
+
+4. Anonymous: nnecode 1 year, 4 months ago
+Selected Answer: D
+D. Upload Docker images to Artifact Registry and deploy the application on Cloud Run.
+   upvoted 3 times
+
+5. Anonymous: AkshayJangwal 1 year, 4 months ago
+Key Hint : Your team does not want to manage the infrastructure associated with this application
+This is offered by Cloud Run, hence option D.
+   upvoted 3 times
+
+6. Anonymous: scanner2 1 year, 4 months ago
+Selected Answer: D
+Answer is D.
+Cloud Run is container-as-a-service offering from Google Cloud. You can deploy the containerized application directly on top of Google's infrastructure, and only when a request comes.
+https://cloud.google.com/run/docs/overview/what-is-cloud-run
+   upvoted 2 times
+ scanner2 1 year, 4 months ago
+You don't need to worry about underlying infrastructure.
+A, C and E requires resources, virtual instance, GKE cluster provisioning and maintaining. so these are eliminated.
+   upvoted 2 times
+
+7. Anonymous: 3arle 1 year, 5 months ago
+Selected Answer: D
+GKE Standard mode: You manage the underlying infrastructure, including configuring the individual nodes.
+Instance group - you manage the infrastructure as well
+so after elimination A,B,C stays D
+   upvoted 2 times
+
+8. Anonymous: happydays 1 year, 5 months ago
+Selected Answer: D
+IT'S D
+   upvoted 3 times
+
+9. Anonymous: gpais 1 year, 5 months ago
+Selected Answer: D
+Option D
+   upvoted 4 times
+==============================
+
+==============================
+Page X — Question #234
+
+Pergunta:
+You are migrating a business critical application from your local data center into Google Cloud. As part of your high-availability strategy, you want to ensure that any data used by the application will be immediately available if a zonal failure occurs. What should you do?
+
+Alternativas:
+- A. Store the application data on a zonal persistent disk. Create a snapshot schedule for the disk. If an outage occurs, create a new disk from the most recent snapshot and attach it to a new VM in another zone.
+- B. Store the application data on a zonal persistent disk. If an outage occurs, create an instance in another zone with this disk attached.
+- C. Store the application data on a regional persistent disk. Create a snapshot schedule for the disk. If an outage occurs, create a new disk from the most recent snapshot and attach it to a new VM in another zone.
+- D. Store the application data on a regional persistent disk. If an outage occurs, create an instance in another zone with this disk attached.
+
+Resposta correta:
+D. Store the application data on a regional persistent disk. If an outage occurs, create an instance in another zone with this disk attached.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: carlalap Highly Voted  1 year, 8 months ago
+Answer is D. When your are using regional persistent disks, the data is automatically replicated to two replicas without the requirement of maintaining application replication. There is no need to use a snapshot.
+   upvoted 12 times
+
+2. Anonymous: wota Most Recent  1 year, 1 month ago
+Selected Answer: D
+Regional persistent disks provides active-active disk replication across two zones in same region. So the snapshots are not needed.
+   upvoted 2 times
+
+3. Anonymous: VijKall 1 year, 8 months ago
+Selected Answer: C
+Answer is C and not D.
+Use regional PD with regular snapshot for data redundancy.
+C works, but data will be stale, as there is no latest snapshot.
+A&B are out, as they are using regular PD and not regional PD.
+   upvoted 1 times
+ VijKall 1 year, 8 months ago
+I come back to correct his. Answer is D. Regional PD will be accessible even when zone fails and app can be brought up using same disk in different zone.
+   upvoted 11 times
+
+4. Anonymous: recluse7 1 year, 8 months ago
+Selected Answer: C
+Option C provides the best combination of data redundancy and recovery speed, making it the ideal choice for high-availability scenarios. While other options like option A (zonal persistent disk with snapshots) or option D (regional disk with instances in other zones) can also work, they may not offer the same level of efficiency and data protection as option C. Option B (zonal disk without replication) is less desirable because it lacks data redundancy and necessitates manual intervention to restore data in case of a zonal failure.
+   upvoted 1 times
+
+5. Anonymous: joao_01 1 year, 10 months ago
+Selected Answer: D
+I thought first it was C. Then i saw Google documentation and for sure the answer is D.
+   upvoted 3 times
+
+6. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: D
+D is the correct answer
+   upvoted 3 times
+
+7. Anonymous: DannSecurity 1 year, 10 months ago
+C,
+If you are designing robust systems or high availability services on Compute Engine, use regional Persistent Disk combined with other best practices such as backing up your data using snapshots.
+   upvoted 2 times
+
+8. Anonymous: Speridian 1 year, 11 months ago
+It should be D.
+   upvoted 1 times
+
+9. Anonymous: gfalconia 1 year, 11 months ago
+Selected Answer: D
+D, C doesn't make sense because article explicitly says that: 'During the failover, the regional persistent disk that is synchronously replicated to the secondary zone is force attached to the standby VM by the application control plane, and all traffic is directed to that VM based on health check signals.'
+https://cloud.google.com/compute/docs/disks/high-availability-regional-persistent-disk#failover
+   upvoted 3 times
+
+10. Anonymous: _cloudio_ 1 year, 11 months ago
+Selected Answer: D
+The benefit of regional persistent disks is that in the event of a zonal outage, where your virtual machine (VM) instance might become unavailable, you can usually force attach a regional persistent disk to a VM instance in a secondary zone in the same region.
+   upvoted 4 times
+==============================
+
+==============================
+Page X — Question #235
+
+Pergunta:
+The DevOps group in your organization needs full control of Compute Engine resources in your development project. However, they should not have permission to create or update any other resources in the project. You want to follow Google’s recommendations for setting permissions for the DevOps group. What should you do?
+
+Alternativas:
+- A. Grant the basic role roles/viewer and the predefined role roles/compute.admin to the DevOps group.
+- B. Create an IAM policy and grant all compute.instanceAdmin.* permissions to the policy. Attach the policy to the DevOps group.
+- C. Create a custom role at the folder level and grant all compute.instanceAdmin.* permissions to the role. Grant the custom role to the DevOps group.
+- D. Grant the basic role roles/editor to the DevOps group.
+
+Resposta correta:
+A. Grant the basic role roles/viewer and the predefined role roles/compute.admin to the DevOps group.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: VijKall Highly Voted  2 years, 2 months ago
+Selected Answer: A
+Answer is A.
+roles/viewer gives read only access on Project, so it does not create/update any resources.
+roles/compute.admin gives full access to Compute Engine resources.
+   upvoted 11 times
+
+2. Anonymous: carlalap Highly Voted  2 years, 2 months ago
+Answer is C.
+1. The DevOps group needs full control of Compute Engine resources in your development project. --> So, we grants permissions to create and update Compute Engine instances and their related resources, such as disks, images, and snapshots.
+A// Create a custom role at the folder level and grant all compute.instanceAdmin.* permissions to the role.
+2. They should not have permission to create or update any other resources in the project. --> We do not grant permissions to create or update any other resources in the project, such as Cloud Storage buckets, Cloud Functions, or BigQuery datasets.
+A// Grant the custom role to the DevOps group.
+   upvoted 7 times
+ carlalap 2 years, 2 months ago
+Furthermore, Google recommends using custom roles to grant the minimum set of permissions that users need to perform their tasks.
+   upvoted 1 times
+ vaibhavCodian 2 years, 1 month ago
+completely incorrect
+Compute Admin
+(roles/compute.admin)
+Full control of all Compute Engine resources.
+If the user will be managing virtual machine instances that are configured to run as a service account, you must also grant the roles/iam.serviceAccountUser role.
+   upvoted 1 times
+ goalDigger 2 years ago
+We can only grant a custom role within the project or organization in which we created it. We cannot grant custom roles on other projects or organizations, or on resources within other projects or organizations. Note: We cannot define custom roles at the folder level. So, C cannot be the answer.
+   upvoted 2 times
+ ccpmad 1 year, 7 months ago
+ok, yes, we can not create a custom role at folder level, but we can create the custom role at organization level, and then, go to IAM at folder level, and use that custom role that give permissions at folder level. I have just try it and works.
+Moreover, it is not possible A, because question says that Dev group has to have permissions in development project. I think question is not correctly written. Becuase A answer allow Dev Grop to create resources in any project in the organization.
+But finally, knowing the question is not writteng correctly, in the exam, I think I will bet for A.
+   upvoted 1 times
+ ccpmad 1 year, 7 months ago
+Yes, I have just read another time answer C. C is not possible because says that creation of the custom role is at folder level. That is not possible.
+In real life, we would create the custom role at organization level, and the use it at folder level, so Dev group only have the permissions in their dev projecto.
+For this question, in an exam, we have to pick A.
+Thank you and good luck
+   upvoted 1 times
+
+3. Anonymous: josecouva Most Recent  3 weeks ago
+Selected Answer: B
+Google's recommendation is the Principle of Least Privilege. The roles/viewer role is too broad and allows viewing of things other than VMs.
+   upvoted 1 times
+
+4. Anonymous: Timfdklfajlksdjlakf 1 year, 4 months ago
+Selected Answer: A
+The correct answer is A. Take it or leave it
+   upvoted 1 times
+
+5. Anonymous: ngeorgiev2 1 year, 10 months ago
+Selected Answer: A
+"roles/compute.admin" - Full control of all Compute Engine resources.
+"roles/compute.instanceAdmin" - If the user will be managing virtual machine instances that are configured to run as a service account, you must also grant the roles/iam.serviceAccountUser role.
+Correct answer is definitely A
+   upvoted 3 times
+
+6. Anonymous: sinh 2 years ago
+Selected Answer: B
+Google recommends using custom roles
+   upvoted 1 times
+ ccpmad 1 year, 8 months ago
+IAM policy is not for a project, is for organization, it is not B
+   upvoted 3 times
+
+7. Anonymous: Cynthia2023 2 years ago
+Selected Answer: A
+A. Grant roles/viewer and roles/compute.admin:
+• The roles/viewer role provides read-only access to most Google Cloud services
+• The roles/compute.admin role gives full control over Compute Engine resources, which is appropriate for the DevOps group's needs.
+   upvoted 2 times
+
+8. Anonymous: Peto12 2 years, 1 month ago
+Selected Answer: B
+This one is very tricky, by my opinion correct answer is B.
+This wildcard at the end is important "grant all compute.instanceAdmin.*" that means that you need to assign two policies that are already there:
+- roles/compute.instanceAdmin.v1
+- roles/compute.instanceAdmin (beta)
+So if the user has compute.instanceAdmin.v1 he will have full compute access without adding the additional one "roles/iam.serviceAccountUser". Also another argument against answer A is the Google recommendations to use the basic roles only when there is no predefined roles, and this is valid for all kind of environments not just production.
+   upvoted 3 times
+ kuracpalac 1 year, 10 months ago
+I selected B as well due to the basic roles being mentioned in A, which Google says it's a no no as they are too broad.
+   upvoted 1 times
+ ccpmad 1 year, 8 months ago
+iam policy is for organization, this question is for a project. So it is not B
+   upvoted 1 times
+
+9. Anonymous: ogerber 2 years, 1 month ago
+Its B, 100%
+   upvoted 2 times
+
+10. Anonymous: Abbru00 2 years, 2 months ago
+Selected Answer: A
+it's A, No doubt.
+- "they should not have permission to create or update any other resources in the project"
+that sentence doesn't state that they don't want give acess to other resources, just not create or update.
+basic roles/viewer gives permissions for read-only actions:
+https://cloud.google.com/iam/docs/understanding-roles
+- "Full control of all Compute Engine resources"
+Compute Admin (roles/compute.admin) gives full control of all Compute Engine resources.
+https://cloud.google.com/iam/docs/understanding-roles#compute.admin
+compute.instanceAdmin.* does not.
+   upvoted 3 times
+==============================
+
+==============================
+Page X — Question #236
+
+Pergunta:
+Your team is running an on-premises ecommerce application. The application contains a complex set of microservices written in Python, and each microservice is running on Docker containers. Configurations are injected by using environment variables. You need to deploy your current application to a serverless Google Cloud cloud solution. What should you do?
+
+Alternativas:
+- A. Use your existing CI/CD pipeline. Use the generated Docker images and deploy them to Cloud Run. Update the configurations and the required endpoints.
+- B. Use your existing continuous integration and delivery (CI/CD) pipeline. Use the generated Docker images and deploy them to Cloud Function. Use the same configuration as on-premises.
+- C. Use the existing codebase and deploy each service as a separate Cloud Function. Update the configurations and the required endpoints.
+- D. Use your existing codebase and deploy each service as a separate Cloud Run. Use the same configurations as on-premises.
+
+Resposta correta:
+A. Use your existing CI/CD pipeline. Use the generated Docker images and deploy them to Cloud Run. Update the configurations and the required endpoints.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: Captain1212 Highly Voted  2 years, 4 months ago
+Selected Answer: A
+A is the correct answer , use your existing CI/cd pipeline and update the configuratons and the required endpoints
+   upvoted 6 times
+
+2. Anonymous: denno22 Most Recent  1 year, 3 months ago
+Selected Answer: A
+Cloud Run is better than Cloud Functions and we have to update the configurations.
+   upvoted 1 times
+
+3. Anonymous: nmnm22 2 years, 2 months ago
+Selected Answer: A
+A seems the most effecient
+   upvoted 3 times
+
+4. Anonymous: joao_01 2 years, 4 months ago
+Selected Answer: A
+I think its A
+   upvoted 2 times
+
+5. Anonymous: nnecode 2 years, 4 months ago
+Selected Answer: D
+I vote D
+   upvoted 1 times
+
+6. Anonymous: Cherrycardo 2 years, 5 months ago
+Selected Answer: D
+https://cloud.google.com/run/docs/configuring/services/environment-variables
+"The environment variables defined in the container runtime contract are reserved and cannot be set. In particular, the PORT environment variable is injected inside your container by Cloud Run. You should not set it yourself."
+Hence, by "using the same configurations of on-premise" you are just using the environment variables already present on the container.
+   upvoted 1 times
+ Cherrycardo 2 years, 5 months ago
+I was wrong. The right answer is A. The current approach to loadi Docker images into Artifact Registry (formerly Container Registry), is by using CI/CD Pipelines.
+   upvoted 8 times
+
+7. Anonymous: 3arle 2 years, 5 months ago
+Selected Answer: A
+app was written for docker image, it likely should be rewritten for cloud run
+   upvoted 1 times
+
+8. Anonymous: qannik 2 years, 5 months ago
+Selected Answer: A
+I think it's A.
+It can't be D because you can not use the same configuration as on-premise.
+   upvoted 4 times
+
+9. Anonymous: qannik 2 years, 5 months ago
+Selected Answer: D
+I vote for D
+   upvoted 1 times
+
+10. Anonymous: qannik 2 years, 5 months ago
+I vote for D
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #237
+
+Pergunta:
+You are running multiple microservices in a Kubernetes Engine cluster. One microservice is rendering images. The microservice responsible for the image rendering requires a large amount of CPU time compared to the memory it requires. The other microservices are workloads that are optimized for n2-standard machine types. You need to optimize your cluster so that all workloads are using resources as efficiently as possible. What should you do?
+
+Alternativas:
+- A. Assign the pods of the image rendering microservice a higher pod priority than the other microservices.
+- B. Create a node pool with compute-optimized machine type nodes for the image rendering microservice. Use the node pool with general-purpose machine type nodes for the other microservices.
+- C. Use the node pool with general-purpose machine type nodes for the image rendering microservice. Create a node pool with compute-optimized machine type nodes for the other microservices.
+- D. Configure the required amount of CPU and memory in the resource requests specification of the image rendering microservice deployment. Keep the resource requests for the other microservices at the default.
+
+Resposta correta:
+B. Create a node pool with compute-optimized machine type nodes for the image rendering microservice. Use the node pool with general-purpose machine type nodes for the other microservices.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: joao_01 Highly Voted  1 year, 10 months ago
+Selected Answer: B
+Its B, question appear before
+   upvoted 7 times
+
+2. Anonymous: pzacariasf7 Most Recent  1 year, 4 months ago
+Selected Answer: B
+repeated question, the answer is B.
+   upvoted 3 times
+
+3. Anonymous: sinh 1 year, 6 months ago
+Same as No.196.
+   upvoted 3 times
+
+4. Anonymous: 3arle 1 year, 11 months ago
+Selected Answer: B
+repeated question
+   upvoted 2 times
+
+5. Anonymous: qannik 1 year, 11 months ago
+Selected Answer: B
+B has logic
+   upvoted 3 times
+==============================
+
+==============================
+Page X — Question #238
+
+Pergunta:
+You are working in a team that has developed a new application that needs to be deployed on Kubernetes. The production application is business critical and should be optimized for reliability. You need to provision a Kubernetes cluster and want to follow Google-recommended practices. What should you do?
+
+Alternativas:
+- A. Create a GKE Autopilot cluster. Enroll the cluster in the rapid release channel.
+- B. Create a GKE Autopilot cluster. Enroll the cluster in the stable release channel.
+- C. Create a zonal GKE standard cluster. Enroll the cluster in the stable release channel.
+- D. Create a regional GKE standard cluster. Enroll the cluster in the rapid release channel.
+
+Resposta correta:
+B. Create a GKE Autopilot cluster. Enroll the cluster in the stable release channel.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: nmnm22 Highly Voted  1 year, 2 months ago
+"recommended practices" --> Autopilot
+"optimized for reliability" --> Stable release
+   upvoted 14 times
+
+2. Anonymous: Captain1212 Highly Voted  1 year, 4 months ago
+Selected Answer: B
+Autopilot cluster is more relaible and gives more time to fix
+   upvoted 5 times
+
+3. Anonymous: hisafaj159 Most Recent  1 year ago
+Why not C. its saying business critical and should be optimized for reliability. So in case of any disaster it is more accurate, please correct me if i am wrong.
+   upvoted 1 times
+
+4. Anonymous: joao_01 1 year, 4 months ago
+Selected Answer: B
+I selected B
+   upvoted 2 times
+
+5. Anonymous: 3arle 1 year, 5 months ago
+Selected Answer: B
+Autopilot is more reliable and stable release gives more time to fix issues in new version of GKE
+   upvoted 4 times
+
+6. Anonymous: qannik 1 year, 5 months ago
+Selected Answer: B
+Autopilot cluster is recommended by Google
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #239
+
+Pergunta:
+You are responsible for a web application on Compute Engine. You want your support team to be notified automatically if users experience high latency for at least 5 minutes. You need a Google-recommended solution with no development cost. What should you do?
+
+Alternativas:
+- A. Export Cloud Monitoring metrics to BigQuery and use a Looker Studio dashboard to monitor your web application’s latency.
+- B. Create an alert policy to send a notification when the HTTP response latency exceeds the specified threshold.
+- C. Implement an App Engine service which invokes the Cloud Monitoring API and sends a notification in case of anomalies.
+- D. Use the Cloud Monitoring dashboard to observe latency and take the necessary actions when the response latency exceeds the specified threshold.
+
+Resposta correta:
+B. Create an alert policy to send a notification when the HTTP response latency exceeds the specified threshold.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: rahulrauki Highly Voted  1 year, 9 months ago
+Selected Answer: B
+"No development cost" : BigQuery and GAE out
+"Automatically" : Option D out ("take necessary actions")
+Left with option B
+   upvoted 9 times
+
+2. Anonymous: Jayz1992 Most Recent  1 year ago
+Selected Answer: C
+Set up an Alerting Policy:
+Go to the Cloud Monitoring Console.
+Navigate to Alerting under the "Monitoring" section.
+Create a new alerting policy.
+Choose a metric that reflects the latency you want to monitor (e.g., http/request_latencies).
+Set the threshold for high latency (e.g., a latency value that signifies an issue).
+Define the duration of the condition (e.g., 5 minutes). This will ensure the alert triggers only if the latency remains high for a sustained period.
+Set up Notification Channels:
+Under the alerting policy, configure a notification channel to send alerts to your support team (e.g., via email, SMS, or through a Google Cloud Pub/Sub topic if you want more advanced options).
+You can configure multiple notification channels to ensure the support team is notified promptly.
+so if we have to send notifications (email, msg etc ) to entire team, then I think C is right option
+   upvoted 1 times
+
+3. Anonymous: PiperMe 1 year, 4 months ago
+Selected Answer: B
+B. Cloud Monitoring's alerting policies are designed specifically for this scenario
+   upvoted 3 times
+
+4. Anonymous: ExamsFR 1 year, 10 months ago
+Selected Answer: B
+"You need a Google-recommended solution with no development cost"
+   upvoted 3 times
+
+5. Anonymous: 3arle 1 year, 11 months ago
+Selected Answer: B
+https://cloud.google.com/monitoring/alerts#alerting-example
+   upvoted 4 times
+
+6. Anonymous: gpais 1 year, 11 months ago
+Selected Answer: B
+B seems to be the best answer
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #240
+
+Pergunta:
+You have an on-premises data analytics set of binaries that processes data files in memory for about 45 minutes every midnight. The sizes of those data files range from 1 gigabyte to 16 gigabytes. You want to migrate this application to Google Cloud with minimal effort and cost. What should you do?
+
+Alternativas:
+- A. Create a container for the set of binaries. Use Cloud Scheduler to start a Cloud Run job for the container.
+- B. Create a container for the set of binaries. Deploy the container to Google Kubernetes Engine (GKE) and use the Kubernetes scheduler to start the application.
+- C. Upload the code to Cloud Functions. Use Cloud Scheduler to start the application.
+- D. Lift and shift to a VM on Compute Engine. Use an instance schedule to start and stop the instance.
+
+Resposta correta:
+D. Lift and shift to a VM on Compute Engine. Use an instance schedule to start and stop the instance.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: taylz876 Highly Voted  1 year, 9 months ago
+Selected Answer: D
+Here's why option D is the most appropriate:
+->Compute Engine: Compute Engine provides virtual machines (VMs) that closely resemble traditional on-premises servers. It allows you to migrate your existing application as-is to the Google Cloud platform.
+->Instance Scheduling: You can schedule the VM instance to start and stop at specific times, such as midnight, to align with your existing processing schedule. This ensures that the application runs at the required time, similar to the on-premises setup.
+->Minimal Effort and Cost: The "lift and shift" approach minimizes the need for code modifications or containerization, reducing migration complexity. It also allows you to use the same binaries and configurations as your on-premises setup, saving development effort. You only pay for the VM's compute resources when it's running, making it cost-effective.
+   upvoted 9 times
+
+2. Anonymous: joao_01 Highly Voted  1 year, 10 months ago
+Selected Answer: D
+This one is a tough one. Ill consider this in my answers:
+Cost --> Both are more the same (the process will run at the same frequency)
+Effort --> Create the image in A takes more effort then to option D.
+With this in mind ill choose D. (before i was choosing A).
+   upvoted 5 times
+ VijKall 1 year, 8 months ago
+Cost will reduce as D option is starting VM at midnight for the job and stop after completion.
+   upvoted 1 times
+
+3. Anonymous: peddyua Most Recent  11 months, 3 weeks ago
+Selected Answer: D
+Pretty easy, containers designed for something light, 1gb-16gb is not light
+minimal effort -> lift and shift
+   upvoted 1 times
+
+4. Anonymous: halifax 1 year, 1 month ago
+D - perfect solution, but expensive!
+Cloud run maximum execution limit time 60 mins (very close to the 45 mins..risky!)
+The maximum execution limit time for the cloud function is 9 mins (less than 45)
+   upvoted 1 times
+
+5. Anonymous: kuracpalac 1 year, 4 months ago
+For my 2c I think I would have selected A, but D is a possibility.
+A because in the long run Cloud Run should cost less than D I believe, as it would take less CPU time through a period of time if data is from 1-16GB.
+D could be because it potentially requires "less" effort compared to CR.
+   upvoted 1 times
+
+6. Anonymous: carlalap 1 year, 7 months ago
+I think the answer is C.
+Cloud Run is ideal for applications that have short running times and variable workloads, like this data analytics application. Also, Lifting and shifting the application to a VM on Compute Engine would require to manage the VM by a person, including tasks like patching the operating system, managing security updates, and scaling the VM. This is more effort than using Cloud Run.
+   upvoted 1 times
+ carlalap 1 year, 7 months ago
+Sorry, I must correct, I think it's A.
+   upvoted 3 times
+
+7. Anonymous: VijKall 1 year, 8 months ago
+Selected Answer: D
+I vote for D.
+   upvoted 3 times
+
+8. Anonymous: SinghAnc 1 year, 9 months ago
+Selected Answer: D
+D is the correct answer.
+   upvoted 4 times
+
+9. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: D
+D is the correct answer as it requires the minimoal effort
+   upvoted 3 times
+
+10. Anonymous: scanner2 1 year, 10 months ago
+Selected Answer: A
+A is correct answer.
+   upvoted 1 times
+==============================

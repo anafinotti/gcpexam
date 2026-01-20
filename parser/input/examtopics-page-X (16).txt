@@ -1,0 +1,868 @@
+==============================
+Page X — Question #161
+
+Pergunta:
+You are performing a monthly security check of your Google Cloud environment and want to know who has access to view data stored in your Google Cloud
+Project. What should you do?
+
+Alternativas:
+- A. Enable Audit Logs for all APIs that are related to data storage.
+- B. Review the IAM permissions for any role that allows for data access.
+- C. Review the Identity-Aware Proxy settings for each resource.
+- D. Create a Data Loss Prevention job.
+
+Resposta correta:
+B. Review the IAM permissions for any role that allows for data access.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: JelloMan Highly Voted  3 years, 1 month ago
+Selected Answer: B
+Only use audit logs to look at history (PAST)
+If you need current, up-to-date, info regarding permissions always go to IAM
+   upvoted 16 times
+
+2. Anonymous: Alejondri Highly Voted  3 years, 2 months ago
+Selected Answer: B
+B is the one:
+A. Enable Audit Logs for all APIs that are related to data storage. --> That is not the correct answer, if someone with permissions has not accessed or does not access, it will not be listed.
+B. Review the IAM permissions for any role that allows for data access. --> That's correct
+C. Review the Identity-Aware Proxy settings for each resource. --> Nothing relevant, Proxy? Is configured? The question don't ask or tell something about if it is configured.
+D. Create a Data Loss Prevention job. --> Data Loss Prevention nothing to see here.
+   upvoted 11 times
+
+3. Anonymous: ccpmad Most Recent  1 year, 1 month ago
+Selected Answer: B
+"who has access" > We neet to know present, so check IAM > it is B
+If question says, check who has accessed, yes is past, audit logs
+   upvoted 2 times
+
+4. Anonymous: Jonassamr 1 year, 2 months ago
+Selected Answer: B
+acces => IAM
+History => Logs
+   upvoted 1 times
+
+5. Anonymous: snkhatri 2 years, 10 months ago
+B "WHO HAS ACCESS"
+   upvoted 2 times
+ Naree 2 years ago
+Yes, that's the catch.. The question here is "Who has access?" and not "Who has accessed?"
+Answer is "B".
+   upvoted 1 times
+
+6. Anonymous: AzureDP900 3 years ago
+B is correct
+   upvoted 2 times
+
+7. Anonymous: akshaychavan7 3 years, 1 month ago
+Selected Answer: B
+Without any doubt, it's B.
+   upvoted 3 times
+
+8. Anonymous: Terzlightyear 3 years, 2 months ago
+Selected Answer: B
+B is the one
+   upvoted 3 times
+ sdflkds 3 years, 2 months ago
+B. 'Audit logs help you answer "who did what, where, and when?"'(from https://cloud.google.com/logging/docs/audit). So, not who has access, but rather who accessed.
+   upvoted 1 times
+
+9. Anonymous: Maltb 3 years, 2 months ago
+Selected Answer: A
+La réponse A.
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #162
+
+Pergunta:
+Your company has embraced a hybrid cloud strategy where some of the applications are deployed on Google Cloud. A Virtual Private Network (VPN) tunnel connects your Virtual Private Cloud (VPC) in Google Cloud with your company's on-premises network. Multiple applications in Google Cloud need to connect to an on-premises database server, and you want to avoid having to change the IP configuration in all of your applications when the IP of the database changes.
+What should you do?
+
+Alternativas:
+- A. Configure Cloud NAT for all subnets of your VPC to be used when egressing from the VM instances.
+- B. Create a private zone on Cloud DNS, and configure the applications with the DNS name.
+- C. Configure the IP of the database as custom metadata for each instance, and query the metadata server.
+- D. Query the Compute Engine internal DNS from the applications to retrieve the IP of the database.
+
+Resposta correta:
+B. Create a private zone on Cloud DNS, and configure the applications with the DNS name.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: kopper2019 Highly Voted  3 years, 9 months ago
+B,
+Forwarding zones
+Cloud DNS forwarding zones let you configure target name servers for specific private zones. Using a forwarding zone is one way to implement outbound DNS forwarding from your VPC network.
+A Cloud DNS forwarding zone is a special type of Cloud DNS private zone. Instead of creating records within the zone, you specify a set of forwarding targets. Each forwarding target is an IP address of a DNS server, located in your VPC network, or in an on-premises network connected to your VPC network by Cloud VPN or Cloud Interconnect.
+A does not apply, that is to provide internet access to resources
+C, does not apply
+D, I don't get it
+so B
+   upvoted 34 times
+ MacFreak 2 years, 4 months ago
+"A does not apply, that is to provide internet access to resources" - do you really think NAT is only being used between public and private? Well...it's not! :)
+   upvoted 1 times
+ meh009 3 years, 9 months ago
+Agreed, It's B although I chose A intitally. After some careful consideration and understanding how Cloud NAT works, I'm sticking with B
+https://cloud.google.com/nat/docs/overview
+   upvoted 3 times
+ meh009 3 years, 9 months ago
+Further clarification:
+''On-premises clients can resolve records in private zones, forwarding zones, and peering zones for which the VPC network has been authorized. On-premises clients use Cloud VPN or Cloud Interconnect to connect to the VPC network.''
+   upvoted 1 times
+ djgodzilla 3 years, 7 months ago
+this is talking about On-premises client resolving nodes outside their network . the question is about how would the application tier within the VPC would resolve the database server . you're confusing the resolution direction my friend
+   upvoted 3 times
+ djgodzilla 3 years, 7 months ago
+It is still B , but it's rather outbound forward that's needed here :
+DNS outbound Forwarding :
+- Set up outbound forwarding private zones to query on-premises servers (On-prem Authoritative Zone: corp.example.com)
+- In Cloud Router , add a custom route advertisement for GCP DNS proxies range 35.199.192.0/19 to the on-premises environment.
+- Make sure inbound DNS traffic from 35.199.192.0/19 is allowed on on-prem firewall
+- Cloud Router should be learning on-prem network route from On-prem Router
+https://youtu.be/OH_Jw8NhEGU?t=1283
+https://cloud.google.com/dns/docs/best-practices#use_forwarding_zones_to_query_on-premises_servers
+   upvoted 3 times
+
+2. Anonymous: pondai Highly Voted  3 years, 9 months ago
+https://cloud.google.com/dns/docs/best-practices#best_practices_for_dns_forwarding_zones_and_server_policies
+Cloud DNS offers DNS forwarding zones and DNS server policies to allow lookups of DNS names between your on-premises and Google Cloud environment. You have multiple options for configuring DNS forwarding. The following section lists best practices for hybrid DNS setup. These best practices are illustrated in the Reference architectures for hybrid DNS.
+So I think B is correct
+   upvoted 9 times
+
+3. Anonymous: thewalker Most Recent  1 year, 1 month ago
+Selected Answer: B
+B
+https://cloud.google.com/dns/docs/overview
+   upvoted 1 times
+
+4. Anonymous: scanner2 1 year, 4 months ago
+Selected Answer: B
+DNS is a hierarchical distributed database that lets you store IP addresses and other data and look them up by name. Cloud DNS lets you publish your zones and records in DNS without the burden of managing your own DNS servers and software.
+Cloud DNS offers both public zones and private managed DNS zones. A public zone is visible to the public internet, while a private zone is visible only from one or more Virtual Private Cloud (VPC) networks that you specify.
+https://cloud.google.com/dns/docs/overview
+   upvoted 3 times
+
+5. Anonymous: Captain1212 1 year, 4 months ago
+Selected Answer: B
+B is the correct Answer
+   upvoted 1 times
+
+6. Anonymous: jrisl1991 1 year, 11 months ago
+Selected Answer: B
+Based on this - https://cloud.google.com/dns/docs/overview#dns-forwarding-methods B must be the best option. I don't think there's a "typo" (or completely wrongly worded answer) in option D (there's comments saying that instead of Compute Engine it should be on-premise). I believe option D is wrong on purpose to create a confusion.
+   upvoted 1 times
+
+7. Anonymous: Charumathi 2 years, 3 months ago
+Selected Answer: B
+B is correct answer,
+Configure Private Google Access for on-premises hosts,
+DNS configuration
+Your on-premises network must have DNS zones and records configured so that Google domain names resolve to the set of IP addresses for either private.googleapis.com or restricted.googleapis.com. You can create Cloud DNS managed private zones and use a Cloud DNS inbound server policy, or you can configure on-premises name servers. For example, you can use BIND or Microsoft Active Directory DNS.
+https://cloud.google.com/vpc/docs/configure-private-google-access-hybrid#config-domain
+   upvoted 1 times
+
+8. Anonymous: aforolt 2 years, 3 months ago
+Ans is D, looks like there is typo
+   upvoted 1 times
+
+9. Anonymous: habros 2 years, 5 months ago
+B. DNS works best with dynamic IPs.
+   upvoted 1 times
+
+10. Anonymous: patashish 2 years, 6 months ago
+Correct Ans is B
+Ref - https://cloud.google.com/dns/docs/best-practices#best_practices_for_private_zones
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #163
+
+Pergunta:
+You have developed a containerized web application that will serve internal colleagues during business hours. You want to ensure that no costs are incurred outside of the hours the application is used. You have just created a new Google Cloud project and want to deploy the application. What should you do?
+
+Alternativas:
+- A. Deploy the container on Cloud Run for Anthos, and set the minimum number of instances to zero.
+- B. Deploy the container on Cloud Run (fully managed), and set the minimum number of instances to zero.
+- C. Deploy the container on App Engine flexible environment with autoscaling, and set the value min_instances to zero in the app.yaml.
+- D. Deploy the container on App Engine flexible environment with manual scaling, and set the value instances to zero in the app.yaml.
+
+Resposta correta:
+B. Deploy the container on Cloud Run (fully managed), and set the minimum number of instances to zero.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: crysk Highly Voted  4 years, 10 months ago
+I think that is B the correct answer, because Cloud Run can scale to 0:
+https://cloud.google.com/run/docs/about-instance-autoscaling
+And App Engine Flexible can't scale to 0, the minimum instance number is 1:
+https://cloud.google.com/appengine/docs/the-appengine-environments#comparing_high-level_features
+   upvoted 39 times
+ ryumada 3 years, 5 months ago
+No for the App Engine Flexible Environment, but App Engine Standard can also scale to zero.
+   upvoted 3 times
+
+2. Anonymous: pca2b Highly Voted  4 years, 9 months ago
+B:
+not A because Anthos is an add-on to GKE clusters, 'new project' means we dont have a GKE cluster to work with
+https://cloud.google.com/kuberun/docs/architecture-overview#components_in_the_default_installation
+   upvoted 16 times
+
+3. Anonymous: JoseCloudEng1994 Most Recent  1 year ago
+Selected Answer: B
+Trick question.
+- With AppEngine you pay all the time for the resources that you are using
+- With Cloud Run you pay for startup/shutdown + ONLY the time the app is servicing requests. Since they clarify 'during business' hours the answer is B, definitively tricky though
+   upvoted 1 times
+
+4. Anonymous: 09bd94b 1 year, 1 month ago
+Selected Answer: B
+Cloud Run is the only option provided able to scale to 0
+   upvoted 1 times
+
+5. Anonymous: ccpmad 1 year, 8 months ago
+Selected Answer: B
+Container = cloud run (not App Engine)
+On AE, app runs as a node process, like booting it up with npm start locally. AE is a traditional hosting platform: it runs continuously and serves requests as they come in. At the end of the month, you pay for the amount of time it was running, which is typically “the entire month”.
+Cloud Run runs containers, so for each release you have to build a container and push it to GCP. Unlike App Engine, Cloud Run only runs when requests come in, so you don’t pay for time spent idling.
+   upvoted 1 times
+
+6. Anonymous: scanner2 2 years, 4 months ago
+Selected Answer: B
+Cloud Run is a managed compute platform that lets you run containers directly on top of Google's scalable infrastructure.
+Cloud Run adds and removes instances automatically to handle all incoming requests. If there are no incoming requests to your service, even the last remaining instance will be removed. This behavior is commonly referred to as scale to zero.
+https://cloud.google.com/run/docs/overview/what-is-cloud-run
+   upvoted 3 times
+
+7. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: B
+B is the correct answer, in c, d as App engine flexible environment can't scale to Zero and A in this GKE cluster is used but we have just created a project so it will add extra cost
+   upvoted 1 times
+
+8. Anonymous: N_A 2 years, 8 months ago
+Selected Answer: B
+C. and D. are wrong answers as only the App Engine standard environment scales down to zero.
+Answer A. will incur extra cost as Cloud Run for Anthos runs on Kubernetes, so need to have a k8s cluster available.
+B. Is correct, as "Cloud Run automatically scales up or down from zero to N depending on traffic, leveraging container image streaming for a fast startup time." from https://cloud.google.com/run
+   upvoted 4 times
+
+9. Anonymous: Charumathi 3 years, 3 months ago
+Selected Answer: B
+B is the correct answer,
+Cloud Functions can scale to zero, whereas App Engine will not be able to scale to zero, it should have at least one instance.
+Add-on Info,
+App-Engine Standard can scale to zero, whereas App-Engine Flexible couldn't scale down to zero.
+   upvoted 4 times
+
+10. Anonymous: sylva91 3 years, 4 months ago
+Selected Answer: B
+B is the answer since we can scale to 0 and the other key word is "containerized"
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #164
+
+Pergunta:
+You have experimented with Google Cloud using your own credit card and expensed the costs to your company. Your company wants to streamline the billing process and charge the costs of your projects to their monthly invoice. What should you do?
+
+Alternativas:
+- A. Grant the financial team the IAM role of ג€Billing Account Userג€ on the billing account linked to your credit card.
+- B. Set up BigQuery billing export and grant your financial department IAM access to query the data.
+- C. Create a ticket with Google Billing Support to ask them to send the invoice to your company.
+- D. Change the billing account of your projects to the billing account of your company.
+
+Resposta correta:
+D. Change the billing account of your projects to the billing account of your company.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: j_mrn Highly Voted  3 years, 10 months ago
+1000% Ans D
+   upvoted 28 times
+
+2. Anonymous: rsuresh27 Highly Voted  2 years, 8 months ago
+Please do not overthink the question. The question does not mention anything about finance teams, so A cannot be correct. D is the only one that makes sense out of the remaining options.
+   upvoted 11 times
+
+3. Anonymous: halifax Most Recent  1 year, 1 month ago
+Selected Answer: D
+The question is NOT asking to view it by granting IAM roles. What you want is the cost to go to your company. Option D will assign it to your company billing.
+   upvoted 1 times
+
+4. Anonymous: 3arle 1 year, 5 months ago
+Selected Answer: D
+D is correct
+   upvoted 1 times
+
+5. Anonymous: N_A 1 year, 8 months ago
+With A. the financial team can only link the billing account linked to the credit card.
+B. C. are wrong (no comment).
+D. is the only correct answer even though it doesn't give the exact permission to grant in oder to do this. I guess the financial team already has the Billing Project Manager role at a folder or organization level which would allow them to make the change.
+   upvoted 1 times
+
+6. Anonymous: iamlearning2 1 year, 11 months ago
+Selected Answer: D
+D is the answer
+   upvoted 2 times
+
+7. Anonymous: anjanc 2 years ago
+Selected Answer: D
+d seems the answer
+   upvoted 1 times
+
+8. Anonymous: Cornholio_LMC 2 years, 3 months ago
+had this one today
+   upvoted 4 times
+
+9. Anonymous: deadlydeb 2 years, 6 months ago
+Selected Answer: D
+D D D D D
+   upvoted 1 times
+
+10. Anonymous: AzureDP900 2 years, 6 months ago
+D is perfect
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #165
+
+Pergunta:
+You are running a data warehouse on BigQuery. A partner company is offering a recommendation engine based on the data in your data warehouse. The partner company is also running their application on Google Cloud. They manage the resources in their own project, but they need access to the BigQuery dataset in your project. You want to provide the partner company with access to the dataset. What should you do?
+
+Alternativas:
+- A. Create a Service Account in your own project, and grant this Service Account access to BigQuery in your project.
+- B. Create a Service Account in your own project, and ask the partner to grant this Service Account access to BigQuery in their project.
+- C. Ask the partner to create a Service Account in their project, and have them give the Service Account access to BigQuery in their project.
+- D. Ask the partner to create a Service Account in their project, and grant their Service Account access to the BigQuery dataset in your project.
+
+Resposta correta:
+D. Ask the partner to create a Service Account in their project, and grant their Service Account access to the BigQuery dataset in your project.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: GCP_Student1 Highly Voted  4 years, 4 months ago
+D. Ask the partner to create a Service Account in their project, and grant their Service Account access to the BigQuery dataset in your project.
+   upvoted 36 times
+
+2. Anonymous: pondai Highly Voted  4 years, 3 months ago
+BigQuery is in our project,so we need to create a service account and grant it access BigQuery role.That can make partner company to use this account to use it to access our project's BigQuery.So I vote A.
+   upvoted 14 times
+ akshaychavan7 3 years, 1 month ago
+Your understanding is bit wrong here, my friend!
+   upvoted 3 times
+ tavva_prudhvi 4 years, 3 months ago
+See, the ones who want our access needs to create a service account(in our case it's the partner company), then we give access to the service account with the user permissions. Clearly, D says the same thing!
+   upvoted 11 times
+
+3. Anonymous: PiperMe Most Recent  1 year, 4 months ago
+Selected Answer: D
+D is the best answer:
+- By having the partner create a Service Account and you granting access to it, you maintain ownership and control over your BigQuery data.
+- You can specifically grant the partner's Service Account the necessary BigQuery permissions (e.g., "BigQuery Data Viewer"), avoiding overly broad access.
+- Each company manages Service Accounts within their own projects, maintaining a separation of concerns.
+Why Others Aren't as Ideal:
+A & B: Creating a Service Account in your project and sharing it with the partner (or vice versa) introduces potential management complexities and blurs the lines of responsibility for that Service Account.
+C: Giving the partner company full control to grant their own service accounts access to your dataset could open up broader access than intended.
+   upvoted 3 times
+
+4. Anonymous: scanner2 1 year, 10 months ago
+Selected Answer: D
+Cross project access. Application in Project A want to access a service in project B.
+1. Create a service account in project A.
+2. Give the required permission to access the services in project B.
+   upvoted 5 times
+
+5. Anonymous: N_A 2 years, 2 months ago
+Selected Answer: D
+A. Useless if the private key of the Service Account is not shared with the partner (this would not be a good practice in terms of security)
+B. Not possible.
+C. Useless as the won't have access to the data in our data warehouse on BigQuery.
+D. Is the correct answer and follow best practices.
+   upvoted 1 times
+
+6. Anonymous: hiromi 2 years, 8 months ago
+Selected Answer: D
+Should be D
+   upvoted 2 times
+
+7. Anonymous: Aninina 2 years, 8 months ago
+Selected Answer: D
+"Service accounts are both identities and resources. Because service accounts are identities, you can let a service account access resources in your project by granting it a role, just like you would for any other principal."
+   upvoted 1 times
+
+8. Anonymous: Cornholio_LMC 2 years, 10 months ago
+had this one today
+   upvoted 2 times
+
+9. Anonymous: AzureDP900 3 years ago
+D is right
+   upvoted 1 times
+
+10. Anonymous: somenick 3 years, 3 months ago
+Selected Answer: D
+https://gtseres.medium.com/using-service-accounts-across-projects-in-gcp-cf9473fef8f0#:~:text=Go%20to%20the%20destination%20project,Voila!
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #166
+
+Pergunta:
+Your web application has been running successfully on Cloud Run for Anthos. You want to evaluate an updated version of the application with a specific percentage of your production users (canary deployment). What should you do?
+
+Alternativas:
+- A. Create a new service with the new version of the application. Split traffic between this version and the version that is currently running.
+- B. Create a new revision with the new version of the application. Split traffic between this version and the version that is currently running.
+- C. Create a new service with the new version of the application. Add an HTTP Load Balancer in front of both services.
+- D. Create a new revision with the new version of the application. Add an HTTP Load Balancer in front of both revisions.
+
+Resposta correta:
+B. Create a new revision with the new version of the application. Split traffic between this version and the version that is currently running.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: crysk Highly Voted  4 years, 10 months ago
+In my opinion correct answer is B:
+https://cloud.google.com/run/docs/rollouts-rollbacks-traffic-migration?utm_campaign=CDR_ahm_aap-severless_cloud-run-faq_&utm_source=external&utm_medium=web
+Cloud Run can split traffic between revisions
+   upvoted 37 times
+ TAvenger 4 years, 10 months ago
+The google doc link is incorrect. You need to specify CloudRun for Anthos
+https://cloud.google.com/kuberun/docs/rollouts-rollbacks-traffic-migration
+Anyway principles for CloudRun and CloundRun for Anthos are the same. Traffic can be split between multiple revisions.
+The answer is "B"
+   upvoted 11 times
+
+2. Anonymous: GCP_Student1 Highly Voted  4 years, 10 months ago
+B. Create a new revision with the new version of the application. Split traffic between this version and the version that is currently running.
+   upvoted 10 times
+
+3. Anonymous: scanner2 Most Recent  2 years, 4 months ago
+Selected Answer: B
+https://cloud.google.com/anthos/run/docs/rollouts-rollbacks-traffic-migration
+   upvoted 2 times
+
+4. Anonymous: kumar262639 2 years, 8 months ago
+which answer is correct. the one "Correct Answer" or the Community vote distribution winner ?
+   upvoted 1 times
+ idontlikeme_3342 2 years, 4 months ago
+I recommend to you to go with the answer that has the most number of Upvotes
+   upvoted 2 times
+ iooj 1 year, 4 months ago
+I recommend that you analyze all options and make an informed decision, rather than just following the upvotes.
+   upvoted 1 times
+
+5. Anonymous: Emmanski08 3 years ago
+Keyword - "Updated Version"
+B. Create a new "revision"
+   upvoted 1 times
+
+6. Anonymous: AzFarid 3 years ago
+B is ok
+   upvoted 1 times
+
+7. Anonymous: Untamables 3 years, 2 months ago
+Selected Answer: B
+The latest Document
+https://cloud.google.com/anthos/run/docs/rollouts-rollbacks-traffic-migration
+   upvoted 1 times
+
+8. Anonymous: nosense 3 years, 2 months ago
+Selected Answer: B
+B. Create a new revision
+   upvoted 1 times
+
+9. Anonymous: sylva91 3 years, 4 months ago
+Selected Answer: B
+B is the correct answer
+   upvoted 1 times
+
+10. Anonymous: thimai 3 years, 4 months ago
+Selected Answer: B
+i think B
+   upvoted 1 times
+==============================
+
+==============================
+Page X — Question #167
+
+Pergunta:
+Your company developed a mobile game that is deployed on Google Cloud. Gamers are connecting to the game with their personal phones over the Internet. The game sends UDP packets to update the servers about the gamers' actions while they are playing in multiplayer mode. Your game backend can scale over multiple virtual machines (VMs), and you want to expose the VMs over a single IP address. What should you do?
+
+Alternativas:
+- A. Configure an SSL Proxy load balancer in front of the application servers.
+- B. Configure an Internal UDP load balancer in front of the application servers.
+- C. Configure an External HTTP(s) load balancer in front of the application servers.
+- D. Configure an External Network load balancer in front of the application servers.
+
+Resposta correta:
+D. Configure an External Network load balancer in front of the application servers.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: kopper2019 Highly Voted  4 years, 3 months ago
+Answer is D, cell phones are sending UDP packets and the only that can receive that type of traffic is a External Network TCP/UDP
+https://cloud.google.com/load-balancing/docs/network
+   upvoted 32 times
+ ashrafh 3 years, 11 months ago
+Google Cloud HTTP(S) Load Balancing is a global, proxy-based Layer 7 load balancer that enables you to run and scale your services worldwide behind a single external IP address. External HTTP(S) Load Balancing distributes HTTP and HTTPS traffic to backends hosted on Compute Engine and Google Kubernetes Engine (GKE).
+https://cloud.google.com/load-balancing/docs/https
+   upvoted 2 times
+ patashish 3 years ago
+what you are trying to say ? What is your answer ? A B C D ?
+   upvoted 3 times
+ ryumada 2 years, 11 months ago
+All the load balancer products in GCP give you a single IP address for the backend servers you registered to it.
+Also, External HTTP(s) load balancer only support the port that used by HTTP which is the port 80 and HTTPS which is the port 443.
+And Google Cloud external TCP/UDP Network Load Balancing is referred to as "Network Load Balancing" which supports UDP packets.
+- https://cloud.google.com/load-balancing/docs/load-balancing-overview#about
+- https://cloud.google.com/load-balancing/docs/network
+- https://cloud.google.com/load-balancing/docs/https
+   upvoted 3 times
+
+2. Anonymous: JH86 Highly Voted  4 years, 1 month ago
+Answer is D. there are so many confusion here, from B,C or D. For myself im eliminating all options except B,D due to the traffic type. which leaves me with B or D. Then next the traffic source either external or internal which in this case is an external traffic from the internet, therefore my final answer is D.
+https://cloud.google.com/load-balancing/docs/choosing-load-balancer
+   upvoted 14 times
+ BobbyFlash 3 years, 8 months ago
+Following the diagram, there's no doubt about D. We have external clients connecting to our gaming service on google cloud that works using UDP traffic that results in using External Network Load Balancing. I feel that it's simple as it is. I also go with D.
+   upvoted 4 times
+
+3. Anonymous: dead1407 Most Recent  4 months, 2 weeks ago
+Selected Answer: D
+An External Network Load Balancer supports UDP traffic and allows you to expose multiple backend VMs over a single public IP address, which is ideal for your multiplayer game scenario. The other load balancer types do not support UDP or are intended for internal traffic only.
+   upvoted 1 times
+
+4. Anonymous: Cynthia2023 1 year, 6 months ago
+Selected Answer: D
+1. UDP Traffic Support:
+• An external Network Load Balancer in Google Cloud supports both TCP and UDP traffic. Since your game uses UDP packets for multiplayer interactions, the Network Load Balancer is appropriate for handling this type of traffic.
+2. Single IP for Multiple VMs:
+• Network Load Balancers allow you to use a single, anycast IP address that can distribute incoming traffic across multiple VMs in your backend. This aligns with your requirement to expose the backend servers through a single IP address.
+   upvoted 4 times
+
+5. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: D
+for udp external load balancer, D is the correct answer
+   upvoted 2 times
+
+6. Anonymous: CVGCP 2 years, 1 month ago
+By elimination
+A: SSL proxy LB is for TCP traffic not for UDP, eliminated
+B: External LB is required, Eliminated
+C: Http LB works at layer 7, here protocol is UDP, eliminated
+D: Correct answer
+   upvoted 5 times
+
+7. Anonymous: kumar262639 2 years, 2 months ago
+"Correct Answer" says A and community vote says D(100%)
+which one is correct?
+   upvoted 1 times
+
+8. Anonymous: PPP_D 2 years, 3 months ago
+Going with D
+   upvoted 1 times
+
+9. Anonymous: Andoameda9 2 years, 5 months ago
+Selected Answer: D
+Ans is D
+   upvoted 1 times
+
+10. Anonymous: fragment137 2 years, 7 months ago
+The question tricked me. I saw UDP and immediately thought it was B.
+The correct answer is D, as the LB needs to be External, and SSL\HTTPS are not the right load balancers for this application.
+   upvoted 2 times
+==============================
+
+==============================
+Page X — Question #168
+
+Pergunta:
+You are working for a hospital that stores its medical images in an on-premises data room. The hospital wants to use Cloud Storage for archival storage of these images. The hospital wants an automated process to upload any new medical images to Cloud Storage. You need to design and implement a solution. What should you do?
+
+Alternativas:
+- A. Create a Pub/Sub topic, and enable a Cloud Storage trigger for the Pub/Sub topic. Create an application that sends all medical images to the Pub/Sub topic.
+- B. Deploy a Dataflow job from the batch template, ג€Datastore to Cloud Storage.ג€ Schedule the batch job on the desired interval.
+- C. Create a script that uses the gsutil command line interface to synchronize the on-premises storage with Cloud Storage. Schedule the script as a cron job.
+- D. In the Cloud Console, go to Cloud Storage. Upload the relevant images to the appropriate bucket.
+
+Resposta correta:
+C. Create a script that uses the gsutil command line interface to synchronize the on-premises storage with Cloud Storage. Schedule the script as a cron job.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: TAvenger Highly Voted  4 years, 4 months ago
+From the question the key point is "upload ANY NEW medical images to Cloud Storage". So we are not interested in old images. That's why we need some trigger that will upload images. I think option "A" with PubSub is the best
+   upvoted 26 times
+ dunhill 4 years, 4 months ago
+I am not sure but the question also mentions that "wants to use Cloud Storage for archival storage of these images". It can create an application that sends all medical images to storage and no need via PubSub?
+   upvoted 1 times
+ pca2b 4 years, 3 months ago
+Pub/Sub will be good for all future files in in-prem data-storage.
+we want to sync all + new, so a local on-prem server running a cron job (not GCE CronJob) to run gsutil to transfer files to Cloud Storage would work.
+I vote for C
+   upvoted 6 times
+ yvinisiupacuando 4 years, 2 months ago
+Sorry you are wrong, the question clearly indicates "The hospital wants an automated process to upload ANY NEW medical images to Cloud Storage." It does not mention the need to upload the original stock of images, only the new ones. Then I think the right answer must be A, as you said "Pub/sub will be good for all future files in prem data-storage" which is exactly what the questions is pointing to.
+   upvoted 6 times
+ gcpengineer 3 years, 11 months ago
+ans is C
+   upvoted 3 times
+ Priyanka109 2 years, 9 months ago
+In option C we are using a cron job, not dragging and dropping the images.
+   upvoted 1 times
+
+2. Anonymous: GCP_Student1 Highly Voted  4 years, 4 months ago
+C. Create a script that uses the gsutil command line interface to synchronize the on-premises storage with Cloud Storage. Schedule the script as a cron job.
+   upvoted 23 times
+ cserra 2 years, 11 months ago
+Where does it say that the on-premises images are already digitized? and even if they are, where does it say that we also keep the old images?
+I think the correct answer is "A"
+   upvoted 1 times
+ theBestStudent 2 years, 10 months ago
+Tell yo yourself how the images would end up in the pubsub first of all. Also usually the process is in the other way around for pubsub notifications: Once an object lands in GCS the pubsub is notified of it.
+Option A makes totally nonsense. Check the flow again.
+From the options the only one that "makes more sense" is Option C
+   upvoted 7 times
+
+3. Anonymous: kamee15 Most Recent  1 year ago
+Selected Answer: C
+The best option is:
+"Create a script that uses the gsutil command line interface to synchronize the on-premises storage with Cloud Storage. Schedule the script as a cron job."
+This solution is straightforward and efficient for automating the upload of new medical images. The gsutil tool is designed for interacting with Cloud Storage and can synchronize files effectively. Scheduling the script as a cron job ensures that any new images are automatically uploaded at regular intervals without manual intervention. Using Pub/Sub is more complex and better suited for event-driven architectures rather than bulk data transfer from on-premises storage.
+   upvoted 2 times
+
+4. Anonymous: Cynthia2023 1 year, 6 months ago
+Selected Answer: C
+A. Pub/Sub Topic with Cloud Storage Trigger: While Cloud Pub/Sub is great for event-driven architectures, it's not directly applicable for file synchronization scenarios. It would also require substantial modification to the existing infrastructure to send images to Pub/Sub.
+B. Dataflow Job: Dataflow is a powerful service for stream and batch data processing, but using it solely for file synchronization is overkill. It also requires more setup and maintenance compared to a simple gsutil script.
+D. Manual Upload in Cloud Console: This is not feasible for an automated process, as it requires manual intervention and isn’t practical for a large number of files.
+   upvoted 8 times
+
+5. Anonymous: jkim1708 1 year, 10 months ago
+Selected Answer: A
+I am also for A. Any new data should be send to Cloud Storage. Yes you need to create an application. To send data to pubsub. But for possible migration to cloud you can use the existing setup
+   upvoted 1 times
+
+6. Anonymous: Captain1212 1 year, 10 months ago
+Selected Answer: C
+C is the right answer as they want the automated process to upload any new medical image
+   upvoted 2 times
+
+7. Anonymous: respawn 1 year, 10 months ago
+Selected Answer: C
+C is correct.
+A will not work because pub/sub is meant for service to service communication only:
+https://cloud.google.com/pubsub/docs/overview#compare_service-to-service_and_service-to-client_communication
+Yes C option will sync any new images from onprem to cloud.
+   upvoted 2 times
+
+8. Anonymous: shreykul 1 year, 12 months ago
+Selected Answer: A
+New images can use Pub/Sub
+   upvoted 1 times
+
+9. Anonymous: Charumathi 2 years, 9 months ago
+Selected Answer: C
+C is the correct answer.
+Keyword, they require cloud storage for archival and the want to automate the process to upload new medical image to cloud storage, hence we go for gsutil to copy on-prem images to cloud storage and automate the process via cron job. whereas Pub/Sub listens to the changes in the Cloud Storage bucket and triggers the pub/sub topic, which is not required.
+   upvoted 9 times
+ Naree 2 years ago
+I agree. The requirement is for both history images and future images. So I go with Option "C".
+   upvoted 2 times
+
+10. Anonymous: zolthar_z 2 years, 11 months ago
+Selected Answer: C
+The Hospital wants Cloud storage for archival of old images and also sync the new images, for this logic the answer is C
+   upvoted 3 times
+==============================
+
+==============================
+Page X — Question #169
+
+Pergunta:
+Your auditor wants to view your organization's use of data in Google Cloud. The auditor is most interested in auditing who accessed data in Cloud Storage buckets. You need to help the auditor access the data they need. What should you do?
+
+Alternativas:
+- A. Turn on Data Access Logs for the buckets they want to audit, and then build a query in the log viewer that filters on Cloud Storage.
+- B. Assign the appropriate permissions, and then create a Data Studio report on Admin Activity Audit Logs.
+- C. Assign the appropriate permissions, and then use Cloud Monitoring to review metrics.
+- D. Use the export logs API to provide the Admin Activity Audit Logs in the format they want.
+
+Resposta correta:
+A. Turn on Data Access Logs for the buckets they want to audit, and then build a query in the log viewer that filters on Cloud Storage.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: iri_gcp Highly Voted  4 years, 10 months ago
+It should be A.
+Data access log are not enabled by default due to the fact that it incurs costs.
+So you need to enable it first.
+And then you can filter it in the log viewer
+   upvoted 41 times
+
+2. Anonymous: GCP_Student1 Highly Voted  4 years, 10 months ago
+A. Turn on Data Access Logs for the buckets they want to audit, and then build a query in the log viewer that filters on Cloud Storage.
+   upvoted 11 times
+
+3. Anonymous: Enamfrancis Most Recent  1 year, 3 months ago
+Once again wrong answer. It should be option A
+   upvoted 1 times
+
+4. Anonymous: pzacariasf7 1 year, 10 months ago
+Selected Answer: A
+A. Turn on Data Access Logs for the buckets they want to audit, and then build a query in the log viewer that filters on Cloud Storage.
+   upvoted 1 times
+
+5. Anonymous: NoCrapEva 2 years, 4 months ago
+IF Data Access Logs had ALREADY been enabled, then option B would be a good answer
+Reason - (1) best practice for cloud auditing - enable Admin Activity audit logs, then set IAM permissions
+(ref: https://cloud.google.com/logging/docs/audit/best-practices)
+and (2) Create a Data Studio (now renamed to Looker) report on Admin Activity Audit Logs
+(ref: https://cloud.google.com/looker/docs/looker-core-audit-logging)
+But you cannot assume from the question that Data Access Logs are enabled (NB: they are NOT by default)
+   upvoted 1 times
+
+6. Anonymous: Captain1212 2 years, 4 months ago
+Selected Answer: A
+A is the right answer as first we need to turn on the data access logs
+   upvoted 1 times
+
+7. Anonymous: anolive 3 years, 2 months ago
+I have doubts about the answer A, the auditor wants to see the audit logs, and in this answer it is not explicit if he will be allowed to see it.
+   upvoted 1 times
+
+8. Anonymous: Charumathi 3 years, 3 months ago
+Selected Answer: A
+A is the correct answer,
+Since the auditor wants to know who accessed the cloud storage data, we need data acces logs for cloud storage.
+Types of audit logs
+Cloud Audit Logs provides the following audit logs for each Cloud project, folder, and organization:
+Admin Activity audit logs
+Data Access audit logs
+System Event audit logs
+Policy Denied audit logs
+***Data Access audit logs contain API calls that read the configuration or metadata of resources, as well as user-driven API calls that create, modify, or read user-provided resource data.
+https://cloud.google.com/logging/docs/audit#types
+   upvoted 2 times
+
+9. Anonymous: AzureDP900 3 years, 6 months ago
+A is right
+   upvoted 1 times
+
+10. Anonymous: Jman007 3 years, 7 months ago
+Selected Answer: A
+question says auditor is most interested in who accessED data in Cloud Storage. im not sure how auditoring is done for those who answered A but this means they want the logs for past users who accessed the data from a sepecified time. Turning on the feature now is kind of too late. poorly written question and answers. No point in an auditor coming in and giving the company all the exact questions they are going to ask and come back and ask them in a few months time. A seems like the better choices though
+   upvoted 6 times
+==============================
+
+==============================
+Page X — Question #170
+
+Pergunta:
+You received a JSON file that contained a private key of a Service Account in order to get access to several resources in a Google Cloud project. You downloaded and installed the Cloud SDK and want to use this private key for authentication and authorization when performing gcloud commands. What should you do?
+
+Alternativas:
+- A. Use the command gcloud auth login and point it to the private key.
+- B. Use the command gcloud auth activate-service-account and point it to the private key.
+- C. Place the private key file in the installation directory of the Cloud SDK and rename it to ג€credentials.jsonג€.
+- D. Place the private key file in your home directory and rename it to ג€GOOGLE_APPLICATION_CREDENTIALSג€.
+
+Resposta correta:
+B. Use the command gcloud auth activate-service-account and point it to the private key.
+
+Top 10 Discussões (sem replies):
+1. Anonymous: GCP_Student1 Highly Voted  4 years, 10 months ago
+B. Use the command gcloud auth activate-service-account and point it to the private key.
+Authorizing with a service account
+gcloud auth activate-service-account authorizes access using a service account. As with gcloud init and gcloud auth login, this command saves the service account credentials to the local system on successful completion and sets the specified account as the active account in your Cloud SDK configuration.
+https://cloud.google.com/sdk/docs/authorizing#authorizing_with_a_service_account
+   upvoted 44 times
+
+2. Anonymous: TAvenger Highly Voted  4 years, 10 months ago
+B.
+gcloud auth activate-service-account --help
+NAME)
+gcloud auth activate-service-account - authorize access to Google Cloud
+Platform with a service account
+SYNOPSIS
+gcloud auth activate-service-account [ACCOUNT] --key-file=KEY_FILE
+[--password-file=PASSWORD_FILE | --prompt-for-password]
+[GCLOUD_WIDE_FLAG ...]
+DESCRIPTION
+To allow gcloud (and other tools in Cloud SDK) to use service account
+credentials to make requests, use this command to import these credentials
+from a file that contains a private authorization key, and activate them
+for use in gcloud. gcloud auth activate-service-account serves the same
+function as gcloud auth login but uses a service account rather than Google
+user credentials.
+   upvoted 20 times
+ eBooKz 2 years, 11 months ago
+See below information suggesting that service account can be used to authorize with the command "gcloud auth login". Not sure if this is a recent update:
+"The gcloud auth login command authorizes access by using workload identity federation, which provides access to external workloads, or by using a service account key."
+"To activate your service account, run gcloud auth login with the --cred-file flag:
+gcloud auth login --cred-file=CONFIGURATION_OR_KEY_FILE
+Replace CONFIGURATION_OR_KEY_FILE with the path to one of the following:
+A credential configuration file for workload identity federation
+A service account key file"
+https://cloud.google.com/sdk/docs/authorizing#authorize_with_a_service_account
+   upvoted 1 times
+ itsimranmalik 2 years, 4 months ago
+As per google - gcloud auth activate-service-account serves the same function as gcloud auth login but uses a service account rather than Google user credentials.
+Ref: https://cloud.google.com/sdk/gcloud/reference/auth/activate-service-account
+   upvoted 1 times
+
+3. Anonymous: dead1407 Most Recent  4 months, 2 weeks ago
+Selected Answer: B
+To authenticate with a service account using a private key file, you should run:
+gcloud auth activate-service-account --key-file=PATH_TO_KEY_FILE.json
+This configures the Cloud SDK to use the service account for authentication and authorization.
+   upvoted 1 times
+
+4. Anonymous: yomi95 1 year, 2 months ago
+Selected Answer: A
+A works
+https://cloud.google.com/sdk/docs/authorizing#auth-login
+Check this sub menu: "Authorize a service account using a service account key"
+   upvoted 1 times
+ yomi95 1 year, 2 months ago
+Correction, B also works,
+But for the question at hand, B seems to be more relatable. Question seems to be confusing.
+   upvoted 2 times
+
+5. Anonymous: denno22 1 year, 3 months ago
+Selected Answer: A
+Authorize with a service account
+The gcloud auth login command can authorize access with a service account by using a credential file stored on your local file system. This credential can be a user credential with permission to impersonate the service account, a credential configuration file for workload identity federation, or a service account key.
+https://cloud.google.com/sdk/docs/authorizing#auth-login
+   upvoted 1 times
+ denno22 1 year, 3 months ago
+Now, I see that while A works, B is a better answer.
+   upvoted 1 times
+
+6. Anonymous: blackBeard33 1 year, 11 months ago
+Selected Answer: B
+The Answer is A. The command to use service account for authentication is precisely gcloud auth activate-service-account where you can point out to the key file using the flag --key-file.
+https://cloud.google.com/sdk/gcloud/reference/auth/activate-service-account
+   upvoted 2 times
+
+7. Anonymous: Cynthia2023 2 years ago
+Selected Answer: B
+• The command syntax is gcloud auth activate-service-account --key-file=PATH_TO_KEY_FILE, where PATH_TO_KEY_FILE is the path to the JSON file containing the service account's private key.
+   upvoted 1 times
+
+8. Anonymous: scanner2 2 years, 4 months ago
+Selected Answer: B
+https://cloud.google.com/sdk/gcloud/reference/auth/activate-service-account
+   upvoted 2 times
+
+9. Anonymous: N_A 2 years, 8 months ago
+D. This method is for application default credentials. See: https://cloud.google.com/docs/authentication/application-default-credentials
+A. This method is to obtain credentials for a user account.
+C. This does nothing. Useless.
+B. Is the correct answer. See: https://cloud.google.com/sdk/gcloud/reference/auth/activate-service-account
+   upvoted 3 times
+
+10. Anonymous: Abhi00754 2 years, 9 months ago
+Selected Answer: B
+https://cloud.google.com/sdk/gcloud/reference/auth/activate-service-account
+B
+   upvoted 1 times
+==============================
