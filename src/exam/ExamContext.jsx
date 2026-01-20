@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useMemo, useReducer } from "react
 import allQuestions from "../data/questions.json";
 
 const TOTAL_QUESTIONS = 50;
-const TOTAL_TIME_SECONDS = 90 * 60; // 1h30
+const TOTAL_TIME_SECONDS = 120 * 60; // 1h30
 
 const ExamContext = createContext(null);
 
