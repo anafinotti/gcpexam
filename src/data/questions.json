@@ -12208,43 +12208,43 @@
     "discussions": [
       {
         "index": 1,
-        "text": "Anonymous: cesar7816 Highly Voted 5 years, 10 months ago I'll go with A, MIGs support autohealing, load balancing, autoscaling, and auto-updating. no the Images templates, this is set up in the MIG ..."
+        "text": "Anonymous: obeythefist Highly Voted 3 years, 4 months ago This question is designed to waste your time during the exam by forcing you to read long answers. Part of exam technique is understanding multiple-choice patterns, not just knowing the product. When two answers are very similar, the correct answer is often one of them. Here, all answers look similar, so we eliminate the wrong ones. Two answers mention opening all ports, while two mention port 8080. Since only port 8080 is required, we eliminate the options that open all ports. That leaves two choices: one using ingress and one using egress. Since egress traffic is allowed by default and ingress is not, the correct answer must be the ingress rule. Therefore, option B is the only valid choice. Upvoted 101 times."
       },
       {
         "index": 2,
-        "text": "Anonymous: tanito83 Highly Voted 4 years, 7 months ago The correct answer is A. Please, modify it. ..."
+        "text": "Anonymous: kopper2019 Highly Voted 4 years, 3 months ago If you look closely, port 8080 and service accounts are required. So B is the answer without needing to read all options. Upvoted 27 times."
       },
       {
         "index": 3,
-        "text": "Anonymous: Enamfrancis Most Recent 1 year, 3 months ago Selected Answer: A A is the correct answer. ..."
+        "text": "Anonymous: Captain1212 Most Recent 1 year, 10 months ago Selected Answer: B B is the correct answer. Upvoted 1 time."
       },
       {
         "index": 4,
-        "text": "Anonymous: XNap 1 year, 10 months ago Selected Answer: A The correct answer is A. Create a health check on port 443 and use that when creating the Managed Instance Group.\nOption B is related to the availability and distribution of instances across multiple zones, but it does not directly address the requirement of recreating unhealthy VMs.\nOption C is incorrect because labels are not used for configuring health checks in GCP.\nOption D is an alternative method for health checking, but it is not as straightforward as using the built-in health check functionality provided by GCP for managed instance groups. ..."
+        "text": "Anonymous: Buruguduystunstugudunstuy 2 years, 5 months ago Selected Answer: B Answer B is correct because it creates ingress firewall rules that allow communication between instances in different tiers on TCP port 8080, based on service accounts. The first rule allows Tier 1 to communicate with Tier 2, and the second allows Tier 2 to communicate with Tier 3. This ensures only the correct instances can communicate. Answer A is incorrect because subnet-based rules allow unintended instances to communicate. Answer C is incorrect because it allows all protocols, which is insecure. Answer D is incorrect because it creates egress rules, while ingress rules are required. Upvoted 5 times."
       },
       {
         "index": 5,
-        "text": "Anonymous: fraiacca 2 years, 4 months ago Selected Answer: A Only A answer has some sense ..."
+        "text": "Anonymous: cslince 2 years, 7 months ago Selected Answer: B B is the correct answer. Upvoted 1 time."
       },
       {
         "index": 6,
-        "text": "Anonymous: Captain1212 2 years, 4 months ago Selected Answer: A 443 means http A seems more correct ..."
+        "text": "Anonymous: leogor 2 years, 9 months ago Selected Answer: B B is correct obviously. Upvoted 1 time."
       },
       {
         "index": 7,
-        "text": "Anonymous: sthapit 2 years, 5 months ago C is incomplete. A all the way ..."
+        "text": "Anonymous: abirroy 2 years, 11 months ago Selected Answer: B B is the correct answer. Upvoted 1 time."
       },
       {
         "index": 8,
-        "text": "Anonymous: Nxt_007 2 years, 5 months ago Selected Answer: A Option A is the correct choice because it involves creating a health check specifically on port 443, which is the standard port for HTTPS traffic. This health check will monitor the health of the instances based on their ability to respond to HTTPS requests. When creating the Managed Instance Group, you would configure it to use this health check to determine the health of the instances\nOptions B, C, and D are not directly related to setting up proper health checks for autoscaling and ensuring unhealthy instances are recreated ..."
+        "text": "Anonymous: AzureDP900 3 years ago B is right. We need firewall rules that allow port 8080 and it should not be wide open like a /24 network. Upvoted 2 times."
       },
       {
         "index": 9,
-        "text": "Anonymous: Backlander 2 years, 7 months ago A for A-Game let's goooo! ..."
+        "text": "Anonymous: haroldbenites 3 years, 1 month ago Go for B. Upvoted 1 time."
       },
       {
         "index": 10,
-        "text": "Anonymous: Vamshi_Krishna 2 years, 8 months ago Selected Answer: A C is definitely incorrect. Adding a label does not recreate unhealthy VMs.\nA is CORRECT. ..."
+        "text": "Anonymous: Jerickson 3 years, 5 months ago Selected Answer: B B is correct."
       }
     ]
   },
@@ -12316,43 +12316,80 @@
     "discussions": [
       {
         "index": 1,
-        "text": "Anonymous: cesar7816 Highly Voted 5 years, 10 months ago I'll go with A, MIGs support autohealing, load balancing, autoscaling, and auto-updating. no the Images templates, this is set up in the MIG ..."
+        "author": "Anonymous: Gini",
+        "meta": "Highly Voted • 5 years, 8 months ago",
+        "text": "The question mentioned that \"GKE container emitted a huge number of logs\", in my opinion A is correct.",
+        "upvotes": 53
       },
       {
         "index": 2,
-        "text": "Anonymous: tanito83 Highly Voted 4 years, 7 months ago The correct answer is A. Please, modify it. ..."
+        "author": "Anonymous: JackGlemins",
+        "meta": "Highly Voted • 4 years, 11 months ago",
+        "text": "I think A is right.\nhttps://cloud.google.com/logging/docs/api/v2/resource-list\n\nGKE Containers have more logs than GKE Cluster Operations:\n\nGKE Container:\n- cluster_name: An immutable name for the cluster the container is running in.\n- namespace_id: Immutable ID of the cluster namespace the container is running in.\n- instance_id: Immutable ID of the GCE instance the container is running in.\n- pod_id: Immutable ID of the pod the container is running in.\n- container_name: Immutable name of the container.\n- zone: The GCE zone in which the instance is running.\n\nGKE Cluster Operations:\n- project_id: The identifier of the GCP project associated with this resource.\n- cluster_name: The name of the GKE Cluster.\n- location: The location in which the GKE Cluster is running.",
+        "upvotes": 18
       },
       {
         "index": 3,
-        "text": "Anonymous: Enamfrancis Most Recent 1 year, 3 months ago Selected Answer: A A is the correct answer. ..."
+        "author": "Anonymous: Samii150406",
+        "meta": "Most Recent • 1 year, 4 months ago",
+        "selectedAnswer": "A",
+        "text": "Your projects incurred more costs than expected due to a development GKE container emitting a huge number of logs. To disable the logs quickly using the minimum number of steps, the correct choice is A.\n\nA. Disable the log source for the GKE container resource in the Logs ingestion window.\nB. Disable the GKE Cluster Operations log source.\nC. Delete and recreate the cluster without legacy Stackdriver Logging.\nD. Delete and recreate the cluster without legacy Stackdriver Monitoring.",
+        "upvotes": 1
       },
       {
         "index": 4,
-        "text": "Anonymous: XNap 1 year, 10 months ago Selected Answer: A The correct answer is A. Create a health check on port 443 and use that when creating the Managed Instance Group.\nOption B is related to the availability and distribution of instances across multiple zones, but it does not directly address the requirement of recreating unhealthy VMs.\nOption C is incorrect because labels are not used for configuring health checks in GCP.\nOption D is an alternative method for health checking, but it is not as straightforward as using the built-in health check functionality provided by GCP for managed instance groups. ..."
+        "author": "Anonymous: Captain1212",
+        "meta": "2 years, 4 months ago",
+        "selectedAnswer": "A",
+        "text": "A seems more correct as it uses the fewest steps.",
+        "upvotes": 3
       },
       {
         "index": 5,
-        "text": "Anonymous: fraiacca 2 years, 4 months ago Selected Answer: A Only A answer has some sense ..."
+        "author": "Anonymous: _Sande",
+        "meta": "2 years, 9 months ago",
+        "text": "Just as a side note: Stackdriver is now called Google Cloud Operations Suite.",
+        "upvotes": 9
       },
       {
         "index": 6,
-        "text": "Anonymous: Captain1212 2 years, 4 months ago Selected Answer: A 443 means http A seems more correct ..."
+        "author": "Anonymous: Buruguduystunstugudunstuy",
+        "meta": "2 years, 11 months ago",
+        "selectedAnswer": "A",
+        "text": "The correct answer is A. Disabling the GKE container log source directly reduces log volume and cost.\n\nB does not stop container logs.\nC and D are not recommended because deleting and recreating clusters is unnecessary and inefficient.",
+        "upvotes": 8
       },
       {
         "index": 7,
-        "text": "Anonymous: sthapit 2 years, 5 months ago C is incomplete. A all the way ..."
+        "author": "Anonymous: cslince",
+        "meta": "3 years, 1 month ago",
+        "selectedAnswer": "A",
+        "text": "A is correct.",
+        "upvotes": 1
       },
       {
         "index": 8,
-        "text": "Anonymous: Nxt_007 2 years, 5 months ago Selected Answer: A Option A is the correct choice because it involves creating a health check specifically on port 443, which is the standard port for HTTPS traffic. This health check will monitor the health of the instances based on their ability to respond to HTTPS requests. When creating the Managed Instance Group, you would configure it to use this health check to determine the health of the instances\nOptions B, C, and D are not directly related to setting up proper health checks for autoscaling and ensuring unhealthy instances are recreated ..."
+        "author": "Anonymous: leogor",
+        "meta": "3 years, 2 months ago",
+        "selectedAnswer": "A",
+        "text": "A can do it with the fewest steps.",
+        "upvotes": 1
       },
       {
         "index": 9,
-        "text": "Anonymous: Backlander 2 years, 7 months ago A for A-Game let's goooo! ..."
+        "author": "Anonymous: Untamables",
+        "meta": "3 years, 3 months ago",
+        "selectedAnswer": "B",
+        "text": "Currently B is correct. Stackdriver Logging has been renamed to Cloud Logging.\nhttps://cloud.google.com/stackdriver/docs/solutions/gke/installing#migrating",
+        "upvotes": 1
       },
       {
         "index": 10,
-        "text": "Anonymous: Vamshi_Krishna 2 years, 8 months ago Selected Answer: A C is definitely incorrect. Adding a label does not recreate unhealthy VMs.\nA is CORRECT. ..."
+        "author": "Anonymous: abirroy",
+        "meta": "3 years, 5 months ago",
+        "selectedAnswer": "A",
+        "text": "Go for A.",
+        "upvotes": 1
       }
     ]
   },
