@@ -1,0 +1,94 @@
+(() => {
+  // 🔥 Acessa o estado real do React (ExamContext)
+  const reactRoot = document.querySelector("#root");
+  if (!reactRoot) {
+    console.error("❌ Root não encontrado");
+    return;
+  }
+
+  // Hack seguro: pegar o estado renderizado pelo ReviewPage
+  // Usamos a ordem das questions renderizadas
+  const results = [];
+
+  const reviewBlocks = document.querySelectorAll(".review-answer");
+
+  // ⚠️ IMPORTANTE:
+  // answers NÃO está no DOM → precisamos inferir via render
+  // O ReviewPage já renderiza na mesma ordem de `questions`
+  const examState =
+    window.__REACT_DEVTOOLS_GLOBAL_HOOK__ &&
+    [...document.querySelectorAll("*")]
+      .find(el => el.__reactFiber$ || el.__reactInternalInstance$);
+
+  // Fallback: inferir answers pelo HTML renderizado
+  reviewBlocks.forEach((block, index) => {
+    const questionText =
+      block.querySelector(".que p")?.innerText || "";
+
+    const domain =
+      block
+        .querySelector(".que-category")
+        ?.innerText.replace("Domain:", "")
+        .trim() || null;
+
+    const options = {};
+    let correctAnswer = null;
+    let yourAnswer = null;
+
+    block.querySelectorAll(".answer li").forEach(li => {
+      const raw = li.innerText
+        .replace(/\s+(right|wrong)$/i, "")
+        .trim();
+
+      const key = raw.charAt(0);
+      const value = raw.slice(3).trim();
+
+      options[key] = value;
+
+      if (li.classList.contains("right")) {
+        correctAnswer = key;
+      }
+
+      if (li.classList.contains("selected")) {
+        yourAnswer = key;
+      }
+    });
+
+    // ✅ REGRA FINAL:
+    // - se marcou algo → yourAnswer = letra
+    // - se não marcou → yourAnswer = null
+    const isCorrect =
+      yourAnswer !== null && yourAnswer === correctAnswer;
+
+    const explanations = [];
+    block
+      .querySelectorAll(".explanation-block ul li")
+      .forEach(li => explanations.push(li.innerText.trim()));
+
+    results.push({
+      index: index + 1,
+      domain,
+      question: questionText,
+      options,
+      yourAnswer,
+      correctAnswer,
+      isCorrect,
+      explanations
+    });
+  });
+
+  // 📦 Download
+  const blob = new Blob(
+    [JSON.stringify(results, null, 2)],
+    { type: "application/json" }
+  );
+
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "gcp-review-export.json";
+  a.click();
+  URL.revokeObjectURL(url);
+
+  console.log("✅ Export final concluído com sucesso!", results);
+})();
