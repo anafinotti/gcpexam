@@ -2,6 +2,7 @@
 // File: src/exam/ExamPage.jsx
 import { useExam } from "./ExamContext";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function ExamPage() {
   const { state, dispatch } = useExam();
@@ -19,9 +20,20 @@ export default function ExamPage() {
   const q = questions[currentIndex];
   if (!q) return null;
 
+  // ===== NEW: show / hide explanation
+  const [showAnswer, setShowAnswer] = useState(false);
+
+  // Fecha explicação ao trocar de questão
+  useEffect(() => {
+    setShowAnswer(false);
+  }, [currentIndex]);
+
   const hh = String(Math.floor(timeLeft / 3600)).padStart(2, "0");
   const mm = String(Math.floor((timeLeft % 3600) / 60)).padStart(2, "0");
   const ss = String(timeLeft % 60).padStart(2, "0");
+
+  const userAnswer = answers[q.id];
+  const isCorrect = userAnswer === q.correct;
 
   return (
     <div style={{ minHeight: "100vh", background: "#f3f4f6" }}>
@@ -49,9 +61,9 @@ export default function ExamPage() {
             <strong>
               Question {currentIndex + 1} / {questions.length}
             </strong>
-          <span style={{ fontFamily: "monospace" }}>
-            {hh}:{mm}:{ss}
-        </span>
+            <span style={{ fontFamily: "monospace" }}>
+              {hh}:{mm}:{ss}
+            </span>
           </div>
 
           {/* Question */}
@@ -81,7 +93,6 @@ export default function ExamPage() {
                     cursor: "pointer",
                   }}
                 >
-                  {/* Radio */}
                   <span
                     style={{
                       width: "18px",
@@ -127,6 +138,55 @@ export default function ExamPage() {
               );
             })}
           </div>
+
+          {/* ===== SHOW ANSWER BUTTON ===== */}
+          <div style={{ marginTop: "12px" }}>
+            <button
+              onClick={() => setShowAnswer(v => !v)}
+              style={{
+                background: "#e0e7ff",
+                color: "#3730a3",
+                padding: "8px 16px",
+                borderRadius: "8px",
+                fontWeight: 500,
+              }}
+            >
+              {showAnswer ? "Hide Answer" : "Show Answer"}
+            </button>
+          </div>
+
+          {/* ===== EXPLANATION ===== */}
+          {showAnswer && (
+            <div
+              style={{
+                marginTop: "20px",
+                padding: "16px",
+                borderRadius: "8px",
+                background: "#f8fafc",
+                border: "1px solid #e5e7eb",
+              }}
+            >
+              <strong>
+                Correct Answer – Option {q.correct}
+              </strong>
+
+              {q.explanation && (
+                <p style={{ marginTop: "8px" }}>
+                  {q.explanation}
+                </p>
+              )}
+
+              {q.discussions?.length > 0 && (
+                <ul style={{ marginTop: "12px", paddingLeft: "18px" }}>
+                  {q.discussions.map((d, i) => (
+                    <li key={i} style={{ marginBottom: "8px" }}>
+                      {d.text || d}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          )}
 
           {/* Footer */}
           <div
@@ -180,6 +240,12 @@ export default function ExamPage() {
             boxShadow: "0 1px 4px rgba(0,0,0,.08)",
             display: "flex",
             flexDirection: "column",
+
+            // 🔥 FIX IMPORTANTE
+            height: "calc(100vh - 48px)",
+            position: "sticky",
+            top: "24px",
+            overflowY: "auto",
           }}
         >
           <strong style={{ textAlign: "center", marginBottom: "12px" }}>
